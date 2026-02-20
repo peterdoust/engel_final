@@ -1,0 +1,241 @@
+BUSINESS VALUATION - CONTENT REVIEW
+_____________________________________________________________________
+
+
+INSTRUCTIONS FOR CLIENT:
+
+1. This document is in SUGGESTION MODE - your edits will be tracked automatically
+2. Simply click on any text and start typing to make changes
+3. Add comments (Ctrl+Alt+M or Cmd+Option+M) if you have questions
+4. When done, click "Share" button and send back to us
+5. We'll see exactly what you changed!
+
+HOW TO SEND BACK:
+- Click blue "Share" button (top right corner)
+- Add our email address
+- Click "Send"
+- Done! We receive your edits automatically
+
+_____________________________________________________________________
+
+COMPARE PAGES SIDE-BY-SIDE:
+_____________________________________________________________________
+
+NEW WEBSITE DESIGN:
+https://engeldemo.vercel.app/practice-areas/business-valuation
+
+YOUR CURRENT WEBSITE:
+https://engelandengel.com/business-valuation
+
+TIP: Open both links in separate tabs to compare side-by-side!
+
+_____________________________________________________________________
+
+EDIT CONTENT BELOW - This appears on your website
+_____________________________________________________________________
+
+HERO SECTION
+_____________________________________________________________________
+
+Headline:
+Business Valuation
+
+Subheadline:
+Professional business valuation services for litigation, transactions, and strategic planning.
+
+
+INTRODUCTION
+_____________________________________________________________________
+
+Paragraph 1:
+Engel & Engel provides comprehensive business valuation services for a wide range of purposes including litigation support, mergers and acquisitions, tax planning, estate planning, and financial reporting. Our certified professionals apply rigorous methodologies to deliver accurate, defensible valuations.
+
+Paragraph 2:
+We combine deep industry knowledge with advanced valuation techniques to provide reliable business valuations that withstand scrutiny in legal proceedings and business transactions.
+
+VALUATION PURPOSES (4 cards)
+_____________________________________________________________________
+
+CARD 1 - Litigation Support:
+Business valuations for shareholder disputes, breach of contract cases, and other litigation matters requiring expert valuation testimony.
+
+CARD 2 - Mergers & Acquisitions:
+Valuation analysis for business sales, acquisitions, mergers, and strategic transactions to support negotiation and decision-making.
+
+CARD 3 - Tax & Estate Planning:
+Business valuations for gift and estate tax purposes, tax planning strategies, and compliance with IRS requirements for business transfers.
+
+CARD 4 - Financial Reporting:
+Valuations for financial reporting purposes, including purchase price allocations, impairment testing, and fair value measurements.
+
+VALUATION APPROACHES (3 boxes)
+_____________________________________________________________________
+
+BOX 1 - Income Approach:
+
+Discounted Cash Flow (DCF) analysis and capitalization of earnings methods that focus on the business's ability to generate future economic benefits.
+
+• Discounted Cash Flow Analysis
+• Capitalization of Earnings
+• Risk Assessment and Discount Rate Analysis
+
+BOX 2 - Market Approach:
+
+Comparative analysis using market data from similar businesses, including public company multiples and transaction data.
+
+• Guideline Public Company Method
+• Guideline Transaction Method
+• Market Multiple Analysis
+
+BOX 3 - Asset Approach:
+
+Analysis of the business's underlying assets and liabilities, including tangible and intangible asset valuations.
+
+• Adjusted Net Asset Method
+• Liquidation Value Analysis
+• Intangible Asset Valuation
+
+INDUSTRIES (12 boxes)
+_____________________________________________________________________
+
+Manufacturing | Technology | Healthcare | Real Estate
+Construction | Professional Services | Retail | Hospitality
+Transportation | Energy | Financial Services | Entertainment
+
+
+WHY CHOOSE US (3 features)
+_____________________________________________________________________
+
+FEATURE 1 - Certified Professionals:
+
+Certified Public Accountants with specialized training in business valuation and extensive litigation experience.
+
+FEATURE 2 - Rigorous Methodology:
+
+Application of accepted valuation standards and methodologies that produce defensible, well-supported conclusions.
+
+FEATURE 3 - Expert Testimony:
+
+Experienced expert witnesses who can clearly explain valuation conclusions in depositions and trial testimony.
+
+RESEARCH & PUBLICATIONS
+_____________________________________________________________________
+
+Introduction:
+
+Our business valuation expertise is grounded in extensive research and published works in valuation theory, methodology, and application.
+
+PUBLICATION 1:
+
+Title: "Valuation of Closely-Held Businesses in Litigation Contexts"
+Journal: Business Valuation Review
+Description: Comprehensive analysis of valuation approaches and methodologies for litigation support and dispute resolution.
+
+PUBLICATION 2:
+
+Title: "Discount Rate Selection in Business Valuations"
+Journal: Journal of Business Valuation and Economic Loss Analysis
+Description: Analysis of appropriate discount rates and risk adjustments in various valuation contexts and industries.
+
+PUBLICATION 3:
+
+Title: "Marketability Discounts: Theory and Application"
+Journal: Valuation Strategies
+Description: Examination of marketability discounts for minority interests in closely-held businesses and their application in various contexts.
+
+PUBLICATION 4:
+
+Title: "Intangible Asset Valuation in M&A Transactions"
+Journal: The Value Examiner
+Description: Methodologies for identifying and valuing intangible assets in merger and acquisition transactions.
+
+
+CONTACT CTA
+_____________________________________________________________________
+
+Headline:
+Need a Business Valuation?
+
+Subheadline:
+Contact our valuation experts for a consultation on your business valuation needs.
+
+Contact:
+Jason A. Engel, CPA, CFE
+jason@engelandengel.com
+(310) 277-2220
+
+YOUR CURRENT WEBSITE CONTENT (For Reference)
+_____________________________________________________________________
+
+This is what's currently on https://engelandengel.com/business-valuation
+
+Main Content:
+
+Engel & Engel possesses extensive experience and qualifications to provide business valuation services and serve as your valuation expert. Our qualifications include two business valuation credentials, Certified Valuation Analyst (CVA) and Accreditation in Business Valuation (ABV). Our experience includes over 100 business valuations in a wide variety of industries. Overall, Engel & Engel has the credentials and experience to prepare business valuations that are consistent with established valuation principles and are able to withstand the scrutiny of the court.
+
+Business Valuation Forensic Accounting Services:
+
+When the stakes are high, Engel & Engel can serve as your expert in connection with the following:
+
+• Minority Shareholder Valuation
+• Corporate Mergers & Acquisitions
+• Corporate and Partnership Dissolutions
+• Corporation Code 2000 Valuation
+• Net Worth Valuation
+• Shareholder & Partnership Disputes
+• Economic Damage Analysis
+• Fair Value Solvency Analysis
+• Estate Valuation
+• Buy and Sell Agreements
+• Buyout Agreements
+• Expert Witness Testimony
+
+Research Publications:
+
+Engel & Engel has published the following research publication in connection with business valuation:
+Business Valuation Under California Corporate Code Section 2000
+
+Contact:
+Brandon J. Engel, CPA, CFE
+brandon@engelandengel.com
+310-277-2220
+
+
+LEGAL REVIEW - Potentially Problematic Language
+_____________________________________________________________________
+
+From YOUR CURRENT website - potentially risky:
+
+WARNING: "able to withstand the scrutiny of the court"
+CONCERN: Sounds like a guarantee of outcome
+SAFER: "prepared in accordance with established valuation principles"
+
+WARNING: "over 100 business valuations"
+CONCERN: Needs to be current and accurate
+SAFER: "extensive experience with business valuations" OR update to current number
+
+From NEW website - generally safe:
+
+SAFE: "rigorous methodologies to deliver accurate, defensible valuations"
+SAFE: "reliable business valuations that withstand scrutiny"
+
+Your Additional Concerns:
+[Add any language you're concerned about here]
+
+
+QUESTIONS OR COMMENTS
+_____________________________________________________________________
+
+[Type any questions or concerns here]
+
+
+_____________________________________________________________________
+
+APPROVAL STATUS - Check ONE:
+_____________________________________________________________________
+
+☐ APPROVED - Use new content as written
+☐ APPROVED WITH EDITS - I made changes below
+☐ USE ORIGINAL - Keep current website content
+☐ NEEDS DISCUSSION - Let's schedule a call
+
