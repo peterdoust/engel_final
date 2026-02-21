@@ -1,240 +1,219 @@
+'use client'
+
 import React from 'react'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card'
-import { Button } from '@/components/ui/Button'
-import Link from 'next/link'
-import FAQ from '@/components/seo/FAQ'
-import SchemaMarkup from '@/components/seo/SchemaMarkup'
+import { motion } from 'framer-motion'
+import Image from 'next/image'
 import Breadcrumbs from '@/components/seo/Breadcrumbs'
+import SchemaMarkup from '@/components/seo/SchemaMarkup'
 
-export const metadata = {
-  title: 'Accounting Malpractice Expert Witness | Forensic Accounting Los Angeles | Engel & Engel',
-  description: 'Accounting malpractice expert witness in Los Angeles. Professional standards, breach of duty, causation analysis. Court-tested testimony.',
-  openGraph: {
-    title: 'Accounting Malpractice Expert Witness | Forensic Accounting Los Angeles',
-    description: 'Accounting malpractice expert testimony. Professional standards and damages analysis.',
-    url: 'https://engelandengel.com/practice-areas/accounting-malpractice',
-    siteName: 'Engel & Engel LLP',
-    images: [{ url: 'https://engelandengel.com/images/og-accounting-malpractice.jpg', width: 1200, height: 630, alt: 'Accounting Malpractice Expert Witness - Los Angeles' }],
-    locale: 'en_US',
-    type: 'website',
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Accounting Malpractice Expert Witness | Forensic Accounting Los Angeles',
-    description: 'Accounting malpractice expert testimony.',
-    images: ['https://engelandengel.com/images/twitter-accounting-malpractice.jpg'],
-  },
-  robots: { index: true, follow: true, googleBot: { index: true, follow: true, 'max-video-preview': -1, 'max-image-preview': 'large', 'max-snippet': -1 } },
-  alternates: { canonical: 'https://engelandengel.com/practice-areas/accounting-malpractice' },
-}
-
-export default function AccountingMalpracticeEnhancedPage() {
-  const faqItems = [
-    { question: "What is accounting malpractice?", answer: "Accounting malpractice occurs when an accountant fails to exercise the degree of care, skill, and diligence that a reasonably prudent accountant would exercise under similar circumstances, resulting in damages to the client. This can include errors in tax preparation, audit failures, negligent advice, and breach of professional standards." },
-    { question: "What professional standards do you evaluate in malpractice cases?", answer: "We evaluate compliance with Generally Accepted Accounting Principles (GAAP), Generally Accepted Auditing Standards (GAAS), Statements on Standards for Accounting and Review Services (SSARS), and other professional standards issued by the AICPA and state boards of accountancy." },
-    { question: "How do you determine breach of duty in accounting malpractice?", answer: "We analyze whether the accountant's conduct fell below the standard of care by reviewing the work performed, comparing it to professional standards, and evaluating whether a reasonably prudent accountant would have acted differently under the same circumstances." },
-    { question: "Can you calculate damages in accounting malpractice cases?", answer: "Yes, we calculate damages resulting from accounting malpractice including tax penalties, interest, lost business opportunities, additional professional fees, and other economic losses directly caused by the accountant's negligence." },
-    { question: "Do you testify as an expert witness in accounting malpractice cases?", answer: "Yes, we provide expert witness testimony in accounting malpractice litigation for both plaintiffs and defendants. Our testimony covers professional standards, breach of duty, causation, and damages." }
+export default function AccountingMalpracticePage() {
+  const serviceItems = [
+    "Analysis and Evaluation of Misleading Financial Statements",
+    "Analysis and Evaluation of Accounting and Auditing Standard of Care",
+    "Analysis and Identification of Relevant GAAP and GAAS Principles",
+    "Economic Damages Analysis",
+    "Materiality Analysis",
+    "Disclosure Analysis in Accordance with GAAP and GAAS",
+    "Expert Witness Testimony"
   ]
 
   return (
-    <main>
+    <main className="bg-white">
       <SchemaMarkup type="Organization" data={{ address: { street: "11766 Wilshire Blvd, Suite 1170", zip: "90025" }, socialMedia: ["https://www.linkedin.com/company/engel-engel-llp"] }} />
       <SchemaMarkup type="LocalBusiness" data={{ address: { street: "11766 Wilshire Blvd, Suite 1170", zip: "90025" }, geo: { latitude: "34.0522", longitude: "-118.2437" } }} />
-      <SchemaMarkup type="ProfessionalService" data={{ name: "Accounting Malpractice Expert Witness Services", description: "Accounting malpractice expert witness testimony in Los Angeles", serviceType: "Forensic Accounting - Accounting Malpractice", address: { street: "11766 Wilshire Blvd, Suite 1170", zip: "90025" } }} />
-      <SchemaMarkup type="HowTo" data={{
-        name: "How to Evaluate Accounting Malpractice Claims",
-        description: "Our proven 5-step process for accounting malpractice analysis",
-        steps: [
-          { name: "Initial Case Review", text: "Review accounting work, engagement letters, and identify potential malpractice issues." },
-          { name: "Standards Analysis", text: "Evaluate compliance with professional standards (GAAP, GAAS, SSARS)." },
-          { name: "Breach Determination", text: "Determine whether the accountant breached the standard of care." },
-          { name: "Causation & Damages", text: "Analyze causation and calculate damages resulting from the breach." },
-          { name: "Expert Report & Testimony", text: "Prepare detailed reports and provide expert witness testimony." }
-        ]
-      }} />
-      <SchemaMarkup type="FAQ" data={{ questions: faqItems }} />
-      
+      <SchemaMarkup type="ProfessionalService" data={{ name: "Accounting Malpractice Expert Witness Services", description: "Forensic expertise in evaluating financial statements for GAAP and GAAS compliance in malpractice matters.", serviceType: "Forensic Accounting - Accounting Malpractice", address: { street: "11766 Wilshire Blvd, Suite 1170", zip: "90025" } }} />
+
       <Header />
-      
-      <section className="pt-16 lg:pt-20 bg-gradient-to-br from-primary-900 via-primary-800 to-primary-700 text-white">
-        <div className="container-custom py-20">
-          <Breadcrumbs items={[
-            { label: 'Practice Areas', href: '/practice-areas' },
-            { label: 'Accounting Malpractice', href: '/practice-areas/accounting-malpractice' }
-          ]} />
-          
-          <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">Accounting Malpractice Expert Witness</h1>
-            <p className="text-xl md:text-2xl text-primary-100 mb-8 leading-relaxed">
-              Expert witness testimony in accounting malpractice cases. Professional standards, breach of duty, and damages analysis.
+
+      {/* Hero Section */}
+      <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden pt-20">
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&q=80&w=1920"
+            alt="Accounting Malpractice Expert Witness"
+            fill
+            className="object-cover brightness-[0.2]"
+            priority
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-primary-950 via-transparent to-primary-950" />
+        </div>
+
+        <div className="container-custom relative z-10 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1 }}
+          >
+            <div className="mb-6">
+              <Breadcrumbs items={[
+                { label: 'Practice Areas', href: '/practice-areas' },
+                { label: 'Accounting Malpractice', href: '/practice-areas/accounting-malpractice' }
+              ]} />
+            </div>
+            <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-8 tracking-tighter leading-[1.1]">
+              Accounting <br />
+              <span className="font-serif italic font-medium text-gold drop-shadow-[0_0_15px_rgba(212,175,55,0.3)]">Malpractice</span>
+            </h1>
+
+            <div className="flex items-center justify-center space-x-6 mb-12 overflow-hidden max-w-2xl mx-auto">
+              <div className="h-[2px] flex-grow bg-gradient-to-r from-transparent via-gold/50 to-transparent" />
+              <h2 className="text-sm md:text-base font-bold text-primary-100 tracking-[0.4em] uppercase whitespace-nowrap">
+                GAAP & GAAS Standard of Care Expert
+              </h2>
+              <div className="h-[2px] flex-grow bg-gradient-to-l from-transparent via-gold/50 to-transparent" />
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Intro Section */}
+      <section className="relative py-24 md:py-32 bg-white overflow-hidden">
+        <div className="container-custom relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
+            <div className="lg:col-span-12 xl:col-span-5 relative">
+              <div className="relative inline-block mb-10">
+                <div className="absolute -inset-4 border border-gold/30 rounded-sm translate-x-2 translate-y-2 z-0" />
+                <div className="relative z-10 bg-primary-950 text-white p-10 md:p-14 rounded-sm shadow-2xl">
+                  <span className="block text-sm font-bold tracking-[0.5em] uppercase text-gold mb-2">Established</span>
+                  <span className="block text-6xl md:text-8xl font-serif italic mb-6">1994</span>
+                  <div className="h-[2px] w-16 bg-gold mb-6" />
+                  <p className="text-primary-100 text-lg leading-relaxed font-light">
+                    Three decades of uncompromising financial integrity and forensic excellence.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="lg:col-span-12 xl:col-span-7 flex flex-col justify-center lg:pt-10">
+              <h2 className="text-4xl md:text-5xl font-bold text-primary-950 mb-8 leading-tight tracking-tight uppercase font-sans">
+                Standard of Care <br />
+                <span className="font-serif italic text-primary-900 normal-case font-medium">Expert Witness Services</span>
+              </h2>
+              <div className="space-y-6 text-xl text-gray-800 leading-relaxed font-light">
+                <p>
+                  Whether by error or manipulation of financial statements, Engel & Engel possesses the expertise and experience to investigate whether or not financial statements have been prepared in accordance with Generally Accepted Accounting Principles (GAAP) and General Accepted Auditing Standards (GAAS).
+                </p>
+                <p>
+                  Overall, Engel & Engel is qualified to serve as your expert in connection with accounting malpractice matters for both plaintiffs and defendants, and prepare analyses that are consistent with established accounting principles and are able to withstand the scrutiny of the court.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Services Grid Section */}
+      <section className="relative py-24 md:py-32 bg-primary-950 overflow-hidden text-white shadow-[0_8px_40px_rgba(0,0,0,0.25)]">
+        <div className="absolute inset-0 z-0">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_right,rgba(212,175,55,0.08)_0%,transparent_60%)]" />
+          <div className="absolute left-10 top-0 bottom-0 w-px bg-white/5" />
+          <div className="absolute right-10 top-0 bottom-0 w-px bg-white/5" />
+        </div>
+
+        <div className="container-custom relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-20"
+          >
+            <span className="inline-block text-gold font-bold tracking-[0.5em] uppercase text-xs mb-6 px-4 py-1 border border-gold/30 rounded-full">Practice Area</span>
+            <h2 className="text-4xl md:text-6xl font-bold text-white mb-8 leading-tight tracking-tight uppercase">
+              How Engel & Engel Helps Attorneys in <span className="font-serif italic text-gold normal-case font-medium">Accounting Malpractice Matters</span>
+            </h2>
+            <p className="text-xl text-primary-100/70 max-w-3xl mx-auto font-light">
+              When the stakes are high, Engel & Engel can serve as your expert in connection with the following:
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a href="tel:(310) 277-2220"><Button size="xl" className="bg-white text-primary-900 hover:bg-gray-100">Call (310) 277-2220</Button></a>
-              <Link href="/contact"><Button size="xl" variant="outline" className="border-white text-white hover:bg-white hover:text-primary-900">Free Consultation</Button></Link>
-            </div>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 tracking-wider">
+            {serviceItems.map((service, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.05 }}
+                className="group p-8 border border-white/10 bg-white/5 backdrop-blur-sm hover:border-gold/50 transition-all duration-500 relative min-h-[160px] flex items-center"
+              >
+                <div className="absolute top-0 left-0 w-1 h-0 bg-gold group-hover:h-full transition-all duration-500" />
+                <h3 className="text-sm font-bold tracking-widest text-white group-hover:text-gold transition-all duration-500 uppercase leading-snug">
+                  {service}
+                </h3>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
 
-      <section className="section-padding bg-white">
-        <div className="container-custom">
-          <div className="max-w-4xl mx-auto">
-            
-            <div className="mb-12">
-              <p className="text-xl text-gray-700 leading-relaxed mb-6">
-                Accounting malpractice litigation demands the expertise of forensic accountants who understand professional standards and can evaluate whether an accountant breached their duty of care. Engel & Engel has extensive experience in conducting forensic investigations and providing expert testimony in accounting malpractice cases for both plaintiffs and defendants.
-              </p>
-              <p className="text-lg text-gray-600 leading-relaxed">
-                Our expertise includes evaluating compliance with GAAP, GAAS, and other professional standards, determining breach of duty, analyzing causation, and calculating damages. We have the qualifications and experience to serve as expert witnesses in accounting malpractice litigation.
-              </p>
-            </div>
-
-            <div className="mb-12 bg-primary-50 rounded-2xl p-8">
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">Accounting Malpractice Expert Witness in Los Angeles</h2>
-              <p className="text-lg text-gray-700 leading-relaxed mb-4">
-                Serving Los Angeles County, Orange County, Ventura County, San Bernardino County, Riverside County, and throughout Southern California. Our Los Angeles office provides comprehensive accounting malpractice expert witness services for attorneys throughout the region.
-              </p>
-              <p className="text-gray-700 leading-relaxed">
-                Whether you need an accounting malpractice expert for cases in downtown Los Angeles, Santa Monica, Beverly Hills, Pasadena, Irvine, San Diego, or anywhere in California, our team is ready to assist with professional standards analysis and expert witness testimony.
-              </p>
-            </div>
-
-            <div className="mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 mb-6">How Engel & Engel Helps in Accounting Malpractice Cases</h2>
-              <p className="text-lg text-gray-700 mb-8">When the stakes are high, Engel & Engel can serve as your expert in connection with the following:</p>
-              
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {[
-                  { title: "Professional Standards Analysis", desc: "Evaluate compliance with GAAP, GAAS, SSARS, and other professional standards.", icon: "M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" },
-                  { title: "Audit Failure Analysis", desc: "Analyze audit failures and determine whether auditors met professional standards.", icon: "M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" },
-                  { title: "Tax Malpractice", desc: "Evaluate tax preparation errors, missed deductions, and negligent tax advice.", icon: "M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" },
-                  { title: "Breach of Duty Analysis", desc: "Determine whether the accountant breached the standard of care.", icon: "M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" },
-                  { title: "Causation Analysis", desc: "Analyze whether the accountant's breach caused the claimed damages.", icon: "M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" },
-                  { title: "Damages Calculation", desc: "Calculate damages including tax penalties, interest, and other economic losses.", icon: "M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" },
-                  { title: "Expert Witness Testimony", desc: "Court-tested expert witness testimony on accounting malpractice and professional standards.", icon: "M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z" },
-                ].map((service, index) => (
-                  <Card key={index} className="hover:shadow-xl transition-shadow duration-300">
-                    <CardHeader>
-                      <div className="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center mb-4">
-                        <svg className="w-6 h-6 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={service.icon} />
-                        </svg>
-                      </div>
-                      <CardTitle className="text-xl">{service.title}</CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <p className="text-gray-600">{service.desc}</p>
-                    </CardContent>
-                  </Card>
-                ))}
+      {/* Visual Support Section */}
+      <section className="py-24 md:py-32 bg-white relative overflow-hidden">
+        <div className="container-custom relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+            >
+              <h2 className="text-4xl md:text-5xl font-bold text-primary-950 mb-8 tracking-tighter uppercase leading-tight font-sans">
+                Professional <br />
+                <span className="font-serif italic text-primary-900 normal-case font-medium">Diligence & Oversight</span>
+              </h2>
+              <div className="space-y-6 text-xl text-gray-800 leading-relaxed font-light">
+                <p>
+                  Our evaluation of audit failure and accounting negligence is rooted in a deep understanding of standard of care. We provide the clear, objective, and authoritative analysis required for complex malpractice litigation.
+                </p>
               </div>
-            </div>
+            </motion.div>
 
-            <div className="mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 mb-8">Our Accounting Malpractice Analysis Process</h2>
-              <div className="space-y-6">
-                {[
-                  { step: "1", title: "Initial Case Review", desc: "Review accounting work, engagement letters, and identify potential malpractice issues." },
-                  { step: "2", title: "Standards Analysis", desc: "Evaluate compliance with professional standards (GAAP, GAAS, SSARS)." },
-                  { step: "3", title: "Breach Determination", desc: "Determine whether the accountant breached the standard of care." },
-                  { step: "4", title: "Causation & Damages", desc: "Analyze causation and calculate damages resulting from the breach." },
-                  { step: "5", title: "Expert Report & Testimony", desc: "Prepare detailed reports and provide expert witness testimony." }
-                ].map((item) => (
-                  <div key={item.step} className="flex gap-6 items-start">
-                    <div className="flex-shrink-0 w-12 h-12 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold text-xl">
-                      {item.step}
-                    </div>
-                    <div className="flex-1">
-                      <h3 className="text-xl font-semibold text-gray-900 mb-2">{item.title}</h3>
-                      <p className="text-gray-600 leading-relaxed">{item.desc}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 mb-6">Why Choose Engel & Engel for Accounting Malpractice Cases</h2>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div className="text-center">
-                  <div className="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <svg className="w-8 h-8 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
-                    </svg>
-                  </div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-2">CPA Credentials</h3>
-                  <p className="text-gray-600">Licensed CPAs with deep understanding of professional standards and accounting practices.</p>
-                </div>
-                <div className="text-center">
-                  <div className="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <svg className="w-8 h-8 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-                    </svg>
-                  </div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-2">Standards Expertise</h3>
-                  <p className="text-gray-600">Comprehensive knowledge of GAAP, GAAS, SSARS, and professional accounting standards.</p>
-                </div>
-                <div className="text-center">
-                  <div className="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <svg className="w-8 h-8 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z" />
-                    </svg>
-                  </div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-2">Court-Tested Testimony</h3>
-                  <p className="text-gray-600">Extensive experience providing expert witness testimony in accounting malpractice litigation.</p>
-                </div>
-              </div>
-            </div>
-
-            <div className="mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 mb-6">Related Practice Areas</h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {[
-                  { name: "Fraud Investigation", href: "/practice-areas/fraud-investigation" },
-                  { name: "Business Valuation", href: "/practice-areas/business-valuation" },
-                  { name: "Economic Damages", href: "/practice-areas/economic-damages" },
-                  { name: "Partnership Disputes", href: "/practice-areas/partnership-disputes" },
-                  { name: "Bankruptcy & Insolvency", href: "/practice-areas/bankruptcy-insolvency" },
-                  { name: "Alter Ego", href: "/practice-areas/alter-ego" }
-                ].map((area, index) => (
-                  <Link key={index} href={area.href}>
-                    <Card className="h-full hover:shadow-xl transition-all duration-300 hover:-translate-y-1 cursor-pointer">
-                      <CardContent className="p-6">
-                        <h3 className="text-lg font-semibold text-primary-700 hover:text-primary-900">{area.name}</h3>
-                      </CardContent>
-                    </Card>
-                  </Link>
-                ))}
-              </div>
-            </div>
-
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              className="relative h-[400px] w-full bg-gray-100 shadow-2xl overflow-hidden rounded-sm group"
+            >
+              <Image
+                src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&q=80&w=1200"
+                alt="Accounting Standards Analysis"
+                fill
+                className="object-cover transition-transform duration-700 group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-primary-950/20" />
+              <div className="absolute inset-0 border-[20px] border-white/10" />
+            </motion.div>
           </div>
         </div>
       </section>
 
-      <section className="section-padding bg-white">
-        <div className="container-custom">
-          <div className="max-w-4xl mx-auto">
-            <FAQ items={faqItems} />
-          </div>
-        </div>
-      </section>
+      {/* Contact Info Section */}
+      <section className="py-24 bg-gray-50 relative overflow-hidden">
+        <div className="container-custom text-center relative z-10">
+          <div className="max-w-4xl mx-auto p-12 border border-gray-100 bg-white rounded-sm relative group overflow-hidden shadow-2xl">
+            <div className="absolute top-0 left-0 w-2 h-full bg-gold" />
 
-      <section className="section-padding bg-gradient-to-br from-primary-900 via-primary-800 to-primary-700 text-white">
-        <div className="container-custom">
-          <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">Need an Accounting Malpractice Expert Witness?</h2>
-            <p className="text-xl text-primary-100 mb-8">
-              Contact Brandon J. Engel, CPA/ABV/CFF, CVA, MAFF for a consultation on your accounting malpractice case.
+            <p className="text-gray-600 italic mb-10 text-xl font-serif">
+              For additional information about Engel & Engel&apos;s Forensic Accounting Services or a consultation, please contact:
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
-              <a href="tel:(310) 277-2220"><Button size="xl" className="bg-white text-primary-900 hover:bg-gray-100">Call (310) 277-2220</Button></a>
-              <a href="mailto:brandon@engelandengel.com"><Button size="xl" variant="outline" className="border-white text-white hover:bg-white hover:text-primary-900">Email Brandon</Button></a>
+
+            <div className="text-primary-950">
+              <h3 className="text-3xl md:text-4xl font-bold mb-4 tracking-tighter uppercase font-sans">Brandon J. Engel, <span className="text-gold font-serif italic text-2xl md:text-3xl font-medium normal-case">CPA, CFE</span></h3>
+              <div className="flex flex-col md:flex-row justify-center items-center gap-8 md:gap-16 mt-8">
+                <a
+                  href="mailto:brandon@engelandengel.com"
+                  className="text-lg font-bold tracking-widest uppercase hover:text-gold transition-colors underline decoration-gold/30 pb-1"
+                >
+                  brandon@engelandengel.com
+                </a>
+                <a
+                  href="tel:310-277-2220"
+                  className="text-2xl font-bold text-primary-950 hover:text-gold transition-colors"
+                >
+                  310-277-2220
+                </a>
+              </div>
             </div>
-            <p className="text-primary-200">Serving Los Angeles, Orange County, and all of California</p>
           </div>
         </div>
       </section>
@@ -243,4 +222,3 @@ export default function AccountingMalpracticeEnhancedPage() {
     </main>
   )
 }
-

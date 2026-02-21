@@ -3,34 +3,36 @@
 import React from 'react'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
+import { Card, CardContent } from '@/components/ui/Card'
 import { Button } from '@/components/ui/Button'
 import Link from 'next/link'
+import SchemaMarkup from '@/components/seo/SchemaMarkup'
+import Breadcrumbs from '@/components/seo/Breadcrumbs'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
-import SchemaMarkup from '@/components/seo/SchemaMarkup'
-
-const damageCategories = [
-  "Contract Damages", "Lost Profits", "Fraud Damages", "Lost Goodwill",
-  "Compensatory Damages", "Out of Pocket Damages", "Mitigation Analysis", "Rescission Damages",
-  "Reliance Damages", "Benefit of the Bargain Damages", "IP Infringement Damages", "Construction Damages and Delay Claims",
-  "Business Interruption Damages", "Unestablished Business Damages", "Reputational Damages", "Employment Damages"
-]
-
-const publications = [
-  "Framework for the Calculation of Infringement Damages Part I: Trademark Infringement Damages Under the Lanham Act",
-  "Framework for the Calculation of Infringement Damages Part II: Patent Infringement Damages",
-  "Framework for the Calculation of Damages: Projected Lost Earnings",
-  "Financial Principles for Calculating Lost Profits",
-  "The Element of Certainty in Calculating Lost Profits",
-  "Prospective Lost Profits",
-  "Calculating Lost Profits for Unestablished Businesses",
-  "Mitigation of Damages",
-  "Discounting Future Lost Profits",
-  "Admissibility of Expert Testimony: “The Element of Reliability”",
-  "The Business Records Exception to the Hearsay Rule: “The Admissibility of Financial Records as Evidence in Federal and State Court”"
-]
 
 export default function EconomicDamagesPage() {
+  const damageCategories = [
+    "Contract Damages", "Lost Profits", "Fraud Damages", "Lost Goodwill",
+    "Compensatory Damages", "Out of Pocket Damages", "Mitigation Analysis", "Rescission Damages",
+    "Reliance Damages", "Benefit of the Bargain Damages", "IP Infringement Damages", "Construction Damages and Delay Claims",
+    "Business Interruption Damages", "Unestablished Business Damages", "Reputational Damages", "Employment Damages"
+  ]
+
+  const publications = [
+    "Framework for the Calculation of Infringement Damages Part I: Trademark Infringement Damages Under the Lanham Act",
+    "Framework for the Calculation of Infringement Damages Part II: Patent Infringement Damages",
+    "Framework for the Calculation of Damages: Projected Lost Earnings",
+    "Financial Principles for Calculating Lost Profits",
+    "The Element of Certainty in Calculating Lost Profits",
+    "Prospective Lost Profits",
+    "Calculating Lost Profits for Unestablished Businesses",
+    "Mitigation of Damages",
+    "Discounting Future Lost Profits",
+    "Admissibility of Expert Testimony: “The Element of Reliability”",
+    "The Business Records Exception to the Hearsay Rule: “The Admissibility of Financial Records as Evidence in Federal and State Court”"
+  ]
+
   return (
     <main className="bg-white">
       <SchemaMarkup
@@ -48,14 +50,14 @@ export default function EconomicDamagesPage() {
 
       <Header />
 
-      {/* Hero Section - Homepage Style */}
-      <section className="relative min-h-[70vh] flex items-center justify-center overflow-hidden pt-20">
+      {/* Hero Section */}
+      <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden pt-20">
         <div className="absolute inset-0 z-0">
           <Image
-            src="https://images.pexels.com/photos/4386404/pexels-photo-4386404.jpeg?auto=compress&cs=tinysrgb&w=1920"
-            alt="Business Center"
+            src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&q=80&w=1920"
+            alt="Economic Damages"
             fill
-            className="object-cover brightness-[0.25]"
+            className="object-cover brightness-[0.2]"
             priority
           />
           <div className="absolute inset-0 bg-gradient-to-b from-primary-950 via-transparent to-primary-950" />
@@ -67,51 +69,33 @@ export default function EconomicDamagesPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1 }}
           >
+            <div className="mb-6">
+              <Breadcrumbs items={[
+                { label: 'Practice Areas', href: '/practice-areas' },
+                { label: 'Economic Damages', href: '/practice-areas/economic-damages' }
+              ]} />
+            </div>
             <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-8 tracking-tighter leading-[1.1]">
               <span className="font-serif italic font-medium text-gold drop-shadow-[0_0_15px_rgba(212,175,55,0.3)]">Economic</span> <br />
               Damages
             </h1>
 
-            <motion.div
-              initial={{ opacity: 0, width: 0 }}
-              animate={{ opacity: 1, width: '100%' }}
-              transition={{ delay: 0.5, duration: 1.2 }}
-              className="flex items-center justify-center space-x-6 mb-12 overflow-hidden max-w-2xl mx-auto"
-            >
+            <div className="flex items-center justify-center space-x-6 mb-12 overflow-hidden max-w-2xl mx-auto">
               <div className="h-[2px] flex-grow bg-gradient-to-r from-transparent via-gold/50 to-transparent" />
               <h2 className="text-sm md:text-base font-bold text-primary-100 tracking-[0.4em] uppercase whitespace-nowrap">
                 Unrivaled Financial Expertise
               </h2>
               <div className="h-[2px] flex-grow bg-gradient-to-l from-transparent via-gold/50 to-transparent" />
-            </motion.div>
-
-            <div className="flex flex-col sm:flex-row gap-6 justify-center mt-12">
-              <a href="tel:310-277-2220">
-                <Button size="xl" className="bg-gold hover:bg-gold/90 text-primary-950 border-none font-bold px-12 rounded-none">
-                  Call 310-277-2220
-                </Button>
-              </a>
-              <Link href="/contact">
-                <Button size="xl" variant="outline" className="border-white text-white hover:bg-white hover:text-primary-950 px-12 rounded-none">
-                  Request Consultation
-                </Button>
-              </Link>
             </div>
           </motion.div>
         </div>
       </section>
 
-      {/* Intro Section - Exact Content from Image */}
+      {/* Intro Section */}
       <section className="relative py-24 md:py-32 bg-white overflow-hidden">
-        {/* Architectural Grid Background */}
-        <div className="absolute inset-0 z-0 opacity-[0.03] pointer-events-none">
-          <div className="absolute inset-0 bg-[linear-gradient(to_right,#808080_1px,transparent_1px),linear-gradient(to_bottom,#808080_1px,transparent_1px)] bg-[size:40px_40px]" />
-        </div>
-
         <div className="container-custom relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
-            {/* Identity Column */}
-            <div className="lg:col-span-5 relative">
+            <div className="lg:col-span-12 xl:col-span-5 relative">
               <div className="relative inline-block mb-10">
                 <div className="absolute -inset-4 border border-gold/30 rounded-sm translate-x-2 translate-y-2 z-0" />
                 <div className="relative z-10 bg-primary-950 text-white p-10 md:p-14 rounded-sm shadow-2xl">
@@ -125,75 +109,62 @@ export default function EconomicDamagesPage() {
               </div>
             </div>
 
-            {/* Main Text Content */}
-            <div className="lg:col-span-7 flex flex-col justify-center lg:pt-10">
-              <p className="text-xl md:text-2xl text-gray-800 leading-relaxed mb-8">
-                Business litigation often requires a forensic analysis of economic damages. Engel & Engel has conducted over 1,000 economic damage analyses for both plaintiffs and defendants in a wide variety of industries. Our economic damage qualifications are highlighted with a credentialed Master Analyst in Financial Forensics (MAFF) and over 10 research publications in connection with economic damages.
-              </p>
-              <p className="text-lg text-gray-600 leading-relaxed">
-                Overall, Engel & Engel has the credentials and experience to prepare damage models that are consistent with established financial principles and are able to withstand the scrutiny of the court.
-              </p>
+            <div className="lg:col-span-12 xl:col-span-7 flex flex-col justify-center lg:pt-10">
+              <h2 className="text-4xl md:text-5xl font-bold text-primary-950 mb-8 leading-tight tracking-tight uppercase">
+                Forensic Analysis of <br />
+                <span className="font-serif italic text-primary-900 normal-case font-medium">Economic Damages</span>
+              </h2>
+              <div className="space-y-6 text-xl text-gray-800 leading-relaxed font-light">
+                <p>
+                  Business litigation often requires a forensic analysis of economic damages. Engel & Engel has conducted over 1,000 economic damage analyses for both plaintiffs and defendants in a wide variety of industries.
+                </p>
+                <p>
+                  Our economic damage qualifications are highlighted with a credentialed Master Analyst in Financial Forensics (MAFF) and over 10 research publications in connection with economic damages. Overall, Engel & Engel has the credentials and experience to prepare damage models that are consistent with established financial principles and are able to withstand the scrutiny of the court.
+                </p>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Services Grid Section - Branded Style */}
-      <section className="relative py-24 md:py-32 bg-[#f8f9fa] overflow-hidden shadow-[0_8px_40px_rgba(0,0,0,0.1)]">
-        {/* Structural background lines */}
-        <div className="absolute inset-0 z-0 pointer-events-none opacity-[0.05]">
-          <div className="absolute left-1/4 top-0 bottom-0 w-px bg-primary-950" />
-          <div className="absolute left-2/4 top-0 bottom-0 w-px bg-primary-950" />
-          <div className="absolute left-3/4 top-0 bottom-0 w-px bg-primary-950" />
+      {/* Services Grid Section */}
+      <section className="relative py-24 md:py-32 bg-primary-950 overflow-hidden text-white shadow-[0_8px_40px_rgba(0,0,0,0.25)]">
+        <div className="absolute inset-0 z-0">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_right,rgba(212,175,55,0.08)_0%,transparent_60%)]" />
+          <div className="absolute left-10 top-0 bottom-0 w-px bg-white/5" />
+          <div className="absolute right-10 top-0 bottom-0 w-px bg-white/5" />
         </div>
 
         <div className="container-custom relative z-10">
-          <div className="flex flex-col lg:flex-row gap-16 lg:items-end mb-24">
-            <div className="lg:w-1/2">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8 }}
-              >
-                <span className="inline-block text-gold font-bold tracking-[0.5em] uppercase text-xs mb-6 px-4 py-1 border border-gold/30 rounded-full">Practice Area</span>
-                <h2 className="text-4xl md:text-6xl font-bold text-primary-950 mb-8 leading-[1.1] tracking-tighter">
-                  How Engel & Engel Helps Business Litigators With <br />
-                  <span className="font-serif italic text-primary-900 font-medium">Economic Damage Analyses</span>
-                </h2>
-              </motion.div>
-            </div>
-            <div className="lg:w-1/2">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.2, duration: 0.8 }}
-                className="lg:pl-12 border-l-2 border-gold/20"
-              >
-                <p className="text-xl text-gray-700 font-light leading-relaxed">
-                  When the stakes are high, Engel & Engel can serve as your expert in connection with the following:
-                </p>
-              </motion.div>
-            </div>
-          </div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-20"
+          >
+            <span className="inline-block text-gold font-bold tracking-[0.5em] uppercase text-xs mb-6 px-4 py-1 border border-gold/30 rounded-full">Practice Area</span>
+            <h2 className="text-4xl md:text-6xl font-bold text-white mb-8 leading-tight tracking-tight uppercase">
+              Economic Damage <span className="font-serif italic text-gold normal-case font-medium">Analyses</span>
+            </h2>
+            <p className="text-xl text-primary-100/70 max-w-3xl mx-auto font-light">
+              When the stakes are high, Engel & Engel can serve as your expert in connection with the following:
+            </p>
+          </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
             {damageCategories.map((item, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: index * 0.05, duration: 0.5 }}
-                className="group h-32 p-6 bg-white hover:bg-primary-950 transition-all duration-500 flex flex-col justify-center relative overflow-hidden rounded-sm shadow-md border border-gray-100"
+                transition={{ delay: index * 0.03 }}
+                className="group h-32 p-6 border border-white/10 bg-white/5 backdrop-blur-sm hover:border-gold/50 transition-all duration-500 flex flex-col justify-center relative rounded-sm"
               >
-                <div className="relative z-10">
-                  <h3 className="text-sm font-bold tracking-widest text-primary-950 group-hover:text-white transition-all duration-500 leading-tight uppercase">
-                    {item}
-                  </h3>
-                </div>
-                <div className="absolute bottom-0 left-0 h-1 w-0 bg-gold group-hover:w-full transition-all duration-700 ease-in-out" />
+                <div className="absolute top-0 left-0 w-1 h-0 bg-gold group-hover:h-full transition-all duration-500" />
+                <h3 className="text-sm font-bold tracking-widest text-white group-hover:text-gold transition-all duration-500 uppercase leading-snug text-center">
+                  {item}
+                </h3>
               </motion.div>
             ))}
           </div>
@@ -201,49 +172,47 @@ export default function EconomicDamagesPage() {
       </section>
 
       {/* Research Publications Section */}
-      <section className="relative py-24 md:py-32 bg-white overflow-hidden">
+      <section className="py-24 md:py-32 bg-white relative overflow-hidden">
         <div className="container-custom relative z-10">
-          <div className="mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-primary-950 mb-6 tracking-tight">
-              Research <span className="font-serif italic text-primary-900">Publications</span>
-            </h2>
-            <div className="h-1 w-20 bg-gold mb-8" />
-            <p className="text-xl text-gray-700 max-w-4xl font-light">
-              Engel & Engel has published various research publications in connection with the following topics relating to the Framework for the Calculation of Lost Profits:
-            </p>
-          </div>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+            >
+              <span className="inline-block text-gold font-bold tracking-[0.4em] uppercase text-xs mb-6 px-4 py-1 border border-gold/30 rounded-full">Academic Authority</span>
+              <h2 className="text-4xl md:text-5xl font-bold text-primary-950 mb-8 tracking-tighter uppercase leading-tight font-sans">
+                Research <br />
+                <span className="font-serif italic text-primary-900 normal-case font-medium">Publications</span>
+              </h2>
+              <p className="text-xl text-gray-700 leading-relaxed mb-10 font-light">
+                Engel & Engel has published various research publications in connection with the following topics relating to the Framework for the Calculation of Lost Profits:
+              </p>
+            </motion.div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            {publications.map((pub, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1, duration: 0.5 }}
-                className="flex items-start group"
-              >
-                <div className="mr-6 flex-shrink-0">
-                  <div className="w-12 h-12 flex items-center justify-center bg-primary-50 text-gold group-hover:bg-gold group-hover:text-white transition-all duration-500 rounded-sm">
-                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-                    </svg>
-                  </div>
-                </div>
-                <div>
-                  <h3 className="text-lg font-bold text-primary-950 group-hover:text-gold transition-colors leading-snug">
+            <div className="space-y-4">
+              {publications.map((pub, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, x: 20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.05 }}
+                  className="p-4 border-l-2 border-gold/30 bg-gray-50/50 hover:bg-primary-950 group transition-all duration-300 rounded-r-sm"
+                >
+                  <p className="text-primary-900 group-hover:text-white font-medium transition-colors">
                     {pub}
-                  </h3>
-                </div>
-              </motion.div>
-            ))}
+                  </p>
+                </motion.div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Contact Info Section - Branded Style */}
-      <section className="py-24 bg-gray-50 relative overflow-hidden">
-        <div className="container-custom text-center relative z-10">
+      {/* Contact Info Section */}
+      <section className="py-24 bg-gray-50 relative overflow-hidden text-center">
+        <div className="container-custom relative z-10">
           <div className="max-w-4xl mx-auto p-12 border border-gray-100 bg-white rounded-sm relative group overflow-hidden shadow-2xl">
             <div className="absolute top-0 left-0 w-2 h-full bg-gold" />
 

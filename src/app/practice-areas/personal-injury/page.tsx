@@ -1,241 +1,246 @@
+'use client'
+
 import React from 'react'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card'
-import { Button } from '@/components/ui/Button'
+import { motion } from 'framer-motion'
+import Image from 'next/image'
 import Link from 'next/link'
-import FAQ from '@/components/seo/FAQ'
-import SchemaMarkup from '@/components/seo/SchemaMarkup'
 import Breadcrumbs from '@/components/seo/Breadcrumbs'
+import SchemaMarkup from '@/components/seo/SchemaMarkup'
 
-export const metadata = {
-  title: 'Personal Injury Economic Damages Expert | Forensic Accounting Los Angeles | Engel & Engel',
-  description: 'Personal injury economic damages expert witness in Los Angeles. Lost earnings, medical expenses, life care planning. Court-tested testimony.',
-  openGraph: {
-    title: 'Personal Injury Economic Damages Expert | Forensic Accounting Los Angeles',
-    description: 'Personal injury economic damages analysis and expert testimony. Lost earnings and future damages.',
-    url: 'https://engelandengel.com/practice-areas/personal-injury',
-    siteName: 'Engel & Engel LLP',
-    images: [{ url: 'https://engelandengel.com/images/og-personal-injury.jpg', width: 1200, height: 630, alt: 'Personal Injury Economic Damages Expert - Los Angeles' }],
-    locale: 'en_US',
-    type: 'website',
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Personal Injury Economic Damages Expert | Forensic Accounting Los Angeles',
-    description: 'Personal injury economic damages analysis and expert testimony.',
-    images: ['https://engelandengel.com/images/twitter-personal-injury.jpg'],
-  },
-  robots: { index: true, follow: true, googleBot: { index: true, follow: true, 'max-video-preview': -1, 'max-image-preview': 'large', 'max-snippet': -1 } },
-  alternates: { canonical: 'https://engelandengel.com/practice-areas/personal-injury' },
-}
+export default function PersonalInjuryPage() {
+  const serviceItems = [
+    "Historical Lost Earnings",
+    "Projected Lost Earnings",
+    "Historical Medical Costs",
+    "Projected Medical Costs",
+    "Mitigation Analysis",
+    "Analysis of life-care plans",
+    "Analysis of cost reports",
+    "Expert Witness Testimony"
+  ]
 
-export default function PersonalInjuryEnhancedPage() {
-  const faqItems = [
-    { question: "What economic damages do you calculate in personal injury cases?", answer: "We calculate past and future lost earnings, lost earning capacity, medical expenses, life care costs, household services, and other economic losses resulting from personal injury. Our analysis considers age, education, work history, career trajectory, and the extent of disability." },
-    { question: "How do you calculate future lost earnings?", answer: "We calculate future lost earnings by analyzing the plaintiff's work history, education, skills, and career trajectory. We project future earnings using labor market data, industry trends, and economic forecasts, then discount to present value using appropriate discount rates." },
-    { question: "Do you work with life care planners?", answer: "Yes, we frequently collaborate with life care planners to quantify the present value of future medical expenses and care costs. We review life care plans and calculate the economic value of recommended treatments, therapies, equipment, and attendant care." },
-    { question: "Can you calculate household services damages?", answer: "Yes, we calculate the economic value of household services that the injured party can no longer perform, including childcare, home maintenance, yard work, and other domestic activities, based on replacement cost or opportunity cost methodologies." },
-    { question: "Do you testify as an expert witness in personal injury cases?", answer: "Yes, we provide expert witness testimony in personal injury litigation. Our testimony covers economic damages calculations, lost earnings analysis, present value determinations, and other financial aspects of personal injury claims." }
+  const publications = [
+    "Financial Principles for Calculating Lost Profits",
+    "The Element of Certainty in Calculating Lost Profits",
+    "Prospective Lost Profits",
+    "Calculating Lost Profits for Unestablished Businesses",
+    "Mitigation of Damages",
+    "Discounting Future Lost Profits",
+    "Framework for the Calculation of Employment Damages",
+    "Framework for the Calculation of Infringement Damages: Part I: \"Trademark Infringement Damages Under the Lanham Act\""
   ]
 
   return (
-    <main>
+    <main className="bg-white">
       <SchemaMarkup type="Organization" data={{ address: { street: "11766 Wilshire Blvd, Suite 1170", zip: "90025" }, socialMedia: ["https://www.linkedin.com/company/engel-engel-llp"] }} />
       <SchemaMarkup type="LocalBusiness" data={{ address: { street: "11766 Wilshire Blvd, Suite 1170", zip: "90025" }, geo: { latitude: "34.0522", longitude: "-118.2437" } }} />
-      <SchemaMarkup type="ProfessionalService" data={{ name: "Personal Injury Economic Damages Expert Services", description: "Personal injury economic damages analysis and expert witness testimony in Los Angeles", serviceType: "Forensic Accounting - Personal Injury", address: { street: "11766 Wilshire Blvd, Suite 1170", zip: "90025" } }} />
-      <SchemaMarkup type="HowTo" data={{
-        name: "How to Calculate Personal Injury Economic Damages",
-        description: "Our proven 5-step process for personal injury damages analysis",
-        steps: [
-          { name: "Initial Case Review", text: "Review injury details, medical records, and employment history." },
-          { name: "Earnings Analysis", text: "Analyze past earnings and project future earning capacity." },
-          { name: "Medical Cost Analysis", text: "Review life care plans and calculate present value of future medical expenses." },
-          { name: "Total Damages Calculation", text: "Calculate total economic damages including all loss categories." },
-          { name: "Expert Report & Testimony", text: "Prepare detailed reports and provide expert witness testimony." }
-        ]
-      }} />
-      <SchemaMarkup type="FAQ" data={{ questions: faqItems }} />
-      
+      <SchemaMarkup type="ProfessionalService" data={{ name: "Personal Injury Economic Damages Expert Services", description: "Forensic accounting expertise in personal injury economic damages and expert testimony.", serviceType: "Forensic Accounting - Personal Injury", address: { street: "11766 Wilshire Blvd, Suite 1170", zip: "90025" } }} />
+
       <Header />
-      
-      <section className="pt-16 lg:pt-20 bg-gradient-to-br from-primary-900 via-primary-800 to-primary-700 text-white">
-        <div className="container-custom py-20">
-          <Breadcrumbs items={[
-            { label: 'Practice Areas', href: '/practice-areas' },
-            { label: 'Personal Injury', href: '/practice-areas/personal-injury' }
-          ]} />
-          
-          <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">Personal Injury Economic Damages Expert</h1>
-            <p className="text-xl md:text-2xl text-primary-100 mb-8 leading-relaxed">
-              Forensic accounting expertise in personal injury economic damages, lost earnings, and life care cost analysis.
+
+      {/* Hero Section */}
+      <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden pt-20">
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&q=80&w=1920"
+            alt="Personal Injury Economic Damages"
+            fill
+            className="object-cover brightness-[0.25]"
+            priority
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-primary-950 via-transparent to-primary-950" />
+        </div>
+
+        <div className="container-custom relative z-10 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1 }}
+          >
+            <div className="mb-6">
+              <Breadcrumbs items={[
+                { label: 'Practice Areas', href: '/practice-areas' },
+                { label: 'Personal Injury', href: '/practice-areas/personal-injury' }
+              ]} />
+            </div>
+            <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-8 tracking-tighter leading-[1.1]">
+              Personal <br />
+              <span className="font-serif italic font-medium text-gold drop-shadow-[0_0_15px_rgba(212,175,55,0.3)]">Injury</span>
+            </h1>
+
+            <div className="flex items-center justify-center space-x-6 mb-12 overflow-hidden max-w-2xl mx-auto">
+              <div className="h-[2px] flex-grow bg-gradient-to-r from-transparent via-gold/50 to-transparent" />
+              <h2 className="text-sm md:text-base font-bold text-primary-100 tracking-[0.4em] uppercase whitespace-nowrap">
+                Economic Damages Expert Witness
+              </h2>
+              <div className="h-[2px] flex-grow bg-gradient-to-l from-transparent via-gold/50 to-transparent" />
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Intro Section */}
+      <section className="relative py-24 md:py-32 bg-white overflow-hidden">
+        <div className="container-custom relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
+            <div className="lg:col-span-12 xl:col-span-5 relative">
+              <div className="relative inline-block mb-10">
+                <div className="absolute -inset-4 border border-gold/30 rounded-sm translate-x-2 translate-y-2 z-0" />
+                <div className="relative z-10 bg-primary-950 text-white p-10 md:p-14 rounded-sm shadow-2xl">
+                  <span className="block text-sm font-bold tracking-[0.5em] uppercase text-gold mb-2">Established</span>
+                  <span className="block text-6xl md:text-8xl font-serif italic mb-6">1994</span>
+                  <div className="h-[2px] w-16 bg-gold mb-6" />
+                  <p className="text-primary-100 text-lg leading-relaxed font-light">
+                    Unmatched expertise in calculating complex economic damages for three decades.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="lg:col-span-12 xl:col-span-7 flex flex-col justify-center lg:pt-10">
+              <h2 className="text-4xl md:text-5xl font-bold text-primary-950 mb-8 leading-tight tracking-tight uppercase font-sans">
+                Forensic Analysis of <br />
+                <span className="font-serif italic text-primary-900 normal-case font-medium">Personal Injury Damages</span>
+              </h2>
+              <div className="space-y-6 text-xl text-gray-800 leading-relaxed font-light">
+                <p>
+                  Personal injury attorneys often require the expertise of a forensic accountant to evaluate economic damages. Engel & Engel has extensive experience in investigating and calculating economic damages for plaintiffs and defendants in personal injury matters.
+                </p>
+                <p>
+                  Engel & Engel has conducted over 1,000 economic damage calculations and testified in over 100 cases. Our economic damage qualifications are highlighted with a credentialed Master Analyst in Financial Forensics (MAFF) and over 10 research publications in connection with economic damages.
+                </p>
+                <p>
+                  Overall, Engel & Engel has the qualifications and experience to prepare damage analyses that are consistent with established legal principles and are able to withstand the scrutiny of the court.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Services Grid Section */}
+      <section className="relative py-24 md:py-32 bg-primary-950 overflow-hidden text-white shadow-[0_8px_40px_rgba(0,0,0,0.25)]">
+        <div className="absolute inset-0 z-0">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_right,rgba(212,175,55,0.08)_0%,transparent_60%)]" />
+          <div className="absolute left-10 top-0 bottom-0 w-px bg-white/5" />
+          <div className="absolute right-10 top-0 bottom-0 w-px bg-white/5" />
+        </div>
+
+        <div className="container-custom relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-20"
+          >
+            <span className="inline-block text-gold font-bold tracking-[0.5em] uppercase text-xs mb-6 px-4 py-1 border border-gold/30 rounded-full">Practice Area</span>
+            <h2 className="text-4xl md:text-6xl font-bold text-white mb-8 leading-tight tracking-tight uppercase font-sans">
+              How Engel & Engel Helps <span className="font-serif italic text-gold normal-case font-medium">Personal Injury Attorneys</span>
+            </h2>
+            <p className="text-xl text-primary-100/70 max-w-3xl mx-auto font-light">
+              When the stakes are high, Engel & Engel can serve as your expert in connection with the following:
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a href="tel:(310) 277-2220"><Button size="xl" className="bg-white text-primary-900 hover:bg-gray-100">Call (310) 277-2220</Button></a>
-              <Link href="/contact"><Button size="xl" variant="outline" className="border-white text-white hover:bg-white hover:text-primary-900">Free Consultation</Button></Link>
-            </div>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 tracking-wider">
+            {serviceItems.map((service, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.05 }}
+                className="group p-8 border border-white/10 bg-white/5 backdrop-blur-sm hover:border-gold/50 transition-all duration-500 relative min-h-[160px] flex items-center"
+              >
+                <div className="absolute top-0 left-0 w-1 h-0 bg-gold group-hover:h-full transition-all duration-500" />
+                <h3 className="text-sm font-bold tracking-widest text-white group-hover:text-gold transition-all duration-500 uppercase leading-snug">
+                  {service}
+                </h3>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
 
-      <section className="section-padding bg-white">
-        <div className="container-custom">
-          <div className="max-w-4xl mx-auto">
-            
-            <div className="mb-12">
-              <p className="text-xl text-gray-700 leading-relaxed mb-6">
-                Personal injury litigation often demands the expertise of forensic accountants to accurately quantify economic damages. Engel & Engel has extensive experience in conducting economic damages analyses for personal injury cases including lost earnings, lost earning capacity, medical expenses, and life care costs for both plaintiffs and defendants.
+      {/* Research Publications Section */}
+      <section className="py-24 md:py-32 bg-white relative overflow-hidden">
+        <div className="container-custom relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+            >
+              <span className="inline-block text-gold font-bold tracking-[0.4em] uppercase text-xs mb-6 px-4 py-1 border border-gold/30 rounded-full">Academic Authority</span>
+              <h2 className="text-4xl md:text-5xl font-bold text-primary-950 mb-8 tracking-tighter uppercase leading-tight font-sans">
+                Research <br />
+                <span className="font-serif italic text-primary-900 normal-case font-medium">Publications</span>
+              </h2>
+              <p className="text-xl text-gray-700 leading-relaxed mb-10 font-light">
+                Engel & Engel has published the following publications on the subject of economic damages:
               </p>
-              <p className="text-lg text-gray-600 leading-relaxed">
-                Our expertise includes calculating past and future economic losses, analyzing employment and earnings data, working with life care planners, and providing expert witness testimony. We have the qualifications and experience to conduct comprehensive personal injury economic damages analyses.
-              </p>
-            </div>
 
-            <div className="mb-12 bg-primary-50 rounded-2xl p-8">
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">Personal Injury Economic Damages Expert in Los Angeles</h2>
-              <p className="text-lg text-gray-700 leading-relaxed mb-4">
-                Serving Los Angeles County, Orange County, Ventura County, San Bernardino County, Riverside County, and throughout Southern California. Our Los Angeles office provides comprehensive personal injury economic damages services for personal injury attorneys throughout the region.
-              </p>
-              <p className="text-gray-700 leading-relaxed">
-                Whether you need a personal injury economic damages expert for cases in downtown Los Angeles, Santa Monica, Beverly Hills, Pasadena, Irvine, San Diego, or anywhere in California, our team is ready to assist with lost earnings calculations, life care cost analysis, and expert witness testimony.
-              </p>
-            </div>
-
-            <div className="mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 mb-6">How Engel & Engel Helps Personal Injury Attorneys</h2>
-              <p className="text-lg text-gray-700 mb-8">When the stakes are high, Engel & Engel can serve as your expert in connection with the following:</p>
-              
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {[
-                  { title: "Lost Earnings Analysis", desc: "Calculate past lost earnings from date of injury to present.", icon: "M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" },
-                  { title: "Future Earning Capacity", desc: "Project future lost earning capacity based on career trajectory and disability.", icon: "M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" },
-                  { title: "Life Care Cost Analysis", desc: "Calculate present value of future medical expenses and care costs.", icon: "M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" },
-                  { title: "Medical Expense Analysis", desc: "Analyze past and future medical expenses related to the injury.", icon: "M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" },
-                  { title: "Household Services", desc: "Calculate economic value of lost household services and domestic activities.", icon: "M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" },
-                  { title: "Fringe Benefits Analysis", desc: "Quantify lost fringe benefits including health insurance, retirement, and other benefits.", icon: "M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" },
-                  { title: "Present Value Calculations", desc: "Calculate present value of future economic losses using appropriate discount rates.", icon: "M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" },
-                  { title: "Expert Witness Testimony", desc: "Court-tested expert witness testimony on personal injury economic damages.", icon: "M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z" },
-                ].map((service, index) => (
-                  <Card key={index} className="hover:shadow-xl transition-shadow duration-300">
-                    <CardHeader>
-                      <div className="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center mb-4">
-                        <svg className="w-6 h-6 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={service.icon} />
-                        </svg>
-                      </div>
-                      <CardTitle className="text-xl">{service.title}</CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <p className="text-gray-600">{service.desc}</p>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
-            </div>
-
-            <div className="mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 mb-8">Our Personal Injury Damages Analysis Process</h2>
-              <div className="space-y-6">
-                {[
-                  { step: "1", title: "Initial Case Review", desc: "Review injury details, medical records, and employment history." },
-                  { step: "2", title: "Earnings Analysis", desc: "Analyze past earnings and project future earning capacity." },
-                  { step: "3", title: "Medical Cost Analysis", desc: "Review life care plans and calculate present value of future medical expenses." },
-                  { step: "4", title: "Total Damages Calculation", desc: "Calculate total economic damages including all loss categories." },
-                  { step: "5", title: "Expert Report & Testimony", desc: "Prepare detailed reports and provide expert witness testimony." }
-                ].map((item) => (
-                  <div key={item.step} className="flex gap-6 items-start">
-                    <div className="flex-shrink-0 w-12 h-12 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold text-xl">
-                      {item.step}
-                    </div>
-                    <div className="flex-1">
-                      <h3 className="text-xl font-semibold text-gray-900 mb-2">{item.title}</h3>
-                      <p className="text-gray-600 leading-relaxed">{item.desc}</p>
-                    </div>
+              <div className="space-y-4">
+                {publications.map((title, idx) => (
+                  <div key={idx} className="p-4 border-l-4 border-gold bg-gray-50 group hover:bg-primary-950 transition-all duration-300">
+                    <Link href="/publications" className="block text-lg text-primary-950 group-hover:text-white transition-colors">
+                      {title}
+                    </Link>
                   </div>
                 ))}
               </div>
-            </div>
+            </motion.div>
 
-            <div className="mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 mb-6">Why Choose Engel & Engel for Personal Injury Cases</h2>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div className="text-center">
-                  <div className="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <svg className="w-8 h-8 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
-                    </svg>
-                  </div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-2">CPA/ABV/CFF Credentials</h3>
-                  <p className="text-gray-600">Certified in business valuation and financial forensics with extensive damages calculation experience.</p>
-                </div>
-                <div className="text-center">
-                  <div className="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <svg className="w-8 h-8 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
-                    </svg>
-                  </div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-2">Damages Expertise</h3>
-                  <p className="text-gray-600">Comprehensive expertise in calculating all categories of personal injury economic damages.</p>
-                </div>
-                <div className="text-center">
-                  <div className="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <svg className="w-8 h-8 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z" />
-                    </svg>
-                  </div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-2">Court-Tested Testimony</h3>
-                  <p className="text-gray-600">Extensive experience providing expert witness testimony in personal injury litigation.</p>
-                </div>
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              className="lg:sticky lg:top-32"
+            >
+              <div className="relative h-[600px] w-full bg-gray-100 shadow-2xl overflow-hidden rounded-sm group">
+                <Image
+                  src="https://images.unsplash.com/photo-1505664194779-8beaceb93744?auto=format&fit=crop&q=80&w=1200"
+                  alt="Personal Injury Research"
+                  fill
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-primary-950/20" />
+                <div className="absolute inset-0 border-[20px] border-white/10" />
               </div>
-            </div>
-
-            <div className="mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 mb-6">Related Practice Areas</h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {[
-                  { name: "Economic Damages", href: "/practice-areas/economic-damages" },
-                  { name: "Employment Litigation", href: "/practice-areas/employment-litigation" },
-                  { name: "Business Interruption", href: "/practice-areas/business-interruption" },
-                  { name: "Construction Litigation", href: "/practice-areas/construction-litigation" },
-                  { name: "Real Estate Litigation", href: "/practice-areas/real-estate-litigation" },
-                  { name: "Partnership Disputes", href: "/practice-areas/partnership-disputes" }
-                ].map((area, index) => (
-                  <Link key={index} href={area.href}>
-                    <Card className="h-full hover:shadow-xl transition-all duration-300 hover:-translate-y-1 cursor-pointer">
-                      <CardContent className="p-6">
-                        <h3 className="text-lg font-semibold text-primary-700 hover:text-primary-900">{area.name}</h3>
-                      </CardContent>
-                    </Card>
-                  </Link>
-                ))}
-              </div>
-            </div>
-
+            </motion.div>
           </div>
         </div>
       </section>
 
-      <section className="section-padding bg-white">
-        <div className="container-custom">
-          <div className="max-w-4xl mx-auto">
-            <FAQ items={faqItems} />
-          </div>
-        </div>
-      </section>
+      {/* Contact Info Section */}
+      <section className="py-24 bg-gray-50 relative overflow-hidden">
+        <div className="container-custom text-center relative z-10">
+          <div className="max-w-4xl mx-auto p-12 border border-gray-100 bg-white rounded-sm relative group overflow-hidden shadow-2xl">
+            <div className="absolute top-0 left-0 w-2 h-full bg-gold" />
 
-      <section className="section-padding bg-gradient-to-br from-primary-900 via-primary-800 to-primary-700 text-white">
-        <div className="container-custom">
-          <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">Need a Personal Injury Economic Damages Expert?</h2>
-            <p className="text-xl text-primary-100 mb-8">
-              Contact Brandon J. Engel, CPA/ABV/CFF, CVA, MAFF for a consultation on your personal injury case.
+            <p className="text-gray-600 italic mb-10 text-xl font-serif">
+              For additional information about Engel & Engel&apos;s Forensic Accounting Services or a consultation, please contact:
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
-              <a href="tel:(310) 277-2220"><Button size="xl" className="bg-white text-primary-900 hover:bg-gray-100">Call (310) 277-2220</Button></a>
-              <a href="mailto:brandon@engelandengel.com"><Button size="xl" variant="outline" className="border-white text-white hover:bg-white hover:text-primary-900">Email Brandon</Button></a>
+
+            <div className="text-primary-950">
+              <h3 className="text-3xl md:text-4xl font-bold mb-4 tracking-tighter uppercase font-sans">Brandon J. Engel, <span className="text-gold font-serif italic text-2xl md:text-3xl font-medium normal-case">CPA/ABV/CFF, CVA, MAFF</span></h3>
+              <div className="flex flex-col md:flex-row justify-center items-center gap-8 md:gap-16 mt-8">
+                <a
+                  href="mailto:brandon@engelandengel.com"
+                  className="text-lg font-bold tracking-widest uppercase hover:text-gold transition-colors underline decoration-gold/30 pb-1"
+                >
+                  brandon@engelandengel.com
+                </a>
+                <a
+                  href="tel:310-277-2220"
+                  className="text-2xl font-bold text-primary-950 hover:text-gold transition-colors"
+                >
+                  310-277-2220
+                </a>
+              </div>
             </div>
-            <p className="text-primary-200">Serving Los Angeles, Orange County, and all of California</p>
           </div>
         </div>
       </section>
@@ -244,4 +249,3 @@ export default function PersonalInjuryEnhancedPage() {
     </main>
   )
 }
-

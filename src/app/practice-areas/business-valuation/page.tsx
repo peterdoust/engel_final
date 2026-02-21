@@ -1,109 +1,57 @@
+'use client'
+
 import React from 'react'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card'
 import { Button } from '@/components/ui/Button'
 import Link from 'next/link'
-import FAQ from '@/components/seo/FAQ'
 import SchemaMarkup from '@/components/seo/SchemaMarkup'
 import Breadcrumbs from '@/components/seo/Breadcrumbs'
-
-export const metadata = {
-  title: 'Business Valuation Expert Witness | CVA, ABV | Los Angeles | Engel & Engel LLP',
-  description: 'Certified Valuation Analyst (CVA) and Accreditation in Business Valuation (ABV) with 100+ business valuations. Expert witness testimony in Los Angeles and California.',
-  
-  // Open Graph
-  openGraph: {
-    title: 'Business Valuation Expert Witness | CVA, ABV | Los Angeles',
-    description: 'Certified Valuation Analyst (CVA) and ABV credentials. 100+ business valuations. Expert witness testimony in Los Angeles.',
-    url: 'https://engelandengel.com/practice-areas/business-valuation',
-    siteName: 'Engel & Engel LLP',
-    images: [
-      {
-        url: 'https://engelandengel.com/images/og-business-valuation.jpg',
-        width: 1200,
-        height: 630,
-        alt: 'Business Valuation Expert Witness Services - Los Angeles',
-      },
-    ],
-    locale: 'en_US',
-    type: 'website',
-  },
-  
-  // Twitter Card
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Business Valuation Expert Witness | CVA, ABV | Los Angeles',
-    description: 'CVA and ABV credentials. 100+ business valuations. Expert witness testimony.',
-    images: ['https://engelandengel.com/images/twitter-business-valuation.jpg'],
-  },
-  
-  // Robots
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
-    },
-  },
-  
-  // Canonical
-  alternates: {
-    canonical: 'https://engelandengel.com/practice-areas/business-valuation',
-  },
-}
+import Image from 'next/image'
+import { motion } from 'framer-motion'
 
 export default function BusinessValuationEnhancedPage() {
-  const faqItems = [
-    {
-      question: "What credentials do you have for business valuation?",
-      answer: "Our team holds two business valuation credentials: Certified Valuation Analyst (CVA) and Accreditation in Business Valuation (ABV). We have completed over 100 business valuations across diverse industries."
-    },
-    {
-      question: "What types of business valuations do you perform?",
-      answer: "We perform all types of business valuations including minority shareholder valuations, fair value solvency analysis, estate valuations, merger & acquisition valuations, partnership dissolution valuations, and California Corporate Code Section 2000 valuations."
-    },
-    {
-      question: "Can you provide expert witness testimony for business valuation cases?",
-      answer: "Yes, we regularly provide expert witness testimony in business valuation disputes. Our valuations are prepared consistent with established valuation principles and can withstand court scrutiny and cross-examination."
-    },
-    {
-      question: "How long does a business valuation take?",
-      answer: "The timeline varies based on business complexity and data availability, but most valuations take 4-8 weeks. We work efficiently to gather financial information, analyze data, and prepare comprehensive valuation reports."
-    },
-    {
-      question: "What valuation methods do you use?",
-      answer: "We use all three standard valuation approaches: Income Approach (discounted cash flow), Market Approach (comparable company analysis), and Asset Approach (adjusted net asset method). The appropriate method depends on the business type and valuation purpose."
-    }
+  const serviceItems = [
+    "Minority Shareholder Valuation",
+    "Corporate Mergers & Acquisitions",
+    "Corporate and Partnership Dissolutions",
+    "Corporation Code 2000 Valuation",
+    "Net Worth Valuation",
+    "Shareholder & Partnership Disputes",
+    "Economic Damage Analysis",
+    "Fair Value Solvency Analysis",
+    "Estate Valuation",
+    "Buy and Sell Agreements",
+    "Buyout Agreements",
+    "Expert Witness Testimony"
   ]
 
   return (
-    <main>
-      {/* Organization Schema */}
-      <SchemaMarkup 
-        type="Organization" 
+    <main className="bg-white">
+      {/* SEOMarkup Components - Preserved */}
+      <SchemaMarkup
+        type="Organization"
         data={{
           address: {
-            street: "11766 Wilshire Blvd, Suite 1170",
-            zip: "90025"
+            street: "350 S Grand Avenue, Suite 3160",
+            city: "Los Angeles",
+            state: "CA",
+            zip: "90071"
           },
-          socialMedia: [
-            "https://www.linkedin.com/company/engel-engel-llp"
-          ]
+          telephone: "(310) 277-2220",
+          email: "info@engelandengel.com"
         }}
       />
-      
-      {/* LocalBusiness Schema */}
-      <SchemaMarkup 
-        type="LocalBusiness" 
+
+      <SchemaMarkup
+        type="LocalBusiness"
         data={{
           address: {
-            street: "11766 Wilshire Blvd, Suite 1170",
-            zip: "90025"
+            street: "350 S Grand Avenue, Suite 3160",
+            city: "Los Angeles",
+            state: "CA",
+            zip: "90071"
           },
           geo: {
             latitude: "34.0522",
@@ -111,24 +59,22 @@ export default function BusinessValuationEnhancedPage() {
           }
         }}
       />
-      
-      {/* Service Schema */}
-      <SchemaMarkup 
-        type="ProfessionalService" 
+
+      <SchemaMarkup
+        type="ProfessionalService"
         data={{
           name: "Business Valuation Expert Witness Services",
           description: "Certified business valuation experts (CVA, ABV) with 100+ valuations in Los Angeles and throughout California",
           serviceType: "Forensic Accounting - Business Valuation",
           address: {
-            street: "11766 Wilshire Blvd, Suite 1170",
-            zip: "90025"
+            street: "350 S Grand Avenue, Suite 3160",
+            zip: "90071"
           }
         }}
       />
-      
-      {/* HowTo Schema */}
-      <SchemaMarkup 
-        type="HowTo" 
+
+      <SchemaMarkup
+        type="HowTo"
         data={{
           name: "How to Conduct a Business Valuation",
           description: "Our proven 5-step process for conducting comprehensive business valuations",
@@ -156,477 +102,208 @@ export default function BusinessValuationEnhancedPage() {
           ]
         }}
       />
-      
-      {/* FAQ Schema */}
-      <SchemaMarkup 
-        type="FAQ" 
-        data={{
-          questions: faqItems
-        }}
-      />
-      
+
       <Header />
-      
-      {/* Hero Section */}
-      <section className="pt-16 lg:pt-20 bg-gradient-to-br from-primary-900 via-primary-800 to-primary-700 text-white">
-        <div className="container-custom py-20">
-          <Breadcrumbs items={[
-            { label: 'Practice Areas', href: '/practice-areas' },
-            { label: 'Business Valuation', href: '/practice-areas/business-valuation' }
-          ]} />
-          
-          <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
-              Business Valuation
+
+      {/* Hero Section - Homepage Style */}
+      <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden pt-20">
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="https://images.pexels.com/photos/3182811/pexels-photo-3182811.jpeg?auto=compress&cs=tinysrgb&w=1920"
+            alt="Business Valuation Services"
+            fill
+            className="object-cover brightness-[0.2]"
+            priority
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-primary-950 via-transparent to-primary-950" />
+        </div>
+
+        <div className="container-custom relative z-10 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1 }}
+          >
+            <div className="mb-6">
+              <Breadcrumbs items={[
+                { label: 'Practice Areas', href: '/practice-areas' },
+                { label: 'Business Valuation', href: '/practice-areas/business-valuation' }
+              ]} />
+            </div>
+            <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-8 tracking-tighter leading-[1.1]">
+              Business <br />
+              <span className="font-serif italic font-medium text-gold drop-shadow-[0_0_15px_rgba(212,175,55,0.3)]">Valuation</span>
             </h1>
-            <p className="text-xl md:text-2xl text-primary-100 mb-8 leading-relaxed">
-              CVA and ABV credentials with 100+ business valuations across diverse industries.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a href="tel:(310) 277-2220">
-                <Button size="xl" className="bg-white text-primary-900 hover:bg-gray-100">
-                  Call (310) 277-2220
-                </Button>
-              </a>
-              <Link href="/contact">
-                <Button size="xl" variant="outline" className="border-white text-white hover:bg-white hover:text-primary-900">
-                  Free Consultation
-                </Button>
-              </Link>
+
+            <motion.div
+              initial={{ opacity: 0, width: 0 }}
+              animate={{ opacity: 1, width: '100%' }}
+              transition={{ delay: 0.5, duration: 1.2 }}
+              className="flex items-center justify-center space-x-6 mb-12 overflow-hidden max-w-2xl mx-auto"
+            >
+              <div className="h-[2px] flex-grow bg-gradient-to-r from-transparent via-gold/50 to-transparent" />
+              <h2 className="text-sm md:text-base font-bold text-primary-100 tracking-[0.4em] uppercase whitespace-nowrap">
+                High-Stakes Financial Expertise
+              </h2>
+              <div className="h-[2px] flex-grow bg-gradient-to-l from-transparent via-gold/50 to-transparent" />
+            </motion.div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Intro Section - Homepage Pattern */}
+      <section className="relative py-24 md:py-32 bg-white overflow-hidden">
+        <div className="absolute inset-0 z-0 opacity-[0.03] pointer-events-none">
+          <div className="absolute inset-0 bg-[linear-gradient(to_right,#808080_1px,transparent_1px),linear-gradient(to_bottom,#808080_1px,transparent_1px)] bg-[size:40px_40px]" />
+        </div>
+
+        <div className="container-custom relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
+            <div className="lg:col-span-5 relative">
+              <div className="relative inline-block mb-10">
+                <div className="absolute -inset-4 border border-gold/30 rounded-sm translate-x-2 translate-y-2 z-0" />
+                <div className="relative z-10 bg-primary-950 text-white p-10 md:p-14 rounded-sm shadow-2xl">
+                  <span className="block text-sm font-bold tracking-[0.5em] uppercase text-gold mb-2">Established</span>
+                  <span className="block text-6xl md:text-8xl font-serif italic mb-6">1994</span>
+                  <div className="h-[2px] w-16 bg-gold mb-6" />
+                  <p className="text-primary-100 text-lg leading-relaxed font-light">
+                    Three decades of uncompromising financial integrity and forensic excellence.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="lg:col-span-7 flex flex-col justify-center lg:pt-10">
+              <h2 className="text-4xl md:text-5xl font-bold text-primary-950 mb-8 leading-tight tracking-tight uppercase">
+                Expertise and <br />
+                <span className="font-serif italic text-primary-900 normal-case font-medium">Qualifications</span>
+              </h2>
+              <div className="space-y-6 text-xl text-gray-800 leading-relaxed">
+                <p>
+                  Engel & Engel possesses extensive experience and qualifications to provide business valuation services and serve as your valuation expert. Our qualifications include two business valuation credentials, Certified Valuation Analyst (CVA) and Accreditation in Business Valuation (ABV). Our experience includes over 100 business valuations in a wide variety of industries.
+                </p>
+                <p>
+                  Overall, Engel & Engel has the credentials and experience to prepare business valuations that are consistent with established valuation principles and are able to withstand the scrutiny of the court.
+                </p>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Main Content */}
-      <section className="section-padding bg-white">
-        <div className="container-custom">
-          <div className="max-w-4xl mx-auto">
-            
-            {/* Introduction - FROM ORIGINAL SITE */}
-            <div className="mb-12">
-              <p className="text-xl text-gray-700 leading-relaxed mb-6">
-                Engel & Engel possesses extensive experience and qualifications to provide business valuation services and serve as your valuation expert. Our qualifications include two business valuation credentials, Certified Valuation Analyst (CVA) and Accreditation in Business Valuation (ABV). Our experience includes over 100 business valuations in a wide variety of industries.
-              </p>
-              <p className="text-lg text-gray-600 leading-relaxed">
-                Overall, Engel & Engel has the credentials and experience to prepare business valuations that are consistent with established valuation principles and are able to withstand the scrutiny of the court.
-              </p>
-            </div>
+      {/* Services Section - Premium Grid */}
+      <section className="relative py-24 md:py-32 bg-primary-950 overflow-hidden text-white shadow-[0_8px_40px_rgba(0,0,0,0.25)]">
+        <div className="absolute inset-0 z-0">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_right,rgba(212,175,55,0.08)_0%,transparent_60%)]" />
+          <div className="absolute left-10 top-0 bottom-0 w-px bg-white/5" />
+          <div className="absolute right-10 top-0 bottom-0 w-px bg-white/5" />
+        </div>
 
-            {/* Local SEO Content */}
-            <div className="mb-12 bg-primary-50 rounded-2xl p-8">
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">
-                Business Valuation Expert Witness in Los Angeles
+        <div className="container-custom relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-20"
+          >
+            <h2 className="text-4xl md:text-6xl font-bold text-white mb-8 leading-tight tracking-tight uppercase">
+              Business Valuation Forensic Accounting <span className="font-serif italic text-gold normal-case font-medium">Services</span>
+            </h2>
+            <p className="text-xl text-primary-100/70 max-w-3xl mx-auto font-light">
+              When the stakes are high, Engel & Engel can serve as your expert in connection with the following:
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {serviceItems.map((service, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.05 }}
+                className="group p-8 border border-white/10 bg-white/5 backdrop-blur-sm hover:border-gold/50 transition-all duration-500 relative"
+              >
+                <div className="absolute top-0 left-0 w-1 h-0 bg-gold group-hover:h-full transition-all duration-500" />
+                <h3 className="text-xl font-bold text-white group-hover:text-gold transition-colors duration-300">
+                  {service}
+                </h3>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Research Publications Section */}
+      <section className="py-24 md:py-32 bg-white relative overflow-hidden">
+        <div className="container-custom relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+            >
+              <span className="inline-block text-gold font-bold tracking-[0.4em] uppercase text-xs mb-6 px-4 py-1 border border-gold/30 rounded-full">Academic Authority</span>
+              <h2 className="text-4xl md:text-5xl font-bold text-primary-950 mb-8 tracking-tighter uppercase leading-tight">
+                Research <br />
+                <span className="font-serif italic text-primary-900 normal-case font-medium">Publications</span>
               </h2>
-              <p className="text-lg text-gray-700 leading-relaxed mb-4">
-                Serving Los Angeles County, Orange County, Ventura County, San Bernardino County, Riverside County, and throughout Southern California. Our Los Angeles office provides comprehensive business valuation services for attorneys, businesses, and individuals throughout the region.
-              </p>
-              <p className="text-gray-700 leading-relaxed">
-                Whether you need a business valuation expert for cases in downtown Los Angeles, Santa Monica, Beverly Hills, Pasadena, Irvine, San Diego, or anywhere in California, our CVA and ABV credentialed experts are ready to assist with shareholder disputes, mergers & acquisitions, estate planning, and all types of business valuation needs.
-              </p>
-            </div>
-
-            {/* Related Services - Internal Linking */}
-            <div className="mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 mb-6">Related Forensic Accounting Services</h2>
-              <p className="text-lg text-gray-700 mb-6">
-                Our business valuation services often complement other forensic accounting specialties:
-              </p>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <Link href="/practice-areas/economic-damages">
-                  <Card className="h-full hover:shadow-lg transition-shadow cursor-pointer">
-                    <CardHeader>
-                      <CardTitle className="text-lg text-primary-600">Economic Damages</CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <p className="text-gray-600 text-sm">
-                        Lost business value and goodwill calculations require expert valuation analysis.
-                      </p>
-                    </CardContent>
-                  </Card>
-                </Link>
-
-                <Link href="/practice-areas/partnership-disputes">
-                  <Card className="h-full hover:shadow-lg transition-shadow cursor-pointer">
-                    <CardHeader>
-                      <CardTitle className="text-lg text-primary-600">Partnership Disputes</CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <p className="text-gray-600 text-sm">
-                        Shareholder and partnership disputes often require business valuation for buyouts.
-                      </p>
-                    </CardContent>
-                  </Card>
-                </Link>
-
-                <Link href="/practice-areas/fraud-investigation">
-                  <Card className="h-full hover:shadow-lg transition-shadow cursor-pointer">
-                    <CardHeader>
-                      <CardTitle className="text-lg text-primary-600">Fraud Investigation</CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <p className="text-gray-600 text-sm">
-                        Fraud can significantly impact business value and require forensic analysis.
-                      </p>
-                    </CardContent>
-                  </Card>
-                </Link>
-
-                <Link href="/practice-areas/bankruptcy-insolvency">
-                  <Card className="h-full hover:shadow-lg transition-shadow cursor-pointer">
-                    <CardHeader>
-                      <CardTitle className="text-lg text-primary-600">Bankruptcy & Insolvency</CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <p className="text-gray-600 text-sm">
-                        Solvency analysis and fair value determinations in bankruptcy proceedings.
-                      </p>
-                    </CardContent>
-                  </Card>
-                </Link>
-
-                <Link href="/practice-areas/trust-probate-litigation">
-                  <Card className="h-full hover:shadow-lg transition-shadow cursor-pointer">
-                    <CardHeader>
-                      <CardTitle className="text-lg text-primary-600">Trust & Probate</CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <p className="text-gray-600 text-sm">
-                        Estate valuations for trust and probate litigation matters.
-                      </p>
-                    </CardContent>
-                  </Card>
-                </Link>
-
-                <Link href="/practice-areas/alter-ego">
-                  <Card className="h-full hover:shadow-lg transition-shadow cursor-pointer">
-                    <CardHeader>
-                      <CardTitle className="text-lg text-primary-600">Alter Ego</CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <p className="text-gray-600 text-sm">
-                        Business valuation in alter ego and veil piercing cases.
-                      </p>
-                    </CardContent>
-                  </Card>
-                </Link>
-              </div>
-            </div>
-
-            {/* Business Valuation Forensic Accounting Services - FROM ORIGINAL SITE */}
-            <div className="mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 mb-6">Business Valuation Forensic Accounting Services</h2>
-              <p className="text-lg text-gray-700 mb-8">
-                When the stakes are high, Engel & Engel can serve as your expert in connection with the following:
-              </p>
-
-              {/* ALL 13 VALUATION TYPES FROM ORIGINAL SITE - Professional Clean Design */}
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <Card className="h-full hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border-l-4 border-l-primary-600">
-                  <CardHeader>
-                    <CardTitle className="text-lg text-primary-700">Minority Shareholder Valuation</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-gray-600 text-sm">
-                      Valuation of minority ownership interests with appropriate discounts for lack of control and marketability.
-                    </p>
-                  </CardContent>
-                </Card>
-
-                <Card className="h-full hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border-l-4 border-l-primary-600">
-                  <CardHeader>
-                    <CardTitle className="text-lg text-primary-700">Corporate Mergers & Acquisitions</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-gray-600 text-sm">
-                      Business valuation for M&A transactions, purchase price allocation, and fairness opinions.
-                    </p>
-                  </CardContent>
-                </Card>
-
-                <Card className="h-full hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border-l-4 border-l-primary-600">
-                  <CardHeader>
-                    <CardTitle className="text-lg text-primary-700">Corporate and Partnership Dissolutions</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-gray-600 text-sm">
-                      Valuation of business interests in dissolution proceedings and buyout scenarios.
-                    </p>
-                  </CardContent>
-                </Card>
-
-                <Card className="h-full hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border-l-4 border-l-primary-600">
-                  <CardHeader>
-                    <CardTitle className="text-lg text-primary-700">Corporation Code 2000 Valuation</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-gray-600 text-sm">
-                      California Corporate Code Section 2000 valuations for dissenting shareholder rights.
-                    </p>
-                  </CardContent>
-                </Card>
-
-                <Card className="h-full hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border-l-4 border-l-primary-600">
-                  <CardHeader>
-                    <CardTitle className="text-lg text-primary-700">Net Worth Valuation</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-gray-600 text-sm">
-                      Asset-based valuation approach for businesses with significant tangible assets.
-                    </p>
-                  </CardContent>
-                </Card>
-
-                <Card className="h-full hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border-l-4 border-l-primary-600">
-                  <CardHeader>
-                    <CardTitle className="text-lg text-primary-700">Shareholder & Partnership Disputes</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-gray-600 text-sm">
-                      Business valuation for shareholder oppression, partnership disputes, and buyout litigation.
-                    </p>
-                  </CardContent>
-                </Card>
-
-                <Card className="h-full hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border-l-4 border-l-primary-600">
-                  <CardHeader>
-                    <CardTitle className="text-lg text-primary-700">Economic Damage Analysis</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-gray-600 text-sm">
-                      Lost business value calculations in litigation involving business torts and damages.
-                    </p>
-                  </CardContent>
-                </Card>
-
-                <Card className="h-full hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border-l-4 border-l-primary-600">
-                  <CardHeader>
-                    <CardTitle className="text-lg text-primary-700">Fair Value Solvency Analysis</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-gray-600 text-sm">
-                      Solvency opinions and fair value determinations for bankruptcy and fraudulent transfer cases.
-                    </p>
-                  </CardContent>
-                </Card>
-
-                <Card className="h-full hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border-l-4 border-l-primary-600">
-                  <CardHeader>
-                    <CardTitle className="text-lg text-primary-700">Estate Valuation</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-gray-600 text-sm">
-                      Business valuation for estate tax, gift tax, and estate planning purposes.
-                    </p>
-                  </CardContent>
-                </Card>
-
-                <Card className="h-full hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border-l-4 border-l-primary-600">
-                  <CardHeader>
-                    <CardTitle className="text-lg text-primary-700">Buy and Sell Agreements</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-gray-600 text-sm">
-                      Valuation for buy-sell agreement purposes and formula development.
-                    </p>
-                  </CardContent>
-                </Card>
-
-                <Card className="h-full hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border-l-4 border-l-primary-600">
-                  <CardHeader>
-                    <CardTitle className="text-lg text-primary-700">Buyout Agreements</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-gray-600 text-sm">
-                      Business valuation for partner and shareholder buyout transactions.
-                    </p>
-                  </CardContent>
-                </Card>
-
-                <Card className="h-full hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border-l-4 border-l-primary-600">
-                  <CardHeader>
-                    <CardTitle className="text-lg text-primary-700">Expert Witness Testimony</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-gray-600 text-sm">
-                      Credible expert witness testimony on business valuation matters in litigation.
-                    </p>
-                  </CardContent>
-                </Card>
-              </div>
-            </div>
-
-            {/* Research Publications - FROM ORIGINAL SITE */}
-            <div className="mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 mb-6">Research Publications</h2>
-              <p className="text-lg text-gray-700 mb-6">
+              <p className="text-xl text-gray-700 leading-relaxed mb-10">
                 Engel & Engel has published the following research publication in connection with business valuation:
               </p>
+              <div className="p-8 border-l-4 border-gold bg-gray-50 group hover:bg-primary-950 transition-all duration-500">
+                <Link href="/publications" className="block text-2xl font-bold text-primary-950 group-hover:text-white transition-colors underline decoration-gold/30">
+                  Business Valuation Under California Corporate Code Section 2000
+                </Link>
+              </div>
+            </motion.div>
 
-              <div className="bg-gray-50 rounded-2xl p-8">
-                <div className="flex items-start group">
-                  <svg className="w-6 h-6 text-primary-600 mr-3 flex-shrink-0 mt-1 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                  </svg>
-                  <Link href="/publications" className="text-gray-700 text-lg hover:text-primary-700 hover:underline transition-colors">
-                    Business Valuation Under California Corporate Code Section 2000
-                  </Link>
-                </div>
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              className="relative h-[400px] w-full bg-gray-100 shadow-2xl overflow-hidden"
+            >
+              <Image
+                src="https://images.pexels.com/photos/590022/pexels-photo-590022.jpeg?auto=compress&cs=tinysrgb&w=800"
+                alt="Research Publications"
+                fill
+                className="object-cover"
+              />
+              <div className="absolute inset-0 bg-primary-950/20" />
+              <div className="absolute inset-0 border-[20px] border-white/10" />
+            </motion.div>
+          </div>
+        </div>
+      </section>
 
-                <div className="mt-8 text-center">
-                  <Link href="/publications">
-                    <Button size="lg" className="bg-primary-600 hover:bg-primary-700">
-                      View All Publications
-                      <svg className="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                      </svg>
-                    </Button>
-                  </Link>
-                </div>
+      {/* Contact Info Section - Branded Style */}
+      <section className="py-24 bg-white relative overflow-hidden">
+        <div className="container-custom text-center relative z-10">
+          <div className="max-w-4xl mx-auto p-12 border border-gray-100 bg-gray-50/50 rounded-sm relative group overflow-hidden shadow-2xl">
+            <div className="absolute top-0 left-0 w-2 h-full bg-gold" />
+
+            <p className="text-gray-600 italic mb-10 text-xl font-serif">
+              For additional information about Engel & Engel&apos;s Forensic Accounting Services or a consultation, please contact:
+            </p>
+
+            <div className="text-primary-950">
+              <h3 className="text-3xl md:text-4xl font-bold mb-4 tracking-tighter">Brandon J. Engel, <span className="text-gold font-serif italic text-2xl md:text-3xl font-medium">CPA, CFE</span></h3>
+              <div className="flex flex-col md:flex-row justify-center items-center gap-8 md:gap-16 mt-8">
+                <a
+                  href="mailto:brandon@engelandengel.com"
+                  className="text-lg font-bold tracking-widest uppercase hover:text-gold transition-colors underline decoration-gold/30 pb-1"
+                >
+                  brandon@engelandengel.com
+                </a>
+                <a
+                  href="tel:310-277-2220"
+                  className="text-2xl font-bold text-primary-950 hover:text-gold transition-colors"
+                >
+                  310-277-2220
+                </a>
               </div>
             </div>
-
-            {/* Our Process */}
-            <div className="mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 mb-8">Our Business Valuation Process</h2>
-
-              <div className="bg-gray-50 rounded-2xl p-8">
-                <div className="space-y-8">
-                  <div className="flex items-start space-x-6">
-                    <div className="w-12 h-12 bg-primary-500 rounded-full flex items-center justify-center flex-shrink-0">
-                      <span className="text-white font-bold">1</span>
-                    </div>
-                    <div>
-                      <h3 className="text-xl font-semibold text-gray-900 mb-2">Initial Engagement</h3>
-                      <p className="text-gray-600">
-                        Understand valuation purpose, business operations, industry dynamics, and gather preliminary financial information.
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start space-x-6">
-                    <div className="w-12 h-12 bg-primary-500 rounded-full flex items-center justify-center flex-shrink-0">
-                      <span className="text-white font-bold">2</span>
-                    </div>
-                    <div>
-                      <h3 className="text-xl font-semibold text-gray-900 mb-2">Financial Analysis</h3>
-                      <p className="text-gray-600">
-                        Analyze historical financial statements, normalize earnings, identify value drivers, and assess financial performance.
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start space-x-6">
-                    <div className="w-12 h-12 bg-primary-500 rounded-full flex items-center justify-center flex-shrink-0">
-                      <span className="text-white font-bold">3</span>
-                    </div>
-                    <div>
-                      <h3 className="text-xl font-semibold text-gray-900 mb-2">Valuation Methodology Selection</h3>
-                      <p className="text-gray-600">
-                        Select appropriate valuation approaches (Income, Market, Asset) based on business characteristics and valuation purpose.
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start space-x-6">
-                    <div className="w-12 h-12 bg-primary-500 rounded-full flex items-center justify-center flex-shrink-0">
-                      <span className="text-white font-bold">4</span>
-                    </div>
-                    <div>
-                      <h3 className="text-xl font-semibold text-gray-900 mb-2">Valuation Calculation</h3>
-                      <p className="text-gray-600">
-                        Apply valuation methods, calculate business value, and determine appropriate discounts and premiums.
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start space-x-6">
-                    <div className="w-12 h-12 bg-primary-500 rounded-full flex items-center justify-center flex-shrink-0">
-                      <span className="text-white font-bold">5</span>
-                    </div>
-                    <div>
-                      <h3 className="text-xl font-semibold text-gray-900 mb-2">Report & Testimony</h3>
-                      <p className="text-gray-600">
-                        Prepare detailed valuation report and provide expert witness testimony if needed for litigation.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Why Choose Us */}
-            <div className="mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 mb-8">Why Choose Engel & Engel</h2>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div className="text-center">
-                  <div className="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <svg className="w-8 h-8 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
-                    </svg>
-                  </div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-3">Dual Credentials</h3>
-                  <p className="text-gray-600">
-                    Certified Valuation Analyst (CVA) and Accreditation in Business Valuation (ABV) credentials.
-                  </p>
-                </div>
-
-                <div className="text-center">
-                  <div className="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <svg className="w-8 h-8 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
-                    </svg>
-                  </div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-3">Extensive Experience</h3>
-                  <p className="text-gray-600">
-                    Over 100 business valuations completed across diverse industries and valuation purposes.
-                  </p>
-                </div>
-
-                <div className="text-center">
-                  <div className="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <svg className="w-8 h-8 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
-                    </svg>
-                  </div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-3">Court-Tested</h3>
-                  <p className="text-gray-600">
-                    Valuations prepared consistent with established principles that withstand court scrutiny.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            {/* FAQ Section */}
-            <div className="max-w-4xl mx-auto">
-              <FAQ items={faqItems} />
-            </div>
-
-            {/* Contact CTA - FROM ORIGINAL SITE */}
-            <div className="bg-primary-50 rounded-2xl p-8 text-center mt-12">
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">
-                Need a Business Valuation Expert?
-              </h3>
-              <p className="text-lg text-gray-700 mb-6">
-                For additional information about Engel & Engel's Forensic Accounting Services or a consultation, please contact:
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                <div className="text-center">
-                  <p className="font-semibold text-gray-900">Brandon J. Engel, CPA, CFE</p>
-                  <p className="text-gray-600">brandon@engelandengel.com</p>
-                  <p className="text-gray-600">(310) 277-2220</p>
-                </div>
-                <div className="flex gap-3">
-                  <a href="tel:(310) 277-2220">
-                    <Button className="bg-primary-600 hover:bg-primary-700">Call Now</Button>
-                  </a>
-                  <Link href="/contact">
-                    <Button variant="outline">Contact Us</Button>
-                  </Link>
-                </div>
-              </div>
-            </div>
-
           </div>
         </div>
       </section>
@@ -635,4 +312,3 @@ export default function BusinessValuationEnhancedPage() {
     </main>
   )
 }
-
