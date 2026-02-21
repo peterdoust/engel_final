@@ -347,10 +347,7 @@ export default function AboutPage() {
       </section>
 
       {/* Professional Certifications */}
-      <Certifications
-        backgroundColor="white"
-        subtitle="The credibility of our testimony is enhanced by our exemplary credentials and professional certifications across multiple disciplines."
-      />
+      <Certifications />
 
       {/* Areas of Expertise */}
       <section className="section-padding bg-primary-50">
