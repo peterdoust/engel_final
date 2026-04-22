@@ -4,40 +4,49 @@ import React, { useState, useEffect, useRef } from 'react'
 
 const reviews = [
   {
-    name: 'Eric Wannon',
+    name: 'Mark K.',
     rating: 5,
-    text: 'The Engels are the best in the business, hands down. They are a remarkable father-son duo, and I had the opportunity to work with them on a very high-stakes, company-breaking matter. They were outstanding from start to finish. They reviewed opposing counsel’s expert work and professionally dismantled it with precision and credibility. They updated their reports in real time when needed, responded thoroughly to the arbitrator’s inquiries, and provided strong backup for every position they took. Our success was due in large part to having the Engels in our corner. I recommend them without hesitation.',
+    text: 'I am a real estate litigation attorney who has used Jason Engel as my forensic accounting expert in two multi-million dollar cases. He is eminently responsive and able to synthesize complicated financial transactions so that the fact-finder may easily understand them at trial.\n\nI highly recommend him and intend to use him again if the need arises.',
+  },
+  {
+    name: 'Eric K.',
+    rating: 5,
+    text: 'I used Jason in a contentious breach of contract case with eight-figure damages. The case was barreling toward trial, and Jason was asked to provide his analysis and opinion in a very short time frame and under significant pressure from the client. Jason and his team did a fantastic job. He was extremely responsive and his report was exactly what we needed. I will use Jason again.',
+  },
+  {
+    name: 'Michael S.',
+    rating: 5,
+    text: "I have had the privilege of using Jason Engel's professional services for many years. Simply stated, he is not only excellent at what he does, he is a creative problem solver who always has innovative ways to advance my clients' interests. I would recommend him without reservation to anyone who is in need of the many services he provides.",
+  },
+  {
+    name: 'Geoffrey G.',
+    rating: 5,
+    text: 'Jason is the kind of expert witness you want. One who is always going to provide a well-supported expert opinion. His opinion is independent. It might not always be the one you would hope to hear. But it is the one that is right and correct. Jason is careful, attentive to detail and thorough. He presents well at trial. And he is a pleasure to work with. He has my highest recommendation.',
+  },
+  {
+    name: 'Brian F.',
+    rating: 5,
+    text: 'We hired Engel & Engel as a forensic accountant on a construction defect case. We found Jason and Brandon to both be knowledgeable, responsive and professional. We will definitely use them again.',
   },
   {
     name: 'Ed M.',
     rating: 5,
-    text: '…professional, knowledgeable, honest, and trustworthy. I would recommend Engel & Engel for any accounting matters.',
+    text: 'Jason Engel and his team are professional, knowledgeable, honest, and trustworthy. I would recommend Engel & Engel for any accounting matters.',
   },
   {
-    name: 'Mark K.',
-    title: 'Real Estate Litigation Attorney',
-    rating: 5,
-    text: '…eminently responsive and able to synthesize complicated financial transactions so that the fact-finder may easily understand them at trial.',
-  },
-  {
-    name: 'G. Gold',
-    rating: 5,
-    text: '…opinion is independent. It might not always be the one you would hope to hear. But it is the one that is right and correct.',
-  },
-  {
-    name: 'P. Shinn',
+    name: 'Phillip S.',
     rating: 5,
     text: 'Excellent forensic accounting experts. Sharp analysis and clear presentation. Timely follow through and ability to work under short deadlines.',
   },
   {
-    name: 'D. Sire',
+    name: 'David S.',
     rating: 5,
     text: 'Amazing and thorough job as experts in a Piercing the Corporate Veil case. Very thankful.',
   },
   {
-    name: 'B. Friedrich',
+    name: 'Eric W.',
     rating: 5,
-    text: '…knowledgeable, responsive and professional. We will definitely use them again.',
+    text: 'The Engels are the best in the business, hands down. They are a remarkable father-son duo, and I had the opportunity to work with them on a very high-stakes, company-breaking matter. They were outstanding from start to finish. They reviewed opposing counsel’s expert work and professionally dismantled it with precision and credibility. They updated their reports in real time when needed, responded thoroughly to the arbitrator’s inquiries, and provided strong backup for every position they took. Our success was due in large part to having the Engels in our corner. I recommend them without hesitation.',
   },
 ]
 
