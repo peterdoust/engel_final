@@ -2,7 +2,14 @@
 
 import React, { useState, useEffect, useRef } from 'react'
 
-const reviews = [
+interface Review {
+  name: string
+  rating: number
+  text: string
+  title?: string
+}
+
+const reviews: Review[] = [
   {
     name: 'Mark K.',
     rating: 5,
@@ -218,10 +225,11 @@ export default function GoogleReviews() {
 
                     {/* Name */}
                     <h4 className="font-bold text-primary-950 text-base">{review.name}</h4>
-                    {'title' in review && review.title && (
+                    {review.title ? (
                       <p className="text-gray-500 text-xs italic mb-2">{review.title}</p>
+                    ) : (
+                      <div className="mb-2" />
                     )}
-                    {!('title' in review && review.title) && <div className="mb-2" />}
 
                     {/* Stars */}
                     <div className="flex justify-center mb-4">
