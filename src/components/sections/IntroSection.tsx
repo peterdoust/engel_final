@@ -3,7 +3,7 @@ import Image from 'next/image'
 
 export default function IntroSection() {
   return (
-    <section className="relative py-16 md:py-24 bg-white
+    <section id="about" className="relative py-16 md:py-24 bg-white
 ">
       <div className="container-custom relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
