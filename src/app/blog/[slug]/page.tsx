@@ -38,7 +38,7 @@ const blogPosts = {
     wordCount: 1800,
     category: 'Forensic Accounting',
     tags: ['#ForensicAccounting', '#BusinessRecords', '#LegalEvidence', '#ExpertWitness', '#FinancialAnalysis', '#Litigation'],
-    image: 'https://engelandengel.com/wp-content/uploads/2025/09/underlying-records-financial-statements.jpg',
+    image: '/images/blog/underlying-records-financial-statements.avif',
     imageAlt: 'Underlying records in financial statements - forensic accounting analysis'
   },
   'what-to-look-for-when-retaining-forensic-accountant': {
@@ -75,7 +75,7 @@ const blogPosts = {
     wordCount: 1500,
     category: 'Expert Selection',
     tags: ['#ForensicAccountant', '#ExpertWitness', '#LegalConsultation', '#ExpertSelection', '#Litigation', '#BigLaw'],
-    image: 'https://engelandengel.com/wp-content/uploads/2025/07/retaining-forensic-accountant.jpg',
+    image: '/images/blog/retaining-forensic-accountant.avif',
     imageAlt: 'Professional consultation for retaining a forensic accountant - expert selection process'
   },
   'critical-action-steps-preserving-evidence-after-embezzlement': {
@@ -112,7 +112,7 @@ const blogPosts = {
     wordCount: 2000,
     category: 'Fraud Investigation',
     tags: ['#Embezzlement', '#FraudInvestigation', '#EvidencePreservation', '#CertifiedFraudExaminer', '#ForensicAccounting', '#TrialReady'],
-    image: 'https://engelandengel.com/wp-content/uploads/2025/07/critical-actions-evidence-embezzlement.jpg',
+    image: '/images/blog/critical-actions-evidence-embezzlement.avif',
     imageAlt: 'Critical action steps to preserve evidence in an embezzlement case'
   },
   'key-documents-forensic-accounting-experts-need-discovery': {
@@ -162,7 +162,7 @@ const blogPosts = {
     wordCount: 1200,
     category: 'Document Discovery',
     tags: ['#LitigationDocuments', '#Discovery', '#ForensicAccounting', '#DamagesExperts', '#BigLaw', '#TrialReady'],
-    image: 'https://engelandengel.com/wp-content/uploads/2025/06/documents-forensic-accountants-need-1.jpg',
+    image: '/images/blog/documents-forensic-accountants-need-1.avif',
     imageAlt: 'Key documents that forensic accounting experts need for discovery and analysis'
   }
 }
@@ -322,7 +322,7 @@ export default function BlogPost({ params }: Props) {
             <div className="container mx-auto px-6 pb-16">
               <div className="max-w-4xl mx-auto">
                 {/* Breadcrumb Navigation - Positioned over image */}
-                <nav aria-label="Breadcrumb" className="mb-8">
+                <nav aria-label="Breadcrumb" className="mb-8 hidden">
                   <ol className="flex items-center space-x-2 text-sm text-white/80">
                     <li><Link href="/" className="hover:text-white transition-colors">Home</Link></li>
                     <li className="text-white/60">/</li>
@@ -333,7 +333,7 @@ export default function BlogPost({ params }: Props) {
                 </nav>
 
                 <div className="mb-4">
-                  <span className="inline-block bg-blue-600 text-white px-4 py-2 rounded-full text-sm font-medium">
+                  <span className="inline-block text-[10px] font-bold tracking-[0.3em] uppercase bg-[#D4AF37] text-primary-950 px-3 py-1">
                     {post.category}
                   </span>
                 </div>
@@ -375,7 +375,7 @@ export default function BlogPost({ params }: Props) {
               {/* Tags */}
               <div className="flex flex-wrap gap-2 mb-8">
                 {post.tags.map((tag, index) => (
-                  <span key={index} className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">
+                  <span key={index} className="text-[10px] font-bold tracking-wider uppercase bg-slate-50 text-slate-500 px-3 py-1.5 border border-slate-200">
                     {tag}
                   </span>
                 ))}
@@ -396,7 +396,7 @@ export default function BlogPost({ params }: Props) {
           <div className="container mx-auto px-6">
             <div className="max-w-6xl mx-auto">
               <div className="text-center mb-12">
-                <h2 className="text-3xl font-bold text-gray-900 mb-4">Continue Reading</h2>
+                <h2 className="text-3xl font-bold text-primary-950 mb-4">Continue Reading</h2>
                 <p className="text-xl text-gray-600">
                   Explore more expert insights on forensic accounting and litigation support
                 </p>
@@ -416,15 +416,15 @@ export default function BlogPost({ params }: Props) {
                           className="object-cover"
                         />
                         <div className="absolute top-4 left-4">
-                          <span className="bg-blue-600 text-white px-2 py-1 rounded text-xs font-medium">
+                          <span className="text-[10px] font-bold tracking-[0.3em] uppercase bg-[#D4AF37] text-primary-950 px-3 py-1">
                             {relatedPost.category}
                           </span>
                         </div>
                       </div>
 
                       <div className="p-6">
-                        <h3 className="text-xl font-bold text-gray-900 mb-3 leading-tight">
-                          <Link href={`/blog/${slug}`} className="hover:text-blue-600 transition-colors">
+                        <h3 className="text-xl font-bold mb-3 leading-tight">
+                          <Link href={`/blog/${slug}`} className="text-primary-950 hover:text-[#0f3574] transition-colors tracking-tight">
                             {relatedPost.title}
                           </Link>
                         </h3>
@@ -437,7 +437,7 @@ export default function BlogPost({ params }: Props) {
 
                         <div className="flex flex-wrap gap-1 mb-4">
                           {relatedPost.tags.slice(0, 2).map((tag, index) => (
-                            <span key={index} className="text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded-full">
+                            <span key={index} className="text-[9px] font-bold tracking-wider uppercase bg-slate-50 text-slate-400 px-2 py-0.5 border border-slate-100">
                               {tag}
                             </span>
                           ))}
@@ -448,10 +448,13 @@ export default function BlogPost({ params }: Props) {
                             <div className="font-medium">{relatedPost.author}</div>
                             <div>{relatedPost.readTime}</div>
                           </div>
-                          <Link href={`/blog/${slug}`}>
-                            <Button as="span" variant="outline" size="sm">
-                              Read Article
-                            </Button>
+                          <Link href={`/blog/${slug}`} className="group">
+                            <span className="flex items-center gap-2 text-[#D4AF37] font-bold text-xs group-hover:gap-4 transition-all duration-300">
+                              Read
+                              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                              </svg>
+                            </span>
                           </Link>
                         </div>
                       </div>
@@ -462,7 +465,7 @@ export default function BlogPost({ params }: Props) {
               {/* View All Articles Button */}
               <div className="text-center mt-12">
                 <Link href="/blog">
-                  <Button as="span" className="bg-blue-600 hover:bg-blue-700" size="lg">
+                  <Button as="span" className="bg-primary-950 hover:bg-black text-white" size="lg">
                     View All Articles
                   </Button>
                 </Link>
@@ -475,27 +478,27 @@ export default function BlogPost({ params }: Props) {
         <section className="py-16">
           <div className="container mx-auto px-6">
             <div className="max-w-4xl mx-auto">
-              <div className="bg-blue-900 text-white p-8 rounded-lg text-center">
-                <h2 className="text-3xl font-bold mb-4">Need Expert Forensic Accounting Services?</h2>
+              <div className="bg-primary-950 text-white p-8 rounded-lg text-center">
+                <h2 className="text-3xl font-bold mb-4 text-white">Need Expert Forensic Accounting Services?</h2>
                 <p className="text-blue-100 mb-6 text-lg">
                   Contact Engel & Engel LLP for professional forensic accounting, fraud investigation,
                   and expert witness testimony services. Over 30+ years of experience with hundreds of successful cases.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <Link href="/contact">
-                    <Button as="span" className="bg-white text-blue-900 hover:bg-blue-50" size="lg">
+                    <Button as="span" className="bg-white text-primary-950 hover:bg-blue-50" size="lg">
                       Get Free Consultation
                     </Button>
                   </Link>
                   <Link href="/blog">
-                    <Button as="span" variant="outline" className="border-white text-white hover:bg-white hover:text-blue-900" size="lg">
+                    <Button as="span" variant="outline" className="border-white text-white hover:bg-white hover:text-primary-950" size="lg">
                       Read More Articles
                     </Button>
                   </Link>
                 </div>
 
                 {/* Contact Info */}
-                <div className="mt-8 pt-6 border-t border-blue-800">
+                <div className="mt-8 pt-6 border-t border-white/10">
                   <div className="flex flex-col sm:flex-row items-center justify-center gap-6 text-blue-100">
                     <div className="flex items-center gap-2">
                       <span className="font-medium">Call:</span>

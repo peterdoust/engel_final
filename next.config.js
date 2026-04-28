@@ -61,6 +61,16 @@ const nextConfig = {
         destination: '/',
         permanent: true,
       },
+      {
+        source: '/about',
+        destination: '/team',
+        permanent: true,
+      },
+      {
+        source: '/services',
+        destination: '/services/forensic-accounting',
+        permanent: true,
+      },
     ];
 
     // Redirect resources, design-showcase, and admin pages to home on Vercel only

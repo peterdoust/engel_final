@@ -20,7 +20,7 @@ const featuredPost = {
   readTime: '7 min read',
   category: 'Forensic Accounting',
   slug: 'forensic-accountants-uncover-evidence-operational-business-records',
-  image: 'https://engelandengel.com/wp-content/uploads/2025/09/underlying-records-financial-statements.jpg',
+  image: '/images/blog/underlying-records-financial-statements.avif',
   imageAlt: 'Underlying records in financial statements - forensic accounting analysis',
   tags: ['#ForensicAccounting', '#BusinessRecords', '#LegalEvidence', '#ExpertWitness', '#FinancialAnalysis', '#Litigation'],
   url: 'https://engelandengel.com/how-forensic-accountants-uncover-critical-evidence-with-operational-and-underlying-business-records/'
@@ -36,7 +36,7 @@ const blogPosts = [
     readTime: '6 min read',
     category: 'Expert Selection',
     slug: 'what-to-look-for-when-retaining-forensic-accountant',
-    image: 'https://engelandengel.com/wp-content/uploads/2025/07/retaining-forensic-accountant.jpg',
+    image: '/images/blog/retaining-forensic-accountant.avif',
     imageAlt: 'Professional consultation for retaining a forensic accountant - expert selection process',
     tags: ['#ForensicAccountant', '#ExpertWitness', '#LegalConsultation', '#ExpertSelection', '#Litigation', '#BigLaw'],
     url: 'https://engelandengel.com/what-to-look-for-when-retaining-a-forensic-accountant/'
@@ -50,7 +50,7 @@ const blogPosts = [
     readTime: '8 min read',
     category: 'Fraud Investigation',
     slug: 'critical-action-steps-preserving-evidence-after-embezzlement',
-    image: 'https://engelandengel.com/wp-content/uploads/2025/07/critical-actions-evidence-embezzlement.jpg',
+    image: '/images/blog/critical-actions-evidence-embezzlement.avif',
     imageAlt: 'Critical action steps to preserve evidence in an embezzlement case',
     tags: ['#Embezzlement', '#FraudInvestigation', '#EvidencePreservation', '#CertifiedFraudExaminer', '#ForensicAccounting', '#TrialReady'],
     url: 'https://engelandengel.com/the-most-critical-action-steps-for-preserving-evidence-after-an-embezzlement/'
@@ -64,7 +64,7 @@ const blogPosts = [
     readTime: '5 min read',
     category: 'Document Discovery',
     slug: 'key-documents-forensic-accounting-experts-need-discovery',
-    image: 'https://engelandengel.com/wp-content/uploads/2025/06/documents-forensic-accountants-need-1.jpg',
+    image: '/images/blog/documents-forensic-accountants-need-1.avif',
     imageAlt: 'Key documents that forensic accounting experts need for discovery and analysis',
     tags: ['#LitigationDocuments', '#Discovery', '#ForensicAccounting', '#DamagesExperts', '#BigLaw', '#TrialReady'],
     url: 'https://engelandengel.com/4-key-documents-most-forensic-accounting-experts-need-before-discovery-closes/'
