@@ -93,7 +93,7 @@ export default function ContactCTA() {
                       <div className="space-y-1 text-sm text-white font-normal">
                         <p className="text-white">{member.address}</p>
                         <p className="text-white">{member.city}</p>
-                        <p className="text-white font-semibold"><span className="">TEL: </span>{member.tel}</p>
+                        <p className="text-white font-semibold"><span className="">MAIN: </span>{member.tel}</p>
                         <p className="text-white font-semibold"><span className="">DIRECT: </span>{member.direct}</p>
                         <p className="truncate text-white font-semibold">
                           <span className="">EMAIL: </span>

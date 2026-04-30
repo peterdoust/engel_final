@@ -22,8 +22,8 @@ export default function HomePage() {
       <ExpertiseGridV4 />
       <Certifications />
       <GoogleReviews />
-      <ContactCTA />
       <ForbesBanner />
+      <ContactCTA />
       <Footer />
     </main>
   )
