@@ -85,8 +85,7 @@ export async function POST(request: NextRequest) {
     // Store submission in MongoDB
     try {
       const client = await clientPromise
-      // Use the database name from URI if possible, or fallback to 'engelandengel'
-      const db = client.db() 
+      const db = client.db('engelandengel') 
       
       const submission = {
         firstName: data.firstName || '',
@@ -105,10 +104,15 @@ export async function POST(request: NextRequest) {
 
       const result = await db.collection('publication_requests').insertOne(submission)
       console.log(`[PUBLICATION-REQUEST] Saved to DB: ${result.insertedId}`)
-    } catch (dbError) {
+    } catch (dbError: any) {
       console.error('Error saving publication request to MongoDB:', dbError)
-      // We'll continue to send the email even if DB save fails, 
-      // but we return a warning in the log.
+      return NextResponse.json(
+        { 
+          error: 'Failed to save publication request to database',
+          details: dbError.message 
+        },
+        { status: 500 }
+      )
     }
 
     // Log the submission data (for testing)
