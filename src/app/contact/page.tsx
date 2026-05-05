@@ -7,10 +7,6 @@ import Footer from '@/components/layout/Footer';
 import Image from 'next/image';
 import { Button } from '@/components/ui/Button';
 
-// ─────────────────────────────────────────────
-// Data
-// ─────────────────────────────────────────────
-
 const contactPersons = [
   {
     header: 'Forensic Accounting Services',
@@ -34,10 +30,6 @@ const contactPersons = [
   }
 ];
 
-// ─────────────────────────────────────────────
-// Page
-// ─────────────────────────────────────────────
-
 export default function ContactPage() {
   const [formData, setFormData] = useState({
     name: '',
@@ -50,9 +42,12 @@ export default function ContactPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
+
+    setFormData((prev) => ({
       ...prev,
       [name]: value
     }));
@@ -61,6 +56,8 @@ export default function ContactPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+
+    console.log("FORM DATA BEFORE SEND:", formData);
 
     try {
       const response = await fetch('/api/send-contact-form', {
@@ -80,8 +77,8 @@ export default function ContactPage() {
 
       setIsSubmitted(true);
     } catch (error) {
-      console.error('Error submitting contact form:', error);
-      alert('There was an error sending your message. Please try again or call (310) 277-2220.');
+      console.error(error);
+      alert('Error sending message.');
     } finally {
       setIsSubmitting(false);
     }
@@ -93,23 +90,13 @@ export default function ContactPage() {
         <Header />
         <main className="bg-[#0f3574] min-h-screen text-white flex items-center justify-center pt-20">
           <div className="container-custom py-20 text-center">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5 }}
-              className="max-w-2xl mx-auto"
-            >
-              <h1 className="text-[2.5rem] font-bold text-white">Message Received</h1>
-              <p className="text-xl text-slate-400 mb-10 font-light">
-                Thank you for contacting Engel & Engel. We will respond within 24 hours.
-              </p>
-              <Button
-                onClick={() => setIsSubmitted(false)}
-                className="bg-[#D4AF37] text-black font-bold px-10 py-4"
-              >
-                Send Another Message
-              </Button>
-            </motion.div>
+            <h1 className="text-4xl font-bold">Message Received</h1>
+            <p className="mt-4 text-slate-300">
+              We will respond within 24 hours.
+            </p>
+            <Button onClick={() => setIsSubmitted(false)} className="mt-8">
+              Send Another Message
+            </Button>
           </div>
         </main>
         <Footer />
@@ -120,92 +107,74 @@ export default function ContactPage() {
   return (
     <>
       <Header />
-      <main className="min-h-screen">
 
-        <section className="bg-primary-950 text-white py-24 text-center">
-          <h1 className="text-4xl font-bold">Contact</h1>
-        </section>
+      <main className="min-h-screen bg-primary-950 text-white pt-32">
+        <div className="container-custom max-w-3xl mx-auto">
 
-        <section className="bg-primary-950 py-20">
-          <div className="container-custom grid lg:grid-cols-12 gap-10">
+          <form onSubmit={handleSubmit} className="space-y-6">
 
-            {/* LEFT SIDE */}
-            <div className="lg:col-span-5 space-y-6">
-              {contactPersons.map((person, idx) => (
-                <div key={idx} className="bg-white/5 p-6 rounded-xl text-white">
-                  <p className="text-[#D4AF37] text-xs uppercase">{person.header}</p>
-                  <p className="font-bold">{person.name}</p>
-                  <p>{person.address}, {person.city}</p>
-                  <p>{person.phone}</p>
-                  <p>{person.direct}</p>
-                  <p>{person.email}</p>
-                </div>
-              ))}
-            </div>
+            {/* NAME */}
+            <input
+              type="text"
+              name="name"
+              value={formData.name}
+              onChange={handleInputChange}
+              placeholder="Your Name"
+              className="w-full p-3 text-black rounded"
+              required
+            />
 
-            {/* RIGHT SIDE FORM */}
-            <div className="lg:col-span-7 bg-white p-10 rounded-xl">
+            {/* EMAIL */}
+            <input
+              type="email"
+              name="email"
+              value={formData.email}
+              onChange={handleInputChange}
+              placeholder="Your Email"
+              className="w-full p-3 text-black rounded"
+              required
+            />
 
-              <form onSubmit={handleSubmit} className="space-y-6">
+            {/* PHONE */}
+            <input
+              type="text"
+              name="phone"
+              value={formData.phone}
+              onChange={handleInputChange}
+              placeholder="Phone"
+              className="w-full p-3 text-black rounded"
+            />
 
-                {/* NAME */}
-                <input
-                  name="name"
-                  value={formData.name}
-                  onChange={handleInputChange}
-                  type="text"
-                  placeholder="Your Name *"
-                  required
-                  className="w-full p-3 border"
-                />
+            {/* COMPANY */}
+            <input
+              type="text"
+              name="company"
+              value={formData.company}
+              onChange={handleInputChange}
+              placeholder="Company"
+              className="w-full p-3 text-black rounded"
+            />
 
-                {/* EMAIL */}
-                <input
-                  name="email"
-                  value={formData.email}
-                  onChange={handleInputChange}
-                  type="email"
-                  placeholder="Your Email *"
-                  required
-                  className="w-full p-3 border"
-                />
+            {/* MESSAGE */}
+            <textarea
+              name="message"
+              value={formData.message}
+              onChange={handleInputChange}
+              placeholder="Message"
+              className="w-full p-3 text-black rounded h-40"
+              required
+            />
 
-                {/* PHONE */}
-                <input
-                  name="phone"
-                  value={formData.phone}
-                  onChange={handleInputChange}
-                  type="text"
-                  placeholder="Your Phone"
-                  className="w-full p-3 border"
-                />
+            <Button type="submit" disabled={isSubmitting}>
+              {isSubmitting ? "Sending..." : "Send Message"}
+            </Button>
 
-                {/* MESSAGE */}
-                <textarea
-                  name="message"
-                  value={formData.message}
-                  onChange={handleInputChange}
-                  rows={5}
-                  placeholder="Your Message"
-                  className="w-full p-3 border"
-                />
+          </form>
 
-                <Button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="w-full bg-[#0f3574] text-white py-4"
-                >
-                  {isSubmitting ? 'Sending...' : 'Send Message'}
-                </Button>
-
-              </form>
-            </div>
-
-          </div>
-        </section>
-
-        <Footer />
+        </div>
       </main>
+
+      <Footer />
     </>
   );
 }
