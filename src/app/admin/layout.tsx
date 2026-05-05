@@ -1,0 +1,159 @@
+'use client'
+
+import React, { useState, useEffect } from 'react'
+import { usePathname, useRouter } from 'next/navigation'
+import Link from 'next/link'
+import Image from 'next/image'
+import { SidebarProvider, useSidebarSlot } from './SidebarContext'
+
+const NAV = [
+  {
+    name: 'Publication Requests',
+    href: '/admin/publication-requests',
+    icon: (
+      <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+      </svg>
+    ),
+  },
+  {
+    name: 'Raffle Submissions',
+    href: '/admin/raffle',
+    icon: (
+      <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+      </svg>
+    ),
+  },
+]
+
+function AdminShell({ children }: { children: React.ReactNode }) {
+  const pathname = usePathname()
+  const router = useRouter()
+  const [authChecked, setAuthChecked] = useState(false)
+  const [isAuthenticated, setIsAuthenticated] = useState(false)
+  const [sidebarOpen, setSidebarOpen] = useState(false)
+  const { extras } = useSidebarSlot()
+
+  const isLoginPage = pathname === '/admin/login'
+
+  useEffect(() => {
+    const token = typeof window !== 'undefined' ? sessionStorage.getItem('raffle_token') : null
+    if (token) {
+      setIsAuthenticated(true)
+    } else if (!isLoginPage) {
+      router.replace('/admin/login')
+      return
+    }
+    setAuthChecked(true)
+  }, [pathname, isLoginPage, router])
+
+  const handleLogout = () => {
+    sessionStorage.removeItem('raffle_token')
+    setIsAuthenticated(false)
+    router.replace('/admin/login')
+  }
+
+  if (isLoginPage) return <>{children}</>
+
+  if (!authChecked) {
+    return (
+      <div className="min-h-screen bg-gray-100 flex items-center justify-center text-gray-400 text-sm">
+        Loading...
+      </div>
+    )
+  }
+  if (!isAuthenticated) return null
+
+  return (
+    <div className="min-h-screen bg-gray-50 flex">
+      {/* Mobile menu toggle */}
+      <button
+        onClick={() => setSidebarOpen(!sidebarOpen)}
+        className="lg:hidden fixed top-4 left-4 z-50 p-2 bg-[#0d1f42] text-white rounded-lg shadow-lg"
+        aria-label="Toggle sidebar"
+      >
+        <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          {sidebarOpen ? (
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+          ) : (
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+          )}
+        </svg>
+      </button>
+
+      {sidebarOpen && (
+        <div
+          onClick={() => setSidebarOpen(false)}
+          className="lg:hidden fixed inset-0 bg-black/50 z-30"
+        />
+      )}
+
+      {/* Sidebar */}
+      <aside
+        className={`fixed lg:sticky top-0 left-0 z-40 h-screen w-64 bg-[#0d1f42] text-white flex flex-col transform transition-transform duration-200 ${
+          sidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'
+        }`}
+      >
+        {/* Logo */}
+        <div className="p-6 border-b border-white/5">
+          <Link href="/" className="block">
+            <Image src="/images/logo-name_238ba79c.svg" alt="Engel & Engel" width={180} height={40} />
+          </Link>
+        </div>
+
+        {/* Nav */}
+        <nav className="p-4 space-y-1 border-b border-white/5">
+          {NAV.map(item => {
+            const active = pathname === item.href || pathname?.startsWith(item.href + '/')
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                onClick={() => setSidebarOpen(false)}
+                className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-xs font-semibold transition-colors ${
+                  active
+                    ? 'bg-[#D4AF37] text-[#0d1f42]'
+                    : 'text-white/70 hover:text-white hover:bg-white/5'
+                }`}
+              >
+                {item.icon}
+                <span>{item.name}</span>
+              </Link>
+            )
+          })}
+        </nav>
+
+        {/* Page-specific extras */}
+        <div className="flex-1 overflow-y-auto">
+          {extras}
+        </div>
+
+        {/* Logout */}
+        <div className="p-4 border-t border-white/5">
+          <button
+            onClick={handleLogout}
+            className="w-full flex items-center justify-center gap-2 px-4 py-2.5 text-xs font-semibold text-white bg-white/10 hover:bg-red-500/20 hover:text-red-300 rounded-lg transition-colors"
+          >
+            <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+            </svg>
+            Logout
+          </button>
+        </div>
+      </aside>
+
+      <main className="flex-1 min-w-0">
+        {children}
+      </main>
+    </div>
+  )
+}
+
+export default function AdminLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <SidebarProvider>
+      <AdminShell>{children}</AdminShell>
+    </SidebarProvider>
+  )
+}

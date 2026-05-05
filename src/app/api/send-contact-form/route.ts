@@ -141,8 +141,8 @@ This message was submitted through the Engel & Engel website contact form.
 
     await transporter.sendMail({
       from: process.env.SMTP_FROM || 'noreply@engelandengel.com',
-      to: 'peter@gcs.la',
-      subject: `Contact Form - ${data.name} (${data.company || 'Individual'})`,
+      to: process.env.ADMIN_EMAIL || 'peter@globalcreativestudios.com',
+      subject: `New Inquiry from ${data.name}`,
       text: emailContent,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">

@@ -18,14 +18,9 @@ export default function RequestPublicationModal({ isOpen, onClose, publicationTi
         firstName: '',
         lastName: '',
         firmName: '',
-        practiceArea: '',
+        position: '',
         email: '',
-        phone: '',
-        address: '',
-        address2: '',
-        city: '',
-        state: '',
-        zip: ''
+        phone: ''
     });
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -44,11 +39,10 @@ export default function RequestPublicationModal({ isOpen, onClose, publicationTi
                 email: formData.email,
                 phone: formData.phone,
                 firmName: formData.firmName,
-                practiceArea: formData.practiceArea,
+                position: formData.position,
                 requestedPublications: [publicationTitle || 'General Series Interest'],
-                message: `Address: ${formData.address} ${formData.address2}, ${formData.city}, ${formData.state} ${formData.zip}`,
                 timestamp: new Date().toISOString(),
-                category: publicationTitle
+                category: publicationTitle || 'General Request'
             };
 
             const response = await fetch('/api/send-publication-request', {
@@ -196,7 +190,7 @@ export default function RequestPublicationModal({ isOpen, onClose, publicationTi
                                         </div>
                                     </div>
 
-                                    {/* Firm & Practice Area */}
+                                    {/* Firm & Position */}
                                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                         <div className="space-y-2">
                                             <label className="text-xs font-bold text-slate-700">Firm Name*</label>
@@ -210,12 +204,11 @@ export default function RequestPublicationModal({ isOpen, onClose, publicationTi
                                             />
                                         </div>
                                         <div className="space-y-2">
-                                            <label className="text-xs font-bold text-slate-700">Practice Area*</label>
+                                            <label className="text-xs font-bold text-slate-700">Position</label>
                                             <input
-                                                required
                                                 type="text"
-                                                name="practiceArea"
-                                                value={formData.practiceArea}
+                                                name="position"
+                                                value={formData.position}
                                                 onChange={handleInputChange}
                                                 className="w-full bg-slate-50 border-none rounded-sm px-4 py-2 text-slate-900 focus:ring-1 focus:ring-[#D4AF37] transition-all"
                                             />
@@ -245,70 +238,6 @@ export default function RequestPublicationModal({ isOpen, onClose, publicationTi
                                                 onChange={handleInputChange}
                                                 className="w-full bg-slate-50 border-none rounded-sm px-4 py-2 text-slate-900 focus:ring-1 focus:ring-[#D4AF37] transition-all"
                                             />
-                                        </div>
-                                    </div>
-
-                                    {/* Address Block */}
-                                    <div className="space-y-2">
-                                        <label className="text-xs font-bold text-slate-700 block">Address*</label>
-                                        <div className="space-y-2">
-                                            <div className="space-y-1">
-                                                <input
-                                                    required
-                                                    type="text"
-                                                    name="address"
-                                                    value={formData.address}
-                                                    onChange={handleInputChange}
-                                                    className="w-full bg-slate-50 border-none rounded-sm px-4 py-2 text-slate-900 focus:ring-1 focus:ring-[#D4AF37] transition-all"
-                                                />
-                                                <span className="text-[10px] text-slate-400 font-medium ml-1">Street Address</span>
-                                            </div>
-                                            <div className="space-y-1">
-                                                <input
-                                                    type="text"
-                                                    name="address2"
-                                                    value={formData.address2}
-                                                    onChange={handleInputChange}
-                                                    className="w-full bg-slate-50 border-none rounded-sm px-4 py-2 text-slate-900 focus:ring-1 focus:ring-[#D4AF37] transition-all"
-                                                />
-                                                <span className="text-[10px] text-slate-400 font-medium ml-1">Address Line 2</span>
-                                            </div>
-
-                                            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                                                <div className="space-y-1">
-                                                    <input
-                                                        required
-                                                        type="text"
-                                                        name="city"
-                                                        value={formData.city}
-                                                        onChange={handleInputChange}
-                                                        className="w-full bg-slate-50 border-none rounded-sm px-4 py-2 text-slate-900 focus:ring-1 focus:ring-[#D4AF37] transition-all"
-                                                    />
-                                                    <span className="text-[10px] text-slate-400 font-medium ml-1">City</span>
-                                                </div>
-                                                <div className="space-y-1">
-                                                    <input
-                                                        required
-                                                        type="text"
-                                                        name="state"
-                                                        value={formData.state}
-                                                        onChange={handleInputChange}
-                                                        className="w-full bg-slate-50 border-none rounded-sm px-4 py-2 text-slate-900 focus:ring-1 focus:ring-[#D4AF37] transition-all"
-                                                    />
-                                                    <span className="text-[10px] text-slate-400 font-medium ml-1">State</span>
-                                                </div>
-                                                <div className="space-y-1">
-                                                    <input
-                                                        required
-                                                        type="text"
-                                                        name="zip"
-                                                        value={formData.zip}
-                                                        onChange={handleInputChange}
-                                                        className="w-full bg-slate-50 border-none rounded-sm px-4 py-2 text-slate-900 focus:ring-1 focus:ring-[#D4AF37] transition-all"
-                                                    />
-                                                    <span className="text-[10px] text-slate-400 font-medium ml-1">ZIP Code</span>
-                                                </div>
-                                            </div>
                                         </div>
                                     </div>
 
