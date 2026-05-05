@@ -47,7 +47,7 @@ export default function ContactPage() {
   ) => {
     const { name, value } = e.target;
 
-    setFormData((prev) => ({
+    setFormData(prev => ({
       ...prev,
       [name]: value
     }));
@@ -57,28 +57,22 @@ export default function ContactPage() {
     e.preventDefault();
     setIsSubmitting(true);
 
-    console.log("FORM DATA BEFORE SEND:", formData);
-
     try {
       const response = await fetch('/api/send-contact-form', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           ...formData,
           timestamp: new Date().toISOString()
         }),
       });
 
-      if (!response.ok) {
-        throw new Error('Failed to send message');
-      }
+      if (!response.ok) throw new Error('Failed');
 
       setIsSubmitted(true);
-    } catch (error) {
-      console.error(error);
-      alert('Error sending message.');
+    } catch (err) {
+      console.error(err);
+      alert('Error sending message');
     } finally {
       setIsSubmitting(false);
     }
@@ -88,14 +82,12 @@ export default function ContactPage() {
     return (
       <>
         <Header />
-        <main className="bg-[#0f3574] min-h-screen text-white flex items-center justify-center pt-20">
-          <div className="container-custom py-20 text-center">
-            <h1 className="text-4xl font-bold">Message Received</h1>
-            <p className="mt-4 text-slate-300">
-              We will respond within 24 hours.
-            </p>
-            <Button onClick={() => setIsSubmitted(false)} className="mt-8">
-              Send Another Message
+        <main className="min-h-screen flex items-center justify-center bg-[#0f3574] text-white">
+          <div className="text-center">
+            <h1 className="text-3xl">Message Received</h1>
+            <p>We will respond within 24 hours.</p>
+            <Button onClick={() => setIsSubmitted(false)} className="mt-6">
+              Send Another
             </Button>
           </div>
         </main>
@@ -108,70 +100,89 @@ export default function ContactPage() {
     <>
       <Header />
 
-      <main className="min-h-screen bg-primary-950 text-white pt-32">
-        <div className="container-custom max-w-3xl mx-auto">
+      <main className="min-h-screen">
 
-          <form onSubmit={handleSubmit} className="space-y-6">
+        {/* HERO */}
+        <section className="pt-28 pb-10 bg-[#0f3574] text-white text-center">
+          <h1 className="text-5xl font-bold">Contact Us</h1>
+        </section>
 
-            {/* NAME */}
-            <input
-              type="text"
-              name="name"
-              value={formData.name}
-              onChange={handleInputChange}
-              placeholder="Your Name"
-              className="w-full p-3 text-black rounded"
-              required
-            />
+        <section className="bg-[#0f3574] text-white py-16">
+          <div className="container mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10">
 
-            {/* EMAIL */}
-            <input
-              type="email"
-              name="email"
-              value={formData.email}
-              onChange={handleInputChange}
-              placeholder="Your Email"
-              className="w-full p-3 text-black rounded"
-              required
-            />
+            {/* LEFT: CONTACT CARDS */}
+            <div className="space-y-6">
+              {contactPersons.map((p, i) => (
+                <div key={i} className="bg-white/10 p-6 rounded-xl">
+                  <Image src={p.image} width={80} height={80} alt={p.name} />
+                  <h3 className="font-bold mt-3">{p.name}</h3>
+                  <p>{p.address}</p>
+                  <p>{p.city}</p>
+                </div>
+              ))}
+            </div>
 
-            {/* PHONE */}
-            <input
-              type="text"
-              name="phone"
-              value={formData.phone}
-              onChange={handleInputChange}
-              placeholder="Phone"
-              className="w-full p-3 text-black rounded"
-            />
+            {/* RIGHT: FORM */}
+            <form onSubmit={handleSubmit} className="bg-white text-black p-8 rounded-xl space-y-4">
 
-            {/* COMPANY */}
-            <input
-              type="text"
-              name="company"
-              value={formData.company}
-              onChange={handleInputChange}
-              placeholder="Company"
-              className="w-full p-3 text-black rounded"
-            />
+              <input
+                name="name"
+                placeholder="Name"
+                value={formData.name}
+                onChange={handleInputChange}
+                className="w-full p-3 border"
+                required
+              />
 
-            {/* MESSAGE */}
-            <textarea
-              name="message"
-              value={formData.message}
-              onChange={handleInputChange}
-              placeholder="Message"
-              className="w-full p-3 text-black rounded h-40"
-              required
-            />
+              <input
+                name="email"
+                placeholder="Email"
+                value={formData.email}
+                onChange={handleInputChange}
+                className="w-full p-3 border"
+                required
+              />
 
-            <Button type="submit" disabled={isSubmitting}>
-              {isSubmitting ? "Sending..." : "Send Message"}
-            </Button>
+              <input
+                name="phone"
+                placeholder="Phone"
+                value={formData.phone}
+                onChange={handleInputChange}
+                className="w-full p-3 border"
+              />
 
-          </form>
+              <input
+                name="company"
+                placeholder="Company"
+                value={formData.company}
+                onChange={handleInputChange}
+                className="w-full p-3 border"
+              />
 
-        </div>
+              <textarea
+                name="message"
+                placeholder="Message"
+                value={formData.message}
+                onChange={handleInputChange}
+                className="w-full p-3 border"
+                rows={5}
+              />
+
+              <Button disabled={isSubmitting} className="w-full">
+                {isSubmitting ? 'Sending...' : 'Send Message'}
+              </Button>
+            </form>
+          </div>
+        </section>
+
+        {/* MAP */}
+        <section className="h-[500px]">
+          <iframe
+            className="w-full h-full"
+            src="https://www.google.com/maps/embed?pb=!1m18..."
+          />
+        </section>
+
       </main>
 
       <Footer />
