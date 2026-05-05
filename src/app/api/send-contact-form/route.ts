@@ -126,10 +126,10 @@ This message was submitted through the Engel & Engel website contact form.
     `.trim()
 
     // TODO: Send email once SMTP is configured
-    /*
+   
     const nodemailer = require('nodemailer')
     
-    const transporter = nodemailer.createTransporter({
+    const transporter = nodemailer.createTransport({
       host: process.env.SMTP_HOST || 'smtp.gmail.com',
       port: parseInt(process.env.SMTP_PORT || '587'),
       secure: false,
@@ -221,7 +221,7 @@ This message was submitted through the Engel & Engel website contact form.
         </div>
       `
     })
-    */
+    
 
     // For now, just return success
     return NextResponse.json({ 
