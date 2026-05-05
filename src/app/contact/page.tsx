@@ -274,57 +274,77 @@ export default function ContactPage() {
                       </div>
 
                       <form onSubmit={handleSubmit} className="space-y-6">
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                          <div>
-                            <label className="block text-[11px] font-semibold text-primary-950 uppercase tracking-[0.15em] mb-2">Your Name</label>
-                            <input
-                              type="text"
-                              placeholder="Your Name *"
-                              className="w-full px-4 py-3.5 bg-[#f8fbff] border border-primary-950/40 rounded-md focus:border-[#D4AF37] focus:ring-2 focus:ring-[#D4AF37]/10 outline-none transition-all text-primary-950 text-sm placeholder:text-primary-950/30"
-                              required
-                            />
-                          </div>
-                          <div>
-                            <label className="block text-[11px] font-semibold text-primary-950 uppercase tracking-[0.15em] mb-2">Your Email</label>
-                            <input
-                              type="email"
-                              placeholder="Your Email *"
-                              className="w-full px-4 py-3.5 bg-[#f8fbff] border border-primary-950/40 rounded-md focus:border-[#D4AF37] focus:ring-2 focus:ring-[#D4AF37]/10 outline-none transition-all text-primary-950 text-sm placeholder:text-primary-950/30"
-                              required
-                            />
-                          </div>
-                        </div>
-        
-                        <div>
-                          <label className="block text-[11px] font-semibold text-primary-950 uppercase tracking-[0.15em] mb-2">Your Phone Number</label>
-                          <input
-                            type="text"
-                            placeholder="Your Phone Number"
-                            className="w-full px-4 py-3.5 bg-[#f8fbff] border border-primary-950/40 rounded-md focus:border-[#D4AF37] focus:ring-2 focus:ring-[#D4AF37]/10 outline-none transition-all text-primary-950 text-sm placeholder:text-primary-950/30"
-                          />
-                        </div>
-        
-                        <div>
-                          <label className="block text-[11px] font-semibold text-primary-950 uppercase tracking-[0.15em] mb-2">Enter a Brief Message</label>
-                          <textarea
-                            placeholder="Enter a Brief Message"
-                            rows={5}
-                            className="w-full px-4 py-3.5 bg-[#f8fbff] border border-primary-950/40 rounded-md focus:border-[#D4AF37] focus:ring-2 focus:ring-[#D4AF37]/10 outline-none transition-all text-primary-950 text-sm placeholder:text-primary-950/30 resize-none"
-                          />
-                        </div>
-        
-                        <div>
-                          <label className="block text-[11px] font-semibold text-primary-950 uppercase tracking-[0.15em] mb-2">Google reCAPTCHA</label>
-                          <div className="w-full h-20 border border-primary-950/40 bg-[#f8fbff] flex items-center rounded-md justify-center text-sm text-primary-950/40">
-                            reCAPTCHA widget placeholder
-                          </div>
-                        </div>
-        
-                        <Button className="w-full py-6 bg-primary-950 hover:bg-[#D4AF37] text-white font-bold tracking-[0.5em] uppercase text-xs transition-all duration-500 rounded-none group relative overflow-hidden">
-                            <span className="relative z-10">SEND MESSAGE</span>
-                            <div className="absolute inset-0 bg-[#D4AF37] translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
-                        </Button>
-                      </form>
+  
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+    
+    <div>
+      <label className="block text-[11px] font-semibold text-primary-950 uppercase tracking-[0.15em] mb-2">
+        Your Name
+      </label>
+      <input
+        name="name"
+        value={formData.name}
+        onChange={handleInputChange}
+        type="text"
+        placeholder="Your Name *"
+        className="w-full px-4 py-3.5 bg-[#f8fbff] border border-primary-950/40 rounded-md"
+        required
+      />
+    </div>
+
+    <div>
+      <label className="block text-[11px] font-semibold text-primary-950 uppercase tracking-[0.15em] mb-2">
+        Your Email
+      </label>
+      <input
+        name="email"
+        value={formData.email}
+        onChange={handleInputChange}
+        type="email"
+        placeholder="Your Email *"
+        className="w-full px-4 py-3.5 bg-[#f8fbff] border border-primary-950/40 rounded-md"
+        required
+      />
+    </div>
+
+  </div>
+
+  <div>
+    <label className="block text-[11px] font-semibold text-primary-950 uppercase tracking-[0.15em] mb-2">
+      Your Phone Number
+    </label>
+    <input
+      name="phone"
+      value={formData.phone}
+      onChange={handleInputChange}
+      type="text"
+      placeholder="Your Phone Number"
+      className="w-full px-4 py-3.5 bg-[#f8fbff] border border-primary-950/40 rounded-md"
+    />
+  </div>
+
+  <div>
+    <label className="block text-[11px] font-semibold text-primary-950 uppercase tracking-[0.15em] mb-2">
+      Enter a Brief Message
+    </label>
+    <textarea
+      name="message"
+      value={formData.message}
+      onChange={handleInputChange}
+      rows={5}
+      placeholder="Enter a Brief Message"
+      className="w-full px-4 py-3.5 bg-[#f8fbff] border border-primary-950/40 rounded-md resize-none"
+    />
+  </div>
+
+  <Button
+    type="submit"
+    className="w-full py-6 bg-primary-950 text-white font-bold"
+  >
+    SEND MESSAGE
+  </Button>
+
+</form>
                     </div>
                   </div>
                 </motion.div>
