@@ -46,6 +46,7 @@ export default function ContactPage() {
     company: '',
     message: ''
   });
+
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
@@ -98,18 +99,13 @@ export default function ContactPage() {
               transition={{ duration: 0.5 }}
               className="max-w-2xl mx-auto"
             >
-              <div className="w-20 h-20 bg-[#D4AF37]/20 rounded-2xl flex items-center justify-center mx-auto mb-8 border border-[#D4AF37]/30">
-                <svg className="w-10 h-10 text-[#D4AF37]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
-                </svg>
-              </div>
-              <h1 className="text-[2.5rem] font-bold leading-[1.1] tracking-tighter text-white">Message Received</h1>
+              <h1 className="text-[2.5rem] font-bold text-white">Message Received</h1>
               <p className="text-xl text-slate-400 mb-10 font-light">
-                Thank you for contacting Engel & Engel. We will review your inquiry and respond within 24 hours. For urgent matters, please call (310) 277-2220.
+                Thank you for contacting Engel & Engel. We will respond within 24 hours.
               </p>
               <Button
                 onClick={() => setIsSubmitted(false)}
-                className="bg-[#D4AF37] hover:bg-[#B8962E] text-black font-bold px-10 py-4 h-auto text-lg rounded-xl"
+                className="bg-[#D4AF37] text-black font-bold px-10 py-4"
               >
                 Send Another Message
               </Button>
@@ -126,252 +122,90 @@ export default function ContactPage() {
       <Header />
       <main className="min-h-screen">
 
-        {/* ══════════ CINEMATIC HERO ══════════ */}
-        <section className="relative pt-24 pb-8 lg:pt-32 lg:pb-12 overflow-hidden bg-primary-950 text-white text-center">
-          {/* Subtle radial glow */}
-          <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse at center top, rgba(212,175,55,0.06) 0%, transparent 60%)' }} />
-
-          <div className="container-custom relative z-10">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-            >
-              <p className="text-[11px] font-semibold uppercase tracking-[0.5em] text-[#D4AF37]/70 mb-5">Contact</p>
-              <h1 className="text-[2.5rem] md:text-5xl font-bold leading-[1.1] tracking-tight text-white text-center md:text-left">
-                Contact us today to discuss <br className="hidden md:block" />
-                <span className="font-serif italic text-[#D4AF37] font-medium">how we can help you</span>
-              </h1>
-              <div className="w-16 h-px bg-gradient-to-r from-transparent via-[#D4AF37]/50 to-transparent mx-auto mt-8" />
-            </motion.div>
-          </div>
+        <section className="bg-primary-950 text-white py-24 text-center">
+          <h1 className="text-4xl font-bold">Contact</h1>
         </section>
 
-        {/* ══════════ MAIN CONTENT ═════════ */}
-        <section className="relative bg-primary-950 z-20 -mt-8">
-          {/* Dark background that spans the full section */}
-          <div className="bg-primary-950 pt-16 pb-32">
-            <div className="container-custom">
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 xl:gap-16">
+        <section className="bg-primary-950 py-20">
+          <div className="container-custom grid lg:grid-cols-12 gap-10">
 
-                {/* ▬▬ LEFT COLUMN: CONTACT INFO ▬▬ */}
-                <motion.div
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.8 }}
-                  className="lg:col-span-5 space-y-6"
-                >
-
-                  {/* Principal Authorities Cards */}
-                  {contactPersons.map((person, idx) => (
-                    <motion.div
-                      key={idx}
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.6, delay: idx * 0.15 }}
-                      className="bg-white/[0.04] backdrop-blur-sm border border-white/[0.08] rounded-2xl p-7 group hover:border-[#D4AF37]/30 hover:bg-white/[0.07] transition-all duration-500 relative overflow-hidden"
-                    >
-                      {/* Hover glow accent */}
-                      <div className="absolute inset-0 bg-gradient-to-br from-[#D4AF37]/0 via-transparent to-[#D4AF37]/0 group-hover:from-[#D4AF37]/[0.03] group-hover:to-transparent transition-all duration-500 pointer-events-none" />
-
-                      <div className="relative z-10">
-                        <div className="flex items-start gap-5 mb-5">
-                          {/* Avatar */}
-                          <div className="w-14 h-14 rounded-full overflow-hidden border-2 border-[#D4AF37]/40 shrink-0">
-                            <Image width={56} height={56} src={person.image} alt={person.name} className="w-full h-full object-cover object-top" />
-                          </div>
-                          <div>
-                            <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[#D4AF37]/80 mb-1">{person.header}</p>
-                            <p className="text-lg font-bold text-white leading-tight">{person.name}</p>
-                          </div>
-                        </div>
-
-                        <div className="space-y-4 text-white/90 text-sm">
-                          <div className="flex items-start gap-3">
-                            <svg className="w-4 h-4 mt-0.5 text-white/30 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                            </svg>
-                            <span>{person.address}, {person.city}</span>
-                          </div>
-
-                          <div className="h-px bg-white/[0.06]" />
-
-                          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                            <a href={`tel:${person.phone.replace(/[^0-9+]/g, '')}`} className="flex text-white/90 items-center gap-3 hover:text-[#D4AF37] transition-colors duration-300">
-                              <div className="w-8 h-8 rounded-lg bg-white/[0.05] border border-white/[0.08] flex items-center justify-center group-hover:border-[#D4AF37]/20 transition-colors">
-                                <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                                </svg>
-                              </div>
-                              <span>{person.phone}</span>
-                            </a>
-                            <a href={`tel:${person.direct.replace(/[^0-9+]/g, '')}`} className="flex text-white/90 items-center gap-3 hover:text-[#D4AF37] transition-colors duration-300">
-                              <div className="w-8 h-8 rounded-lg bg-white/[0.05] border border-white/[0.08] flex items-center justify-center group-hover:border-[#D4AF37]/20 transition-colors">
-                                <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                                </svg>
-                              </div>
-                              <span>{person.direct}</span>
-                            </a>
-                          </div>
-
-                          <a href={`mailto:${person.email}`} className="flex items-center gap-3 text-white/90 hover:text-[#D4AF37] transition-colors duration-300 font-medium pt-1">
-                            <div className="w-8 h-8 rounded-lg bg-white/[0.05] border border-white/[0.08] flex items-center justify-center">
-                              <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                              </svg>
-                            </div>
-                            {person.email}
-                          </a>
-                        </div>
-                      </div>
-                    </motion.div>
-                  ))}
-
-                  {/* Office hours badge */}
-                  {/* <motion.div
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6, delay: 0.4 }}
-                    className="flex items-center gap-4 bg-white/[0.03] border border-white/[0.06] rounded-xl px-6 py-4"
-                  >
-                    <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                    <div>
-                      <p className="text-white/80 text-sm font-medium">Available Mon - Fri, 9:00 AM - 6:00 PM PST</p>
-                      <p className="text-white/40 text-xs mt-0.5">Urgent matters: call directly anytime</p>
-                    </div>
-                  </motion.div> */}
-                </motion.div>
-
-                {/* ▬▬ RIGHT COLUMN: CONTACT FORM ▬▬ */}
-                <motion.div
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.8, delay: 0.2 }}
-                  className="lg:col-span-7"
-                >
-                  <div className="bg-white rounded-2xl p-8 sm:p-10 lg:p-12 relative overflow-hidden shadow-[0_30px_80px_rgba(0,0,0,0.3)]">
-                    {/* Decorative corner accent */}
-                    <div className="absolute top-0 right-0 w-32 h-32 pointer-events-none">
-                      <div className="absolute top-0 right-0 w-full h-full bg-gradient-to-bl from-[#D4AF37]/[0.06] to-transparent" />
-                      <div className="absolute top-4 right-4 w-8 h-px bg-[#D4AF37]/30" />
-                      <div className="absolute top-4 right-4 w-px h-8 bg-[#D4AF37]/30" />
-                    </div>
-
-                    {/* Left gold bar accent */}
-                    <div className="absolute left-0 top-10 bottom-10 w-[3px] bg-gradient-to-b from-[#D4AF37] via-[#D4AF37]/40 to-transparent rounded-r-full" />
-
-                    <div className="relative z-10">
-                      <div className="mb-10">
-                        <h2 className="text-3xl md:text-4xl font-bold text-slate-900 tracking-tight leading-tight">
-                          Send an <span className="font-serif italic text-[#D4AF37]">Inquiry</span>
-                        </h2>
-                      </div>
-
-                      <form onSubmit={handleSubmit} className="space-y-6">
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                          <div>
-                            <label className="block text-[11px] font-semibold text-primary-950 uppercase tracking-[0.15em] mb-2">Your Name</label>
-                            <input
-                              type="text"
-                              placeholder="Your Name *"
-                              className="w-full px-4 py-3.5 bg-[#f8fbff] border border-primary-950/40 rounded-md focus:border-[#D4AF37] focus:ring-2 focus:ring-[#D4AF37]/10 outline-none transition-all text-primary-950 text-sm placeholder:text-primary-950/30"
-                              required
-                            />
-                          </div>
-                          <div>
-                            <label className="block text-[11px] font-semibold text-primary-950 uppercase tracking-[0.15em] mb-2">Your Email</label>
-                            <input
-                              type="email"
-                              placeholder="Your Email *"
-                              className="w-full px-4 py-3.5 bg-[#f8fbff] border border-primary-950/40 rounded-md focus:border-[#D4AF37] focus:ring-2 focus:ring-[#D4AF37]/10 outline-none transition-all text-primary-950 text-sm placeholder:text-primary-950/30"
-                              required
-                            />
-                          </div>
-                        </div>
-        
-                        <div>
-                          <label className="block text-[11px] font-semibold text-primary-950 uppercase tracking-[0.15em] mb-2">Your Phone Number</label>
-                          <input
-                            type="text"
-                            placeholder="Your Phone Number"
-                            className="w-full px-4 py-3.5 bg-[#f8fbff] border border-primary-950/40 rounded-md focus:border-[#D4AF37] focus:ring-2 focus:ring-[#D4AF37]/10 outline-none transition-all text-primary-950 text-sm placeholder:text-primary-950/30"
-                          />
-                        </div>
-        
-                        <div>
-                          <label className="block text-[11px] font-semibold text-primary-950 uppercase tracking-[0.15em] mb-2">Enter a Brief Message</label>
-                          <textarea
-                            placeholder="Enter a Brief Message"
-                            rows={5}
-                            className="w-full px-4 py-3.5 bg-[#f8fbff] border border-primary-950/40 rounded-md focus:border-[#D4AF37] focus:ring-2 focus:ring-[#D4AF37]/10 outline-none transition-all text-primary-950 text-sm placeholder:text-primary-950/30 resize-none"
-                          />
-                        </div>
-        
-                        <div>
-                          <label className="block text-[11px] font-semibold text-primary-950 uppercase tracking-[0.15em] mb-2">Google reCAPTCHA</label>
-                          <div className="w-full h-20 border border-primary-950/40 bg-[#f8fbff] flex items-center rounded-md justify-center text-sm text-primary-950/40">
-                            reCAPTCHA widget placeholder
-                          </div>
-                        </div>
-        
-                        <Button className="w-full py-6 bg-primary-950 hover:bg-[#D4AF37] text-white font-bold tracking-[0.5em] uppercase text-xs transition-all duration-500 rounded-none group relative overflow-hidden">
-                            <span className="relative z-10">SEND MESSAGE</span>
-                            <div className="absolute inset-0 bg-[#D4AF37] translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
-                        </Button>
-                      </form>
-                    </div>
-                  </div>
-                </motion.div>
-              </div>
+            {/* LEFT SIDE */}
+            <div className="lg:col-span-5 space-y-6">
+              {contactPersons.map((person, idx) => (
+                <div key={idx} className="bg-white/5 p-6 rounded-xl text-white">
+                  <p className="text-[#D4AF37] text-xs uppercase">{person.header}</p>
+                  <p className="font-bold">{person.name}</p>
+                  <p>{person.address}, {person.city}</p>
+                  <p>{person.phone}</p>
+                  <p>{person.direct}</p>
+                  <p>{person.email}</p>
+                </div>
+              ))}
             </div>
-          </div>
-        </section>
 
-        {/* ══════════ MAP SECTION ══════════ */}
-        <section className="">
-          <div className="">
-            <div className="relative h-[600px] w-full overflow-hidden shadow-2xl group grayscale hover:grayscale-0 transition-all duration-700">
-              {/* Note: In a real app we'd use Google Maps. Using a placeholders/styled div for now */}
-              <div className="absolute inset-0 bg-[#0f3574]">
-                <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3305.672901974726!2d-118.25206982348505!3d34.05223417315664!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c2c64bd9807669%3A0xc68e592634e5a953!2s350%20S%20Grand%20Ave%20%233160%2C%20Los%20Angeles%2C%20CA%2090071!5e0!3m2!1sen!2sus!4v1700000000000!5m2!1sen!2sus"
-                  width="100%"
-                  height="100%"
-                  style={{ border: 0, opacity: 0.6 }}
-                  allowFullScreen
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
+            {/* RIGHT SIDE FORM */}
+            <div className="lg:col-span-7 bg-white p-10 rounded-xl">
+
+              <form onSubmit={handleSubmit} className="space-y-6">
+
+                {/* NAME */}
+                <input
+                  name="name"
+                  value={formData.name}
+                  onChange={handleInputChange}
+                  type="text"
+                  placeholder="Your Name *"
+                  required
+                  className="w-full p-3 border"
                 />
-              </div>
-              <div className="absolute top-10 left-10 z-10 bg-white/90 backdrop-blur-md p-6 rounded-2xl shadow-xl max-w-xs border border-white">
-                <h4 className="text-lg font-bold text-slate-900 mb-2">Visit Our Office</h4>
-                <p className="text-sm text-slate-500 font-light leading-relaxed">
-                  Centrally located in Downtown Los Angeles at <span className="text-slate-900 font-medium">350 S Grand Ave.</span> Validated parking available for all clients.
-                </p>
-              </div>
+
+                {/* EMAIL */}
+                <input
+                  name="email"
+                  value={formData.email}
+                  onChange={handleInputChange}
+                  type="email"
+                  placeholder="Your Email *"
+                  required
+                  className="w-full p-3 border"
+                />
+
+                {/* PHONE */}
+                <input
+                  name="phone"
+                  value={formData.phone}
+                  onChange={handleInputChange}
+                  type="text"
+                  placeholder="Your Phone"
+                  className="w-full p-3 border"
+                />
+
+                {/* MESSAGE */}
+                <textarea
+                  name="message"
+                  value={formData.message}
+                  onChange={handleInputChange}
+                  rows={5}
+                  placeholder="Your Message"
+                  className="w-full p-3 border"
+                />
+
+                <Button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="w-full bg-[#0f3574] text-white py-4"
+                >
+                  {isSubmitting ? 'Sending...' : 'Send Message'}
+                </Button>
+
+              </form>
             </div>
+
           </div>
         </section>
 
         <Footer />
       </main>
-
-      <style jsx global>{`
-        @keyframes ken-burns {
-          0% { transform: scale(1) translate(0, 0); }
-          100% { transform: scale(1.1) translate(-1%, -1%); }
-        }
-        .animate-ken-burns {
-          animation: ken-burns 20s infinite alternate linear;
-        }
-      `}</style>
     </>
   );
 }
-
