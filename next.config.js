@@ -81,11 +81,6 @@ const nextConfig = {
           source: '/design-showcase',
           destination: '/',
           permanent: false,
-        },
-        {
-          source: '/admin/:path*',
-          destination: '/',
-          permanent: false,
         }
       );
     }
