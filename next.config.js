@@ -73,7 +73,7 @@ const nextConfig = {
       },
     ];
 
-    // Redirect resources, design-showcase, and admin pages to home on Vercel only
+    // Redirect resources and design-showcase to home on Vercel only
     if (process.env.VERCEL) {
       redirects.push(
 
