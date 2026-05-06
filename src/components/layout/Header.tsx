@@ -163,7 +163,7 @@ export default function Header() {
                     ? "/images/homelogo.png"
                     : isDarkBackground
                       ? "/images/logo-accountants-white-font.png"
-                      : "/images/logo.png"
+                      : "/images/logo-accountants-white-font.png"
                 }
                 alt="Engel & Engel Forensic Accounting"
                 width={isDarkBackground && !isScrolled ? 350 : 250}
