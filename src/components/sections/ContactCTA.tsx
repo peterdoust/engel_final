@@ -1,6 +1,6 @@
 'use client'
 
-import React from 'react'
+import React, { useState } from 'react'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { Button } from '@/components/ui/Button'
@@ -29,6 +29,35 @@ const teamMembers = [
 ]
 
 export default function ContactCTA() {
+  const [formData, setFormData] = useState({ name: '', email: '', phone: '', message: '' })
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [isSubmitted, setIsSubmitted] = useState(false)
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target
+    setFormData(prev => ({ ...prev, [name]: value }))
+  }
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setIsSubmitting(true)
+    try {
+      const response = await fetch('/api/send-contact-form', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ...formData, timestamp: new Date().toISOString() }),
+      })
+      if (!response.ok) throw new Error('Failed to send message')
+      setIsSubmitted(true)
+      setFormData({ name: '', email: '', phone: '', message: '' })
+    } catch (error) {
+      console.error('Error submitting contact form:', error)
+      alert('There was an error sending your message. Please try again or call (310) 277-2220.')
+    } finally {
+      setIsSubmitting(false)
+    }
+  }
+
   return (
     <section className="relative py-16 md:py-24 overflow-hidden bg-primary-950">
 
@@ -120,58 +149,94 @@ export default function ContactCTA() {
               {/* <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold text-primary-950 mb-2">Contact Us</h3>
               <p className="text-sm lg:text-lg text-primary-950/60 mb-10">Fill out the form below and we&apos;ll get back to you shortly.</p> */}
 
-              <form className="space-y-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+              {isSubmitted ? (
+                <div className="py-12 text-center">
+                  <div className="w-16 h-16 bg-[#D4AF37]/15 rounded-2xl flex items-center justify-center mx-auto mb-6 border border-[#D4AF37]/40">
+                    <svg className="w-8 h-8 text-[#D4AF37]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
+                    </svg>
+                  </div>
+                  <h3 className="text-2xl font-bold text-primary-950 mb-2">Message Received</h3>
+                  <p className="text-primary-950/60 mb-6">
+                    Thank you for contacting Engel & Engel. We&apos;ll respond within 24 hours.
+                  </p>
+                  <button
+                    onClick={() => setIsSubmitted(false)}
+                    className="text-xs font-bold text-primary-950 hover:text-[#D4AF37] tracking-[0.3em] uppercase transition-colors"
+                  >
+                    Send Another Message
+                  </button>
+                </div>
+              ) : (
+                <form onSubmit={handleSubmit} className="space-y-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                    <div>
+                      <label className="block text-[11px] font-semibold text-primary-950 uppercase tracking-[0.15em] mb-2">Your Name</label>
+                      <input
+                        type="text"
+                        name="name"
+                        value={formData.name}
+                        onChange={handleInputChange}
+                        placeholder="Your Name *"
+                        className="w-full px-4 py-3.5 bg-[#f8fbff] border border-primary-950/40 rounded-md focus:border-[#D4AF37] focus:ring-2 focus:ring-[#D4AF37]/10 outline-none transition-all text-primary-950 text-sm placeholder:text-primary-950/30"
+                        required
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-[11px] font-semibold text-primary-950 uppercase tracking-[0.15em] mb-2">Your Email</label>
+                      <input
+                        type="email"
+                        name="email"
+                        value={formData.email}
+                        onChange={handleInputChange}
+                        placeholder="Your Email *"
+                        className="w-full px-4 py-3.5 bg-[#f8fbff] border border-primary-950/40 rounded-md focus:border-[#D4AF37] focus:ring-2 focus:ring-[#D4AF37]/10 outline-none transition-all text-primary-950 text-sm placeholder:text-primary-950/30"
+                        required
+                      />
+                    </div>
+                  </div>
+
                   <div>
-                    <label className="block text-[11px] font-semibold text-primary-950 uppercase tracking-[0.15em] mb-2">Your Name</label>
+                    <label className="block text-[11px] font-semibold text-primary-950 uppercase tracking-[0.15em] mb-2">Your Phone Number</label>
                     <input
                       type="text"
-                      placeholder="Your Name *"
+                      name="phone"
+                      value={formData.phone}
+                      onChange={handleInputChange}
+                      placeholder="Your Phone Number"
                       className="w-full px-4 py-3.5 bg-[#f8fbff] border border-primary-950/40 rounded-md focus:border-[#D4AF37] focus:ring-2 focus:ring-[#D4AF37]/10 outline-none transition-all text-primary-950 text-sm placeholder:text-primary-950/30"
-                      required
                     />
                   </div>
+
                   <div>
-                    <label className="block text-[11px] font-semibold text-primary-950 uppercase tracking-[0.15em] mb-2">Your Email</label>
-                    <input
-                      type="email"
-                      placeholder="Your Email *"
-                      className="w-full px-4 py-3.5 bg-[#f8fbff] border border-primary-950/40 rounded-md focus:border-[#D4AF37] focus:ring-2 focus:ring-[#D4AF37]/10 outline-none transition-all text-primary-950 text-sm placeholder:text-primary-950/30"
-                      required
+                    <label className="block text-[11px] font-semibold text-primary-950 uppercase tracking-[0.15em] mb-2">Enter a Brief Message</label>
+                    <textarea
+                      name="message"
+                      value={formData.message}
+                      onChange={handleInputChange}
+                      placeholder="Enter a Brief Message"
+                      rows={5}
+                      className="w-full px-4 py-3.5 bg-[#f8fbff] border border-primary-950/40 rounded-md focus:border-[#D4AF37] focus:ring-2 focus:ring-[#D4AF37]/10 outline-none transition-all text-primary-950 text-sm placeholder:text-primary-950/30 resize-none"
                     />
                   </div>
-                </div>
 
-                <div>
-                  <label className="block text-[11px] font-semibold text-primary-950 uppercase tracking-[0.15em] mb-2">Your Phone Number</label>
-                  <input
-                    type="text"
-                    placeholder="Your Phone Number"
-                    className="w-full px-4 py-3.5 bg-[#f8fbff] border border-primary-950/40 rounded-md focus:border-[#D4AF37] focus:ring-2 focus:ring-[#D4AF37]/10 outline-none transition-all text-primary-950 text-sm placeholder:text-primary-950/30"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-[11px] font-semibold text-primary-950 uppercase tracking-[0.15em] mb-2">Enter a Brief Message</label>
-                  <textarea
-                    placeholder="Enter a Brief Message"
-                    rows={5}
-                    className="w-full px-4 py-3.5 bg-[#f8fbff] border border-primary-950/40 rounded-md focus:border-[#D4AF37] focus:ring-2 focus:ring-[#D4AF37]/10 outline-none transition-all text-primary-950 text-sm placeholder:text-primary-950/30 resize-none"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-[11px] font-semibold text-primary-950 uppercase tracking-[0.15em] mb-2">Google reCAPTCHA</label>
-                  <div className="w-full h-20 border border-primary-950/40 bg-[#f8fbff] flex items-center rounded-md justify-center text-sm text-primary-950/40">
-                    reCAPTCHA widget placeholder
+                  <div>
+                    <label className="block text-[11px] font-semibold text-primary-950 uppercase tracking-[0.15em] mb-2">Google reCAPTCHA</label>
+                    <div className="w-full h-20 border border-primary-950/40 bg-[#f8fbff] flex items-center rounded-md justify-center text-sm text-primary-950/40">
+                      reCAPTCHA widget placeholder
+                    </div>
                   </div>
-                </div>
 
-                <Button className="w-full py-6 bg-primary-950 hover:bg-[#D4AF37] text-white font-bold tracking-[0.5em] uppercase text-xs transition-all duration-500 rounded-none group relative overflow-hidden">
-                    <span className="relative z-10">SEND MESSAGE</span>
+                  <Button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="w-full py-6 bg-primary-950 hover:bg-[#D4AF37] text-white font-bold tracking-[0.5em] uppercase text-xs transition-all duration-500 rounded-none group relative overflow-hidden disabled:opacity-60"
+                  >
+                    <span className="relative z-10">{isSubmitting ? 'SENDING...' : 'SEND MESSAGE'}</span>
                     <div className="absolute inset-0 bg-[#D4AF37] translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
-                </Button>
-              </form>
+                  </Button>
+                </form>
+              )}
             </div>
           </motion.div>
 

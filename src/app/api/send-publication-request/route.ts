@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import clientPromise from '@/lib/mongodb'
 import nodemailer from 'nodemailer'
 
-const ADMIN_EMAIL = process.env.ADMIN_EMAIL || 'peter@globalcreativestudios.com'
+const ADMIN_EMAIL = ['Peter@globalcreativestudios.com', 'info@engelandengel.com']
 
 // Function to get IP address from request
 function getClientIP(request: NextRequest): string {

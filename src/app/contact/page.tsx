@@ -43,7 +43,6 @@ export default function ContactPage() {
     name: '',
     email: '',
     phone: '',
-    company: '',
     message: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);

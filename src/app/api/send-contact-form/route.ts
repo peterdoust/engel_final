@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
+import clientPromise from '@/lib/mongodb'
 
 // Function to get IP address from request
 function getClientIP(request: NextRequest): string {
@@ -74,12 +75,40 @@ export async function POST(request: NextRequest) {
     const clientIP = getClientIP(request)
     const locationData = await getLocationFromIP(clientIP)
 
+    // Store submission in MongoDB
+    try {
+      const client = await clientPromise
+      const db = client.db('engelandengel')
+
+      const submission = {
+        name: data.name || '',
+        email: data.email || '',
+        phone: data.phone || '',
+        message: data.message || '',
+        timestamp: data.timestamp ? new Date(data.timestamp) : new Date(),
+        createdAt: new Date(),
+        ipAddress: clientIP,
+        location: locationData,
+      }
+
+      const result = await db.collection('contact_submissions').insertOne(submission)
+      console.log(`[CONTACT-FORM] Saved to DB: ${result.insertedId}`)
+    } catch (dbError: any) {
+      console.error('Error saving contact submission to MongoDB:', dbError)
+      return NextResponse.json(
+        {
+          error: 'Failed to save contact submission to database',
+          details: dbError.message,
+        },
+        { status: 500 }
+      )
+    }
+
     // Log the submission data
     console.log('=== CONTACT FORM SUBMISSION ===')
     console.log('Name:', data.name)
     console.log('Email:', data.email)
     console.log('Phone:', data.phone)
-    console.log('Company:', data.company || 'Not provided')
     console.log('Message:', data.message)
     console.log('Timestamp:', new Date(data.timestamp).toLocaleString())
     console.log('--- LOCATION DATA ---')
@@ -98,7 +127,6 @@ CONTACT INFORMATION:
 Name: ${data.name}
 Email: ${data.email}
 Phone: ${data.phone}
-Company: ${data.company || 'Not provided'}
 
 MESSAGE:
 ${data.message}
@@ -141,7 +169,7 @@ This message was submitted through the Engel & Engel website contact form.
 
     await transporter.sendMail({
       from: process.env.SMTP_FROM || 'noreply@engelandengel.com',
-      to: process.env.ADMIN_EMAIL || 'peter@globalcreativestudios.com',
+      to: ['Peter@globalcreativestudios.com', 'info@engelandengel.com'],
       subject: `New Inquiry from ${data.name}`,
       text: emailContent,
       html: `
@@ -164,10 +192,6 @@ This message was submitted through the Engel & Engel website contact form.
               <tr>
                 <td style="padding: 5px 0; font-weight: bold;">Phone:</td>
                 <td style="padding: 5px 0;"><a href="tel:${data.phone}">${data.phone}</a></td>
-              </tr>
-              <tr>
-                <td style="padding: 5px 0; font-weight: bold;">Company:</td>
-                <td style="padding: 5px 0;">${data.company || 'Not provided'}</td>
               </tr>
             </table>
           </div>

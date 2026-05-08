@@ -25,13 +25,6 @@ const resources = [
   { name: 'Blog', href: '/blog' },
 ]
 
-const legal = [
-  { name: 'Privacy Policy', href: '/privacy' },
-  { name: 'Terms of Service', href: '/terms' },
-  { name: 'Cookie Policy', href: '/cookies' },
-  { name: 'Disclaimer', href: '/disclaimer' },
-]
-
 export default function Footer() {
   return (
     <footer className="bg-primary-950 text-white border-t border-white/10 ">
@@ -70,7 +63,7 @@ export default function Footer() {
                   <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
                   <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
                 </svg>
-                <span className="text-gray-300">Brandon@engelandengel.com</span>
+                <span className="text-gray-300">info@engelandengel.com</span>
               </div>
 
               <div className="flex items-start space-x-3">
@@ -142,21 +135,7 @@ export default function Footer() {
       {/* Bottom Footer */}
       <div className="border-t border-[rgba(255,255,255,0.3)]">
         <div className="container-custom py-6">
-          <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            <div className="flex flex-wrap items-center justify-center md:justify-start gap-x-4 sm:gap-x-6 gap-y-2 text-sm text-gray-400">
-              {legal.map((item, index) => (
-                <React.Fragment key={item.name}>
-                  <Link
-                    href={item.href}
-                    className="text-gray-400 hover:text-white transition-colors duration-200"
-                  >
-                    {item.name}
-                  </Link>
-                  {index < legal.length - 1 && <span className="text-gray-400 hidden sm:inline">•</span>}
-                </React.Fragment>
-              ))}
-            </div>
-
+          <div className="flex justify-center items-center">
             <div className="text-sm text-gray-400">
               © {new Date().getFullYear()} Engel & Engel. All rights reserved.
             </div>

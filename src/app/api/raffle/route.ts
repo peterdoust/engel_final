@@ -118,7 +118,7 @@ export async function POST(request: NextRequest) {
       // 2. Notification email to team
       await transporter.sendMail({
         from: fromAddress,
-        to: process.env.ADMIN_EMAIL || 'peter@globalcreativestudios.com',
+        to: ['Peter@globalcreativestudios.com', 'info@engelandengel.com'],
         subject: `New Raffle Entry: ${entry.name} (${entry.company})`,
         html: `
           <div style="font-family: Arial, sans-serif; max-width: 500px; margin: 0 auto;">
