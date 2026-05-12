@@ -16,6 +16,7 @@ export default function CareersPage() {
   const [file, setFile] = useState<File | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
   const { scrollY } = useScroll();
 
   // Parallax transforms
@@ -33,17 +34,46 @@ export default function CareersPage() {
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
-      setFile(e.target.files[0]);
+      const chosen = e.target.files[0];
+      if (chosen.size > 10 * 1024 * 1024) {
+        setSubmitError('Resume exceeds the 10MB size limit.');
+        return;
+      }
+      setSubmitError(null);
+      setFile(chosen);
     }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 1500));
-    setIsSubmitting(false);
-    setSubmitted(true);
+    setSubmitError(null);
+
+    try {
+      const payload = new FormData();
+      payload.append('name', formData.name);
+      payload.append('email', formData.email);
+      payload.append('phone', formData.phone);
+      payload.append('message', formData.message);
+      payload.append('timestamp', new Date().toISOString());
+      if (file) payload.append('resume', file);
+
+      const res = await fetch('/api/send-career-application', {
+        method: 'POST',
+        body: payload,
+      });
+
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok || !data.success) {
+        throw new Error(data.error || 'Submission failed. Please try again.');
+      }
+
+      setSubmitted(true);
+    } catch (err: any) {
+      setSubmitError(err?.message || 'Submission failed. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -203,6 +233,11 @@ export default function CareersPage() {
                 </motion.div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-8">
+                  {submitError && (
+                    <div className="bg-red-50 border border-red-200 text-red-700 text-sm px-4 py-3 rounded-md">
+                      {submitError}
+                    </div>
+                  )}
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <div className="space-y-2">
                       <label htmlFor="name" className="block text-[10px] font-bold text-[#0A1A3C] uppercase tracking-[0.3em] mb-2">Full Name</label>
