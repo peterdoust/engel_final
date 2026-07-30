@@ -7,11 +7,29 @@ const envPath = path.join(__dirname, '..', '.env.local')
 const envText = fs.readFileSync(envPath, 'utf8')
 envText.split('\n').forEach(line => {
   const m = line.match(/^([A-Z_][A-Z0-9_]*)=(.*)$/)
-  if (m) process.env[m[1]] = m[2]
+  if (m && process.env[m[1]] === undefined) process.env[m[1]] = m[2]
 })
 
+const MIN_LENGTH = 12
+
+// Password sources, in order: ADMIN_PASSWORD (shell or .env.local), then argv,
+// then a generated one. There is deliberately no hardcoded fallback — this file
+// is committed to a public repository.
+function resolvePassword() {
+  const supplied = process.env.ADMIN_PASSWORD || process.argv[3]
+  if (!supplied) {
+    // 24 base64url chars ~ 144 bits of entropy
+    return { password: crypto.randomBytes(18).toString('base64url'), generated: true }
+  }
+  if (supplied.length < MIN_LENGTH) {
+    console.error(`Password must be at least ${MIN_LENGTH} characters (got ${supplied.length}).`)
+    process.exit(1)
+  }
+  return { password: supplied, generated: false }
+}
+
 const EMAIL = process.argv[2] || 'admin@engelandengel.com'
-const PASSWORD = process.argv[3] || 'Admin@123'
+const { password: PASSWORD, generated: GENERATED } = resolvePassword()
 
 async function main() {
   if (!process.env.MONGODB_URI) {
@@ -36,8 +54,13 @@ async function main() {
   )
   console.log('Admin account ready:')
   console.log('  Email:   ', EMAIL)
-  console.log('  Password:', PASSWORD)
   console.log('  Action:  ', result.upsertedCount ? 'created' : 'updated')
+  if (GENERATED) {
+    console.log('  Password:', PASSWORD)
+    console.log('\nGenerated password — store it now, it is not recoverable.')
+  } else {
+    console.log('  Password: (the one you supplied)')
+  }
   await client.close()
 }
 
