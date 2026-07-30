@@ -23,7 +23,6 @@ module.exports = {
           900: '#1e3a8a', // Primary Dark Blue
           950: '#172554',
         },
-        gold: "#D4AF37",
         gray: {
           50: '#f8fafc',
           100: '#f1f5f9',
@@ -84,8 +83,13 @@ module.exports = {
         'slide-down': 'slideDown 0.5s ease-out',
         'scale-in': 'scaleIn 0.3s ease-out',
         'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
+        'shine': 'shine 3s ease-in-out infinite',
       },
       keyframes: {
+        shine: {
+          '0%': { transform: 'translateX(-100%) skewX(-20deg)' },
+          '40%, 100%': { transform: 'translateX(400%) skewX(-20deg)' },
+        },
         fadeIn: {
           '0%': { opacity: '0' },
           '100%': { opacity: '1' },

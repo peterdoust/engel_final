@@ -1,3 +1,5 @@
+'use client'
+
 import React from 'react'
 import Head from 'next/head'
 import Header from '@/components/layout/Header'
@@ -6,18 +8,19 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Button } from '@/components/ui/Button'
 import Link from 'next/link'
 import Image from 'next/image'
+import { motion, useScroll, useTransform, useSpring } from 'framer-motion'
 
 // Real blog posts from engelandengel.com integrated with SEO optimization
 const featuredPost = {
   id: 1,
   title: 'How Forensic Accountants Uncover Critical Evidence with Operational and Underlying Business Records',
   excerpt: 'Providing your forensic accountant with operational and underlying business records can be just as critical as providing financial statements, and in some matters it can reveal the key piece of evidence that shifts the direction of a case.',
-  author: 'Brandon Engel, CPA, CFE',
+  author: 'Brandon Engel, CPA, CFE, ABV',
   publishDate: '2024-09-11',
   readTime: '7 min read',
   category: 'Forensic Accounting',
   slug: 'forensic-accountants-uncover-evidence-operational-business-records',
-  image: 'https://engelandengel.com/wp-content/uploads/2025/09/underlying-records-financial-statements.jpg',
+  image: '/images/blog/underlying-records-financial-statements.avif',
   imageAlt: 'Underlying records in financial statements - forensic accounting analysis',
   tags: ['#ForensicAccounting', '#BusinessRecords', '#LegalEvidence', '#ExpertWitness', '#FinancialAnalysis', '#Litigation'],
   url: 'https://engelandengel.com/how-forensic-accountants-uncover-critical-evidence-with-operational-and-underlying-business-records/'
@@ -28,12 +31,12 @@ const blogPosts = [
     id: 2,
     title: 'What To Look For When Retaining a Forensic Accountant',
     excerpt: 'When litigation hinges on the clarity of financial facts, a skilled forensic accountant can be the difference between prevailing and watching your case unravel.',
-    author: 'Brandon Engel, CPA, CFE',
+    author: 'Brandon Engel, CPA, CFE, ABV',
     publishDate: '2024-07-29',
     readTime: '6 min read',
     category: 'Expert Selection',
     slug: 'what-to-look-for-when-retaining-forensic-accountant',
-    image: 'https://engelandengel.com/wp-content/uploads/2025/07/retaining-forensic-accountant.jpg',
+    image: '/images/blog/retaining-forensic-accountant.avif',
     imageAlt: 'Professional consultation for retaining a forensic accountant - expert selection process',
     tags: ['#ForensicAccountant', '#ExpertWitness', '#LegalConsultation', '#ExpertSelection', '#Litigation', '#BigLaw'],
     url: 'https://engelandengel.com/what-to-look-for-when-retaining-a-forensic-accountant/'
@@ -42,12 +45,12 @@ const blogPosts = [
     id: 3,
     title: 'The Most Critical Action Steps for Preserving Evidence after an Embezzlement',
     excerpt: 'Preserving accounting evidence after an embezzlement is crucial for pursuing the perpetrator of the fraud in civil and criminal courts.',
-    author: 'Brandon Engel, CPA, CFE',
+    author: 'Brandon Engel, CPA, CFE, ABV',
     publishDate: '2024-07-14',
     readTime: '8 min read',
     category: 'Fraud Investigation',
     slug: 'critical-action-steps-preserving-evidence-after-embezzlement',
-    image: 'https://engelandengel.com/wp-content/uploads/2025/07/critical-actions-evidence-embezzlement.jpg',
+    image: '/images/blog/critical-actions-evidence-embezzlement.avif',
     imageAlt: 'Critical action steps to preserve evidence in an embezzlement case',
     tags: ['#Embezzlement', '#FraudInvestigation', '#EvidencePreservation', '#CertifiedFraudExaminer', '#ForensicAccounting', '#TrialReady'],
     url: 'https://engelandengel.com/the-most-critical-action-steps-for-preserving-evidence-after-an-embezzlement/'
@@ -56,12 +59,12 @@ const blogPosts = [
     id: 4,
     title: '4 Key Documents Most Forensic Accounting Experts Need Before Discovery Closes',
     excerpt: 'Whether your forensic accountant is retained to calculate economic damages, conduct a fraud investigation, or perform a business valuation, these four financial documents can almost always serve as the foundation.',
-    author: 'Brandon Engel, CPA, CFE',
+    author: 'Brandon Engel, CPA, CFE, ABV',
     publishDate: '2024-06-24',
     readTime: '5 min read',
     category: 'Document Discovery',
     slug: 'key-documents-forensic-accounting-experts-need-discovery',
-    image: 'https://engelandengel.com/wp-content/uploads/2025/06/documents-forensic-accountants-need-1.jpg',
+    image: '/images/blog/documents-forensic-accountants-need-1.avif',
     imageAlt: 'Key documents that forensic accounting experts need for discovery and analysis',
     tags: ['#LitigationDocuments', '#Discovery', '#ForensicAccounting', '#DamagesExperts', '#BigLaw', '#TrialReady'],
     url: 'https://engelandengel.com/4-key-documents-most-forensic-accounting-experts-need-before-discovery-closes/'
@@ -69,14 +72,20 @@ const blogPosts = [
 ]
 
 const categories = [
-  'All Posts',
-  'Forensic Accounting',
-  'Expert Selection',
-  'Fraud Investigation',
-  'Document Discovery'
+  'All',
+  'Events',
+  'News',
+  'Announcements'
 ]
 
 export default function BlogPage() {
+  const { scrollY } = useScroll()
+  const y1 = useTransform(scrollY, [0, 500], [0, 200])
+  const y2 = useTransform(scrollY, [0, 500], [0, -150])
+  const opacity = useTransform(scrollY, [0, 300], [1, 0])
+  const scale = useTransform(scrollY, [0, 500], [1, 1.1])
+  const springY1 = useSpring(y1, { stiffness: 100, damping: 30 })
+
   // Enhanced SEO structured data for search engines
   const blogStructuredData = {
     "@context": "https://schema.org",
@@ -149,60 +158,36 @@ export default function BlogPage() {
 
       <Header />
 
-      {/* Hero Section - Extends Behind Header */}
-      <section className="relative bg-gradient-to-br from-blue-900 via-blue-800 to-blue-700 text-white pt-20 lg:pt-24 pb-20">
-        <div className="absolute inset-0">
-          <Image
-            src="https://engelandengel.com/wp-content/uploads/2022/02/forensic-accounting-los-angeles-scaled.jpg"
-            alt="Forensic accounting professionals at work"
-            fill
-            className="object-cover opacity-20"
-          />
+      {/* Hero Section */}
+      <section className="relative min-h-[70vh] flex items-end overflow-hidden bg-primary-950">
+        <div className="absolute inset-0 z-0 pointer-events-none">
+          <motion.div style={{ y: y2, scale }} className="absolute top-1/4 right-1/4 w-[500px] h-[500px] bg-[#D4AF37]/10 blur-[150px] rounded-full" />
+          <motion.div style={{ y: y1 }} className="absolute bottom-1/4 left-1/4 w-[400px] h-[400px] bg-[#3b82f6]/10 blur-[120px] rounded-full" />
+          <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)', backgroundSize: '60px 60px' }} />
+          <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-[#D4AF37]/30 to-transparent" />
         </div>
-        <div className="relative z-10 container mx-auto px-6">
-          <div className="max-w-4xl mx-auto text-center">
-            {/* Breadcrumb Navigation - Positioned over image */}
-            <nav aria-label="Breadcrumb" className="mb-8">
-              <ol className="flex items-center justify-center space-x-2 text-sm text-white/80">
-                <li><Link href="/" className="hover:text-white transition-colors">Home</Link></li>
-                <li className="text-white/60">/</li>
-                <li className="text-white font-medium">The Forensic Accounting Perspective</li>
-              </ol>
-            </nav>
-
-            <h1 className="text-5xl lg:text-6xl font-bold mb-6">
-              The Forensic Accounting Perspective
-            </h1>
-            <p className="text-xl lg:text-2xl mb-4 text-blue-100">
-              Expert insights, case studies, and professional guidance from leading forensic accountants
-            </p>
-            <div className="flex flex-wrap justify-center gap-2 mb-8">
-              <span className="bg-blue-800 text-blue-100 px-3 py-1 rounded-full text-sm">#ForensicAccounting</span>
-              <span className="bg-blue-800 text-blue-100 px-3 py-1 rounded-full text-sm">#ExpertWitness</span>
-              <span className="bg-blue-800 text-blue-100 px-3 py-1 rounded-full text-sm">#BigLaw</span>
-              <span className="bg-blue-800 text-blue-100 px-3 py-1 rounded-full text-sm">#TrialReady</span>
-              <span className="bg-blue-800 text-blue-100 px-3 py-1 rounded-full text-sm">#CertifiedFraudExaminer</span>
-            </div>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button className="bg-white text-blue-900 hover:bg-blue-50">
-                Subscribe to Newsletter
-              </Button>
-              <Button variant="outline" className="border-white text-white hover:bg-white hover:text-blue-900">
-                Browse Categories
-              </Button>
-            </div>
-          </div>
+        <div className="container-custom relative z-10 w-full pb-20 pt-40">
+          <motion.div style={{ y: springY1, opacity }} className="max-w-5xl">
+            <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, ease: 'easeOut' }}>
+              <p className="text-[#D4AF37] text-sm font-semibold tracking-[0.3em] uppercase mb-6">Blog</p>
+              <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter text-white leading-[0.9]">
+                The Forensic Accounting<br />
+                <span className="font-serif italic text-[#D4AF37] font-medium">Perspective</span>
+              </h1>
+              <div className="h-[3px] w-24 bg-[#D4AF37] mt-8" />
+            </motion.div>
+          </motion.div>
         </div>
       </section>
 
       {/* Featured Article */}
-      <section className="py-16 bg-gray-50">
-        <div className="container mx-auto px-6">
+      <section className="py-16 bg-slate-50">
+        <div className="container-custom">
           <div className="max-w-6xl mx-auto">
-            <h2 className="text-3xl font-bold mb-8 text-center">Featured Article</h2>
-            <Card className="overflow-hidden shadow-lg">
+            <h2 className="text-3xl md:text-4xl font-bold text-primary-950 mb-10 tracking-tight">Featured Article</h2>
+            <Card className="overflow-hidden shadow-lg border border-slate-100">
               <div className="md:flex">
-                <div className="md:w-1/2 relative h-64 md:h-auto">
+                <div className="md:w-1/2 relative h-48 md:h-auto">
                   <Image
                     src={featuredPost.image}
                     alt={featuredPost.imageAlt}
@@ -211,32 +196,32 @@ export default function BlogPage() {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
                   <div className="absolute bottom-4 left-4 text-white">
-                    <div className="text-sm font-semibold mb-1">{featuredPost.category}</div>
-                    <div className="text-xs opacity-90">{featuredPost.readTime}</div>
+                    <span className="text-[10px] font-bold tracking-[0.3em] uppercase bg-[#D4AF37] text-primary-950 px-3 py-1">{featuredPost.category}</span>
+                    <div className="text-xs opacity-90 mt-2">{featuredPost.readTime}</div>
                   </div>
                 </div>
                 <div className="md:w-1/2 p-8">
-                  <h3 className="text-2xl font-bold mb-4 text-gray-900">
+                  <h3 className="text-2xl font-bold mb-4 text-primary-950 tracking-tight">
                     {featuredPost.title}
                   </h3>
-                  <p className="text-gray-600 mb-4 leading-relaxed">
+                  <p className="text-slate-500 mb-4 leading-relaxed font-light">
                     {featuredPost.excerpt}
                   </p>
                   <div className="flex flex-wrap gap-2 mb-4">
                     {featuredPost.tags.map((tag, index) => (
-                      <span key={index} className="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-full font-medium">
+                      <span key={index} className="text-[10px] font-bold tracking-wider uppercase bg-primary-950/5 text-primary-950/60 px-2.5 py-1">
                         {tag}
                       </span>
                     ))}
                   </div>
                   <div className="flex items-center justify-between mb-6">
-                    <div className="text-sm text-gray-500">
-                      <div className="font-medium">{featuredPost.author}</div>
+                    <div className="text-sm text-slate-400">
+                      <div className="font-semibold text-primary-950">{featuredPost.author}</div>
                       <div>{featuredPost.publishDate} • {featuredPost.readTime}</div>
                     </div>
                   </div>
                   <Link href={`/blog/${featuredPost.slug}`}>
-                    <Button className="bg-blue-600 hover:bg-blue-700">
+                    <Button as="span" className="bg-primary-950 hover:bg-black text-white">
                       Read Full Article
                     </Button>
                   </Link>
@@ -247,7 +232,7 @@ export default function BlogPage() {
         </div>
       </section>
 
-      {/* Category Filter */}
+      {/* Category Filter - Hidden for now
       <section className="py-8 bg-white border-b">
         <div className="container mx-auto px-6">
           <div className="max-w-6xl mx-auto">
@@ -265,57 +250,61 @@ export default function BlogPage() {
           </div>
         </div>
       </section>
+      */}
 
       {/* Blog Posts Grid */}
-      <section className="py-16">
-        <div className="container mx-auto px-6">
+      <section className="py-16 bg-white">
+        <div className="container-custom">
           <div className="max-w-6xl mx-auto">
-            <h2 className="text-3xl font-bold mb-12 text-center">Latest Articles</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-primary-950 mb-12 tracking-tight">Latest Articles</h2>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {blogPosts.map((post) => (
-                <Link key={post.id} href={`/blog/${post.slug}`} className="block">
-                  <Card className="overflow-hidden hover:shadow-lg transition-all duration-300 hover:scale-105 cursor-pointer h-full">
-                    <div className="relative h-48">
+                <Link key={post.id} href={`/blog/${post.slug}`} className="block group">
+                  <Card className="overflow-hidden hover:shadow-[0_20px_60px_-20px_rgba(15,53,116,0.15)] transition-all duration-500 group-hover:translate-y-[-6px] cursor-pointer h-full border border-slate-100">
+                    <div className="relative h-48 overflow-hidden">
                       <Image
                         src={post.image}
                         alt={post.imageAlt}
                         fill
-                        className="object-cover"
+                        className="object-cover transition-transform duration-[2s] group-hover:scale-110"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
                       <div className="absolute top-4 left-4">
-                        <span className="bg-blue-600 text-white px-3 py-1 rounded-full text-xs font-medium">
+                        <span className="text-[10px] font-bold tracking-[0.3em] uppercase bg-[#D4AF37] text-primary-950 px-3 py-1">
                           {post.category}
                         </span>
                       </div>
-                      <div className="absolute bottom-4 right-4 text-white text-sm">
+                      <div className="absolute bottom-4 right-4 text-white/80 text-sm">
                         {post.readTime}
                       </div>
                     </div>
                     <CardHeader>
-                      <CardTitle className="text-xl leading-tight hover:text-blue-600 transition-colors">
+                      <CardTitle className="text-xl leading-tight text-primary-950 group-hover:text-[#0f3574] transition-colors tracking-tight">
                         {post.title}
                       </CardTitle>
                     </CardHeader>
                     <CardContent className="flex-1 flex flex-col">
-                      <CardDescription className="text-gray-600 mb-3 leading-relaxed flex-1">
+                      <CardDescription className="text-slate-500 mb-3 leading-relaxed font-light flex-1">
                         {post.excerpt}
                       </CardDescription>
                       <div className="flex flex-wrap gap-1 mb-4">
                         {post.tags.slice(0, 3).map((tag, index) => (
-                          <span key={index} className="text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded-full">
+                          <span key={index} className="text-[9px] font-bold tracking-wider uppercase bg-slate-50 text-slate-400 px-2 py-0.5 border border-slate-100">
                             {tag}
                           </span>
                         ))}
                       </div>
-                      <div className="flex items-center justify-between mt-auto">
-                        <div className="text-sm text-gray-500">
-                          <div className="font-medium">{post.author}</div>
-                          <div>{post.publishDate} • {post.readTime}</div>
+                      <div className="flex items-center justify-between mt-auto pt-4 border-t border-slate-100">
+                        <div className="text-sm text-slate-400">
+                          <div className="font-semibold text-primary-950 text-xs">{post.author}</div>
+                          <div className="text-xs">{post.publishDate} • {post.readTime}</div>
                         </div>
-                        <Button className="bg-blue-600 hover:bg-blue-700 text-white" size="sm">
-                          Read More
-                        </Button>
+                        <span className="flex items-center gap-2 text-[#D4AF37] font-bold text-xs group-hover:gap-4 transition-all duration-300">
+                          Read
+                          <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                          </svg>
+                        </span>
                       </div>
                     </CardContent>
                   </Card>
@@ -327,137 +316,37 @@ export default function BlogPage() {
       </section>
 
       {/* Newsletter Signup */}
-      <section className="py-16 bg-gray-900 text-white">
-        <div className="container mx-auto px-6">
-          <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-3xl font-bold mb-4">Stay Updated</h2>
-            <p className="text-xl mb-8 text-gray-300">
+      <section className="relative py-20 bg-[#0A1A3C] text-white overflow-hidden">
+        <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-[#D4AF37]/10 blur-[150px] rounded-full pointer-events-none" />
+        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#D4AF37]/30 to-transparent" />
+        <div className="container-custom relative z-10">
+          <div className="max-w-2xl mx-auto text-center">
+            <p className="text-[10px] font-bold tracking-[0.6em] uppercase text-[#D4AF37] mb-6">Stay Updated</p>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 tracking-tight text-white">
+              Get the Latest <span className="font-serif italic text-[#D4AF37] font-medium">Insights</span>
+            </h2>
+            <p className="text-lg mb-10 text-white/60 font-light leading-relaxed">
               Get the latest insights on forensic accounting, fraud investigation, and expert witness testimony
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center max-w-md mx-auto">
+            <div className="flex flex-col sm:flex-row gap-3 justify-center max-w-md mx-auto">
               <input
                 type="email"
                 placeholder="Enter your email"
-                className="flex-1 px-4 py-3 rounded-lg text-gray-900"
+                className="flex-1 px-5 py-4 bg-white/5 border border-white/10 text-white placeholder:text-white/30 focus:outline-none focus:border-[#D4AF37]/50 transition-colors"
               />
-              <Button className="bg-blue-600 hover:bg-blue-700 px-8">
+              <button className="px-8 py-4 bg-[#D4AF37] text-[#0A1A3C] font-bold text-sm tracking-wider uppercase hover:bg-white transition-colors duration-300">
                 Subscribe
-              </Button>
+              </button>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Let Our Numbers Do The Talking */}
+      {/* Let Our Numbers Do The Talking - Hidden for now
       <section className="relative py-24 overflow-hidden bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800">
-        {/* Parallax Background Elements */}
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-10 left-10 w-72 h-72 bg-blue-400 rounded-full mix-blend-multiply filter blur-xl animate-pulse"></div>
-          <div className="absolute top-40 right-10 w-72 h-72 bg-purple-400 rounded-full mix-blend-multiply filter blur-xl animate-pulse delay-1000"></div>
-          <div className="absolute bottom-10 left-1/3 w-72 h-72 bg-pink-400 rounded-full mix-blend-multiply filter blur-xl animate-pulse delay-2000"></div>
-        </div>
-
-        {/* Geometric Pattern Overlay */}
-        <div className="absolute inset-0 opacity-5">
-          <div className="absolute inset-0" style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Cpath d='m36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-          }}></div>
-        </div>
-
-        <div className="container-custom relative z-10">
-          <div className="text-center mb-16">
-            <h2 className="text-5xl md:text-6xl font-bold text-white mb-6 tracking-tight">
-              Let Our Numbers
-              <span className="block bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
-                Do The Talking
-              </span>
-            </h2>
-            <p className="text-xl text-blue-100 max-w-2xl mx-auto leading-relaxed">
-              Three decades of excellence in forensic accounting with a proven track record of success
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            {[
-              {
-                number: '30+',
-                label: 'Years of Forensic Accounting Excellence',
-                subtitle: 'Established 1994'
-              },
-              {
-                number: '500+',
-                label: 'Complex Cases Successfully Resolved',
-                subtitle: 'Nationwide Experience'
-              },
-              {
-                number: '20',
-                label: 'Peer-Reviewed Research Publications',
-                subtitle: 'Industry Thought Leadership'
-              },
-              {
-                number: '6',
-                label: 'Professional Certifications',
-                subtitle: 'CPA, CFE, CIRA, CVA, MAFF, ABV'
-              },
-              {
-                number: 'Big 4',
-                label: 'Forensic Accounting Background',
-                subtitle: 'Elite Training & Experience'
-              },
-              {
-                number: '$2.3B',
-                label: 'Record Jury Award Achievement',
-                subtitle: 'Proven Court Success'
-              }
-            ].map((stat, index) => (
-              <div
-                key={index}
-                className="group relative bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-8 hover:bg-white/15 transition-all duration-500 hover:scale-105 hover:shadow-2xl animate-fade-in-up"
-                style={{
-                  animationDelay: `${index * 200}ms`
-                }}
-              >
-                {/* Gradient Border Effect */}
-                <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-blue-400/20 via-purple-400/20 to-pink-400/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-
-                <div className="relative z-10 text-center">
-                  <div className="text-4xl md:text-5xl font-bold text-white mb-3 group-hover:scale-110 transition-transform duration-300">
-                    {stat.number}
-                  </div>
-                  <div className="text-lg font-semibold text-blue-100 mb-2 leading-tight">
-                    {stat.label}
-                  </div>
-                  <div className="text-sm text-blue-200/80 leading-relaxed">
-                    {stat.subtitle}
-                  </div>
-                </div>
-
-                {/* Subtle Glow Effect */}
-                <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-blue-400/5 via-purple-400/5 to-pink-400/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-              </div>
-            ))}
-          </div>
-
-          {/* Call to Action */}
-          <div className="text-center mt-16">
-            <p className="text-blue-100 text-lg mb-6">
-              Ready to experience the difference that expertise makes?
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a href="tel:(310) 277-2220">
-                <button className="px-8 py-4 bg-gradient-to-r from-blue-500 to-purple-600 text-white font-semibold rounded-xl hover:from-blue-600 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
-                  Call (310) 277-2220
-                </button>
-              </a>
-              <Link href="/contact">
-                <button className="px-8 py-4 bg-white/10 backdrop-blur-sm border border-white/30 text-white font-semibold rounded-xl hover:bg-white/20 transition-all duration-300 transform hover:scale-105">
-                  Schedule Consultation
-                </button>
-              </Link>
-            </div>
-          </div>
-        </div>
+        ...
       </section>
+      */}
 
       <Footer />
     </>

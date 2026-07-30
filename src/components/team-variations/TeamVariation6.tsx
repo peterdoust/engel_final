@@ -77,12 +77,12 @@ export default function TeamVariation6({ teamMembers }: { teamMembers: any[] }) 
                 {/* Contact Actions */}
                 <div className="flex gap-3">
                   <a href={`tel:${member.phone}`} className="flex-1">
-                    <Button variant="outline" size="sm" className="w-full text-xs">
+                    <Button as="span" variant="outline" size="sm" className="w-full text-xs">
                       📞 Call
                     </Button>
                   </a>
                   <a href={`mailto:${member.email}`} className="flex-1">
-                    <Button variant="outline" size="sm" className="w-full text-xs">
+                    <Button as="span" variant="outline" size="sm" className="w-full text-xs">
                       ✉️ Email
                     </Button>
                   </a>
@@ -164,12 +164,12 @@ export default function TeamVariation6({ teamMembers }: { teamMembers: any[] }) 
                     {/* Contact Actions */}
                     <div className="flex flex-wrap gap-3 mt-6 pt-4 border-t border-gray-100">
                       <a href={`tel:${member.phone}`}>
-                        <Button variant="outline" size="sm" className="text-xs">
+                        <Button as="span" variant="outline" size="sm" className="text-xs">
                           📞 {member.phone}
                         </Button>
                       </a>
                       <a href={`mailto:${member.email}`}>
-                        <Button variant="outline" size="sm" className="text-xs">
+                        <Button as="span" variant="outline" size="sm" className="text-xs">
                           ✉️ Email {member.name.split(' ')[0]}
                         </Button>
                       </a>
@@ -182,7 +182,7 @@ export default function TeamVariation6({ teamMembers }: { teamMembers: any[] }) 
                           target="_blank" 
                           rel="noopener noreferrer"
                         >
-                          <Button variant="outline" size="sm" className="text-xs">
+                          <Button as="span" variant="outline" size="sm" className="text-xs">
                             📄 View Qualifications
                           </Button>
                         </a>

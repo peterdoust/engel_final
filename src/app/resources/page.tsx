@@ -120,7 +120,8 @@ export default function ResourcesPage() {
                   </CardHeader>
                   <CardContent className="pt-0 mt-auto">
                     <Link href={calculator.href}>
-                      <Button 
+                      <Button
+                        as="span"
                         className={`w-full bg-gradient-to-r ${calculator.color} ${calculator.hoverColor} text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform group-hover:scale-105`}
                       >
                         Open Calculator
@@ -153,12 +154,12 @@ export default function ResourcesPage() {
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link href="/contact">
-                  <Button size="lg" className="bg-primary-600 hover:bg-primary-700 text-white px-8 py-3">
+                  <Button as="span" size="lg" className="bg-primary-600 hover:bg-primary-700 text-white px-8 py-3">
                     Get Expert Consultation
                   </Button>
                 </Link>
                 <Link href="/services">
-                  <Button variant="outline" size="lg" className="border-primary-600 text-primary-600 hover:bg-primary-50 px-8 py-3">
+                  <Button as="span" variant="outline" size="lg" className="border-primary-600 text-primary-600 hover:bg-primary-50 px-8 py-3">
                     View Our Services
                   </Button>
                 </Link>

@@ -1,5 +1,4 @@
-# Exclude resources page from Vercel deployment
-src/app/resources
+
 
 # Exclude Glamm Hair project folders (separate project)
 glamm-hair/

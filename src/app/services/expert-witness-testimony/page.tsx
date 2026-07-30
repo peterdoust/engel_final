@@ -1,283 +1,334 @@
-import React from 'react'
-import Header from '@/components/layout/Header'
-import Footer from '@/components/layout/Footer'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card'
-import { Button } from '@/components/ui/Button'
-import Link from 'next/link'
-import FAQ from '@/components/seo/FAQ'
-import SchemaMarkup from '@/components/seo/SchemaMarkup'
-import Breadcrumbs from '@/components/seo/Breadcrumbs'
+'use client';
 
-export const metadata = {
-  title: 'Expert Witness Testimony Los Angeles | 100+ Court Cases | Engel & Engel',
-  description: 'Expert witness testimony in Los Angeles. 100+ court cases, 6 professional certifications, 20 research publications. State, federal, and bankruptcy court experience.',
-  openGraph: {
-    title: 'Expert Witness Testimony Los Angeles | 100+ Court Cases',
-    description: 'Expert witness testimony in Los Angeles. 100+ court cases, 6 professional certifications, 20 research publications.',
-    url: 'https://engelandengel.com/services/expert-witness-testimony',
-    siteName: 'Engel & Engel LLP',
-    images: [{ url: 'https://engelandengel.com/images/og-expert-witness.jpg', width: 1200, height: 630, alt: 'Expert Witness Testimony - Los Angeles' }],
-    locale: 'en_US',
-    type: 'website',
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Expert Witness Testimony Los Angeles | 100+ Court Cases',
-    description: 'Expert witness testimony in Los Angeles. 100+ court cases, 6 professional certifications, 20 research publications.',
-    images: ['https://engelandengel.com/images/twitter-expert-witness.jpg'],
-  },
-  robots: { index: true, follow: true, googleBot: { index: true, follow: true, 'max-video-preview': -1, 'max-image-preview': 'large', 'max-snippet': -1 } },
-  alternates: { canonical: 'https://engelandengel.com/services/expert-witness-testimony' },
-}
+import { useEffect, useState } from 'react';
+import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
+import Header from '@/components/layout/Header';
+import Footer from '@/components/layout/Footer';
+import Image from 'next/image';
 
-export default function ExpertWitnessTestimonyPage() {
-  const faqItems = [
-    { question: "What makes a credible expert witness?", answer: "A credible expert witness has relevant professional certifications, extensive practical experience, published research, and a track record of court testimony. Our team holds six professional certifications (CPA, CFE, CIRA, CVA, MAFF, ABV), has testified in over 100 cases, and published 20 research articles in peer-reviewed journals." },
-    { question: "What types of cases do you testify in?", answer: "We provide expert witness testimony in economic damages, fraud investigations, business valuations, bankruptcy matters, intellectual property disputes, employment litigation, partnership disputes, construction litigation, and other complex financial matters in state, federal, and bankruptcy courts." },
-    { question: "How do you prepare for testimony?", answer: "We conduct thorough analysis of all relevant financial records, prepare comprehensive expert reports, create visual exhibits for jury presentation, participate in deposition preparation with counsel, and rehearse direct and cross-examination scenarios to ensure clear, confident testimony." },
-    { question: "Can you withstand cross-examination?", answer: "Yes. Our testimony is based on rigorous analysis, established methodologies, and peer-reviewed research. We have successfully defended our opinions under cross-examination in over 100 cases. Our Big Four forensic accounting background and academic research provide a strong foundation for courtroom credibility." },
-    { question: "Do you work with attorneys throughout the case?", answer: "Absolutely. We collaborate closely with trial counsel from case inception through verdict. This includes case strategy, discovery support, deposition assistance, report preparation, exhibit creation, and trial testimony. Our goal is to help attorneys build the strongest possible case." }
-  ]
+// ─────────────────────────────────────────────
+// Data
+// ─────────────────────────────────────────────
+
+const sections = [
+  {
+    id: 'overview',
+    title: 'Overview',
+    paragraphs: [
+      'High stakes litigation demands persuasive, effective, and well-credentialed forensic expert testimony. Engel & Engel has provided expert testimony in over 100 cases for both plaintiffs and defendants in state, federal, and bankruptcy courts. Engel & Engel\'s expert qualifications includes 1,000+ forensic accounting cases, six professional certifications, 20 authored research publications, and Big Four forensic accounting experience.',
+      'Engel & Engel\'s courtroom experience is highlighted in numerous judge and jury awards including a $2.3 billion jury award in connection with misappropriation of trade secrets.',
+    ],
+    items: [],
+  },
+  {
+    id: 'courtroom',
+    title: 'Credibility in the Courtroom',
+    paragraphs: [
+      'Before we enter the courtroom, we are armed with evidence obtained in the course of a rigorous forensic investigation. To uncover all the relevant information, we utilize specialized investigatory techniques to probe and analyze data buried in a proliferation of records. Thus, we find the financial evidence needed to build a convincing case. We work alongside trial counsel to ensure important issues are properly addressed before they become obstacles.',
+      'On the witness stand, we present our findings and opinions clearly and concisely. We utilize charts and graphs to break down complex concepts and ensure that the points we emphasize are understood. Our trial exhibits provide a visual summary of the facts and enable us to explain even the most complex concepts with clarity. By combining a visual summary with our concise and articulate testimony, we are able to reinforce our findings and opinions and ensure that the court comprehends the points we emphasize.',
+      'Our professional demeanor, exemplary credentials, and integrity, provide us with the conviction needed to withstand the most grueling cross-examinations.',
+    ],
+    items: [],
+  },
+  {
+    id: 'publications',
+    title: 'Research Publications',
+    paragraphs: [
+      'Engel & Engel has published the following research publications in connection with expert witness testimony:',
+    ],
+    items: [
+      'Admissibility of Expert Witness Testimony',
+      'The Business Records Exception to the Hearsay Rule: The Admissibility of Financial Records as Evidence in Federal and State Court',
+    ],
+  },
+];
+
+// ─────────────────────────────────────────────
+// Mobile/Tablet Nav Component
+// ─────────────────────────────────────────────
+
+function MobileNav({ sidebarSections }: { sidebarSections: { id: string; title: string }[] }) {
+  const [activeId, setActiveId] = useState(sidebarSections[0]?.id || '');
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.scrollY + 150;
+      let currentId = sidebarSections[0]?.id || '';
+
+      for (const section of sidebarSections) {
+        const el = document.getElementById(section.id);
+        if (el && el.offsetTop <= scrollTop) {
+          currentId = section.id;
+        }
+      }
+
+      setActiveId(currentId);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
+
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [sidebarSections]);
+
+  const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const id = e.target.value;
+    const el = document.getElementById(id);
+    if (el) {
+      const top = el.offsetTop - 100;
+      window.scrollTo({ top, behavior: 'smooth' });
+    }
+  };
 
   return (
-    <main>
-      <SchemaMarkup type="Organization" data={{ address: { street: "11766 Wilshire Blvd, Suite 1170", zip: "90025" }, socialMedia: ["https://www.linkedin.com/company/engel-engel-llp"] }} />
-      <SchemaMarkup type="LocalBusiness" data={{ address: { street: "11766 Wilshire Blvd, Suite 1170", zip: "90025" }, geo: { latitude: "34.0522", longitude: "-118.2437" } }} />
-      <SchemaMarkup type="ProfessionalService" data={{ name: "Expert Witness Testimony Services", description: "Expert witness testimony and litigation support in Los Angeles", serviceType: "Expert Witness Services", address: { street: "11766 Wilshire Blvd, Suite 1170", zip: "90025" } }} />
-      <SchemaMarkup type="HowTo" data={{
-        name: "How Expert Witness Testimony Works",
-        description: "Our proven 5-step expert witness process",
-        steps: [
-          { name: "Case Evaluation", text: "Initial review of case facts and determination of expert opinion feasibility." },
-          { name: "Investigation & Analysis", text: "Comprehensive forensic analysis of financial records and relevant documents." },
-          { name: "Expert Report", text: "Preparation of detailed expert report with findings, opinions, and supporting exhibits." },
-          { name: "Deposition", text: "Participation in deposition with clear, confident presentation of expert opinions." },
-          { name: "Trial Testimony", text: "Court testimony with effective communication of complex financial concepts to judges and juries." }
-        ]
-      }} />
-      <SchemaMarkup type="FAQ" data={{ questions: faqItems }} />
-      
+    <div className="lg:hidden sticky top-[72px] z-30 bg-white/95 backdrop-blur-sm border-b border-slate-200 shadow-sm">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3">
+        <select
+          value={activeId}
+          onChange={handleChange}
+          className="w-full p-3 bg-primary-950 text-white text-sm font-medium rounded-lg border-0 focus:outline-none focus:ring-2 focus:ring-[#D4AF37] appearance-none cursor-pointer"
+          style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23D4AF37' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E")`, backgroundRepeat: 'no-repeat', backgroundPosition: 'right 12px center' }}
+        >
+          {sidebarSections.map((section) => (
+            <option key={section.id} value={section.id}>
+              {section.title}
+            </option>
+          ))}
+        </select>
+      </div>
+    </div>
+  );
+}
+
+// ─────────────────────────────────────────────
+// Sidebar Component
+// ─────────────────────────────────────────────
+
+function Sidebar({ sidebarSections }: { sidebarSections: { id: string; title: string }[] }) {
+  const [activeId, setActiveId] = useState(sidebarSections[0]?.id || '');
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.scrollY + 150;
+      let currentId = sidebarSections[0]?.id || '';
+
+      for (const section of sidebarSections) {
+        const el = document.getElementById(section.id);
+        if (el && el.offsetTop <= scrollTop) {
+          currentId = section.id;
+        }
+      }
+
+      setActiveId(currentId);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
+
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [sidebarSections]);
+
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
+    e.preventDefault();
+    const el = document.getElementById(id);
+    if (el) {
+      const top = el.offsetTop - 100;
+      window.scrollTo({ top, behavior: 'smooth' });
+    }
+  };
+
+  return (
+    <aside className="hidden lg:block w-72 flex-shrink-0">
+      <div className="sticky top-28 bg-primary-950 py-6 rounded-xl border-t-4 border-[#D4AF37]">
+        <p className="text-[10px] tracking-[0.2em] uppercase text-white/80 font-bold mb-1 px-6">
+          On This Page
+        </p>
+        <div className="h-[2px] ml-6 w-24 bg-gradient-to-r from-[#D4AF37] to-transparent mb-6" />
+        <nav className="space-y-1 max-h-[calc(100vh-200px)] overflow-y-auto sidebar-scrollbar">
+          {sidebarSections.map((section) => (
+            <a
+              key={section.id}
+              href={`#${section.id}`}
+              onClick={(e) => handleClick(e, section.id)}
+              className={`block text-sm py-2 px-6 rounded-r border-l-2 transition-colors ${
+                activeId === section.id
+                  ? 'text-[#D4AF37] hover:text-[#D4AF37] border-[#D4AF37] font-medium bg-[#D4AF37]/20'
+                  : 'text-white border-transparent hover:text-[#D4AF37] hover:bg-[#D4AF37]/20 hover:border-[#D4AF37]'
+              }`}
+            >
+              {section.title}
+            </a>
+          ))}
+        </nav>
+      </div>
+    </aside>
+  );
+}
+
+// ─────────────────────────────────────────────
+// Page
+// ─────────────────────────────────────────────
+
+export default function ExpertWitnessTestimonyPage() {
+  const { scrollY } = useScroll();
+  const sidebarSections = sections.map((s) => ({ id: s.id, title: s.title }));
+
+  const y1 = useTransform(scrollY, [0, 500], [0, 200]);
+  const y2 = useTransform(scrollY, [0, 500], [0, -150]);
+  const opacity = useTransform(scrollY, [0, 300], [1, 0]);
+  const scale = useTransform(scrollY, [0, 500], [1, 1.1]);
+  const springY1 = useSpring(y1, { stiffness: 100, damping: 30 });
+
+  return (
+    <>
       <Header />
-      
-      <section className="pt-16 lg:pt-20 bg-gradient-to-br from-primary-900 via-primary-800 to-primary-700 text-white">
-        <div className="container-custom py-20">
-          <Breadcrumbs items={[
-            { label: 'Services', href: '/services' },
-            { label: 'Expert Witness Testimony', href: '/services/expert-witness-testimony' }
-          ]} />
-          
-          <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">Expert Witness Testimony</h1>
-            <p className="text-xl md:text-2xl text-primary-100 mb-8 leading-relaxed">
-              Court-tested expert witness testimony in complex financial litigation. Over 100 cases in state, federal, and bankruptcy courts.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a href="tel:(310) 277-2220"><Button size="xl" className="bg-white text-primary-900 hover:bg-gray-100">Call (310) 277-2220</Button></a>
-              <Link href="/contact"><Button size="xl" variant="outline" className="border-white text-white hover:bg-white hover:text-primary-900">Free Consultation</Button></Link>
+      <main className="bg-white min-h-screen text-slate-900">
+
+        {/* ══════════ CINEMATIC HERO ══════════ */}
+        <section className="relative min-h-[60vh] md:min-h-[75vh] lg:min-h-[85vh] flex items-center pt-24 md:pt-0 overflow-hidden bg-[#0A1A3C]">
+          <div className="absolute inset-0 z-0 pointer-events-none">
+            <motion.div
+              style={{ y: y2, scale }}
+              className="absolute top-1/4 right-1/4 w-[500px] h-[500px] bg-[#D4AF37]/10 blur-[150px] rounded-full"
+            />
+            <motion.div
+              style={{ y: y1 }}
+              className="absolute bottom-1/4 left-1/4 w-[400px] h-[400px] bg-[#3b82f6]/10 blur-[120px] rounded-full"
+            />
+            <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-[#D4AF37]/30 to-transparent" />
+          </div>
+
+          <div className="container-custom relative z-10 w-full">
+            <motion.div
+              style={{ y: springY1, opacity }}
+              className="max-w-4xl mx-auto text-center"
+            >
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 1.2, ease: "easeOut" }}
+              >
+                <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-tighter text-white drop-shadow-2xl">
+                  Expert Witness <br />
+                  <span className="font-serif italic text-[#D4AF37] font-medium">Testimony</span>
+                </h1>
+                <div className="h-0.5 w-32 bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent mx-auto mt-6" />
+              </motion.div>
+            </motion.div>
+          </div>
+        </section>
+
+        {/* ══════════ MOBILE/TABLET STICKY NAV ══════════ */}
+        <MobileNav sidebarSections={sidebarSections} />
+
+        {/* ══════════ CONTENT BODY WITH SIDEBAR ══════════ */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20 lg:pb-28 pt-16">
+          <div className="flex flex-col lg:flex-row gap-12">
+
+            {/* Sidebar */}
+            <Sidebar sidebarSections={sidebarSections} />
+
+            {/* Content */}
+            <div className="flex-1 min-w-0">
+              {sections.map((section) => (
+                <section key={section.id} id={section.id} className="mb-10 scroll-mt-[6rem]">
+                  <h2 className="relative text-2xl font-semibold text-primary-950 mb-6 group inline-block">
+                    {section.title}
+                    <span className="absolute -bottom-2 left-0 w-12 h-0.5 bg-gradient-to-r from-[#0f3574] to-transparent transition-all duration-500 group-hover:w-full" />
+                  </h2>
+
+                  <div className="space-y-5 text-[18px] leading-relaxed text-gray-600">
+                    {section.paragraphs.map((paragraph: string, i: number) => (
+                      <p key={i}>{paragraph}</p>
+                    ))}
+
+                    {section.items && section.items.length > 0 && (
+                      <ul className={`gap-x-10 gap-y-2 ${
+                        section.items.length > 5
+                          ? 'grid grid-cols-1 sm:grid-cols-2'
+                          : 'flex flex-col'
+                      }`}>
+                        {section.items.map((item: string, j: number) => (
+                          <li key={j} className="flex items-start gap-3 text-base text-gray-800">
+                            <span className="mt-2 w-1.5 h-1.5 rounded-full bg-[#0f3574] flex-shrink-0" />
+                            {item}
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </div>
+                </section>
+              ))}
             </div>
           </div>
         </div>
-      </section>
 
-      <section className="section-padding bg-white">
-        <div className="container-custom">
-          <div className="max-w-4xl mx-auto">
-            
-            <div className="mb-12">
-              <p className="text-xl text-gray-700 leading-relaxed mb-6">
-                When your case requires expert testimony on complex financial matters, credibility is everything. Judges and juries need to trust that your expert has the knowledge, experience, and integrity to provide reliable opinions. At Engel & Engel, we bring over 30 years of forensic accounting experience, six professional certifications, and a proven track record in the courtroom.
+        {/* ══════════ CONTACT CTA ══════════ */}
+        <section className="relative py-28 bg-[#0A1A3C] overflow-hidden">
+          <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#D4AF37]/5 blur-[150px] rounded-full pointer-events-none" />
+          <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-blue-500/10 blur-[120px] rounded-full pointer-events-none" />
+          <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-[#D4AF37]/50 to-transparent" />
+
+          <div className="container-custom relative z-10">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="max-w-5xl mx-auto"
+            >
+              <p className="text-base md:text-lg text-white/60 font-light mb-10 text-center">
+                For additional information about{' '}
+                <span className="text-white font-medium">Engel &amp; Engel&apos;s</span>{' '}
+                <span className="font-serif italic text-[#D4AF37]">Expert Witness Testimony</span>{' '}
+                or a consultation, please contact:
               </p>
-              <p className="text-lg text-gray-600 leading-relaxed">
-                Our expert witness testimony has been relied upon in over 100 cases involving economic damages, fraud investigations, business valuations, bankruptcy matters, and other complex financial disputes. We work closely with trial counsel to develop compelling expert opinions that withstand cross-examination and help win cases.
-              </p>
-            </div>
-
-            <div className="mb-12 bg-primary-50 rounded-2xl p-8">
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">Expert Witness Services in Los Angeles</h2>
-              <p className="text-lg text-gray-700 leading-relaxed mb-4">
-                Serving attorneys and law firms throughout Los Angeles County, Orange County, Ventura County, San Bernardino County, Riverside County, and all of Southern California. Our Los Angeles office provides expert witness services for cases in state courts, federal courts, and bankruptcy courts.
-              </p>
-              <p className="text-gray-700 leading-relaxed">
-                Whether your case is in downtown Los Angeles, Santa Monica, Beverly Hills, Pasadena, Irvine, San Diego, or anywhere in California, we provide expert testimony backed by rigorous analysis and decades of courtroom experience.
-              </p>
-            </div>
-
-            <div className="mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 mb-6">Credibility in the Courtroom</h2>
-              <p className="text-lg text-gray-700 mb-8">Your expert witness must have the credentials and experience to command respect from judges, juries, and opposing counsel. Our qualifications include:</p>
-              
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {[
-                  { title: "Six Professional Certifications", desc: "CPA, CFE (Certified Fraud Examiner), CIRA (Certified Insolvency & Restructuring Advisor), CVA (Certified Valuation Analyst), MAFF (Master Analyst in Financial Forensics), ABV (Accredited in Business Valuation)." },
-                  { title: "100+ Court Cases", desc: "Extensive testimony experience in state, federal, and bankruptcy courts across California and nationwide." },
-                  { title: "20 Research Publications", desc: "Published research in peer-reviewed journals on economic damages, forensic accounting, and expert witness testimony." },
-                  { title: "Big Four Experience", desc: "Forensic accounting experience with Big Four accounting firms, providing credibility and advanced training." },
-                  { title: "30+ Years Experience", desc: "Over three decades of forensic accounting and litigation support experience across diverse industries and case types." },
-                  { title: "Academic Background", desc: "Strong academic foundation with ongoing research and teaching in forensic accounting and economic damages." },
-                ].map((item, index) => (
-                  <Card key={index} className="h-full">
-                    <CardHeader>
-                      <CardTitle className="text-xl text-primary-700">{item.title}</CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <p className="text-gray-600">{item.desc}</p>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
-            </div>
-
-            <div className="mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 mb-6">Research Publications</h2>
-              <p className="text-lg text-gray-700 mb-6">Our research has been published in leading academic and professional journals, demonstrating thought leadership in forensic accounting and economic damages:</p>
-              
-              <div className="space-y-4">
-                <Card>
-                  <CardContent className="p-6">
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2">"Calculating Lost Profits Damages: A Comprehensive Framework"</h3>
-                    <p className="text-gray-600 mb-2">Journal of Forensic Accounting Research, Vol. 8, Issue 2</p>
-                    <p className="text-gray-700">Comprehensive analysis of methodologies for calculating lost profits in commercial litigation, including before-and-after method, yardstick method, and sales projection method.</p>
-                  </CardContent>
-                </Card>
-                
-                <Card>
-                  <CardContent className="p-6">
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2">"Expert Witness Testimony: Best Practices for Forensic Accountants"</h3>
-                    <p className="text-gray-600 mb-2">The CPA Journal, Vol. 92, Issue 5</p>
-                    <p className="text-gray-700">Practical guidance for forensic accountants serving as expert witnesses, covering report preparation, deposition strategies, and effective courtroom testimony.</p>
-                  </CardContent>
-                </Card>
-              </div>
-            </div>
-
-            <div className="mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 mb-8">Our Expert Witness Process</h2>
-              <div className="space-y-6">
-                {[
-                  { step: "1", title: "Case Evaluation", desc: "Initial review of case facts, relevant documents, and determination of whether we can provide credible expert opinions to support your case." },
-                  { step: "2", title: "Investigation & Analysis", desc: "Comprehensive forensic analysis of financial records, business operations, and relevant documents using specialized investigatory techniques." },
-                  { step: "3", title: "Expert Report", desc: "Preparation of detailed expert report with findings, opinions, supporting calculations, and visual exhibits designed for jury presentation." },
-                  { step: "4", title: "Deposition", desc: "Participation in deposition with clear, confident presentation of expert opinions and ability to defend analysis under questioning." },
-                  { step: "5", title: "Trial Testimony", desc: "Court testimony with effective communication of complex financial concepts to judges and juries, withstanding cross-examination." }
-                ].map((item) => (
-                  <div key={item.step} className="flex gap-6 items-start">
-                    <div className="flex-shrink-0 w-12 h-12 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold text-xl">
-                      {item.step}
-                    </div>
-                    <div className="flex-1">
-                      <h3 className="text-xl font-semibold text-gray-900 mb-2">{item.title}</h3>
-                      <p className="text-gray-600 leading-relaxed">{item.desc}</p>
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <div className="flex items-center gap-6 p-8 border border-white/10 rounded-2xl bg-white/5 backdrop-blur-sm">
+                  <div className="flex-shrink-0">
+                    <div className="rounded-full overflow-hidden border-2 border-[#D4AF37]/40">
+                      <Image width={80} height={80} src="/images/team/brandon-engel.jpg" alt="Brandon J. Engel" className="w-20 h-20 object-cover object-top" />
                     </div>
                   </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 mb-6">Types of Cases</h2>
-              <p className="text-lg text-gray-700 mb-8">We provide expert witness testimony in a wide range of complex financial litigation matters:</p>
-              
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {[
-                  { title: "Economic Damages", desc: "Lost profits, business interruption, contract damages, employment damages, IP infringement damages.", link: "/practice-areas/economic-damages" },
-                  { title: "Fraud Investigation", desc: "Embezzlement, Ponzi schemes, securities fraud, contract fraud, bankruptcy fraud.", link: "/practice-areas/fraud-investigation" },
-                  { title: "Business Valuation", desc: "Corporate valuation, minority shareholder disputes, M&A, dissolutions, shareholder oppression.", link: "/practice-areas/business-valuation" },
-                  { title: "Bankruptcy & Insolvency", desc: "Solvency analysis, preference actions, fraudulent transfers, reorganization plans.", link: "/practice-areas/bankruptcy-insolvency" },
-                  { title: "Partnership Disputes", desc: "Ownership disputes, capital contributions, hidden distributions, breach of fiduciary duty.", link: "/practice-areas/partnership-disputes" },
-                  { title: "Employment Litigation", desc: "Wage and hour claims, wrongful termination, discrimination damages, PAGA actions.", link: "/practice-areas/employment-litigation" },
-                ].map((service, index) => (
-                  <Link key={index} href={service.link}>
-                    <Card className="h-full hover:shadow-xl transition-shadow duration-300 cursor-pointer">
-                      <CardHeader>
-                        <CardTitle className="text-xl text-primary-700 hover:text-primary-900">{service.title}</CardTitle>
-                      </CardHeader>
-                      <CardContent>
-                        <p className="text-gray-600">{service.desc}</p>
-                      </CardContent>
-                    </Card>
-                  </Link>
-                ))}
-              </div>
-            </div>
-
-            <div className="mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 mb-6">Why Choose Engel & Engel</h2>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div className="text-center">
-                  <div className="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <svg className="w-8 h-8 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                    </svg>
+                  <div className="space-y-2">
+                    <h3 className="text-3xl md:text-4xl font-bold text-white tracking-tight">Brandon J. Engel</h3>
+                    <p className="text-white/50 text-sm font-medium tracking-widest uppercase">CPA, CFE, ABV</p>
+                    <div className="h-px w-16 bg-[#D4AF37] mt-2" />
                   </div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-2">Proven Credibility</h3>
-                  <p className="text-gray-600">Six professional certifications, 20 research publications, and Big Four experience provide unmatched courtroom credibility.</p>
                 </div>
-                <div className="text-center">
-                  <div className="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <svg className="w-8 h-8 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3" />
-                    </svg>
-                  </div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-2">Court-Tested</h3>
-                  <p className="text-gray-600">Over 100 cases in state, federal, and bankruptcy courts with successful testimony under cross-examination.</p>
-                </div>
-                <div className="text-center">
-                  <div className="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <svg className="w-8 h-8 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                    </svg>
-                  </div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-2">Collaborative Approach</h3>
-                  <p className="text-gray-600">We work closely with trial counsel throughout the case to develop the strongest possible expert opinions and testimony.</p>
+
+                <div className="flex flex-col justify-center space-y-5 p-8 border border-white/10 rounded-2xl bg-white/5 backdrop-blur-sm">
+                  <a href="mailto:brandon@engelandengel.com" className="group flex items-center gap-4">
+                    <div className="w-12 h-12 rounded-xl bg-[#D4AF37]/10 border border-[#D4AF37]/30 flex items-center justify-center text-[#D4AF37] group-hover:bg-[#D4AF37] group-hover:text-[#0A1A3C] transition-all duration-300 shrink-0">
+                      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                      </svg>
+                    </div>
+                    <span className="text-lg font-semibold text-white/90 group-hover:text-white border-b border-white/20 group-hover:border-[#D4AF37] pb-0.5 transition-all duration-200">
+                      brandon@engelandengel.com
+                    </span>
+                  </a>
+
+                  <a href="tel:310-277-2220" className="group flex items-center gap-4">
+                    <div className="w-12 h-12 rounded-xl bg-[#D4AF37]/10 border border-[#D4AF37]/30 flex items-center justify-center text-[#D4AF37] group-hover:bg-[#D4AF37] group-hover:text-[#0A1A3C] transition-all duration-300 shrink-0">
+                      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                      </svg>
+                    </div>
+                    <span className="text-lg font-semibold text-white/90 group-hover:text-white border-b border-white/20 group-hover:border-[#D4AF37] pb-0.5 transition-all duration-200">
+                      310-277-2220
+                    </span>
+                  </a>
                 </div>
               </div>
-            </div>
-
-            <div className="mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 mb-6">Related Services</h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {[
-                  { name: "Forensic Accounting", href: "/services/forensic-accounting" },
-                  { name: "Joint Retention Program", href: "/services/joint-retention-program" },
-                  { name: "Internal Investigations", href: "/services/internal-investigations" },
-                  { name: "Economic Damages", href: "/practice-areas/economic-damages" },
-                  { name: "Fraud Investigation", href: "/practice-areas/fraud-investigation" },
-                  { name: "Business Valuation", href: "/practice-areas/business-valuation" }
-                ].map((area, index) => (
-                  <Link key={index} href={area.href}>
-                    <Card className="h-full hover:shadow-xl transition-all duration-300 hover:-translate-y-1 cursor-pointer">
-                      <CardContent className="p-6">
-                        <h3 className="text-lg font-semibold text-primary-700 hover:text-primary-900">{area.name}</h3>
-                      </CardContent>
-                    </Card>
-                  </Link>
-                ))}
-              </div>
-            </div>
-
+            </motion.div>
           </div>
-        </div>
-      </section>
 
-      <FAQ items={faqItems} />
+          <div className="absolute bottom-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-[#D4AF37]/30 to-transparent" />
+        </section>
 
-      <section className="section-padding bg-gradient-to-br from-primary-900 via-primary-800 to-primary-700 text-white">
-        <div className="container-custom">
-          <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">Need an Expert Witness?</h2>
-            <p className="text-xl text-primary-100 mb-8">
-              Contact Brandon J. Engel, CPA/ABV/CFF, CVA, MAFF for a consultation on your expert witness needs.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
-              <a href="tel:(310) 277-2220"><Button size="xl" className="bg-white text-primary-900 hover:bg-gray-100">Call (310) 277-2220</Button></a>
-              <a href="mailto:brandon@engelandengel.com"><Button size="xl" variant="outline" className="border-white text-white hover:bg-white hover:text-primary-900">Email Brandon</Button></a>
-            </div>
-            <p className="text-primary-200">Serving Los Angeles, Orange County, and all of California</p>
-          </div>
-        </div>
-      </section>
-
-      <Footer />
-    </main>
-  )
+        <Footer />
+      </main>
+    </>
+  );
 }

@@ -42,41 +42,38 @@ export default function Certifications() {
   ]
 
   return (
-    <section className="relative py-24 bg-primary-950 overflow-hidden shadow-[0_8px_40px_rgba(0,0,0,0.25)]">
+    <section className="relative py-16 md:py-24 bg-primary-950 overflow-hidden">
       {/* Subtle texture */}
       <div className="absolute inset-0 opacity-[0.02] pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]" />
 
       <div className="container-custom relative z-10">
-        <div className="text-center mb-16">
-          <span className="text-[#D4AF37] font-bold tracking-[0.4em] uppercase text-xs mb-4 block">Proven Credibility</span>
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-            Our Professional <span className="font-serif italic text-[#D4AF37]">Accreditations</span>
+        <div className="text-center mb-16 max-w-3xl mx-auto">
+          <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6">
+            Our <span className="font-serif italic text-[#D4AF37]">Certifications</span>
           </h2>
-          <div className="h-px w-24 bg-[#D4AF37]/30 mx-auto mb-8" />
-          <div className="mt-20 text-center">
-            <p className="text-primary-200/50 italic font-serif text-lg">
-              "The credibility of our testimony is enhanced by our exemplary credentials."
-            </p>
-          </div>
+          <p className="text-primary-100/80 text-lg md:text-xl font-light leading-relaxed mb-8">
+            Our analysis and testimony are supported by relevant professional credentials.
+          </p>
+          <div className="h-px w-24 bg-[#D4AF37]/30 mx-auto" />
         </div>
 
-        <div className="grid grid-cols-2 lg:grid-cols-6 gap-8 md:gap-12 max-w-6xl mx-auto items-center">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-x-12 gap-y-16 max-w-6xl mx-auto items-center justify-items-center">
           {certifications.map((cert, index) => (
-            <div key={index} className="flex flex-col items-center group transition-all duration-500 hover:scale-110">
-              <div className="relative w-32 h-32 md:w-36 md:h-36 mb-6">
+            <div key={index} className="flex flex-col items-center group transition-all duration-700 hover:-translate-y-4">
+              <div className="relative w-48 h-48 md:w-60 md:h-60 transition-all duration-700 group-hover:drop-shadow-[0_0_40px_rgba(212,175,55,0.4)]">
                 <Image
                   src={cert.image}
                   alt={cert.alt}
                   fill
-                  className="object-contain drop-shadow-[0_0_15px_rgba(212,175,55,0.2)] group-hover:drop-shadow-[0_0_25px_rgba(212,175,55,0.4)] transition-all"
-                  sizes="(max-width: 768px) 50vw, 15vw"
+                  className="object-contain drop-shadow-[0_0_20px_rgba(212,175,55,0.15)] group-hover:scale-110 transition-all duration-700"
+                  sizes="(max-width: 768px) 50vw, 30vw"
                 />
               </div>
-
+              <span className="mt-4 text-xl md:text-2xl font-semibold tracking-wide uppercase text-white/80 group-hover:text-[#D4AF37] transition-colors duration-700">{cert.name}</span>
+              <span className="mt-1 text-base md:text-lg text-white text-center leading-tight">{cert.fullName}</span>
             </div>
           ))}
         </div>
-
 
       </div>
     </section>

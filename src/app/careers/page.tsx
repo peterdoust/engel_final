@@ -1,373 +1,343 @@
-import React from 'react'
-import Header from '@/components/layout/Header'
-import Footer from '@/components/layout/Footer'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/Card'
-import { Button } from '@/components/ui/Button'
-import Link from 'next/link'
+'use client';
 
-export const metadata = {
-  title: 'Careers at Engel & Engel | Forensic Accounting Jobs | Los Angeles',
-  description: 'Join our team of forensic accounting professionals. Explore career opportunities at Engel & Engel LLP in Los Angeles. Competitive benefits and professional growth.',
-}
-
-const benefits = [
-  {
-    title: 'Professional Development',
-    description: 'Continuous learning opportunities and certification support',
-    icon: '📚'
-  },
-  {
-    title: 'Competitive Compensation',
-    description: 'Market-leading salary and performance-based bonuses',
-    icon: '💰'
-  },
-  {
-    title: 'Health & Wellness',
-    description: 'Comprehensive health insurance and wellness programs',
-    icon: '🏥'
-  },
-  {
-    title: 'Work-Life Balance',
-    description: 'Flexible schedules and remote work opportunities',
-    icon: '⚖️'
-  },
-  {
-    title: 'Expert Mentorship',
-    description: 'Learn from industry leaders with 35+ years experience',
-    icon: '🎯'
-  },
-  {
-    title: 'Career Growth',
-    description: 'Clear advancement paths and leadership opportunities',
-    icon: '📈'
-  }
-]
-
-const positions = [
-  {
-    title: 'Senior Forensic Accountant',
-    type: 'Full-time',
-    location: 'Los Angeles, CA',
-    experience: '5+ years',
-    description: 'Lead complex forensic accounting engagements and provide expert witness testimony in high-stakes litigation matters.',
-    requirements: [
-      'CPA certification required',
-      'CFE certification preferred',
-      '5+ years forensic accounting experience',
-      'Expert witness experience preferred',
-      'Strong analytical and communication skills',
-      'Experience with litigation support'
-    ],
-    responsibilities: [
-      'Conduct complex financial investigations',
-      'Prepare expert reports and testimony',
-      'Lead client engagements and teams',
-      'Mentor junior staff members',
-      'Develop new business opportunities'
-    ]
-  },
-  {
-    title: 'Forensic Accountant',
-    type: 'Full-time',
-    location: 'Los Angeles, CA',
-    experience: '2-5 years',
-    description: 'Support forensic accounting investigations and assist with expert witness engagements across various practice areas.',
-    requirements: [
-      'CPA certification required',
-      '2-5 years accounting experience',
-      'Forensic accounting experience preferred',
-      'Strong Excel and analytical skills',
-      'Excellent written communication',
-      'Bachelor\'s degree in Accounting or Finance'
-    ],
-    responsibilities: [
-      'Assist with forensic investigations',
-      'Prepare financial analyses and reports',
-      'Support expert witness engagements',
-      'Conduct research and data analysis',
-      'Collaborate with legal teams'
-    ]
-  },
-  {
-    title: 'Staff Accountant',
-    type: 'Full-time',
-    location: 'Los Angeles, CA',
-    experience: '0-2 years',
-    description: 'Entry-level position supporting forensic accounting engagements with opportunities for rapid career advancement.',
-    requirements: [
-      'Bachelor\'s degree in Accounting or Finance',
-      'CPA certification preferred',
-      'Strong analytical skills',
-      'Proficiency in Excel and accounting software',
-      'Detail-oriented with strong work ethic',
-      'Interest in forensic accounting'
-    ],
-    responsibilities: [
-      'Support forensic accounting projects',
-      'Perform financial data analysis',
-      'Assist with report preparation',
-      'Conduct research and documentation',
-      'Learn from senior team members'
-    ]
-  }
-]
+import React, { useState } from 'react';
+import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
+import Header from '@/components/layout/Header';
+import Footer from '@/components/layout/Footer';
+import { Button } from '@/components/ui/Button';
 
 export default function CareersPage() {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    message: '',
+  });
+  const [file, setFile] = useState<File | null>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
+  const { scrollY } = useScroll();
+
+  // Parallax transforms
+  const y1 = useTransform(scrollY, [0, 500], [0, 200]);
+  const y2 = useTransform(scrollY, [0, 500], [0, -150]);
+  const opacity = useTransform(scrollY, [0, 300], [1, 0]);
+  const scale = useTransform(scrollY, [0, 500], [1, 1.1]);
+
+  const springY1 = useSpring(y1, { stiffness: 100, damping: 30 });
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files[0]) {
+      const chosen = e.target.files[0];
+      if (chosen.size > 10 * 1024 * 1024) {
+        setSubmitError('Resume exceeds the 10MB size limit.');
+        return;
+      }
+      setSubmitError(null);
+      setFile(chosen);
+    }
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitError(null);
+
+    try {
+      const payload = new FormData();
+      payload.append('name', formData.name);
+      payload.append('email', formData.email);
+      payload.append('phone', formData.phone);
+      payload.append('message', formData.message);
+      payload.append('timestamp', new Date().toISOString());
+      if (file) payload.append('resume', file);
+
+      const res = await fetch('/api/send-career-application', {
+        method: 'POST',
+        body: payload,
+      });
+
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok || !data.success) {
+        throw new Error(data.error || 'Submission failed. Please try again.');
+      }
+
+      setSubmitted(true);
+    } catch (err: any) {
+      setSubmitError(err?.message || 'Submission failed. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
-    <main>
+    <main className="bg-slate-50 min-h-screen overflow-hidden">
       <Header />
-      
-      {/* Hero Section */}
-      <section className="pt-16 lg:pt-20 bg-gradient-to-br from-primary-900 via-primary-800 to-primary-700 text-white">
-        <div className="container-custom py-20">
-          <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
-              Join Our Expert Team
-            </h1>
-            <p className="text-xl md:text-2xl text-primary-100 mb-8 leading-relaxed">
-              Build your career in forensic accounting with California's premier firm. 
-              Work alongside industry leaders on high-profile cases and complex litigation matters.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="#positions">
-                <Button size="xl" className="bg-white text-primary-900 hover:bg-gray-100">
-                  View Open Positions
-                </Button>
-              </Link>
-              <a href="mailto:careers@engelandengel.com">
-                <Button variant="outline" size="xl" className="border-white text-white hover:bg-white hover:text-primary-900">
-                  Send Resume
-                </Button>
-              </a>
-            </div>
-          </div>
+
+      {/* ══════════ CINEMATIC HERO ══════════ */}
+      <section className="relative min-h-[85vh] flex items-center overflow-hidden bg-[#0A1A3C]">
+        {/* Parallax Background Decorations */}
+        <div className="absolute inset-0 z-0 pointer-events-none">
+          {/* Glowing orbs */}
+          <motion.div
+            style={{ y: y2, scale }}
+            className="absolute top-1/4 right-1/4 w-[500px] h-[500px] bg-[#D4AF37]/10 blur-[150px] rounded-full"
+          />
+          <motion.div
+            style={{ y: y1 }}
+            className="absolute bottom-1/4 left-1/4 w-[400px] h-[400px] bg-[#3b82f6]/10 blur-[120px] rounded-full"
+          />
+
+          <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-[#D4AF37]/30 to-transparent" />
+        </div>
+
+        <div className="container-custom relative z-10 w-full">
+          <motion.div
+            style={{ y: springY1, opacity }}
+            className="max-w-4xl mx-auto text-center"
+          >
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 1.2, ease: "easeOut" }}
+            >
+              <h1 className="text-7xl md:text-9xl font-bold tracking-tighter text-white drop-shadow-2xl">
+                Join Our <br />
+                <span className="font-serif italic text-[#D4AF37] font-medium">Team</span>
+              </h1>
+              <div className="h-0.5 w-32 bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent mx-auto mt-6" />
+            </motion.div>
+          </motion.div>
         </div>
       </section>
 
-      {/* Why Work With Us */}
-      <section className="section-padding bg-white">
+      {/* Content Sections */}
+      <section className="py-24 relative bg-white">
         <div className="container-custom">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-6">Why Choose Engel & Engel?</h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Join a team that has achieved the largest jury award in forensic accounting history 
-              and continues to set the standard for excellence in the industry.
-            </p>
-          </div>
+          <div className="max-w-4xl mx-auto space-y-20">
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
-            <div className="text-center">
-              <div className="text-4xl font-bold text-primary-600 mb-2">$2.3B</div>
-              <div className="text-gray-600">Largest Jury Award</div>
-            </div>
-            
-            <div className="text-center">
-              <div className="text-4xl font-bold text-primary-600 mb-2">35+</div>
-              <div className="text-gray-600">Years Experience</div>
-            </div>
-            
-            <div className="text-center">
-              <div className="text-4xl font-bold text-primary-600 mb-2">500+</div>
-              <div className="text-gray-600">Cases Handled</div>
-            </div>
-            
-            <div className="text-center">
-              <div className="text-4xl font-bold text-primary-600 mb-2">6</div>
-              <div className="text-gray-600">Professional Certifications</div>
-            </div>
-          </div>
-
-          <div className="max-w-4xl mx-auto">
-            <div className="prose prose-lg text-gray-700 leading-relaxed">
-              <p className="text-lg mb-6">
-                At Engel & Engel, we believe our people are our greatest asset. We're committed to creating 
-                an environment where talented professionals can thrive, grow, and make a meaningful impact 
-                on high-stakes litigation matters.
+            {/* Intro */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="prose prose-xl prose-slate max-w-none"
+            >
+              <p className="text-2xl text-slate-700 font-light leading-relaxed">
+                Engel & Engel is a premier Los Angeles forensic accounting firm offering a specialized
+                opportunity for professionals devoted to the practice of forensic accounting. For 30
+                years, we’ve provided law firms and in-house counsel in California and beyond,
+                sophisticated guidance in securing successful outcomes in complex litigation matters.
               </p>
-              
-              <p className="text-lg">
-                Our team works on some of the most complex and interesting forensic accounting cases in the 
-                country, providing unparalleled learning opportunities and career advancement potential.
-              </p>
+            </motion.div>
+
+            {/* Life at E&E */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
+              <motion.div
+                initial={{ opacity: 0, x: -30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8 }}
+              >
+                <h2 className="text-3xl font-bold text-[#0A1A3C] mb-6 uppercase tracking-tight">Life at Engel & Engel</h2>
+                <div className="h-1 w-20 bg-[#D4AF37] mb-8" />
+                <p className="text-lg text-slate-600 font-light leading-relaxed">
+                  We provide a collaborative and collegial environment for motivated professionals
+                  seeking growth and the opportunity to hone specific skills in forensic accounting and
+                  expert witness services. If you are looking for an alternative to the traditional career path
+                  within a large accounting firm, Engel & Engel may be the right firm for your career
+                  journey. We believe the best training comes from hands-on experience and we make
+                  every effort to use case assignments as mentoring opportunities for your growth and
+                  success.
+                </p>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, x: 30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8 }}
+              >
+                <h2 className="text-3xl font-bold text-[#0A1A3C] mb-6 uppercase tracking-tight">Commitment to Diversity</h2>
+                <div className="h-1 w-20 bg-[#D4AF37] mb-8" />
+                <p className="text-lg text-slate-600 font-light leading-relaxed">
+                  Engel & Engel recognizes the importance of promoting diversity and inclusion in the
+                  accounting and legal professions. The success of our business depends on effective
+                  communication in and out of the courtroom, to a vast and varied audience of lawyers,
+                  judges, juries, and clients. We embrace the opportunity to gather the best accountants
+                  from all walks of life, including underrepresented groups.
+                </p>
+              </motion.div>
             </div>
-          </div>
-        </div>
-      </section>
 
-      {/* Benefits & Culture */}
-      <section className="section-padding bg-gray-50">
-        <div className="container-custom">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-6">Benefits & Culture</h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              We offer comprehensive benefits and a supportive culture that promotes 
-              professional growth and work-life balance.
-            </p>
-          </div>
+            {/* Opportunities */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="bg-slate-50 border border-slate-200 rounded-3xl p-10 md:p-16 relative overflow-hidden"
+            >
+              <div className="absolute top-0 right-0 w-64 h-64 bg-[#D4AF37]/5 rounded-full translate-x-32 -translate-y-32" />
+              <div className="relative z-10">
+                <h2 className="text-3xl font-bold text-[#0A1A3C] mb-8 uppercase tracking-tight">Current Opportunities</h2>
+                <p className="text-xl text-slate-700 font-light leading-relaxed mb-8">
+                  Our success record is well above average and our services are in great demand. We
+                  are always on the lookout for motivated professionals with skills, talent, and vision. We
+                  are seeking individuals at all levels, including office support personnel. We hope you
+                  have a genuine interest in the area of forensic accounting and litigation support services
+                  and we are eager to talk to you about your background and future plans.
+                </p>
+                <p className="text-lg text-[#0A1A3C] font-bold tracking-widest uppercase">
+                  Those interested in learning more about our firm are strongly encouraged to contact us
+                  and send a resume using the form below.
+                </p>
+              </div>
+            </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {benefits.map((benefit, index) => (
-              <Card key={index} className="h-full">
-                <CardHeader>
-                  <div className="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center text-primary-600 mb-4 text-2xl">
-                    {benefit.icon}
+            {/* Application Form */}
+            <motion.div
+              id="application-form"
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="max-w-2xl mx-auto pt-16"
+            >
+              <div className="text-center mb-12">
+                <h3 className="text-4xl font-bold text-[#0A1A3C] tracking-tighter mb-4 uppercase">Submit Application</h3>
+                <div className="h-1 w-20 bg-[#D4AF37] mx-auto mb-4" />
+                <p className="text-slate-500 uppercase tracking-widest text-sm font-bold">Start Your Journey With Us</p>
+              </div>
+
+              {submitted ? (
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  className="bg-green-50 border border-green-100 rounded-2xl p-12 text-center"
+                >
+                  <div className="w-20 h-20 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="w-10 h-10 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                    </svg>
                   </div>
-                  <CardTitle className="text-xl mb-2">{benefit.title}</CardTitle>
-                  <CardDescription className="text-gray-600 leading-relaxed">
-                    {benefit.description}
-                  </CardDescription>
-                </CardHeader>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
+                  <h4 className="text-2xl font-bold text-green-900 mb-2">Thank you!</h4>
+                  <p className="text-green-700">Your application has been received. We will review it and get back to you shortly.</p>
+                </motion.div>
+              ) : (
+                <form onSubmit={handleSubmit} className="space-y-8">
+                  {submitError && (
+                    <div className="bg-red-50 border border-red-200 text-red-700 text-sm px-4 py-3 rounded-md">
+                      {submitError}
+                    </div>
+                  )}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div className="space-y-2">
+                      <label htmlFor="name" className="block text-[10px] font-bold text-[#0A1A3C] uppercase tracking-[0.3em] mb-2">Full Name</label>
+                      <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        required
+                        value={formData.name}
+                        onChange={handleInputChange}
+                        className="w-full px-4 py-4 bg-[#f8fbff] border-[#172554]/30 focus:border-[#0B253E] outline-none transition-all text-[#0A1A3C] font-bold placeholder:text-gray-400"
+                        style={{ borderWidth: '0.1px' }}
+                        placeholder="YOUR NAME*"
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <label htmlFor="email" className="block text-[10px] font-bold text-[#0A1A3C] uppercase tracking-[0.3em] mb-2">Email Address</label>
+                      <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        required
+                        value={formData.email}
+                        onChange={handleInputChange}
+                        className="w-full px-4 py-4 bg-[#f8fbff] border-[#172554]/30 focus:border-[#0B253E] outline-none transition-all text-[#0A1A3C] font-bold placeholder:text-gray-400"
+                        style={{ borderWidth: '0.1px' }}
+                        placeholder="YOUR EMAIL*"
+                      />
+                    </div>
+                  </div>
 
-      {/* Open Positions */}
-      <section id="positions" className="section-padding bg-white">
-        <div className="container-custom">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-6">Current Openings</h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Explore our current career opportunities and join our team of forensic accounting experts.
-            </p>
-          </div>
+                  <div className="space-y-2">
+                    <label htmlFor="phone" className="block text-[10px] font-bold text-[#0A1A3C] uppercase tracking-[0.3em] mb-2">Phone Number</label>
+                    <input
+                      type="tel"
+                      id="phone"
+                      name="phone"
+                      value={formData.phone}
+                      onChange={handleInputChange}
+                      className="w-full px-4 py-4 bg-[#f8fbff] border-[#172554]/30 focus:border-[#0B253E] outline-none transition-all text-[#0A1A3C] font-bold placeholder:text-gray-400"
+                      style={{ borderWidth: '0.1px' }}
+                      placeholder="YOUR PHONE NUMBER"
+                    />
+                  </div>
 
-          <div className="space-y-8">
-            {positions.map((position, index) => (
-              <Card key={index} className="overflow-hidden">
-                <CardHeader className="bg-gray-50">
-                  <div className="flex flex-col md:flex-row md:items-center md:justify-between">
-                    <div>
-                      <CardTitle className="text-2xl mb-2">{position.title}</CardTitle>
-                      <div className="flex flex-wrap gap-4 text-sm text-gray-600">
-                        <span className="flex items-center">
-                          <span className="w-2 h-2 bg-primary-500 rounded-full mr-2"></span>
-                          {position.type}
-                        </span>
-                        <span className="flex items-center">
-                          <span className="w-2 h-2 bg-primary-500 rounded-full mr-2"></span>
-                          {position.location}
-                        </span>
-                        <span className="flex items-center">
-                          <span className="w-2 h-2 bg-primary-500 rounded-full mr-2"></span>
-                          {position.experience}
-                        </span>
+                  <div className="space-y-2">
+                    <label htmlFor="message" className="block text-[10px] font-bold text-[#0A1A3C] uppercase tracking-[0.3em] mb-1">Brief Introduction</label>
+                    <textarea
+                      id="message"
+                      name="message"
+                      rows={6}
+                      value={formData.message}
+                      onChange={handleInputChange}
+                      className="w-full px-4 py-4 bg-[#f8fbff] border-[#172554]/30 focus:border-[#0B253E] outline-none transition-all text-[#0A1A3C] font-bold placeholder:text-gray-400 resize-none min-h-[200px]"
+                      style={{ borderWidth: '0.1px' }}
+                      placeholder="ENTER A BRIEF MESSAGE"
+                    />
+                  </div>
+
+                  <div className="space-y-4">
+                    <label className="block text-[10px] font-bold text-[#0A1A3C] uppercase tracking-[0.3em] mb-2">Attach Resume (PDF)</label>
+                    <div className="relative group">
+                      <input
+                        type="file"
+                        accept=".pdf,.doc,.docx"
+                        onChange={handleFileChange}
+                        className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
+                      />
+                      <div className="border border-[#172554]/30 bg-[#f8fbff] p-8 text-center group-hover:bg-[#D4AF37]/5 transition-all" style={{ borderWidth: '0.1px' }}>
+                        <div className="w-12 h-12 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-[#D4AF37] transition-colors">
+                          <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 text-slate-400 group-hover:text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+                          </svg>
+                        </div>
+                        <p className="text-slate-600 font-bold uppercase tracking-widest text-xs">
+                          {file ? file.name : 'Click to upload or drag and drop'}
+                        </p>
+                        <p className="text-[10px] text-slate-400 mt-2 uppercase tracking-tight">PDF, DOC up to 10MB</p>
                       </div>
                     </div>
-                    <div className="mt-4 md:mt-0">
-                      <a href="mailto:careers@engelandengel.com?subject=Application for {position.title}">
-                        <Button>Apply Now</Button>
-                      </a>
-                    </div>
                   </div>
-                </CardHeader>
-                <CardContent className="pt-6">
-                  <p className="text-gray-700 mb-6 leading-relaxed">{position.description}</p>
-                  
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div>
-                      <h4 className="text-lg font-semibold text-gray-900 mb-3">Requirements</h4>
-                      <ul className="space-y-2">
-                        {position.requirements.map((req, reqIndex) => (
-                          <li key={reqIndex} className="flex items-start text-gray-600">
-                            <span className="text-primary-500 mr-2 mt-1">•</span>
-                            <span className="text-sm">{req}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                    
-                    <div>
-                      <h4 className="text-lg font-semibold text-gray-900 mb-3">Responsibilities</h4>
-                      <ul className="space-y-2">
-                        {position.responsibilities.map((resp, respIndex) => (
-                          <li key={respIndex} className="flex items-start text-gray-600">
-                            <span className="text-primary-500 mr-2 mt-1">•</span>
-                            <span className="text-sm">{resp}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
 
-      {/* Application Process */}
-      <section className="section-padding bg-primary-50">
-        <div className="container-custom">
-          <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-4xl font-bold text-gray-900 mb-8">How to Apply</h2>
-            <p className="text-xl text-gray-600 mb-12">
-              Ready to join our team? Follow these simple steps to submit your application.
-            </p>
-            
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <div className="text-center">
-                <div className="w-16 h-16 bg-primary-600 rounded-full flex items-center justify-center mx-auto mb-4 text-white text-2xl font-bold">
-                  1
-                </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">Submit Resume</h3>
-                <p className="text-gray-600">
-                  Email your resume and cover letter to careers@engelandengel.com
-                </p>
-              </div>
-              
-              <div className="text-center">
-                <div className="w-16 h-16 bg-primary-600 rounded-full flex items-center justify-center mx-auto mb-4 text-white text-2xl font-bold">
-                  2
-                </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">Initial Review</h3>
-                <p className="text-gray-600">
-                  Our team will review your qualifications and experience
-                </p>
-              </div>
-              
-              <div className="text-center">
-                <div className="w-16 h-16 bg-primary-600 rounded-full flex items-center justify-center mx-auto mb-4 text-white text-2xl font-bold">
-                  3
-                </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">Interview Process</h3>
-                <p className="text-gray-600">
-                  Meet with our team to discuss the opportunity and your fit
-                </p>
-              </div>
-            </div>
+                  <Button
+                    type="submit"
+                    fullWidth
+                    loading={isSubmitting}
+                    className="w-full py-8 bg-[#0A1A3C] hover:bg-[#D4AF37] text-white font-bold tracking-[0.5em] uppercase text-xs transition-all duration-500 rounded-none group relative overflow-hidden"
+                  >
+                    <span className="relative z-10">Submit Application</span>
+                    <div className="absolute inset-0 bg-[#D4AF37] translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
+                  </Button>
+                </form>
+              )}
+            </motion.div>
           </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="section-padding bg-primary-900 text-white">
-        <div className="container-custom text-center">
-          <h2 className="text-4xl font-bold mb-6">Ready to Start Your Career?</h2>
-          <p className="text-xl text-primary-100 mb-8 max-w-2xl mx-auto">
-            Join our team of forensic accounting experts and work on some of the most 
-            challenging and rewarding cases in the industry.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="mailto:careers@engelandengel.com">
-              <Button size="xl" className="bg-white text-primary-900 hover:bg-gray-100">
-                Send Your Resume
-              </Button>
-            </a>
-            <a href="tel:+13102772220">
-              <Button variant="outline" size="xl" className="border-white text-white hover:bg-white hover:text-primary-900">
-                Call (310) 277-2220
-              </Button>
-            </a>
-          </div>
-          <p className="text-primary-200 text-sm mt-6">
-            ✓ Competitive Benefits  ✓ Professional Growth  ✓ Expert Mentorship  ✓ Work-Life Balance
-          </p>
         </div>
       </section>
 
       <Footer />
     </main>
-  )
+  );
 }
+

@@ -107,6 +107,7 @@ export default function CalculatorNavigation({ currentPath }: CalculatorNavigati
                 <CardContent className="pt-0 mt-auto">
                   <Link href={calculator.href}>
                     <Button
+                      as="span"
                       className={`w-full bg-gradient-to-r ${calculator.color} ${calculator.hoverColor} text-white font-semibold py-2.5 px-4 rounded-lg transition-all duration-300 transform group-hover:scale-105 text-sm`}
                     >
                       Open Calculator
@@ -123,7 +124,7 @@ export default function CalculatorNavigation({ currentPath }: CalculatorNavigati
           <div className="text-center">
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="/resources">
-                <Button className="bg-primary-600 hover:bg-primary-700 text-white font-semibold py-3 px-8 rounded-lg transition-all duration-200 shadow-md hover:shadow-lg">
+                <Button as="span" className="bg-primary-600 hover:bg-primary-700 text-white font-semibold py-3 px-8 rounded-lg transition-all duration-200 shadow-md hover:shadow-lg">
                   <svg className="mr-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
                   </svg>
@@ -132,6 +133,7 @@ export default function CalculatorNavigation({ currentPath }: CalculatorNavigati
               </Link>
               <Link href="/contact">
                 <Button
+                  as="span"
                   variant="outline"
                   className="border-primary-600 text-primary-600 hover:bg-primary-50 font-semibold py-3 px-8 rounded-lg transition-all duration-200"
                 >

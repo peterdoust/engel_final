@@ -1,14 +1,11 @@
-import { Metadata } from 'next'
+import { buildMetadata } from '@/lib/seo'
 
-export const metadata: Metadata = {
-  title: 'Contact Engel & Engel | Los Angeles Forensic Accounting | (310) 277-2220',
-  description: 'Contact Engel & Engel forensic accounting experts in Los Angeles. Call (310) 277-2220 for free consultation. Located at 350 S Grand Avenue, Suite 3160.',
-}
+// Meta title / description for this page are editable at /admin/seo.
+// Previously hard-coded here; the defaults were ported verbatim into src/lib/seoPages.ts.
+export const generateMetadata = () => buildMetadata('/contact')
 
-export default function ContactLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
+export const revalidate = 3600
+
+export default function ContactLayout({ children }: { children: React.ReactNode }) {
   return <>{children}</>
 }

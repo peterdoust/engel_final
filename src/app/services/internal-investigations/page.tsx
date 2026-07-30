@@ -1,294 +1,362 @@
-import React from 'react'
-import Header from '@/components/layout/Header'
-import Footer from '@/components/layout/Footer'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card'
-import { Button } from '@/components/ui/Button'
-import Link from 'next/link'
-import FAQ from '@/components/seo/FAQ'
-import SchemaMarkup from '@/components/seo/SchemaMarkup'
-import Breadcrumbs from '@/components/seo/Breadcrumbs'
+'use client';
 
-export const metadata = {
-  title: 'Forensic Accounting Services Los Angeles - Engel & Engel, LLP',
-  description: 'Engel & Engel conducts internal investigations to uncover proof of misconduct, identify transactional patterns, and expose irregularities',
-  openGraph: {
-    title: 'Forensic Accounting Services Los Angeles - Engel & Engel, LLP',
-    description: 'Engel & Engel conducts internal investigations to uncover proof of misconduct, identify transactional patterns, and expose irregularities',
-    url: 'https://engelandengel.com/services/internal-investigations',
-    siteName: 'Engel & Engel LLP',
-    images: [{ url: 'https://engelandengel.com/wp-content/uploads/2025/10/identify-fincancial-patterns.jpg', width: 266, height: 332, alt: 'Internal Investigations - Forensic Accounting' }],
-    locale: 'en_US',
-    type: 'website',
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Forensic Accounting Services Los Angeles - Engel & Engel, LLP',
-    description: 'Engel & Engel conducts internal investigations to uncover proof of misconduct, identify transactional patterns, and expose irregularities',
-    images: ['https://engelandengel.com/wp-content/uploads/2025/10/identify-fincancial-patterns.jpg'],
-  },
-  robots: { index: true, follow: true, googleBot: { index: true, follow: true, 'max-video-preview': -1, 'max-image-preview': 'large', 'max-snippet': -1 } },
-  alternates: { canonical: 'https://engelandengel.com/services/internal-investigations' },
-}
+import { useEffect, useState } from 'react';
+import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
+import Header from '@/components/layout/Header';
+import Footer from '@/components/layout/Footer';
+import Image from 'next/image';
 
-export default function InternalInvestigationsPage() {
-  const faqItems = [
-    { question: "What types of clients do you serve for internal investigations?", answer: "We serve a diverse range of clients including corporate entities, nonprofit organizations, homeowners' associations (HOAs), government agencies, police departments, high-profile individuals, celebrities, private individuals, and their legal counsel. Our investigations are tailored to each client's specific needs and circumstances." },
-    { question: "What is included in your investigation reports?", answer: "We prepare professional reports that outline evidence, quantify financial impact, identify how misconduct occurred, and provide recommendations. These reports can be used to take corrective action, strengthen internal controls, pursue civil litigation, or provide to law enforcement agencies such as the Department of Justice or local police." },
-    { question: "Can you investigate embezzlement in HOAs and nonprofit organizations?", answer: "Yes. We have extensive experience investigating embezzlement, misappropriation of funds, and financial irregularities in homeowners' associations and nonprofit organizations. We understand the unique challenges these entities face and provide thorough investigations that uncover misconduct and quantify losses." },
-    { question: "Do you work with law enforcement?", answer: "Yes. In many cases, our investigation reports are provided to law enforcement agencies including the Department of Justice, FBI, or local police departments. We prepare our findings in a format that supports criminal investigations and prosecutions when appropriate." },
-    { question: "How do you handle investigations for high-profile individuals and celebrities?", answer: "We conduct discreet, confidential investigations for high-net-worth individuals and celebrities who suspect theft or overbilling by contractors, managers, advisors, or other parties. We understand the need for privacy and handle these matters with the utmost discretion while providing thorough forensic analysis." }
-  ]
+// ─────────────────────────────────────────────
+// Data
+// ─────────────────────────────────────────────
+
+const sections = [
+  {
+    id: 'overview',
+    title: 'Overview',
+    paragraphs: [
+      'Financial concerns often surface long before litigation begins. Unexplained losses, irregular transactions, or suspected misconduct can raise serious questions that demand answers. Whether the issue involves potential embezzlement, misuse of funds, or fraud within a family, business, or organization, early investigation is critical to understanding what has occurred and preventing further harm.',
+      'In other situations, fraud or embezzlement has already come to light, but the full extent of the wrongdoing is still unknown. We are often retained to conduct comprehensive investigations that reveal how misconduct occurred, measure the resulting financial impact, and provide clients with a clear report of findings. These reports give decision-makers the evidence they need to pursue recovery, pursue litigation, strengthen internal controls, or refer the matter to law enforcement.',
+      'At Engel & Engel, LLP, we conduct internal forensic accounting investigations that uncover irregularities and quantify financial impact. Our clients include individuals, families, HOAs, companies, celebrities, and government agencies. In many cases, we prepare a professional report of our findings that can be used to take corrective action, strengthen internal controls, pursue civil litigation, or provide to law enforcement agencies such as the Department of Justice or local police.',
+    ],
+    items: [],
+  },
+  {
+    id: 'services',
+    title: 'Investigation Services',
+    paragraphs: [
+      'Engel & Engel is often retained by corporate entities, nonprofit organizations, homeowners\' associations, government agencies, police departments, high profile individuals, and private individuals, as well as their counsel, to investigate a wide range of suspected misconduct.',
+    ],
+    items: [
+      'Embezzlement Investigations – Identifying misappropriation of funds within businesses, HOAs, and nonprofit',
+      'Fraud Detection – Uncovering financial misconduct in companies, family partnerships, and government entities',
+      'HOA Investigations – Examining potential fraud, misappropriation of funds, and other financial irregularities in homeowners\' associations',
+      'Nonprofit Organization Investigations – Investigating embezzlement, misappropriation, and misuse of charitable or organizational funds',
+      'Celebrity and High-Net-Worth Reviews – Examining potential theft or overbilling by contractors, managers, or advisors',
+      'Family and Partnership Disputes – Tracing funds and clarifying whether assets have been misused by relatives or business partners',
+      'Corporate Investigations – Reviewing internal controls, identifying fraudulent schemes, and calculating damages for organizations',
+      'Reporting of Findings – Delivering professional reports that outline evidence and quantify financial impact for decision-making or potential legal action',
+    ],
+  },
+  {
+    id: 'practice-areas',
+    title: 'Related Practice Areas',
+    paragraphs: [
+      'In connection with our Internal Investigations, Engel & Engel has the expertise and experience to address complex financial issues including the following:',
+    ],
+    items: [
+      'Economic Damages',
+      'Fraud Investigation',
+      'Business Valuation',
+      'Bankruptcy & Insolvency',
+      'Intellectual Property (IP) Investigations',
+      'Real Estate Fraud',
+      'Construction Fraud',
+      'Alter Ego',
+      'Fraudulent Transfers',
+      'Employment Damages',
+      'Business Interruption',
+      'Personal Injury Damages',
+      'Accounting Malpractice',
+      'Partnership/Shareholder Disputes',
+    ],
+  },
+  {
+    id: 'closing',
+    title: 'Our Commitment',
+    paragraphs: [
+      'With decades of experience in financial forensics, Engel & Engel provides the depth of analysis required to uncover misconduct and quantify its financial impact. Our investigations are confidential, fact-driven, and conducted with a clear understanding of what it takes to withstand scrutiny in court. They often serve as the foundation for pre-litigation strategy or future legal proceedings.',
+    ],
+    items: [],
+  },
+];
+
+// ─────────────────────────────────────────────
+// Mobile/Tablet Nav Component
+// ─────────────────────────────────────────────
+
+function MobileNav({ sidebarSections }: { sidebarSections: { id: string; title: string }[] }) {
+  const [activeId, setActiveId] = useState(sidebarSections[0]?.id || '');
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.scrollY + 150;
+      let currentId = sidebarSections[0]?.id || '';
+
+      for (const section of sidebarSections) {
+        const el = document.getElementById(section.id);
+        if (el && el.offsetTop <= scrollTop) {
+          currentId = section.id;
+        }
+      }
+
+      setActiveId(currentId);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
+
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [sidebarSections]);
+
+  const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const id = e.target.value;
+    const el = document.getElementById(id);
+    if (el) {
+      const top = el.offsetTop - 100;
+      window.scrollTo({ top, behavior: 'smooth' });
+    }
+  };
 
   return (
-    <main>
-      <SchemaMarkup type="Organization" data={{ address: { street: "11766 Wilshire Blvd, Suite 1170", zip: "90025" }, socialMedia: ["https://www.linkedin.com/company/engel-engel-llp"] }} />
-      <SchemaMarkup type="LocalBusiness" data={{ address: { street: "11766 Wilshire Blvd, Suite 1170", zip: "90025" }, geo: { latitude: "34.0522", longitude: "-118.2437" } }} />
-      <SchemaMarkup type="ProfessionalService" data={{ name: "Internal Investigations", description: "Confidential internal investigation services for corporate fraud and employee misconduct", serviceType: "Forensic Investigation Services", address: { street: "11766 Wilshire Blvd, Suite 1170", zip: "90025" } }} />
-      <SchemaMarkup type="HowTo" data={{
-        name: "How Internal Investigations Work",
-        description: "Our proven 5-step internal investigation process",
-        steps: [
-          { name: "Initial Assessment", text: "Confidential evaluation of allegations and development of investigation plan." },
-          { name: "Evidence Collection", text: "Systematic collection and preservation of financial records, emails, and other relevant evidence." },
-          { name: "Forensic Analysis", text: "Detailed analysis of financial transactions, communications, and business records to uncover misconduct." },
-          { name: "Interviews", text: "Professional interviews with relevant employees and witnesses to gather information." },
-          { name: "Final Report", text: "Comprehensive written report with findings, evidence, quantification of losses, and recommendations." }
-        ]
-      }} />
-      <SchemaMarkup type="FAQ" data={{ questions: faqItems }} />
-      
-      <Header />
-      
-      <section className="pt-16 lg:pt-20 bg-gradient-to-br from-primary-900 via-primary-800 to-primary-700 text-white">
-        <div className="container-custom py-20">
-          <Breadcrumbs items={[
-            { label: 'Services', href: '/services' },
-            { label: 'Internal Investigations', href: '/services/internal-investigations' }
-          ]} />
-          
-          <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">Internal Investigations</h1>
-            <p className="text-xl md:text-2xl text-primary-100 mb-8 leading-relaxed">
-              The Forensic Accounting Perspective
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a href="tel:(310) 277-2220"><Button size="xl" className="bg-white text-primary-900 hover:bg-gray-100">Call (310) 277-2220</Button></a>
-              <Link href="/contact"><Button size="xl" variant="outline" className="border-white text-white hover:bg-white hover:text-primary-900">Confidential Consultation</Button></Link>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="section-padding bg-white">
-        <div className="container-custom">
-          <div className="max-w-4xl mx-auto">
-            
-            <div className="mb-12">
-              <p className="text-xl text-gray-700 leading-relaxed mb-6">
-                Financial concerns often surface long before litigation begins. Unexplained losses, irregular transactions, or suspected misconduct can raise serious questions that demand answers. Whether the issue involves potential embezzlement, misuse of funds, or fraud within a family, business, or organization, early investigation is critical to understanding what has occurred and preventing further harm.
-              </p>
-              <p className="text-lg text-gray-600 leading-relaxed mb-6">
-                In other situations, fraud or embezzlement has already come to light, but the full extent of the wrongdoing is still unknown. We are often retained to conduct comprehensive investigations that reveal how misconduct occurred, measure the resulting financial impact, and provide clients with a clear report of findings. These reports give decision-makers the evidence they need to pursue recovery, pursue litigation, strengthen internal controls, or refer the matter to law enforcement.
-              </p>
-              <p className="text-lg text-gray-600 leading-relaxed">
-                At Engel & Engel, LLP, we conduct internal forensic accounting investigations that uncover irregularities and quantify financial impact. Our clients include individuals, families, HOAs, companies, celebrities, and government agencies. In many cases, we prepare a professional report of our findings that can be used to take corrective action, strengthen internal controls, pursue civil litigation, or provide to law enforcement agencies such as the Department of Justice or local police.
-              </p>
-            </div>
-
-            <div className="mb-12 bg-primary-50 rounded-2xl p-8">
-              <h2 className="text-3xl font-bold text-gray-900 mb-6">Engel & Engel's Internal Investigation Services</h2>
-              <p className="text-lg text-gray-700 leading-relaxed mb-6">
-                Engel & Engel is often retained by corporate entities, nonprofit organizations, homeowners' associations, government agencies, police departments, high profile individuals, and private individuals, as well as their counsel, to investigate a wide range of suspected misconduct.
-              </p>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-gray-700">
-                <div className="flex items-start gap-3">
-                  <svg className="w-6 h-6 text-primary-600 flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                  <span><strong>Embezzlement Investigations</strong> – Identifying misappropriation of funds within businesses, HOAs, and nonprofit</span>
-                </div>
-                <div className="flex items-start gap-3">
-                  <svg className="w-6 h-6 text-primary-600 flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                  <span><strong>Fraud Detection</strong> – Uncovering financial misconduct in companies, family partnerships, and government entities</span>
-                </div>
-                <div className="flex items-start gap-3">
-                  <svg className="w-6 h-6 text-primary-600 flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                  <span><strong>HOA Investigations</strong> – Examining potential fraud, misappropriation of funds, and other financial irregularities in homeowners' associations</span>
-                </div>
-                <div className="flex items-start gap-3">
-                  <svg className="w-6 h-6 text-primary-600 flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                  <span><strong>Nonprofit Organization Investigations</strong> – Investigating embezzlement, misappropriation, and misuse of charitable or organizational funds</span>
-                </div>
-                <div className="flex items-start gap-3">
-                  <svg className="w-6 h-6 text-primary-600 flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                  <span><strong>Celebrity and High-Net-Worth Reviews</strong> – Examining potential theft or overbilling by contractors, managers, or advisors</span>
-                </div>
-                <div className="flex items-start gap-3">
-                  <svg className="w-6 h-6 text-primary-600 flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                  <span><strong>Family and Partnership Disputes</strong> – Tracing funds and clarifying whether assets have been misused by relatives or business partners</span>
-                </div>
-                <div className="flex items-start gap-3">
-                  <svg className="w-6 h-6 text-primary-600 flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                  <span><strong>Corporate Investigations</strong> – Reviewing internal controls, identifying fraudulent schemes, and calculating damages for organizations</span>
-                </div>
-                <div className="flex items-start gap-3">
-                  <svg className="w-6 h-6 text-primary-600 flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                  <span><strong>Reporting of Findings</strong> – Delivering professional reports that outline evidence and quantify financial impact for decision-making or potential legal action</span>
-                </div>
-              </div>
-            </div>
-
-            <div className="mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 mb-6">Complex Financial Issues We Address</h2>
-              <p className="text-lg text-gray-700 mb-8">In connection with our Internal Investigations, Engel & Engel has the expertise and experience to address complex financial issues including the following:</p>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {[
-                  { title: "Economic Damages", href: "/practice-areas/economic-damages" },
-                  { title: "Fraud Investigation", href: "/practice-areas/fraud-investigation" },
-                  { title: "Business Valuation", href: "/practice-areas/business-valuation" },
-                  { title: "Bankruptcy & Insolvency", href: "/practice-areas/bankruptcy-insolvency" },
-                  { title: "Intellectual Property (IP) Investigations", href: "/practice-areas/ip-litigation" },
-                  { title: "Real Estate Fraud", href: "/practice-areas/real-estate-litigation" },
-                  { title: "Construction Fraud", href: "/practice-areas/construction-litigation" },
-                  { title: "Alter Ego", href: "/practice-areas/alter-ego" },
-                  { title: "Fraudulent Transfers", href: "/practice-areas/fraudulent-transfers" },
-                  { title: "Employment Damages", href: "/practice-areas/employment-litigation" },
-                  { title: "Business Interruption", href: "/practice-areas/business-interruption" },
-                  { title: "Personal Injury Damages", href: "/practice-areas/personal-injury" },
-                  { title: "Accounting Malpractice", href: "/practice-areas/accounting-malpractice" },
-                  { title: "Partnership/Shareholder Disputes", href: "/practice-areas/partnership-disputes" },
-                ].map((item, index) => (
-                  <Link key={index} href={item.href}>
-                    <Card className="h-full hover:shadow-xl transition-all duration-300 hover:-translate-y-1 cursor-pointer border-l-4 border-l-primary-600">
-                      <CardContent className="p-6">
-                        <h3 className="text-lg font-semibold text-primary-700 hover:text-primary-900">{item.title}</h3>
-                      </CardContent>
-                    </Card>
-                  </Link>
-                ))}
-              </div>
-            </div>
-
-            <div className="mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 mb-8">Our Investigation Process</h2>
-              <div className="space-y-6">
-                {[
-                  { step: "1", title: "Initial Assessment", desc: "Confidential evaluation of allegations, review of available information, and development of investigation plan tailored to the specific circumstances." },
-                  { step: "2", title: "Evidence Collection", desc: "Systematic collection and preservation of financial records, emails, computer files, and other relevant evidence using forensically sound methods." },
-                  { step: "3", title: "Forensic Analysis", desc: "Detailed analysis of financial transactions, communications, and business records using specialized investigatory techniques to uncover misconduct and quantify losses." },
-                  { step: "4", title: "Interviews", desc: "Professional interviews with relevant employees, witnesses, and other parties to gather information and test hypotheses." },
-                  { step: "5", title: "Final Report", desc: "Comprehensive written report detailing findings, supporting evidence, quantification of losses, identification of control weaknesses, and recommendations for remedial action." }
-                ].map((item) => (
-                  <div key={item.step} className="flex gap-6 items-start">
-                    <div className="flex-shrink-0 w-12 h-12 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold text-xl">
-                      {item.step}
-                    </div>
-                    <div className="flex-1">
-                      <h3 className="text-xl font-semibold text-gray-900 mb-2">{item.title}</h3>
-                      <p className="text-gray-600 leading-relaxed">{item.desc}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="mb-12 bg-gradient-to-br from-primary-50 to-white rounded-2xl p-8 border border-primary-100">
-              <h2 className="text-3xl font-bold text-gray-900 mb-6 text-center">Why Choose Engel & Engel</h2>
-              <p className="text-lg text-gray-700 leading-relaxed mb-8 text-center max-w-3xl mx-auto">
-                With decades of experience in financial forensics, Engel & Engel provides the depth of analysis required to uncover misconduct and quantify its financial impact. Our investigations are confidential, fact-driven, and conducted with a clear understanding of what it takes to withstand scrutiny in court. They often serve as the foundation for pre-litigation strategy or future legal proceedings.
-              </p>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div className="text-center">
-                  <div className="w-16 h-16 bg-primary-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-                    </svg>
-                  </div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-2">Confidential & Discreet</h3>
-                  <p className="text-gray-600">We maintain strict confidentiality throughout the investigation to protect your interests and reputation.</p>
-                </div>
-                <div className="text-center">
-                  <div className="w-16 h-16 bg-primary-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                    </svg>
-                  </div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-2">Court-Ready Analysis</h3>
-                  <p className="text-gray-600">Our investigations are conducted with a clear understanding of what it takes to withstand scrutiny in court.</p>
-                </div>
-                <div className="text-center">
-                  <div className="w-16 h-16 bg-primary-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
-                    </svg>
-                  </div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-2">Decades of Experience</h3>
-                  <p className="text-gray-600">Six professional certifications including CFE (Certified Fraud Examiner) and 30+ years of forensic accounting experience.</p>
-                </div>
-              </div>
-            </div>
-
-            <div className="mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 mb-6">Related Services</h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {[
-                  { name: "Forensic Accounting", href: "/services/forensic-accounting" },
-                  { name: "Expert Witness Testimony", href: "/services/expert-witness-testimony" },
-                  { name: "Joint Retention Program", href: "/services/joint-retention-program" },
-                  { name: "Fraud Investigation", href: "/practice-areas/fraud-investigation" },
-                  { name: "Economic Damages", href: "/practice-areas/economic-damages" },
-                  { name: "Accounting Malpractice", href: "/practice-areas/accounting-malpractice" }
-                ].map((area, index) => (
-                  <Link key={index} href={area.href}>
-                    <Card className="h-full hover:shadow-xl transition-all duration-300 hover:-translate-y-1 cursor-pointer">
-                      <CardContent className="p-6">
-                        <h3 className="text-lg font-semibold text-primary-700 hover:text-primary-900">{area.name}</h3>
-                      </CardContent>
-                    </Card>
-                  </Link>
-                ))}
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </section>
-
-      <FAQ items={faqItems} />
-
-      <section className="section-padding bg-gradient-to-br from-primary-900 via-primary-800 to-primary-700 text-white">
-        <div className="container-custom">
-          <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">Need a Confidential Investigation?</h2>
-            <p className="text-xl text-primary-100 mb-8">
-              For additional information about Engel & Engel's Forensic Accounting Services or a consultation, please contact Brandon J. Engel, CPA, CFE.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
-              <a href="tel:(310) 277-2220"><Button size="xl" className="bg-white text-primary-900 hover:bg-gray-100">Call (310) 277-2220</Button></a>
-              <a href="mailto:brandon@engelandengel.com"><Button size="xl" variant="outline" className="border-white text-white hover:bg-white hover:text-primary-900">Email brandon@engelandengel.com</Button></a>
-            </div>
-            <p className="text-primary-200">Serving individuals, families, HOAs, companies, celebrities, government agencies, and law enforcement nationwide</p>
-          </div>
-        </div>
-      </section>
-
-      <Footer />
-    </main>
-  )
+    <div className="lg:hidden sticky top-[72px] z-30 bg-white/95 backdrop-blur-sm border-b border-slate-200 shadow-sm">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3">
+        <select
+          value={activeId}
+          onChange={handleChange}
+          className="w-full p-3 bg-primary-950 text-white text-sm font-medium rounded-lg border-0 focus:outline-none focus:ring-2 focus:ring-[#D4AF37] appearance-none cursor-pointer"
+          style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23D4AF37' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E")`, backgroundRepeat: 'no-repeat', backgroundPosition: 'right 12px center' }}
+        >
+          {sidebarSections.map((section) => (
+            <option key={section.id} value={section.id}>
+              {section.title}
+            </option>
+          ))}
+        </select>
+      </div>
+    </div>
+  );
 }
 
+// ─────────────────────────────────────────────
+// Sidebar Component
+// ─────────────────────────────────────────────
+
+function Sidebar({ sidebarSections }: { sidebarSections: { id: string; title: string }[] }) {
+  const [activeId, setActiveId] = useState(sidebarSections[0]?.id || '');
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.scrollY + 150;
+      let currentId = sidebarSections[0]?.id || '';
+
+      for (const section of sidebarSections) {
+        const el = document.getElementById(section.id);
+        if (el && el.offsetTop <= scrollTop) {
+          currentId = section.id;
+        }
+      }
+
+      setActiveId(currentId);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
+
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [sidebarSections]);
+
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
+    e.preventDefault();
+    const el = document.getElementById(id);
+    if (el) {
+      const top = el.offsetTop - 100;
+      window.scrollTo({ top, behavior: 'smooth' });
+    }
+  };
+
+  return (
+    <aside className="hidden lg:block w-72 flex-shrink-0">
+      <div className="sticky top-28 bg-primary-950 py-6 rounded-xl border-t-4 border-[#D4AF37]">
+        <p className="text-[10px] tracking-[0.2em] uppercase text-white/80 font-bold mb-1 px-6">
+          On This Page
+        </p>
+        <div className="h-[2px] ml-6 w-24 bg-gradient-to-r from-[#D4AF37] to-transparent mb-6" />
+        <nav className="space-y-1 max-h-[calc(100vh-200px)] overflow-y-auto sidebar-scrollbar">
+          {sidebarSections.map((section) => (
+            <a
+              key={section.id}
+              href={`#${section.id}`}
+              onClick={(e) => handleClick(e, section.id)}
+              className={`block text-sm py-2 px-6 rounded-r border-l-2 transition-colors ${
+                activeId === section.id
+                  ? 'text-[#D4AF37] hover:text-[#D4AF37] border-[#D4AF37] font-medium bg-[#D4AF37]/20'
+                  : 'text-white border-transparent hover:text-[#D4AF37] hover:bg-[#D4AF37]/20 hover:border-[#D4AF37]'
+              }`}
+            >
+              {section.title}
+            </a>
+          ))}
+        </nav>
+      </div>
+    </aside>
+  );
+}
+
+// ─────────────────────────────────────────────
+// Page
+// ─────────────────────────────────────────────
+
+export default function InternalInvestigationsPage() {
+  const { scrollY } = useScroll();
+  const sidebarSections = sections.map((s) => ({ id: s.id, title: s.title }));
+
+  const y1 = useTransform(scrollY, [0, 500], [0, 200]);
+  const y2 = useTransform(scrollY, [0, 500], [0, -150]);
+  const opacity = useTransform(scrollY, [0, 300], [1, 0]);
+  const scale = useTransform(scrollY, [0, 500], [1, 1.1]);
+  const springY1 = useSpring(y1, { stiffness: 100, damping: 30 });
+
+  return (
+    <>
+      <Header />
+      <main className="bg-white min-h-screen text-slate-900">
+
+        {/* ══════════ CINEMATIC HERO ══════════ */}
+        <section className="relative min-h-[60vh] md:min-h-[75vh] lg:min-h-[85vh] flex items-center pt-24 md:pt-0 overflow-hidden bg-[#0A1A3C]">
+          <div className="absolute inset-0 z-0 pointer-events-none">
+            <motion.div
+              style={{ y: y2, scale }}
+              className="absolute top-1/4 right-1/4 w-[500px] h-[500px] bg-[#D4AF37]/10 blur-[150px] rounded-full"
+            />
+            <motion.div
+              style={{ y: y1 }}
+              className="absolute bottom-1/4 left-1/4 w-[400px] h-[400px] bg-[#3b82f6]/10 blur-[120px] rounded-full"
+            />
+            <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-[#D4AF37]/30 to-transparent" />
+          </div>
+
+          <div className="container-custom relative z-10 w-full">
+            <motion.div
+              style={{ y: springY1, opacity }}
+              className="max-w-4xl mx-auto text-center"
+            >
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 1.2, ease: "easeOut" }}
+              >
+                <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-tighter text-white drop-shadow-2xl">
+                  Internal <br />
+                  <span className="font-serif italic text-[#D4AF37] font-medium">Investigations</span>
+                </h1>
+                <div className="h-0.5 w-32 bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent mx-auto mt-6" />
+              </motion.div>
+            </motion.div>
+          </div>
+        </section>
+
+        {/* ══════════ MOBILE/TABLET STICKY NAV ══════════ */}
+        <MobileNav sidebarSections={sidebarSections} />
+
+        {/* ══════════ CONTENT BODY WITH SIDEBAR ══════════ */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20 lg:pb-28 pt-16">
+          <div className="flex flex-col lg:flex-row gap-12">
+
+            {/* Sidebar */}
+            <Sidebar sidebarSections={sidebarSections} />
+
+            {/* Content */}
+            <div className="flex-1 min-w-0">
+              {sections.map((section) => (
+                <section key={section.id} id={section.id} className="mb-10 scroll-mt-[6rem]">
+                  <h2 className="relative text-2xl font-semibold text-primary-950 mb-6 group inline-block">
+                    {section.title}
+                    <span className="absolute -bottom-2 left-0 w-12 h-0.5 bg-gradient-to-r from-[#0f3574] to-transparent transition-all duration-500 group-hover:w-full" />
+                  </h2>
+
+                  <div className="space-y-5 text-[18px] leading-relaxed text-gray-600">
+                    {section.paragraphs.map((paragraph: string, i: number) => (
+                      <p key={i}>{paragraph}</p>
+                    ))}
+
+                    {section.items && section.items.length > 0 && (
+                      <ul className={`gap-x-10 gap-y-2 ${
+                        section.items.length > 5
+                          ? 'grid grid-cols-1 sm:grid-cols-2'
+                          : 'flex flex-col'
+                      }`}>
+                        {section.items.map((item: string, j: number) => (
+                          <li key={j} className="flex items-start gap-3 text-base text-gray-800">
+                            <span className="mt-2 w-1.5 h-1.5 rounded-full bg-[#0f3574] flex-shrink-0" />
+                            {item}
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </div>
+                </section>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* ══════════ CONTACT CTA ══════════ */}
+        <section className="relative py-28 bg-[#0A1A3C] overflow-hidden">
+          <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#D4AF37]/5 blur-[150px] rounded-full pointer-events-none" />
+          <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-blue-500/10 blur-[120px] rounded-full pointer-events-none" />
+          <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-[#D4AF37]/50 to-transparent" />
+
+          <div className="container-custom relative z-10">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="max-w-5xl mx-auto"
+            >
+              <p className="text-base md:text-lg text-white/60 font-light mb-10 text-center">
+                For additional information about{' '}
+                <span className="text-white font-medium">Engel &amp; Engel&apos;s</span>{' '}
+                <span className="font-serif italic text-[#D4AF37]">Internal Investigations</span>{' '}
+                or a consultation, please contact:
+              </p>
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <div className="flex items-center gap-6 p-8 border border-white/10 rounded-2xl bg-white/5 backdrop-blur-sm">
+                  <div className="flex-shrink-0">
+                    <div className="rounded-full overflow-hidden border-2 border-[#D4AF37]/40">
+                      <Image width={80} height={80} src="/images/team/brandon-engel.jpg" alt="Brandon J. Engel" className="w-20 h-20 object-cover object-top" />
+                    </div>
+                  </div>
+                  <div className="space-y-2">
+                    <h3 className="text-3xl md:text-4xl font-bold text-white tracking-tight">Brandon J. Engel</h3>
+                    <p className="text-white/50 text-sm font-medium tracking-widest uppercase">CPA, CFE, ABV</p>
+                    <div className="h-px w-16 bg-[#D4AF37] mt-2" />
+                  </div>
+                </div>
+
+                <div className="flex flex-col justify-center space-y-5 p-8 border border-white/10 rounded-2xl bg-white/5 backdrop-blur-sm">
+                  <a href="mailto:brandon@engelandengel.com" className="group flex items-center gap-4">
+                    <div className="w-12 h-12 rounded-xl bg-[#D4AF37]/10 border border-[#D4AF37]/30 flex items-center justify-center text-[#D4AF37] group-hover:bg-[#D4AF37] group-hover:text-[#0A1A3C] transition-all duration-300 shrink-0">
+                      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                      </svg>
+                    </div>
+                    <span className="text-lg font-semibold text-white/90 group-hover:text-white border-b border-white/20 group-hover:border-[#D4AF37] pb-0.5 transition-all duration-200">
+                      brandon@engelandengel.com
+                    </span>
+                  </a>
+
+                  <a href="tel:310-277-2220" className="group flex items-center gap-4">
+                    <div className="w-12 h-12 rounded-xl bg-[#D4AF37]/10 border border-[#D4AF37]/30 flex items-center justify-center text-[#D4AF37] group-hover:bg-[#D4AF37] group-hover:text-[#0A1A3C] transition-all duration-300 shrink-0">
+                      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                      </svg>
+                    </div>
+                    <span className="text-lg font-semibold text-white/90 group-hover:text-white border-b border-white/20 group-hover:border-[#D4AF37] pb-0.5 transition-all duration-200">
+                      310-277-2220
+                    </span>
+                  </a>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+
+          <div className="absolute bottom-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-[#D4AF37]/30 to-transparent" />
+        </section>
+
+        <Footer />
+      </main>
+    </>
+  );
+}

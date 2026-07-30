@@ -76,10 +76,10 @@ export default function TeamVariation2({ teamMembers }: { teamMembers: any[] }) 
                   
                   <div className="flex gap-3">
                     <a href={`tel:${member.phone}`}>
-                      <Button size="sm">📞 Call</Button>
+                      <Button as="span" size="sm">📞 Call</Button>
                     </a>
                     <a href={`mailto:${member.email}`}>
-                      <Button variant="outline" size="sm">✉️ Email</Button>
+                      <Button as="span" variant="outline" size="sm">✉️ Email</Button>
                     </a>
                   </div>
                 </div>

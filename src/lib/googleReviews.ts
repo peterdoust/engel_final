@@ -53,45 +53,77 @@ const processGoogleReview = (review: GoogleReview): ProcessedReview => {
 // In production, you would fetch this from Google Places API
 const mockGoogleReviews: GoogleReview[] = [
   {
-    id: '1',
-    author: 'Robert Martinez',
-    firstName: 'Robert',
+    id: '0',
+    author: 'Mark K.',
+    firstName: 'Mark',
     rating: 5,
-    text: 'I cannot recommend Engel & Engel highly enough. When we suspected financial irregularities in our company, they conducted a thorough forensic accounting investigation that uncovered a complex embezzlement scheme we never would have discovered on our own. Their team was incredibly professional, discreet, and methodical in their approach. They not only identified the fraudulent activities but also helped us recover a significant portion of the stolen funds and provided expert testimony that was crucial in the prosecution. The detailed reports they provided were clear, comprehensive, and held up perfectly in court. Their expertise literally saved our business and gave us the tools to prevent future fraud. Worth every penny.',
-    date: '2024-01-15'
+    text: 'I am a real estate litigation attorney who has used Jason Engel as my forensic accounting expert in two multi-million dollar cases. He is eminently responsive and able to synthesize complicated financial transactions so that the fact-finder may easily understand them at trial.\n\nI highly recommend him and intend to use him again if the need arises.',
+    date: '2026-04-22'
+  },
+  {
+    id: '1',
+    author: 'Eric K.',
+    firstName: 'Eric',
+    rating: 5,
+    text: 'I used Jason in a contentious breach of contract case with eight-figure damages. The case was barreling toward trial, and Jason was asked to provide his analysis and opinion in a very short time frame and under significant pressure from the client. Jason and his team did a fantastic job. He was extremely responsive and his report was exactly what we needed. I will use Jason again.',
+    date: '2026-04-21'
   },
   {
     id: '2',
-    author: 'Amanda Johnson',
-    firstName: 'Amanda',
+    author: 'Michael S.',
+    firstName: 'Michael',
     rating: 5,
-    text: 'As an attorney handling a complex partnership dispute involving millions of dollars, I needed a forensic accountant who could not only analyze the financial records but also serve as an expert witness. Engel & Engel exceeded all expectations. Their forensic analysis was incredibly detailed and revealed financial discrepancies that were key to our case. What impressed me most was their ability to explain complex financial concepts in simple terms that the jury could understand. Their courtroom presence was professional and confident, and their testimony was clear, credible, and compelling. The opposing counsel tried to challenge their findings multiple times, but their work was so thorough and well-documented that it held up under intense scrutiny. We won the case largely due to their expert analysis and testimony. I will definitely use them again for future cases.',
-    date: '2024-01-10'
+    text: "I have had the privilege of using Jason Engel's professional services for many years. Simply stated, he is not only excellent at what he does, he is a creative problem solver who always has innovative ways to advance my clients' interests. I would recommend him without reservation to anyone who is in need of the many services he provides.",
+    date: '2026-04-20'
   },
   {
     id: '3',
-    author: 'Carlos Rodriguez',
-    firstName: 'Carlos',
+    author: 'Geoffrey G.',
+    firstName: 'Geoffrey',
     rating: 5,
-    text: 'When we were considering acquiring a competitor, we needed a comprehensive business valuation to ensure we were making a sound investment. Engel & Engel provided an incredibly thorough analysis that went far beyond just the numbers. They examined the target company\'s financial statements, identified potential red flags, analyzed market conditions, and provided a detailed valuation report that helped us negotiate a fair price. Their attention to detail was remarkable - they caught several accounting irregularities that could have cost us significantly down the road. The valuation was defensible, well-researched, and gave us the confidence to move forward with the acquisition. The deal has been very successful, and I credit much of that success to their thorough due diligence work. Professional, reliable, and worth every dollar.',
-    date: '2024-01-05'
+    text: 'Jason is the kind of expert witness you want. One who is always going to provide a well-supported expert opinion. His opinion is independent. It might not always be the one you would hope to hear. But it is the one that is right and correct. Jason is careful, attentive to detail and thorough. He presents well at trial. And he is a pleasure to work with. He has my highest recommendation.',
+    date: '2026-04-19'
   },
   {
     id: '4',
-    author: 'Michelle Wong',
-    firstName: 'Michelle',
+    author: 'Brian F.',
+    firstName: 'Brian',
     rating: 5,
-    text: 'Our company was facing a devastating fraud situation that threatened our very existence. We had discovered that a trusted employee had been systematically stealing from us for years, but we didn\'t know the full extent of the damage. Engel & Engel came in and conducted a comprehensive fraud investigation that was both thorough and efficient. They traced every transaction, identified all the fraudulent activities, and quantified our losses with precision. What impressed me most was their ability to work quickly without sacrificing accuracy - we needed answers fast, and they delivered. They also helped us strengthen our internal controls to prevent future fraud and provided expert testimony that was instrumental in recovering our losses through insurance and legal action. Their professionalism, expertise, and dedication literally saved our business. I cannot thank them enough.',
-    date: '2023-12-20'
+    text: 'We hired Engel & Engel as a forensic accountant on a construction defect case. We found Jason and Brandon to both be knowledgeable, responsive and professional. We will definitely use them again.',
+    date: '2026-04-18'
   },
   {
     id: '5',
-    author: 'James Thompson',
-    firstName: 'James',
+    author: 'Ed M.',
+    firstName: 'Ed',
     rating: 5,
-    text: 'After a major fire at our manufacturing facility, we filed a substantial insurance claim that was initially disputed by our insurance company. They claimed our losses were inflated and demanded extensive documentation. Engel & Engel stepped in to help us prepare a comprehensive claim analysis that was both accurate and defensible. Their team meticulously reviewed all our financial records, calculated our actual losses including business interruption costs, and prepared detailed reports that clearly demonstrated the legitimacy of our claim. They also served as expert witnesses during the insurance company\'s investigation, answering all questions professionally and confidently. Thanks to their thorough work and expert testimony, we were able to recover the full amount of our claim, which was over $2 million. Their expertise and professionalism made all the difference in what could have been a devastating financial situation for our company.',
-    date: '2023-12-15'
-  }
+    text: 'Jason Engel and his team are professional, knowledgeable, honest, and trustworthy. I would recommend Engel & Engel for any accounting matters.',
+    date: '2026-04-17'
+  },
+  {
+    id: '6',
+    author: 'Phillip S.',
+    firstName: 'Phillip',
+    rating: 5,
+    text: 'Excellent forensic accounting experts. Sharp analysis and clear presentation. Timely follow through and ability to work under short deadlines.',
+    date: '2026-04-16'
+  },
+  {
+    id: '7',
+    author: 'David S.',
+    firstName: 'David',
+    rating: 5,
+    text: 'Amazing and thorough job as experts in a Piercing the Corporate Veil case. Very thankful.',
+    date: '2026-04-15'
+  },
+  {
+    id: '8',
+    author: 'Eric W.',
+    firstName: 'Eric',
+    rating: 5,
+    text: 'The Engels are the best in the business, hands down. They are a remarkable father-son duo, and I had the opportunity to work with them on a very high-stakes, company-breaking matter. They were outstanding from start to finish. They reviewed opposing counsel’s expert work and professionally dismantled it with precision and credibility. They updated their reports in real time when needed, responded thoroughly to the arbitrator’s inquiries, and provided strong backup for every position they took. Our success was due in large part to having the Engels in our corner. I recommend them without hesitation.',
+    date: '2026-04-14'
+  },
 ]
 
 // Fetch Google reviews (mock implementation)

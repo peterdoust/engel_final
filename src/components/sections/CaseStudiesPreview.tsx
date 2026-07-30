@@ -114,7 +114,7 @@ export default function CaseStudiesPreview() {
                 </div>
                 
                 <Link href={study.href}>
-                  <Button variant="outline" size="sm" className="w-full group">
+                  <Button as="span" variant="outline" size="sm" className="w-full group">
                     Read Full Case Study
                     <svg className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
@@ -134,12 +134,12 @@ export default function CaseStudiesPreview() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/cases">
-              <Button size="lg">
+              <Button as="span" size="lg">
                 View All Case Studies
               </Button>
             </Link>
             <Link href="/contact">
-              <Button variant="outline" size="lg">
+              <Button as="span" variant="outline" size="lg">
                 Discuss Your Case
               </Button>
             </Link>

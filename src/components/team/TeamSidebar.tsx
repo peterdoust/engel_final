@@ -37,20 +37,21 @@ export default function TeamSidebar({ sections, phone }: TeamSidebarProps) {
   }, [sections]);
 
   return (
-    <aside className="hidden lg:block w-64 flex-shrink-0">
-      <div className="sticky top-28">
-        <p className="text-[10px] tracking-[0.2em] uppercase text-gray-400 font-semibold mb-4">
+    <aside className="hidden lg:block w-72 flex-shrink-0">
+      <div className="sticky top-28 bg-primary-950 py-6 rounded-xl border-t-4 border-[#D4AF37]">
+        <p className="text-[10px] tracking-[0.2em] uppercase text-white/80 font-bold mb-1 px-6">
           On This Page
         </p>
+        <div className="h-[2px] ml-6 w-24 bg-gradient-to-r from-[#D4AF37] to-transparent mb-6" />
         <nav className="space-y-1">
           {sections.map((section) => (
             <a
               key={section.id}
               href={`#${section.id}`}
-              className={`block text-sm py-2 pl-3 rounded-r border-l-2 transition-colors ${
+              className={`block text-sm py-2 px-6 rounded-r border-l-2 transition-colors ${
                 activeId === section.id
-                  ? 'text-primary-950 hover:text-primary-950 border-primary-950 font-medium bg-primary-50/50'
-                  : 'text-gray-600 border-transparent hover:text-gray-700'
+                  ? 'text-[#D4AF37] hover:text-[#D4AF37] border-[#D4AF37] font-medium bg-[#D4AF37]/20'
+                  : 'text-white border-transparent hover:text-[#D4AF37] hover:bg-[#D4AF37]/20 hover:border-[#D4AF37]'
               }`}
             >
               {section.title}

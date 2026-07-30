@@ -20,6 +20,11 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
+# Local dev/build server logs
+dev.log
+build.log
+start.log
+
 # Local env files
 .env
 .env*.local
@@ -51,3 +56,17 @@ screenshots/
 client-review-documents/
 *.md
 !README.md
+
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+.~lock.*#
+
+# Automated browser-testing output
+.playwright-mcp/
+
+# Client/internal documents — repo is public, keep these out
+*.docx
+*.doc
+*.xlsx
+*.pptx

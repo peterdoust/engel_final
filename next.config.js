@@ -61,23 +61,24 @@ const nextConfig = {
         destination: '/',
         permanent: true,
       },
+      {
+        source: '/about',
+        destination: '/team',
+        permanent: true,
+      },
+      {
+        source: '/services',
+        destination: '/services/forensic-accounting',
+        permanent: true,
+      },
     ];
 
-    // Redirect resources, design-showcase, and admin pages to home on Vercel only
+    // Redirect resources and design-showcase to home on Vercel only
     if (process.env.VERCEL) {
       redirects.push(
-        {
-          source: '/resources/:path*',
-          destination: '/',
-          permanent: false,
-        },
+
         {
           source: '/design-showcase',
-          destination: '/',
-          permanent: false,
-        },
-        {
-          source: '/admin/:path*',
           destination: '/',
           permanent: false,
         }

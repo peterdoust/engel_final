@@ -140,13 +140,13 @@ export default function TeamHeroVariation4({ member }: Props) {
                           rel="noopener noreferrer"
                           className="flex-1"
                         >
-                          <Button size="lg" className="w-full bg-gradient-to-r from-primary-600 to-purple-600 hover:from-primary-700 hover:to-purple-700 shadow-lg hover:shadow-xl transition-all">
+                          <Button as="span" size="lg" className="w-full bg-gradient-to-r from-primary-600 to-purple-600 hover:from-primary-700 hover:to-purple-700 shadow-lg hover:shadow-xl transition-all">
                             Download Full Qualifications
                           </Button>
                         </a>
                       )}
                       <a href={`mailto:${member.email}`} className="flex-1">
-                        <Button size="lg" variant="outline" className="w-full border-2 border-primary-600 text-primary-600 hover:bg-primary-600 hover:text-white transition-all">
+                        <Button as="span" size="lg" variant="outline" className="w-full border-2 border-primary-600 text-primary-600 hover:bg-primary-600 hover:text-white transition-all">
                           Request Consultation
                         </Button>
                       </a>

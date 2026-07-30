@@ -1,14 +1,11 @@
-import { Metadata } from 'next'
+import { buildMetadata } from '@/lib/seo'
 
-export const metadata: Metadata = {
-  title: 'Forensic Accounting Resources | Expert Guides & Tools | Engel & Engel',
-  description: 'Free forensic accounting resources, guides, calculators, and expert insights for legal professionals. 35+ years of expertise from Los Angeles CPA experts.',
-}
+// Meta title / description for this page are editable at /admin/seo.
+// Previously hard-coded here; the defaults were ported verbatim into src/lib/seoPages.ts.
+export const generateMetadata = () => buildMetadata('/resources')
 
-export default function ResourcesLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
+export const revalidate = 3600
+
+export default function ResourcesLayout({ children }: { children: React.ReactNode }) {
   return <>{children}</>
 }

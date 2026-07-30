@@ -64,12 +64,12 @@ export default function TeamVariation3({ teamMembers }: { teamMembers: any[] }) 
                 
                 <div className="flex justify-center gap-3">
                   <a href={`tel:${member.phone}`}>
-                    <Button variant="outline" size="sm" className="text-xs">
+                    <Button as="span" variant="outline" size="sm" className="text-xs">
                       📞 Call
                     </Button>
                   </a>
                   <a href={`mailto:${member.email}`}>
-                    <Button variant="outline" size="sm" className="text-xs">
+                    <Button as="span" variant="outline" size="sm" className="text-xs">
                       ✉️ Email
                     </Button>
                   </a>

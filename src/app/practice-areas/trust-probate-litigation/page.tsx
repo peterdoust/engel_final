@@ -1,247 +1,146 @@
-import React from 'react'
-import Header from '@/components/layout/Header'
-import Footer from '@/components/layout/Footer'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card'
-import { Button } from '@/components/ui/Button'
-import Link from 'next/link'
-import FAQ from '@/components/seo/FAQ'
-import SchemaMarkup from '@/components/seo/SchemaMarkup'
-import Breadcrumbs from '@/components/seo/Breadcrumbs'
+'use client';
 
-export const metadata = {
-  title: 'Trust & Probate Litigation Expert Witness | Forensic Accounting Los Angeles | Engel & Engel',
-  description: 'Trust and probate litigation forensic accounting expert witness in Los Angeles. Estate valuation, breach of fiduciary duty, asset tracing. Court-tested testimony.',
-  openGraph: {
-    title: 'Trust & Probate Litigation Expert Witness | Forensic Accounting Los Angeles',
-    description: 'Trust and probate litigation forensic investigation and expert testimony.',
-    url: 'https://engelandengel.com/practice-areas/trust-probate-litigation',
-    siteName: 'Engel & Engel LLP',
-    images: [{ url: 'https://engelandengel.com/images/og-trust-probate.jpg', width: 1200, height: 630, alt: 'Trust & Probate Litigation Expert - Los Angeles' }],
-    locale: 'en_US',
-    type: 'website',
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Trust & Probate Litigation Expert Witness | Forensic Accounting Los Angeles',
-    description: 'Trust and probate litigation forensic investigation and expert testimony.',
-    images: ['https://engelandengel.com/images/twitter-trust-probate.jpg'],
-  },
-  robots: { index: true, follow: true, googleBot: { index: true, follow: true, 'max-video-preview': -1, 'max-image-preview': 'large', 'max-snippet': -1 } },
-  alternates: { canonical: 'https://engelandengel.com/practice-areas/trust-probate-litigation' },
-}
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
+import Header from '@/components/layout/Header';
+import Footer from '@/components/layout/Footer';
+import Image from 'next/image';
 
-export default function TrustProbateLitigationEnhancedPage() {
-  const faqItems = [
-    { question: "What types of trust and probate cases do you handle?", answer: "We provide forensic accounting services for trust and estate litigation including breach of fiduciary duty, misappropriation of trust assets, estate valuations, accounting disputes, surcharge actions, and beneficiary disputes." },
-    { question: "How do you value estate assets?", answer: "We value estate assets including businesses, real estate, investments, and personal property using appropriate valuation methodologies. We determine fair market value as of the date of death or other relevant valuation dates." },
-    { question: "Can you trace misappropriated trust assets?", answer: "Yes, we specialize in tracing misappropriated trust and estate assets, identifying unauthorized distributions, personal use of trust funds, and documenting financial misconduct by trustees or executors." },
-    { question: "Do you analyze trustee accountings?", answer: "Yes, we review and analyze trustee accountings to identify errors, omissions, unauthorized transactions, and breaches of fiduciary duty. We can prepare accounting reports and testify regarding accounting issues." },
-    { question: "Do you testify as an expert witness in trust and probate cases?", answer: "Yes, we provide expert witness testimony in trust and probate litigation. Our testimony covers estate valuations, forensic investigations, trustee accountings, and damages calculations." }
-  ]
+const practiceAreas = [
+  { title: 'Economic Damages', href: '/practice-areas/economic-damages' },
+  { title: 'Fraud Investigation', href: '/practice-areas/fraud-investigation' },
+  { title: 'Business Valuation', href: '/practice-areas/business-valuation' },
+  { title: 'Bankruptcy & Insolvency', href: '/practice-areas/bankruptcy-insolvency' },
+  { title: 'IP Litigation', href: '/practice-areas/ip-litigation' },
+  { title: 'Real Estate Litigation', href: '/practice-areas/real-estate-litigation' },
+  { title: 'Construction Litigation', href: '/practice-areas/construction-litigation' },
+  { title: 'Alter Ego', href: '/practice-areas/alter-ego' },
+  { title: 'Fraudulent Transfers', href: '/practice-areas/fraudulent-transfers' },
+  { title: 'Employment Litigation', href: '/practice-areas/employment-litigation' },
+  { title: 'Business Interruption', href: '/practice-areas/business-interruption' },
+  { title: 'Personal Injury', href: '/practice-areas/personal-injury' },
+  { title: 'Accounting Malpractice', href: '/practice-areas/accounting-malpractice' },
+  { title: 'Partnership & Shareholder Disputes', href: '/practice-areas/partnership-disputes' },
+  { title: 'Trust/Probate Litigation', href: '/practice-areas/trust-probate-litigation' },
+  { title: 'Defamation Litigation', href: '/practice-areas/defamation' },
+];
+
+export default function TrustProbateLitigationPage() {
+  const pathname = usePathname();
+  const { scrollY } = useScroll();
+  const y1 = useTransform(scrollY, [0, 500], [0, 200]);
+  const y2 = useTransform(scrollY, [0, 500], [0, -150]);
+  const opacity = useTransform(scrollY, [0, 300], [1, 0]);
+  const scale = useTransform(scrollY, [0, 500], [1, 1.1]);
+  const springY1 = useSpring(y1, { stiffness: 100, damping: 30 });
+
+  const services = [
+    'Tracing and Recovery of Assets',
+    'Verification of Trust and Estate Accountings',
+    'Investigation of Misappropriation of Assets',
+    'Allocation of Trust Assets',
+    'Estate Tax Return Analysis (Form 706)',
+    'Real Estate Asset Diversion',
+    'Business and Asset Valuation',
+    'Expert Witness Testimony',
+  ];
 
   return (
-    <main>
-      <SchemaMarkup type="Organization" data={{ address: { street: "11766 Wilshire Blvd, Suite 1170", zip: "90025" }, socialMedia: ["https://www.linkedin.com/company/engel-engel-llp"] }} />
-      <SchemaMarkup type="LocalBusiness" data={{ address: { street: "11766 Wilshire Blvd, Suite 1170", zip: "90025" }, geo: { latitude: "34.0522", longitude: "-118.2437" } }} />
-      <SchemaMarkup type="ProfessionalService" data={{ name: "Trust & Probate Litigation Expert Witness Services", description: "Trust and probate litigation forensic accounting and expert witness testimony in Los Angeles", serviceType: "Forensic Accounting - Trust & Probate", address: { street: "11766 Wilshire Blvd, Suite 1170", zip: "90025" } }} />
-      <SchemaMarkup type="HowTo" data={{
-        name: "How to Conduct Trust & Probate Forensic Investigation",
-        description: "Our proven 5-step process for trust and probate litigation analysis",
-        steps: [
-          { name: "Initial Review", text: "Review trust documents, estate records, and identify litigation issues." },
-          { name: "Asset Valuation", text: "Value estate assets including businesses, real estate, and investments." },
-          { name: "Accounting Analysis", text: "Review trustee accountings and identify discrepancies." },
-          { name: "Forensic Investigation", text: "Investigate allegations of misappropriation or breach of fiduciary duty." },
-          { name: "Expert Report & Testimony", text: "Prepare detailed reports and provide expert witness testimony." }
-        ]
-      }} />
-      <SchemaMarkup type="FAQ" data={{ questions: faqItems }} />
-      
+    <>
       <Header />
-      
-      <section className="pt-16 lg:pt-20 bg-gradient-to-br from-primary-900 via-primary-800 to-primary-700 text-white">
-        <div className="container-custom py-20">
-          <Breadcrumbs items={[
-            { label: 'Practice Areas', href: '/practice-areas' },
-            { label: 'Trust & Probate Litigation', href: '/practice-areas/trust-probate-litigation' }
-          ]} />
-          
-          <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">Trust & Probate Litigation Expert Witness</h1>
-            <p className="text-xl md:text-2xl text-primary-100 mb-8 leading-relaxed">
-              Forensic accounting expertise in trust and probate litigation, estate valuations, and breach of fiduciary duty investigations.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a href="tel:(310) 277-2220"><Button size="xl" className="bg-white text-primary-900 hover:bg-gray-100">Call (310) 277-2220</Button></a>
-              <Link href="/contact"><Button size="xl" variant="outline" className="border-white text-white hover:bg-white hover:text-primary-900">Free Consultation</Button></Link>
+      <main className=" min-h-screen">
+        <section className="relative min-h-[70vh] flex items-end overflow-hidden bg-primary-950">
+          <div className="absolute inset-0 z-0 pointer-events-none">
+            <motion.div style={{ y: y2, scale }} className="absolute top-1/4 right-1/4 w-[500px] h-[500px] bg-[#D4AF37]/10 blur-[150px] rounded-full" />
+            <motion.div style={{ y: y1 }} className="absolute bottom-1/4 left-1/4 w-[400px] h-[400px] bg-[#3b82f6]/10 blur-[120px] rounded-full" />
+            <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)', backgroundSize: '60px 60px' }} />
+            <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-[#D4AF37]/30 to-transparent" />
+          </div>
+          <div className="container-custom relative z-10 w-full pb-20 pt-40">
+            <motion.div style={{ y: springY1, opacity }} className="max-w-5xl">
+              <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, ease: 'easeOut' }}>
+                <p className="text-[#D4AF37] text-sm font-semibold tracking-[0.3em] uppercase mb-6">Practice Area</p>
+                <h1 className="text-6xl md:text-8xl lg:text-9xl font-bold tracking-tighter text-white leading-[0.9]">Trust/Probate<br /><span className="font-serif italic text-[#D4AF37] font-medium">Litigation</span></h1>
+                <div className="h-[3px] w-24 bg-[#D4AF37] mt-8" />
+              </motion.div>
+            </motion.div>
+          </div>
+        </section>
+
+        <div className="container-custom relative py-16 lg:py-24">
+          <div className="flex flex-col lg:flex-row lg:items-start gap-10 lg:gap-16">
+            <aside className="hidden lg:block lg:w-72 xl:w-80 flex-shrink-0 z-20 sticky top-28">
+              <nav className="bg-white rounded-2xl shadow-xl border border-slate-100 overflow-hidden">
+                <div className="p-5 bg-primary-950"><h3 className="text-sm font-bold text-white tracking-[0.2em] uppercase">Practice Areas</h3></div>
+                <div className="max-h-[70vh] overflow-y-auto py-2 custom-scrollbar">
+                  {practiceAreas.map((area) => { const isActive = pathname === area.href; return (<Link key={area.href} href={area.href} className={`block px-5 py-3 text-[0.85rem] font-medium transition-all duration-200 border-l-[3px] ${isActive ? 'bg-primary-950/5 text-primary-950 border-l-[#D4AF37] font-semibold' : 'text-gray-800 border-l-transparent hover:bg-slate-50 hover:text-primary-950 hover:border-l-primary-950/30'}`}>{area.title}</Link>); })}
+                </div>
+              </nav>
+            </aside>
+
+            <div className="flex-1 min-w-0">
+              <section className="">
+                <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }}>
+                  <div className="relative">
+                    <div className="absolute -left-6 top-0 bottom-0 w-1 bg-gradient-to-b from-[#D4AF37] via-[#D4AF37]/40 to-transparent rounded-full hidden lg:block" />
+                    <p className="text-[18px] leading-relaxed">Trust, estate, and probate disputes often arise from poor recordkeeping, lack of transparency, or intentional misconduct. Questions surrounding the management of trust assets, valuation of estates, and accuracy of accounting can quickly escalate into litigation when beneficiaries suspect mismanagement or fraud. At Engel &amp; Engel, LLP, we work closely with attorneys to untangle complex financial records, trace assets, and provide the forensic accounting analysis necessary to resolve these disputes. Our team brings clarity and precision to cases where the truth is hidden within years of financial activity. With decades of experience in forensic accounting, Engel &amp; Engel provides the financial expertise needed to investigate trust and estate disputes, evaluate claims, calculate damages, and deliver findings that withstand scrutiny in court.</p>
+                  </div>
+                </motion.div>
+              </section>
+
+              <section className="py-10 my-10 border-t border-b border-slate-200">
+                <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
+                  <h2 className="text-2xl md:text-3xl font-bold text-primary-950 leading-tight mb-4">How Engel &amp; Engel Helps Trust/Probate Attorneys</h2>
+                  <div className="h-[3px] w-16 bg-primary-950 mb-4" />
+                  <p className="mb-10">When the stakes are high, Engel &amp; Engel can serve as your expert in connection with the following:</p>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4">
+                    {services.map((item, i) => (
+                      <motion.div key={i} initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.4, delay: i * 0.03 }} className="group relative p-5 bg-white rounded-2xl border border-slate-200 hover:border-primary-950/30 hover:shadow-lg transition-all duration-300 flex justify-center flex-col">
+                        <div className="absolute top-1/2 -translate-y-1/2 left-5 w-2 h-2 rounded-full bg-[#D4AF37] group-hover:scale-125 transition-transform" />
+                        <span className="block pl-5 text-[0.95rem] font-medium leading-snug group-hover:text-primary-950 transition-colors">{item}</span>
+                      </motion.div>
+                    ))}
+                  </div>
+                </motion.div>
+              </section>
             </div>
           </div>
         </div>
-      </section>
 
-      <section className="section-padding bg-white">
-        <div className="container-custom">
-          <div className="max-w-4xl mx-auto">
-            
-            <div className="mb-12">
-              <p className="text-xl text-gray-700 leading-relaxed mb-6">
-                Trust and probate litigation often demands the expertise of forensic accountants to value estate assets, analyze trustee accountings, and investigate allegations of financial misconduct. Engel & Engel has extensive experience in conducting forensic investigations and providing expert testimony in trust and probate litigation for beneficiaries, trustees, and executors.
-              </p>
-              <p className="text-lg text-gray-600 leading-relaxed">
-                Our expertise includes estate valuations, trustee accounting analysis, tracing misappropriated assets, breach of fiduciary duty investigations, and damages calculations. We have the qualifications and experience to serve as expert witnesses in trust and probate disputes.
-              </p>
+        <section className="lg:hidden py-12 bg-white border-t border-slate-200">
+          <div className="container-custom">
+            <h3 className="text-lg font-bold text-primary-950 mb-6 tracking-tight">Other Practice Areas</h3>
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+              {practiceAreas.filter((area) => area.href !== pathname).map((area) => (<Link key={area.href} href={area.href} className="block p-4 bg-slate-50 rounded-xl text-[0.8rem] font-medium text-slate-600 hover:bg-primary-950/5 hover:text-primary-950 transition-all duration-200 border border-slate-100 hover:border-primary-950/20">{area.title}</Link>))}
             </div>
+          </div>
+        </section>
 
-            <div className="mb-12 bg-primary-50 rounded-2xl p-8">
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">Trust & Probate Litigation Expert in Los Angeles</h2>
-              <p className="text-lg text-gray-700 leading-relaxed mb-4">
-                Serving Los Angeles County, Orange County, Ventura County, San Bernardino County, Riverside County, and throughout Southern California. Our Los Angeles office provides comprehensive trust and probate litigation forensic accounting services for estate and trust attorneys throughout the region.
-              </p>
-              <p className="text-gray-700 leading-relaxed">
-                Whether you need a trust and probate expert for cases in downtown Los Angeles, Santa Monica, Beverly Hills, Pasadena, Irvine, San Diego, or anywhere in California, our team is ready to assist with estate valuations, forensic investigations, and expert witness testimony.
-              </p>
-            </div>
-
-            <div className="mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 mb-6">How Engel & Engel Helps in Trust & Probate Litigation</h2>
-              <p className="text-lg text-gray-700 mb-8">When the stakes are high, Engel & Engel can serve as your expert in connection with the following:</p>
-              
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {[
-                  { title: "Estate Valuation", desc: "Value estate assets including businesses, real estate, and investments.", icon: "M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" },
-                  { title: "Trustee Accounting Analysis", desc: "Review and analyze trustee accountings for errors and unauthorized transactions.", icon: "M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" },
-                  { title: "Breach of Fiduciary Duty", desc: "Investigate allegations of breach of fiduciary duty by trustees or executors.", icon: "M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" },
-                  { title: "Asset Tracing", desc: "Trace misappropriated trust and estate assets.", icon: "M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" },
-                  { title: "Surcharge Actions", desc: "Calculate damages for surcharge actions against trustees.", icon: "M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" },
-                  { title: "Beneficiary Disputes", desc: "Analyze financial issues in beneficiary disputes and distribution disagreements.", icon: "M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" },
-                  { title: "Trust Administration", desc: "Analyze trust administration and distribution issues.", icon: "M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" },
-                  { title: "Expert Witness Testimony", desc: "Court-tested expert witness testimony in trust and probate litigation.", icon: "M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z" },
-                ].map((service, index) => (
-                  <Card key={index} className="hover:shadow-xl transition-shadow duration-300">
-                    <CardHeader>
-                      <div className="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center mb-4">
-                        <svg className="w-6 h-6 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={service.icon} />
-                        </svg>
-                      </div>
-                      <CardTitle className="text-xl">{service.title}</CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <p className="text-gray-600">{service.desc}</p>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
-            </div>
-
-            <div className="mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 mb-8">Our Trust & Probate Analysis Process</h2>
-              <div className="space-y-6">
-                {[
-                  { step: "1", title: "Initial Review", desc: "Review trust documents, estate records, and identify litigation issues." },
-                  { step: "2", title: "Asset Valuation", desc: "Value estate assets including businesses, real estate, and investments." },
-                  { step: "3", title: "Accounting Analysis", desc: "Review trustee accountings and identify discrepancies." },
-                  { step: "4", title: "Forensic Investigation", desc: "Investigate allegations of misappropriation or breach of fiduciary duty." },
-                  { step: "5", title: "Expert Report & Testimony", desc: "Prepare detailed reports and provide expert witness testimony." }
-                ].map((item) => (
-                  <div key={item.step} className="flex gap-6 items-start">
-                    <div className="flex-shrink-0 w-12 h-12 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold text-xl">
-                      {item.step}
-                    </div>
-                    <div className="flex-1">
-                      <h3 className="text-xl font-semibold text-gray-900 mb-2">{item.title}</h3>
-                      <p className="text-gray-600 leading-relaxed">{item.desc}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 mb-6">Why Choose Engel & Engel for Trust & Probate Cases</h2>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div className="text-center">
-                  <div className="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <svg className="w-8 h-8 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
-                    </svg>
-                  </div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-2">Valuation Expertise</h3>
-                  <p className="text-gray-600">CVA/ABV credentials with extensive experience valuing estate assets.</p>
+        <section className="relative py-28 bg-[#0A1A3C] overflow-hidden">
+          <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#D4AF37]/5 blur-[150px] rounded-full pointer-events-none" />
+          <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-blue-500/10 blur-[120px] rounded-full pointer-events-none" />
+          <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-[#D4AF37]/50 to-transparent" />
+          <div className="container-custom relative z-10">
+            <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }} className="max-w-5xl mx-auto">
+              <p className="text-base md:text-lg text-white/60 font-light mb-10 text-center">For additional information about{' '}<span className="text-white font-medium">Engel &amp; Engel&apos;s</span>{' '}<span className="font-serif italic text-[#D4AF37]">Trust/Probate Litigation</span>{' '}or a consultation, please contact:</p>
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <div className="flex items-center gap-6 p-8 border border-white/10 rounded-2xl bg-white/5 backdrop-blur-sm">
+                  <div className="flex-shrink-0"><div className="rounded-full overflow-hidden border-2 border-[#D4AF37]/40"><Image width={80} height={80} src="/images/team/brandon-engel.jpg" alt="Brandon J. Engel" className="w-20 h-20 object-cover object-top" /></div></div>
+                  <div className="space-y-2"><h3 className="text-3xl md:text-4xl font-bold text-white tracking-tight">Brandon J. Engel</h3><p className="text-white/50 text-sm font-medium tracking-widest uppercase">CPA, CFE, ABV</p><div className="h-px w-16 bg-[#D4AF37] mt-2" /></div>
                 </div>
-                <div className="text-center">
-                  <div className="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <svg className="w-8 h-8 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                    </svg>
-                  </div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-2">Forensic Investigation</h3>
-                  <p className="text-gray-600">Comprehensive forensic investigation capabilities for trust and estate disputes.</p>
-                </div>
-                <div className="text-center">
-                  <div className="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <svg className="w-8 h-8 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z" />
-                    </svg>
-                  </div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-2">Court-Tested Testimony</h3>
-                  <p className="text-gray-600">Extensive experience providing expert witness testimony in trust and probate litigation.</p>
+                <div className="flex flex-col justify-center space-y-5 p-8 border border-white/10 rounded-2xl bg-white/5 backdrop-blur-sm">
+                  <a href="mailto:brandon@engelandengel.com" className="group flex items-center gap-4"><div className="w-12 h-12 rounded-xl bg-[#D4AF37]/10 border border-[#D4AF37]/30 flex items-center justify-center text-[#D4AF37] group-hover:bg-[#D4AF37] group-hover:text-[#0A1A3C] transition-all duration-300 shrink-0"><svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg></div><span className="text-lg font-semibold text-white/90 group-hover:text-white border-b border-white/20 group-hover:border-[#D4AF37] pb-0.5 transition-all duration-200">brandon@engelandengel.com</span></a>
+                  <a href="tel:310-277-2220" className="group flex items-center gap-4"><div className="w-12 h-12 rounded-xl bg-[#D4AF37]/10 border border-[#D4AF37]/30 flex items-center justify-center text-[#D4AF37] group-hover:bg-[#D4AF37] group-hover:text-[#0A1A3C] transition-all duration-300 shrink-0"><svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg></div><span className="text-lg font-semibold text-white/90 group-hover:text-white border-b border-white/20 group-hover:border-[#D4AF37] pb-0.5 transition-all duration-200">310-277-2220</span></a>
                 </div>
               </div>
-            </div>
-
-            <div className="mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 mb-6">Related Practice Areas</h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {[
-                  { name: "Business Valuation", href: "/practice-areas/business-valuation" },
-                  { name: "Fraud Investigation", href: "/practice-areas/fraud-investigation" },
-                  { name: "Partnership Disputes", href: "/practice-areas/partnership-disputes" },
-                  { name: "Alter Ego", href: "/practice-areas/alter-ego" },
-                  { name: "Fraudulent Transfers", href: "/practice-areas/fraudulent-transfers" },
-                  { name: "Economic Damages", href: "/practice-areas/economic-damages" }
-                ].map((area, index) => (
-                  <Link key={index} href={area.href}>
-                    <Card className="h-full hover:shadow-xl transition-all duration-300 hover:-translate-y-1 cursor-pointer">
-                      <CardContent className="p-6">
-                        <h3 className="text-lg font-semibold text-primary-700 hover:text-primary-900">{area.name}</h3>
-                      </CardContent>
-                    </Card>
-                  </Link>
-                ))}
-              </div>
-            </div>
-
+            </motion.div>
           </div>
-        </div>
-      </section>
+          <div className="absolute bottom-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-[#D4AF37]/30 to-transparent" />
+        </section>
 
-      <section className="section-padding bg-white">
-        <div className="container-custom">
-          <div className="max-w-4xl mx-auto">
-            <FAQ items={faqItems} />
-          </div>
-        </div>
-      </section>
-
-      <section className="section-padding bg-gradient-to-br from-primary-900 via-primary-800 to-primary-700 text-white">
-        <div className="container-custom">
-          <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">Need a Trust & Probate Litigation Expert?</h2>
-            <p className="text-xl text-primary-100 mb-8">
-              Contact Brandon J. Engel, CPA/ABV/CFF, CVA, MAFF for a consultation on your trust and probate case.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
-              <a href="tel:(310) 277-2220"><Button size="xl" className="bg-white text-primary-900 hover:bg-gray-100">Call (310) 277-2220</Button></a>
-              <a href="mailto:brandon@engelandengel.com"><Button size="xl" variant="outline" className="border-white text-white hover:bg-white hover:text-primary-900">Email Brandon</Button></a>
-            </div>
-            <p className="text-primary-200">Serving Los Angeles, Orange County, and all of California</p>
-          </div>
-        </div>
-      </section>
-
-      <Footer />
-    </main>
-  )
+        <Footer />
+      </main>
+    </>
+  );
 }
-

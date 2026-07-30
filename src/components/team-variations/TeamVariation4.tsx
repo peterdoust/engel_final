@@ -71,12 +71,12 @@ export default function TeamVariation4({ teamMembers }: { teamMembers: any[] }) 
               
               <div className="flex gap-4">
                 <a href={`tel:${mainMember.phone}`}>
-                  <Button className="bg-white text-primary-900 hover:bg-gray-100">
+                  <Button as="span" className="bg-white text-primary-900 hover:bg-gray-100">
                     📞 {mainMember.phone}
                   </Button>
                 </a>
                 <a href={`mailto:${mainMember.email}`}>
-                  <Button variant="outline" className="border-white text-white hover:bg-white hover:text-primary-900">
+                  <Button as="span" variant="outline" className="border-white text-white hover:bg-white hover:text-primary-900">
                     ✉️ Email
                   </Button>
                 </a>
@@ -111,10 +111,10 @@ export default function TeamVariation4({ teamMembers }: { teamMembers: any[] }) 
                   
                   <div className="flex gap-2">
                     <a href={`tel:${member.phone}`}>
-                      <Button variant="outline" size="sm" className="text-xs">Call</Button>
+                      <Button as="span" variant="outline" size="sm" className="text-xs">Call</Button>
                     </a>
                     <a href={`mailto:${member.email}`}>
-                      <Button variant="outline" size="sm" className="text-xs">Email</Button>
+                      <Button as="span" variant="outline" size="sm" className="text-xs">Email</Button>
                     </a>
                   </div>
                 </div>

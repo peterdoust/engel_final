@@ -16,36 +16,11 @@ export default function TeamVariation5({ teamMembers }: { teamMembers: any[] }) 
       </div>
 
       <div className="container-custom relative z-10">
-        {/* Professional Header Section */}
-        {/* <div className="text-center mb-20">
-          <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
-            <span className="text-white">Your Trusted</span> <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-300 via-blue-300 to-cyan-300">Forensic Accounting Partners</span>
-          </h2>
-
-          <p className="text-xl md:text-2xl text-gray-300 max-w-4xl mx-auto leading-relaxed mb-4">
-            Decades of combined experience in forensic accounting, fraud investigation, and expert witness testimony.
-          </p>
-
-          <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-            <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-6">
-              <div className="text-4xl font-bold text-primary-400 mb-2">35+</div>
-              <div className="text-sm text-gray-300 uppercase tracking-wide">Years Experience</div>
-            </div>
-            <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-6">
-              <div className="text-4xl font-bold text-primary-400 mb-2">500+</div>
-              <div className="text-sm text-gray-300 uppercase tracking-wide">Cases Handled</div>
-            </div>
-            <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-6">
-              <div className="text-4xl font-bold text-primary-400 mb-2">100+</div>
-              <div className="text-sm text-gray-300 uppercase tracking-wide">Court Testimonies</div>
-            </div>
-          </div>
-        </div> */}
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {teamMembers.map((member, index) => (
             <div key={index} className="group perspective-1000">
-              <div className="relative w-full h-[500px] transform-style-preserve-3d transition-transform duration-700 group-hover:rotate-y-180">
+              <div className="relative w-full h-[420px] sm:h-[500px] transform-style-preserve-3d transition-transform duration-700 group-hover:rotate-y-180">
 
                 {/* Front of Card */}
                 <div className="absolute inset-0 backface-hidden rounded-2xl overflow-hidden shadow-2xl">
@@ -63,14 +38,14 @@ export default function TeamVariation5({ teamMembers }: { teamMembers: any[] }) 
 
                     {/* Text positioned at bottom only - no overlap with face */}
                     <div className="absolute bottom-0 left-0 right-0 p-8 text-white">
-                      <h3 className="text-2xl font-bold mb-2 text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">{member.name}</h3>
-                      <p className="text-primary-200 font-semibold mb-1 drop-shadow-[0_2px_4px_rgba(0,0,0,0.6)]">{member.credentials}</p>
-                      <p className="text-gray-100 text-sm mb-4 drop-shadow-[0_2px_4px_rgba(0,0,0,0.6)]">{member.title}</p>
+                      <h3 className="text-2xl font-bold mb-1 text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">{member.name}</h3>
+                      <p className="text-[#D4AF37] font-semibold mb-3 drop-shadow-[0_2px_4px_rgba(0,0,0,0.6)] text-sm">{member.credentials}</p>
+                      {/* <p className="text-gray-100 text-sm mb-4 drop-shadow-[0_2px_4px_rgba(0,0,0,0.6)]">{member.title}</p> */}
 
                       <div className="flex items-center justify-between gap-3">
-                        <span className="px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full text-sm font-medium drop-shadow-lg">
+                        {/* <span className="px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full text-sm font-medium drop-shadow-lg">
                           {member.experience}
-                        </span>
+                        </span> */}
                         <span className="text-sm text-primary-200 font-medium animate-pulse drop-shadow-lg">Hover for details →</span>
                       </div>
                     </div>
@@ -82,7 +57,7 @@ export default function TeamVariation5({ teamMembers }: { teamMembers: any[] }) 
                   <div className="h-full flex flex-col p-6">
                     {/* Header Section */}
                     <div className="flex items-center gap-3 mb-4 pb-4 border-b border-gray-200">
-                      <div className="relative w-14 h-14 rounded-full overflow-hidden ring-2 ring-primary-500">
+                      <div className="relative w-14 h-14 rounded-full overflow-hidden ring-2 ring-[#D4AF37]">
                         <Image
                           src={member.image}
                           alt={member.name}
@@ -93,8 +68,8 @@ export default function TeamVariation5({ teamMembers }: { teamMembers: any[] }) 
                         />
                       </div>
                       <div className="flex-1 min-w-0">
-                        <h3 className="text-lg font-bold text-gray-900 truncate">{member.name}</h3>
-                        <p className="text-primary-600 text-xs font-semibold">{member.credentials}</p>
+                        <h3 className="text-lg font-bold text-primary-950 truncate">{member.name}</h3>
+                        <p className="text-[#D4AF37] text-xs font-semibold">{member.credentials}</p>
                       </div>
                     </div>
 
@@ -102,15 +77,16 @@ export default function TeamVariation5({ teamMembers }: { teamMembers: any[] }) 
                     <div className="flex-1 overflow-y-auto pr-2 space-y-4 custom-scrollbar">
                       {/* Description */}
                       <div>
-                        <p className="text-gray-700 text-sm leading-relaxed">
-                          {member.description.length > 150
+                        <p className="text-gray-800 text-sm leading-relaxed">
+                          {/* {member.description.length > 150
                             ? `${member.description.substring(0, 150)}...`
-                            : member.description}
+                            : member.description} */}
+                            {member.description}
                         </p>
                       </div>
 
                       {/* Specialties */}
-                      <div>
+                      {/* <div>
                         <h4 className="text-sm font-bold text-gray-900 mb-2 flex items-center">
                           <span className="w-1 h-4 bg-primary-500 rounded-full mr-2"></span>
                           Specialties
@@ -123,10 +99,10 @@ export default function TeamVariation5({ teamMembers }: { teamMembers: any[] }) 
                             </div>
                           ))}
                         </div>
-                      </div>
+                      </div> */}
 
                       {/* Key Achievements */}
-                      <div>
+                      {/* <div>
                         <h4 className="text-sm font-bold text-gray-900 mb-2 flex items-center">
                           <span className="w-1 h-4 bg-primary-500 rounded-full mr-2"></span>
                           Key Achievements
@@ -139,7 +115,7 @@ export default function TeamVariation5({ teamMembers }: { teamMembers: any[] }) 
                             </div>
                           ))}
                         </div>
-                      </div>
+                      </div> */}
                     </div>
 
                     {/* Footer Buttons - Fixed at Bottom */}
@@ -148,19 +124,32 @@ export default function TeamVariation5({ teamMembers }: { teamMembers: any[] }) 
                         href={`/team/${member.name.toLowerCase().replace(/\s+/g, '-').replace(/\./g, '')}`}
                         className="block w-full"
                       >
-                        <Button size="sm" className="w-full text-xs font-semibold">
-                          <span className="mr-1">👤</span> View Full Profile
+                        <Button as="span" size="sm" className="w-full text-sm font-semibold bg-primary-950 hover:bg-white hover:text-primary-950 py-3">
+                          <span className="mr-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="align-middle" viewBox="0 0 16 16">
+                              <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
+                            </svg>
+                          </span>
+                          View Full Profile
                         </Button>
                       </Link>
                       <div className="flex gap-2">
-                        <a href={`tel:${member.phone}`} className="flex-1">
-                          <Button variant="outline" size="sm" className="w-full text-xs">
-                            <span className="mr-1">📞</span> Call
+                        <a href={`tel:${member.phonePrimary}`} className="flex-1">
+                          <Button as="span" variant="outline" size="sm" className="w-full text-sm font-semibold h-10 hover:bg-primary-950 hover:text-white hover:border-primary-950">
+                            <span className="mr-1">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" className="align-middle" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.68.68 0 0 0 .178.643l2.457 2.457a.68.68 0 0 0 .644.178l2.189-.547a1.75 1.75 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.6 18.6 0 0 1-7.01-4.42 18.6 18.6 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877z"/>
+                              </svg>
+                            </span>
+                            Call
                           </Button>
                         </a>
                         <a href={`mailto:${member.email}`} className="flex-1">
-                          <Button variant="outline" size="sm" className="w-full text-xs">
-                            <span className="mr-1">✉️</span> Email
+                          <Button as="span" variant="outline" size="sm" className="w-full text-sm font-semibold h-10 hover:bg-primary-950 hover:text-white hover:border-primary-950">
+                            <span className="mr-1">
+                              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" width="16" height="16" fill="currentColor" className="align-middle"><path d="M112 128C85.5 128 64 149.5 64 176C64 191.1 71.1 205.3 83.2 214.4L291.2 370.4C308.3 383.2 331.7 383.2 348.8 370.4L556.8 214.4C568.9 205.3 576 191.1 576 176C576 149.5 554.5 128 528 128L112 128zM64 260L64 448C64 483.3 92.7 512 128 512L512 512C547.3 512 576 483.3 576 448L576 260L377.6 408.8C343.5 434.4 296.5 434.4 262.4 408.8L64 260z"/></svg>
+                            </span>
+                            Email
                           </Button>
                         </a>
                       </div>

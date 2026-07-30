@@ -1,524 +1,282 @@
-'use client'
+'use client';
 
-import React from 'react'
-import Image from 'next/image'
-import Link from 'next/link'
-import Header from '@/components/layout/Header'
-import Footer from '@/components/layout/Footer'
-import Certifications from '@/components/sections/Certifications'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/Card'
-import { Button } from '@/components/ui/Button'
+import React from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
+import { motion } from 'framer-motion';
+import Header from '@/components/layout/Header';
+import Footer from '@/components/layout/Footer';
 
-const firmStats = [
-  {
-    number: '35+',
-    label: 'Years Experience',
-    description: 'Forensic accounting practice since 1994'
-  },
-  {
-    number: '500+',
-    label: 'Forensic Cases',
-    description: 'Complex litigation matters handled'
-  },
-  {
-    number: '20+',
-    label: 'Research Publications',
-    description: 'Authored publications and frameworks'
-  },
-  {
-    number: '$2.3B',
-    label: 'Largest Jury Award',
-    description: 'Record-setting case result'
-  },
-  {
-    number: '6',
-    label: 'Professional Certifications',
-    description: 'CPA, CFE, CIRA, CVA, MAFF, ABV'
-  },
-  {
-    number: '100+',
-    label: 'Court Testimonies',
-    description: 'Expert witness appearances'
-  }
-]
+// ─────────────────────────────────────────────
+// Data
+// ─────────────────────────────────────────────
 
+const stats = [
+  { value: '30+', label: 'Years Experience' },
+  { value: '1,000+', label: 'Forensic Cases' },
+  { value: '100+', label: 'Trial Testimonies' },
+  { value: '$2.3B', label: 'Record Jury Award' },
+];
 
+const certifications = [
+  { name: 'CPA', fullName: 'Certified Public Accountant', image: '/images/certifications/CPA.png' },
+  { name: 'CFE', fullName: 'Certified Fraud Examiner', image: '/images/certifications/CFE.png' },
+  { name: 'CIRA', fullName: 'Certified Insolvency & Restructuring Advisor', image: '/images/certifications/CIRA.png' },
+  { name: 'CVA', fullName: 'Certified Valuation Analyst', image: '/images/certifications/CVA.png' },
+  { name: 'MAFF', fullName: 'Master Analyst in Financial Forensics', image: '/images/certifications/MAFF.png' },
+  { name: 'ABV', fullName: 'Accredited in Business Valuation', image: '/images/certifications/ABV.png' }
+];
 
-const practiceAreas = [
-  { name: 'Economic Damages', url: '/practice-areas/economic-damages' },
-  { name: 'Fraud Investigation', url: '/practice-areas/fraud-investigation' },
-  { name: 'Business Valuation', url: '/practice-areas/business-valuation' },
-  { name: 'Bankruptcy & Insolvency', url: '/practice-areas/bankruptcy-insolvency' },
-  { name: 'Intellectual Property (IP) Litigation', url: '/practice-areas/intellectual-property-litigation' },
-  { name: 'Real Estate Litigation', url: '/practice-areas/real-estate-litigation' },
-  { name: 'Construction Litigation', url: '/practice-areas/construction-litigation' },
-  { name: 'Alter Ego', url: '/practice-areas/alter-ego' },
-  { name: 'Fraudulent Transfers', url: '/practice-areas/fraudulent-transfers' },
-  { name: 'Employment Litigation', url: '/practice-areas/employment-litigation' },
-  { name: 'Business Interruption', url: '/practice-areas/business-interruption' },
-  { name: 'Personal Injury', url: '/practice-areas/personal-injury' },
-  { name: 'Accounting Malpractice', url: '/practice-areas/accounting-malpractice' },
-  { name: 'Partnership / Shareholder Disputes', url: '/practice-areas/partnership-shareholder-disputes' }
-]
+// ─────────────────────────────────────────────
+// Page
+// ─────────────────────────────────────────────
 
 export default function AboutPage() {
   return (
-    <main className="min-h-screen">
-      {/* Hero Section */}
-      <section className="relative bg-gradient-to-r from-primary-900 via-primary-800 to-primary-700 text-white py-24">
-        <div className="absolute inset-0 bg-black opacity-20"></div>
-        <div className="container-custom relative z-10">
-          <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-5xl md:text-6xl font-bold mb-6">
-              <span className="text-primary-200">California's Top</span> Forensic Accountants
-            </h1>
-            <p className="text-xl md:text-2xl mb-6 text-primary-100">
-              Over 35 years of expertise in forensic accounting and expert witness testimony
-            </p>
-            <p className="text-lg text-primary-200 mb-8">
-              ✓ $2.3 Billion Jury Award  ✓ 500+ Cases  ✓ Big 4 Experience  ✓ 6 Professional Certifications
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/contact">
-                <Button size="lg" className="bg-white text-primary-900 hover:bg-primary-50">
-                  Free Consultation
-                </Button>
-              </Link>
-              <Link href="tel:(310) 277-2220">
-                <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-primary-900">
-                  Call (310) 277-2220
-                </Button>
-              </Link>
-            </div>
-            <p className="text-primary-200 text-sm mt-4">
-              We offer free consultations regarding your matter.
-            </p>
-          </div>
-        </div>
-      </section>
+    <>
+      <Header />
+      <main className="bg-slate-50 min-h-screen">
 
-      {/* Numbers Section */}
-      <section className="py-16 bg-gray-50">
-        <div className="container-custom">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">Let Our Numbers Do The Talking</h2>
-            <p className="text-xl text-gray-600">Proven track record of excellence in forensic accounting</p>
+        {/* ══════════ CINEMATIC HERO ══════════ */}
+        <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden bg-[#0f3574] text-white">
+          <div className="absolute inset-0 z-0">
+            <div
+              className="absolute inset-0 bg-cover bg-center opacity-40 scale-105 animate-ken-burns"
+              style={{ backgroundImage: 'url("https://images.pexels.com/photos/159213/hall-congress-architecture-building-159213.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080")' }}
+            />
+            <div className="absolute inset-0 bg-gradient-to-b from-[#0f3574] via-[#0f3574]/90 to-[#0f3574]" />
+            <div className="absolute top-0 right-0 w-[1200px] h-[800px] bg-[#D4AF37]/10 blur-[200px] rounded-full -translate-y-1/2 translate-x-1/4" />
+            <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-[#D4AF37]/30 to-transparent" />
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8">
-            <div className="text-center">
-              <div className="text-4xl font-bold text-primary-600 mb-2">35+</div>
-              <div className="text-sm text-gray-600">Years of Experience</div>
-            </div>
-            <div className="text-center">
-              <div className="text-4xl font-bold text-primary-600 mb-2">500+</div>
-              <div className="text-sm text-gray-600">Forensic Cases</div>
-            </div>
-            <div className="text-center">
-              <div className="text-4xl font-bold text-primary-600 mb-2">20+</div>
-              <div className="text-sm text-gray-600">Research Publications</div>
-            </div>
-            <div className="text-center">
-              <div className="text-4xl font-bold text-primary-600 mb-2">6</div>
-              <div className="text-sm text-gray-600">Professional Certifications</div>
-            </div>
-            <div className="text-center">
-              <div className="text-4xl font-bold text-primary-600 mb-2">Big 4</div>
-              <div className="text-sm text-gray-600">Forensic Experience</div>
-            </div>
-            <div className="text-center">
-              <div className="text-4xl font-bold text-primary-600 mb-2">$2.3B</div>
-              <div className="text-sm text-gray-600">Jury Award</div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Main About Content */}
-      <section className="py-20">
-        <div className="container-custom">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <div>
-              <h2 className="text-4xl font-bold text-gray-900 mb-6">
-                From Strategy to Testimony
-              </h2>
-              <div className="space-y-6 text-lg text-gray-700 leading-relaxed">
-                <p>
-                  Established in Los Angeles in 1994, <strong>Engel & Engel LLP</strong> has positioned itself as one of the premier providers of forensic accounting and advisory services, not only in California, but nationwide as well.
+          <div className="container-custom relative z-10">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+            >
+              <div className="flex flex-col items-center text-center max-w-4xl mx-auto">
+                <span className="text-[10px] font-bold tracking-[0.4em] uppercase text-[#D4AF37] mb-6 block">Established 1994</span>
+                <h1 className="text-6xl md:text-8xl lg:text-9xl font-bold mb-8 leading-[0.85] tracking-tighter text-white">
+                  Excellence in <br />
+                  <span className="font-serif italic text-[#D4AF37] font-medium text-4xl md:text-6xl lg:text-7xl">Forensics</span>
+                </h1>
+                <p className="text-slate-400 text-lg md:text-xl font-light leading-relaxed max-w-2xl mb-16">
+                  For over three decades, Engel & Engel has provided authoritative forensic accounting and expert witness services to top law firms and corporations nationwide.
                 </p>
-                <p>
-                  We provide private practice law firms, as well as in-house counsel of Fortune 500 to middle-market companies, complex business litigation support, including fraud investigations, economic damages, business valuation, bankruptcy and insolvency, alter ego, IP litigation, employment litigation, real estate litigation, construction litigation and a variety of other litigation matters.
-                </p>
-                <p>
-                  With over <strong>35 years in the forensic accounting industry</strong>, working with attorneys and legal teams in and out of the courtroom, Engel & Engel brings credentials, expertise, and careful attention to each and every case.
-                </p>
-              </div>
-            </div>
 
-            <div className="relative">
-              <div className="bg-primary-50 rounded-2xl p-8">
-                <h3 className="text-2xl font-bold text-primary-900 mb-6">Why Choose Engel & Engel?</h3>
-                <ul className="space-y-4">
-                  <li className="flex items-start">
-                    <svg className="w-6 h-6 text-primary-600 mr-3 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                    </svg>
-                    <span className="text-gray-700"><strong>Proven Expertise:</strong> Over 500 forensic accounting cases successfully handled</span>
-                  </li>
-                  <li className="flex items-start">
-                    <svg className="w-6 h-6 text-primary-600 mr-3 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                    </svg>
-                    <span className="text-gray-700"><strong>Exceptional Credentials:</strong> Multiple professional certifications and Big 4 experience</span>
-                  </li>
-                  <li className="flex items-start">
-                    <svg className="w-6 h-6 text-primary-600 mr-3 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                    </svg>
-                    <span className="text-gray-700"><strong>Thought Leadership:</strong> 20+ authored research publications in forensic accounting</span>
-                  </li>
-                  <li className="flex items-start">
-                    <svg className="w-6 h-6 text-primary-600 mr-3 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                    </svg>
-                    <span className="text-gray-700"><strong>Nationwide Reach:</strong> Serving clients from Fortune 500 to middle-market companies</span>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Professional Certifications */}
-      <section className="py-16 bg-gray-50">
-        <div className="container-custom">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">Our Certifications</h2>
-            <p className="text-xl text-gray-600">The credibility of our testimony is enhanced by our exemplary credentials</p>
-          </div>
-
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-8 md:gap-12 max-w-4xl mx-auto">
-            {[
-              { name: 'CPA', fullName: 'Certified Public Accountant', image: '/images/certifications/CPA.png', alt: 'AICPA - American Institute of CPAs' },
-              { name: 'CFE', fullName: 'Certified Fraud Examiner', image: '/images/certifications/CFE.png', alt: 'ACFE - Association of Certified Fraud Examiners' },
-              { name: 'CIRA', fullName: 'Certified Insolvency & Restructuring Advisor', image: '/images/certifications/CIRA.png', alt: 'AIRA - Association of Insolvency & Restructuring Advisors' },
-              { name: 'CVA', fullName: 'Certified Valuation Analyst', image: '/images/certifications/CVA.png', alt: 'NACVA - National Association of Certified Valuators and Analysts' },
-              { name: 'MAFF', fullName: 'Master Analyst in Financial Forensics', image: '/images/certifications/MAFF.png', alt: 'MAFF - Master Analyst in Financial Forensics' },
-              { name: 'ABV', fullName: 'Accredited in Business Valuation', image: '/images/certifications/ABV.png', alt: 'ABV - Accredited in Business Valuation' }
-            ].map((cert, index) => (
-              <div key={index} className="flex flex-col items-center justify-center group">
-                <div className="relative w-full aspect-square max-w-[180px] transition-all duration-300 group-hover:scale-110">
-                  <Image
-                    src={cert.image}
-                    alt={cert.alt}
-                    fill
-                    className="object-contain"
-                    sizes="(max-width: 768px) 50vw, 33vw"
-                  />
+                {/* Vertical Stats */}
+                <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 md:gap-12 py-12 border-y border-white/10 w-full mb-12">
+                  {stats.map((stat) => (
+                    <div key={stat.label}>
+                      <div className="text-4xl md:text-5xl font-bold text-white mb-2 tracking-tight">{stat.value}</div>
+                      <div className="text-[10px] text-slate-500 tracking-widest uppercase font-bold">{stat.label}</div>
+                    </div>
+                  ))}
                 </div>
-                <p className="mt-4 text-sm font-semibold text-gray-700 text-center group-hover:text-primary-700 transition-colors">
-                  {cert.name}
-                </p>
-                <p className="text-xs text-gray-500 text-center mt-1 hidden md:block">
-                  {cert.fullName}
-                </p>
               </div>
-            ))}
+            </motion.div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Main About Content - Selling Points */}
-      <section className="py-20">
-        <div className="container-custom">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <div>
-              <h2 className="text-4xl font-bold text-gray-900 mb-6">
-                From Strategy to Testimony
-              </h2>
-              <div className="space-y-6 text-lg text-gray-700 leading-relaxed">
-                <p>
-                  Established in Los Angeles in 1994, <strong>Engel & Engel LLP</strong> has positioned itself as one of the premier providers of forensic accounting and advisory services, not only in California, but nationwide as well.
-                </p>
-                <p>
-                  We provide private practice law firms, as well as in-house counsel of Fortune 500 to middle-market companies, complex business litigation support, including fraud investigations, economic damages, business valuation, bankruptcy and insolvency, alter ego, IP litigation, employment litigation, real estate litigation, construction litigation and a variety of other litigation matters.
-                </p>
-                <p>
-                  With over <strong>35 years in the forensic accounting industry</strong>, working with attorneys and legal teams in and out of the courtroom, Engel & Engel brings credentials, expertise, and careful attention to each and every case.
-                </p>
-              </div>
-            </div>
+        {/* ══════════ THE FIRM STORY ══════════ */}
+        <section className="py-32 relative bg-white overflow-hidden">
+          <div className="container-custom">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-20 items-center">
 
-            <div className="relative">
-              <div className="bg-primary-50 rounded-2xl p-8">
-                <h3 className="text-2xl font-bold text-primary-900 mb-6">Why Choose Engel & Engel?</h3>
-                <ul className="space-y-4">
-                  <li className="flex items-start">
-                    <svg className="w-6 h-6 text-primary-600 mr-3 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+              <motion.div
+                initial={{ opacity: 0, x: -30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8 }}
+                className="lg:col-span-6 space-y-10"
+              >
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-[1px] bg-[#D4AF37]" />
+                  <span className="text-xs font-bold tracking-[0.4em] uppercase text-[#D4AF37]">The Engel Experience</span>
+                </div>
+                <h2 className="text-4xl md:text-6xl font-bold text-[#0f3574] tracking-tight leading-[1.1]">
+                  From Strategy <br />
+                  <span className="text-[#D4AF37] font-serif italic font-medium">to Testimony</span>
+                </h2>
+                <div className="space-y-6 text-lg text-slate-500 font-light leading-relaxed">
+                  <p>
+                    Established in Los Angeles in 1994, <strong>Engel & Engel LLP</strong> has positioned itself as one of the premier providers of forensic accounting and advisory services, not only in California, but nationwide as well.
+                  </p>
+                  <p>
+                    We provide private practice law firms, as well as in-house counsel of Fortune 500 to middle-market companies, complex business litigation support, including fraud investigations, economic damages, business valuation, and a variety of other litigation matters.
+                  </p>
+                  <p>
+                    With over <strong>30+ years in the forensic accounting industry</strong>, working with attorneys and legal teams in and out of the courtroom, Engel & Engel brings credentials, expertise, and careful attention to each and every case.
+                  </p>
+                </div>
+
+                <div className="pt-6">
+                  <Link href="/contact" className="inline-flex items-center gap-4 px-10 py-5 bg-[#0f3574] text-white font-bold rounded-2xl hover:bg-black transition-all group">
+                    Schedule Consultation
+                    <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                     </svg>
-                    <span className="text-gray-700"><strong>Proven Expertise:</strong> Over 500 forensic accounting cases successfully handled</span>
-                  </li>
-                  <li className="flex items-start">
-                    <svg className="w-6 h-6 text-primary-600 mr-3 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                    </svg>
-                    <span className="text-gray-700"><strong>Exceptional Credentials:</strong> Multiple professional certifications and Big 4 experience</span>
-                  </li>
-                  <li className="flex items-start">
-                    <svg className="w-6 h-6 text-primary-600 mr-3 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                    </svg>
-                    <span className="text-gray-700"><strong>Thought Leadership:</strong> 20+ authored research publications in forensic accounting</span>
-                  </li>
-                  <li className="flex items-start">
-                    <svg className="w-6 h-6 text-primary-600 mr-3 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                    </svg>
-                    <span className="text-gray-700"><strong>Nationwide Reach:</strong> Serving clients from Fortune 500 to middle-market companies</span>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+                  </Link>
+                </div>
+              </motion.div>
 
-      {/* Our Story Section */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-6">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-4xl font-bold text-center mb-16 text-gray-900">Our Story</h2>
+              <motion.div
+                initial={{ opacity: 0, x: 30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8 }}
+                className="lg:col-span-6"
+              >
+                <div className="relative p-12 lg:p-16 bg-slate-50 rounded-[3rem] border border-slate-100 overflow-hidden group">
+                  <div className="absolute top-0 right-0 w-64 h-64 bg-[#D4AF37]/5 rounded-full translate-x-32 -translate-y-32 group-hover:scale-125 transition-transform duration-1000" />
 
-            <div className="prose prose-lg max-w-none">
-              <p className="text-lg mb-6">
-                With over 35 years of experience, Engel & Engel, LLP has positioned itself as one of the premier
-                providers of forensic accounting and advisory services in the United States. We provide private
-                practice law firms, as well as in-house counsel of Fortune 500 to middle-market companies, complex
-                business litigation support, including fraud investigations, economic damages, business valuation,
-                bankruptcy and insolvency, alter ego, IP litigation, employment litigation, real estate litigation,
-                construction litigation and a variety of other litigation matters.
-              </p>
-
-              <p className="text-lg mb-6">
-                With over 35 years in the forensic accounting industry, working with attorneys and legal
-                teams in and out of the courtroom, Engel & Engel brings credentials, expertise, and careful
-                attention to each and every case. Our qualifications make us the right choice for developing
-                thoughtful strategies, investigating the particulars, and finally, delivering analysis and
-                calculations with sound and persuasive testimony.
-              </p>
-
-              <p className="text-lg">
-                We offer free consultations regarding your matter. Please contact Brandon Engel at
-                <a href="tel:+13102772220" className="text-primary-600 font-semibold"> (310) 277-2220</a>
-                or complete our contact form.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Firm Statistics */}
-      <section className="section-padding bg-gray-50">
-        <div className="container-custom">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-6">Let Our Numbers Do The Talking</h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Three decades of forensic accounting excellence demonstrated through measurable results
-              and professional achievements.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {firmStats.map((stat, index) => (
-              <Card key={index} className="text-center h-full">
-                <CardHeader>
-                  <div className="text-4xl font-bold text-primary-600 mb-2">{stat.number}</div>
-                  <CardTitle className="text-xl mb-2">{stat.label}</CardTitle>
-                  <CardDescription className="text-gray-600">
-                    {stat.description}
-                  </CardDescription>
-                </CardHeader>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Professional Certifications */}
-      <Certifications />
-
-      {/* Areas of Expertise */}
-      <section className="section-padding bg-primary-50">
-        <div className="container-custom">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-6">Our Areas of Expertise</h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Jason A. Engel, CPA, CFE, CIRA, CVA, MAFF, ABV, has served as a financial and
-              economic expert witness for over 35 years and in over 500 cases.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {practiceAreas.map((area, index) => (
-              <Link key={index} href={area.url}>
-                <div className="bg-white rounded-lg p-4 shadow-sm border border-gray-200 hover:shadow-md hover:border-primary-300 transition-all duration-200 cursor-pointer group">
-                  <div className="flex items-center space-x-3">
-                    <div className="w-2 h-2 bg-primary-500 rounded-full flex-shrink-0 group-hover:scale-150 transition-transform duration-200"></div>
-                    <span className="text-gray-800 font-medium group-hover:text-primary-700 transition-colors duration-200">{area.name}</span>
+                  <h3 className="text-2xl font-bold text-[#0f3574] mb-10 relative z-10">Why Attorneys Choose Us</h3>
+                  <div className="space-y-8 relative z-10">
+                    {[
+                      { title: 'Proven Expertise', text: 'Over 500 forensic accounting cases successfully handled with precision and depth.' },
+                      { title: 'Elite Credentials', text: 'Multiple professional certifications and Big 4 background for authoritative reporting.' },
+                      { title: 'Thought Leadership', text: '20+ authored research publications setting the standard for forensic frameworks.' },
+                      { title: 'Court Credibility', text: 'Tested in state, federal, and bankruptcy courts with multi-million and billion dollar results.' }
+                    ].map((item, idx) => (
+                      <div key={idx} className="flex gap-6 group/item">
+                        <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-white border border-slate-100 flex items-center justify-center text-[#D4AF37] group-hover/item:bg-[#D4AF37] group-hover/item:text-white transition-all shadow-sm">
+                          <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                            <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                          </svg>
+                        </div>
+                        <div>
+                          <p className="text-lg font-bold text-[#0f3574] leading-tight">{item.title}</p>
+                          <p className="text-sm text-slate-500 mt-1 font-light">{item.text}</p>
+                        </div>
+                      </div>
+                    ))}
                   </div>
                 </div>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
+              </motion.div>
 
-      {/* Big Four Experience */}
-      <section className="section-padding bg-white">
-        <div className="container-custom">
-          <div className="max-w-4xl mx-auto">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-              <div>
-                <h2 className="text-4xl font-bold text-gray-900 mb-6">Big Four Forensic Experience</h2>
-                <p className="text-lg text-gray-700 mb-6 leading-relaxed">
-                  Our team brings extensive experience from major accounting firms, providing the depth
-                  of knowledge and professional rigor expected in complex litigation matters.
-                </p>
-                <p className="text-lg text-gray-700 mb-8 leading-relaxed">
-                  This Big Four background, combined with our specialized forensic accounting focus,
-                  ensures that our clients receive the highest level of professional service and
-                  expert analysis.
-                </p>
-                <Link href="/services">
-                  <Button size="lg">
+            </div>
+          </div>
+        </section>
+
+        {/* ══════════ CERTIFICATIONS ══════════ */}
+        <section className="py-32 bg-slate-50 relative overflow-hidden">
+          <div className="container-custom">
+            <div className="text-center mb-20 max-w-3xl mx-auto">
+              <span className="text-xs font-bold tracking-[0.4em] uppercase text-[#D4AF37] mb-6 block">Professional Standards</span>
+              <h2 className="text-4xl md:text-6xl font-bold text-[#0f3574] mb-8 tracking-tight">Our Credentials</h2>
+              <p className="text-slate-500 text-xl font-light leading-relaxed">
+                The credibility of our testimony is built upon a foundation of elite professional certifications and years of academic research.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-x-12 gap-y-16 max-w-6xl mx-auto">
+              {certifications.map((cert, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  className="flex flex-col items-center group cursor-default"
+                >
+                  <div className="relative w-full aspect-square max-w-[140px] mb-6 grayscale hover:grayscale-0 transition-all duration-700 p-4 border border-transparent hover:border-slate-200 rounded-3xl hover:bg-white hover:shadow-xl">
+                    <Image
+                      src={cert.image}
+                      alt={cert.fullName}
+                      fill
+                      className="object-contain"
+                    />
+                  </div>
+                  <p className="text-sm font-bold text-[#0f3574] uppercase tracking-widest">{cert.name}</p>
+                  <p className="text-[10px] text-slate-400 text-center mt-1 font-bold tracking-tight px-2">{cert.fullName}</p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ══════════ BIG FOUR EXPERIENCE ══════════ */}
+        <section className="py-32 bg-white">
+          <div className="container-custom">
+            <div className="bg-[#0f3574] rounded-[3rem] p-12 lg:p-24 text-white relative overflow-hidden group">
+              {/* Decorative Glow */}
+              <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-blue-500/5 blur-[160px] rounded-full translate-x-1/2 -translate-y-1/2" />
+
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center relative z-10">
+                <div>
+                  <span className="text-xs font-bold tracking-[0.4em] uppercase text-[#D4AF37] mb-8 block">Global Perspective</span>
+                  <h2 className="text-4xl md:text-6xl font-bold mb-8 tracking-tight leading-[1.1]">
+                    Big Four <br />
+                    <span className="font-serif italic text-[#D4AF37] font-medium">Forensic Experience</span>
+                  </h2>
+                  <p className="text-slate-400 text-xl font-light leading-relaxed mb-6">
+                    Our team brings extensive experience from major international accounting firms, providing the professional rigor and depth of knowledge expected in high-stakes litigation.
+                  </p>
+                  <p className="text-slate-400 text-xl font-light leading-relaxed mb-12">
+                    This background ensures that our clients receive the highest level of expert analysis, capable of withstanding the most demanding courtroom scrutiny.
+                  </p>
+                  <Link href="/services" className="inline-flex items-center gap-4 px-10 py-5 border-2 border-[#D4AF37] text-[#D4AF37] font-bold rounded-2xl hover:bg-[#D4AF37] hover:text-black transition-all">
                     View Our Services
-                  </Button>
-                </Link>
-              </div>
+                  </Link>
+                </div>
 
-              <div className="bg-gray-50 rounded-xl p-8">
-                <h3 className="text-2xl font-bold text-gray-900 mb-6">Why Choose Engel & Engel?</h3>
-                <div className="space-y-4">
-                  <div className="flex items-start space-x-3">
-                    <div className="w-6 h-6 bg-primary-600 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                      <span className="text-white text-xs font-bold">✓</span>
+                <div className="relative">
+                  <div className="grid grid-cols-2 gap-4">
+                    <div className="space-y-4">
+                      <div className="aspect-square bg-white/5 rounded-3xl border border-white/10 flex items-center justify-center p-8 group-hover:border-[#D4AF37]/30 transition-all duration-700">
+                        <div className="text-center font-serif italic text-3xl text-white/20 select-none uppercase tracking-tighter">Trust</div>
+                      </div>
+                      <div className="aspect-[4/3] bg-white/5 rounded-3xl border border-white/10 flex items-center justify-center p-8 translate-x-8 group-hover:border-[#D4AF37]/30 transition-all duration-700">
+                        <div className="text-center font-serif italic text-3xl text-white/20 select-none uppercase tracking-tighter">Ethics</div>
+                      </div>
                     </div>
-                    <div>
-                      <h4 className="font-semibold text-gray-900">Proven Track Record</h4>
-                      <p className="text-gray-600">$2.3 billion jury award and 500+ successful cases</p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start space-x-3">
-                    <div className="w-6 h-6 bg-primary-600 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                      <span className="text-white text-xs font-bold">✓</span>
-                    </div>
-                    <div>
-                      <h4 className="font-semibold text-gray-900">Comprehensive Expertise</h4>
-                      <p className="text-gray-600">Six professional certifications and 35+ years experience</p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start space-x-3">
-                    <div className="w-6 h-6 bg-primary-600 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                      <span className="text-white text-xs font-bold">✓</span>
-                    </div>
-                    <div>
-                      <h4 className="font-semibold text-gray-900">Published Research</h4>
-                      <p className="text-gray-600">20+ research publications and thought leadership</p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start space-x-3">
-                    <div className="w-6 h-6 bg-primary-600 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                      <span className="text-white text-xs font-bold">✓</span>
-                    </div>
-                    <div>
-                      <h4 className="font-semibold text-gray-900">Nationwide Service</h4>
-                      <p className="text-gray-600">Serving clients across California and nationwide</p>
+                    <div className="space-y-4 pt-12">
+                      <div className="aspect-[3/4] bg-white/5 rounded-3xl border border-white/10 flex items-center justify-center p-8 group-hover:border-[#D4AF37]/30 transition-all duration-700">
+                        <div className="text-center font-serif italic text-3xl text-white/20 select-none uppercase tracking-tighter">Rigour</div>
+                      </div>
+                      <div className="aspect-square bg-white/5 rounded-3xl border border-white/10 flex items-center justify-center p-8 -translate-x-8 group-hover:border-[#D4AF37]/30 transition-all duration-700">
+                        <div className="text-center font-serif italic text-3xl text-white/20 select-none uppercase tracking-tighter">Expert</div>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Contact Information */}
-      <section className="section-padding bg-gray-50">
-        <div className="container-custom">
-          <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-4xl font-bold text-gray-900 mb-8">Contact Our Team</h2>
-            <p className="text-xl text-gray-600 mb-12">
-              Located in downtown Los Angeles, we serve clients throughout California and nationwide.
-              Contact us today for a free consultation.
+        {/* ══════════ CONTACT STRIP ══════════ */}
+        <section className="py-32 bg-slate-50">
+          <div className="container-custom text-center">
+            <h4 className="text-xs font-bold tracking-[0.4em] uppercase text-slate-400 mb-8">Ready to Connect?</h4>
+            <p className="text-3xl md:text-5xl font-bold text-[#0f3574] mb-12 tracking-tight">
+              Schedule a secure consultation <br /> with our principal authorities.
             </p>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <Card className="text-left">
-                <CardHeader>
-                  <CardTitle className="text-xl">Jason A. Engel</CardTitle>
-                  <CardDescription className="text-lg">CPA, CFE, CIRA, CVA, MAFF, ABV</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-2 text-gray-600">
-                    <p>350 S Grand Avenue, Suite 3160</p>
-                    <p>Los Angeles, CA 90071</p>
-                    <p>Tel: <a href="tel:+13102772220" className="text-primary-600 font-semibold">(310) 277-2220</a></p>
-                    <p>Fax: (310) 277-2212</p>
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card className="text-left">
-                <CardHeader>
-                  <CardTitle className="text-xl">Brandon J. Engel</CardTitle>
-                  <CardDescription className="text-lg">CPA, CFE</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-2 text-gray-600">
-                    <p>350 S Grand Avenue, Suite 3160</p>
-                    <p>Los Angeles, CA 90071</p>
-                    <p>Tel: <a href="tel:+13102772220" className="text-primary-600 font-semibold">(310) 277-2220</a></p>
-                    <p>Fax: (310) 277-2212</p>
-                  </div>
-                </CardContent>
-              </Card>
+            <div className="flex flex-col sm:flex-row gap-6 justify-center">
+              <Link href="/contact" className="px-12 py-5 bg-[#0f3574] text-white font-bold text-lg rounded-2xl hover:bg-black transition-all shadow-xl">
+                Contact Us
+              </Link>
+              <a href="tel:+13102772220" className="px-12 py-5 bg-white text-[#0f3574] font-bold text-lg rounded-2xl hover:shadow-lg transition-all border border-slate-100">
+                (310) 277-2220
+              </a>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* CTA Section */}
-      <section className="section-padding bg-primary-900 text-white">
-        <div className="container-custom text-center">
-          <h2 className="text-4xl font-bold mb-6">Ready to Get Started?</h2>
-          <p className="text-xl text-primary-100 mb-8 max-w-2xl mx-auto">
-            Contact us today to discuss how our 35+ years of forensic accounting expertise
-            can support your litigation matter.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/contact">
-              <Button size="xl" className="bg-white text-primary-900 hover:bg-gray-100">
-                Free Consultation
-              </Button>
-            </Link>
-            <a href="tel:+13102772220">
-              <Button variant="outline" size="xl" className="border-white text-white hover:bg-white hover:text-primary-900">
-                Call (310) 277-2220
-              </Button>
-            </a>
-          </div>
-          <p className="text-primary-200 text-sm mt-6">
-            ✓ 35+ Years Experience  ✓ $2.3 Billion Award  ✓ 500+ Cases  ✓ Free Consultation
-          </p>
-        </div>
-      </section>
+        <Footer />
+      </main>
 
-      <Footer />
-    </main>
-  )
+      <style jsx global>{`
+        @keyframes ken-burns {
+          0% { transform: scale(1); }
+          100% { transform: scale(1.1); }
+        }
+        .animate-ken-burns {
+          animation: ken-burns 20s infinite alternate linear;
+        }
+      `}</style>
+    </>
+  );
 }
+

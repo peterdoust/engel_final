@@ -1,4 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server'
+import clientPromise from '@/lib/mongodb'
+import nodemailer from 'nodemailer'
+
+const ADMIN_EMAIL = ['Peter@globalcreativestudios.com', 'info@engelandengel.com']
 
 // Function to get IP address from request
 function getClientIP(request: NextRequest): string {
@@ -78,6 +82,39 @@ export async function POST(request: NextRequest) {
     const clientIP = getClientIP(request)
     const locationData = await getLocationFromIP(clientIP)
 
+    // Store submission in MongoDB
+    try {
+      const client = await clientPromise
+      const db = client.db('engelandengel') 
+      
+      const submission = {
+        firstName: data.firstName || '',
+        lastName: data.lastName || '',
+        email: data.email || '',
+        phone: data.phone || '',
+        firmName: data.firmName || '',
+        position: data.position || '',
+        category: data.category || 'General Request',
+        requestedPublications: data.requestedPublications || [],
+        timestamp: data.timestamp ? new Date(data.timestamp) : new Date(),
+        createdAt: new Date(),
+        ipAddress: clientIP,
+        location: locationData,
+      }
+
+      const result = await db.collection('publication_requests').insertOne(submission)
+      console.log(`[PUBLICATION-REQUEST] Saved to DB: ${result.insertedId}`)
+    } catch (dbError: any) {
+      console.error('Error saving publication request to MongoDB:', dbError)
+      return NextResponse.json(
+        { 
+          error: 'Failed to save publication request to database',
+          details: dbError.message 
+        },
+        { status: 500 }
+      )
+    }
+
     // Log the submission data (for testing)
     console.log('=== PUBLICATION REQUEST RECEIVED ===')
     console.log('Name:', data.firstName, data.lastName)
@@ -97,79 +134,66 @@ export async function POST(request: NextRequest) {
     console.log('Coordinates:', locationData.coordinates)
     console.log('=====================================')
 
-    // TODO: Uncomment the email sending code below once SMTP is configured
-    /*
-    const nodemailer = require('nodemailer')
+    // Send notification email to admin
+    try {
+      const transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+          user: process.env.SMTP_USER,
+          pass: process.env.SMTP_PASS,
+        },
+      })
 
-    const transporter = nodemailer.createTransporter({
-      host: process.env.SMTP_HOST || 'smtp.gmail.com',
-      port: parseInt(process.env.SMTP_PORT || '587'),
-      secure: false,
-      auth: {
-        user: process.env.SMTP_USER,
-        pass: process.env.SMTP_PASS,
-      },
-    })
+      const fromAddress = `"Engel & Engel" <${process.env.SMTP_USER}>`
+      const fullName = `${data.firstName || ''} ${data.lastName || ''}`.trim()
+      const publications = (data.requestedPublications || []).map((p: string) => `<li>${p}</li>`).join('')
 
-    // Format the requested publications list for email
-    const publicationsList = data.requestedPublications
-      .map((pub: string, index: number) => `${index + 1}. ${pub}`)
-      .join('\n')
+      await transporter.sendMail({
+        from: fromAddress,
+        to: ADMIN_EMAIL,
+        replyTo: data.email,
+        subject: `Publication Request - ${fullName} (${data.firmName || 'Unknown firm'})`,
+        html: `
+          <div style="font-family: Arial, sans-serif; max-width: 620px; margin: 0 auto; background: #ffffff;">
+            <div style="background: #0f3574; padding: 24px; text-align: center;">
+              <h1 style="color: #ffffff; margin: 0; font-size: 20px;">New Publication Request</h1>
+              <p style="color: #D4AF37; margin: 6px 0 0; font-size: 11px; letter-spacing: 3px; text-transform: uppercase;">Engel &amp; Engel LLP</p>
+            </div>
+            <div style="padding: 28px;">
+              <h2 style="color: #0f3574; margin: 0 0 6px; font-size: 16px;">Category</h2>
+              <p style="margin: 0 0 20px; color: #334155; font-size: 14px;"><strong>${data.category || 'General Request'}</strong></p>
 
-    // Email content (commented out for now)
-    const emailContent = `
-New Publication Request - Engel & Engel
+              ${publications ? `
+                <h3 style="color: #0f3574; margin: 0 0 6px; font-size: 14px;">Requested Publications</h3>
+                <ul style="margin: 0 0 20px; padding-left: 20px; color: #334155; font-size: 14px;">${publications}</ul>
+              ` : ''}
 
-CONTACT INFORMATION:
-Name: ${data.firstName} ${data.lastName}
-Email: ${data.email}
-Phone: ${data.phone}
-Firm/Organization: ${data.firmName}
-Practice Area: ${data.practiceArea}
+              <h3 style="color: #0f3574; margin: 0 0 6px; font-size: 14px;">Contact Information</h3>
+              <table style="width: 100%; border-collapse: collapse; margin-bottom: 20px;">
+                <tr><td style="padding: 6px 0; font-weight: bold; color: #0f3574; width: 130px;">Name:</td><td style="padding: 6px 0; color: #334155;">${fullName}</td></tr>
+                <tr><td style="padding: 6px 0; font-weight: bold; color: #0f3574;">Email:</td><td style="padding: 6px 0; color: #334155;"><a href="mailto:${data.email}">${data.email}</a></td></tr>
+                <tr><td style="padding: 6px 0; font-weight: bold; color: #0f3574;">Phone:</td><td style="padding: 6px 0; color: #334155;"><a href="tel:${data.phone}">${data.phone}</a></td></tr>
+                <tr><td style="padding: 6px 0; font-weight: bold; color: #0f3574;">Firm:</td><td style="padding: 6px 0; color: #334155;">${data.firmName || ''}</td></tr>
+                ${data.position ? `<tr><td style="padding: 6px 0; font-weight: bold; color: #0f3574;">Position:</td><td style="padding: 6px 0; color: #334155;">${data.position}</td></tr>` : ''}
+              </table>
 
-REQUESTED PUBLICATIONS (${data.requestedPublications.length} total):
-${publicationsList}
+            </div>
+            <div style="background: #f8fafc; padding: 14px; text-align: center; border-top: 1px solid #e2e8f0;">
+              <p style="color: #94a3b8; font-size: 11px; margin: 0;">Submitted via the Engel &amp; Engel website publication request form.</p>
+            </div>
+          </div>
+        `,
+      })
 
-ADDITIONAL INFORMATION:
-${data.message || 'No additional message provided.'}
+      console.log(`[PUBLICATION-REQUEST] Notification email sent to ${ADMIN_EMAIL} for ${fullName}`)
+    } catch (emailError) {
+      console.error('[PUBLICATION-REQUEST] Email sending failed:', emailError)
+      // Do not fail the request — submission is already saved in DB.
+    }
 
-REQUEST DETAILS:
-Category: ${data.category || 'General Request'}
-Submitted: ${new Date(data.timestamp).toLocaleString('en-US', {
-  timeZone: 'America/Los_Angeles',
-  year: 'numeric',
-  month: 'long',
-  day: 'numeric',
-  hour: '2-digit',
-  minute: '2-digit',
-  timeZoneName: 'short'
-})}
-
-LOCATION & SECURITY INFO:
-IP Address: ${clientIP}
-Location: ${locationData.city}, ${locationData.region}, ${locationData.country}
-Timezone: ${locationData.timezone}
-ISP: ${locationData.isp}
-Coordinates: ${locationData.coordinates}
-
----
-This request was submitted through the Engel & Engel website publication request form.
-    `.trim()
-
-    // TODO: Send email once SMTP is configured
-    /*
-    await transporter.sendMail({
-      from: process.env.SMTP_FROM || 'noreply@engelandengel.com',
-      to: 'peter@gcs.la',
-      subject: `Publication Request - ${data.firstName} ${data.lastName} (${data.firmName})`,
-      text: emailContent,
-    })
-    */
-
-    // For now, just return success (email will be added later)
     return NextResponse.json({
       success: true,
-      message: 'Publication request received and logged successfully'
+      message: 'Publication request received successfully'
     })
 
   } catch (error) {

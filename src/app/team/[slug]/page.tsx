@@ -1,8 +1,11 @@
+'use client';
+
+import { useRef } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { motion } from 'framer-motion';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
-import { Button } from '@/components/ui/Button';
 import TeamSidebar from '@/components/team/TeamSidebar';
 
 // ────────────────────────────────────────────────────────
@@ -13,6 +16,7 @@ interface ContentSection {
   id: string;
   title: string;
   paragraphs: string[];
+  items?: string[];
 }
 
 interface Stat {
@@ -47,15 +51,15 @@ const teamMembers: TeamMember[] = [
   {
     slug: 'jason-a-engel',
     name: 'Jason A. Engel',
-    credentials: 'CPA · CFE · CIRA · CVA · MAFF · ABV',
+    credentials: 'CPA, CFE, CIRA, CVA, MAFF, ABV',
     title: 'Managing Partner',
     experience: '45+ Years',
     phone: '(310) 277-2220',
-    directPhone: '(310) 579-0114',
+    directPhone: '(310) 277-5986',
     email: 'jasonengel@engelandengel.com',
-    linkedin: 'jason-engel-cpa-cfe-cira-cva-maff-abv-8a44a84',
+    linkedin: 'jasonengel',
     image: '/images/team/jason-engel.jpg',
-    pdfQualifications: '/pdfs/jason-engel-qualifications.pdf',
+    pdfQualifications: 'https://engelandengel.com/wp-content/uploads/2024/02/jason-engel-cv.pdf',
     credentialChips: [
       'Certified Public Accountant',
       'Certified Fraud Examiner',
@@ -79,7 +83,7 @@ const teamMembers: TeamMember[] = [
       },
       {
         id: 'expert-witness',
-        title: 'Expert Witness & Forensic Accounting',
+        title: 'Expert Witness and Forensic Accounting',
         paragraphs: [
           'Since 1982, Mr. Engel has been engaged in the practice of forensic accounting and expert testimony in connection with a variety of business litigation matters including economic damages, bankruptcy and insolvency, fraud and embezzlement, business valuation, alter ego, wrongful termination, net worth calculations, and partnership and shareholder dissolutions. He has also been engaged in accounting malpractice and other matters requiring an evaluation of financial statements and compliance with Generally Accepted Accounting Principles and Generally Accepted Auditing Standards. He has made various presentations and has published research publications on the subject of economic damages, lost profits, alter ego, bankruptcy and insolvency, and other forensic accounting topics.',
           'Mr. Engel has served as an expert witness in over 500 cases and has testified in federal, bankruptcy, and state courts. He has also testified in arbitration and has served as a court appointed accounting referee. His professional credentials include those of Certified Public Accountant (CPA), Certified Fraud Examiner (CFE), Certified Insolvency and Restructuring Advisor (CIRA), Certified Valuation Analyst (CVA), Master Analyst of Financial Forensics (MAFF), and Accredited in Business Valuation (ABV).',
@@ -111,7 +115,7 @@ const teamMembers: TeamMember[] = [
       },
       {
         id: 'bankruptcy',
-        title: 'Bankruptcy & Insolvency',
+        title: 'Bankruptcy and Insolvency',
         paragraphs: [
           'Mr. Engel is a Certified Insolvency and Restructuring Advisor (CIRA). His experience in bankruptcy and insolvency includes court appointments by the United States Bankruptcy Court as the accountant for debtors, creditors, and Trustees under both Chapters 7 and 11 of the United States Bankruptcy Code. He also served as an accounting expert for a United States Bankruptcy Judge.',
           'Mr. Engel has testified as an expert witness in United States Bankruptcy Courts in a variety of bankruptcy issues. His bankruptcy and insolvency experience and expertise includes investigating, analyzing, and testifying as to the elements of a fraudulent transfer including reasonable equivalent value, insolvency, unreasonable small assets, and inability to pay debts as they become due. In addition, Mr. Engel\'s experience and expertise includes preference analysis, liquidation analysis, analysis of adequate protection, preparation and analysis of reorganization plans, preparation and analysis of Interim Statements and Operating Reports, financial projections, business valuations, crisis management, and fraud investigations of insiders and officers.',
@@ -120,7 +124,7 @@ const teamMembers: TeamMember[] = [
       },
       {
         id: 'education',
-        title: 'Education, Certifications & Memberships',
+        title: 'Education, Certifications and Memberships',
         paragraphs: [
           'Mr. Engel earned, in 1979, a Bachelor of Science in Business Administration with a specialty in accounting from California State University, Northridge. In 1982, he attained his CPA credentials and in 1992, he attained his CFE credentials. He attained his CVA and CIRA credentials in 1996 and his CFFA (now known as MAFF) credentials in 2003.',
           'He is a member of the California Society of Certified Public Accountants, the American Institute of Certified Public Accountants, the Management Consulting Section of the American Institute of Certified Public Accountants, the National Association of Certified Fraud Examiners, the Association of Insolvency and Restructuring Advisors, and the National Association of Certified Valuation Analysts.',
@@ -135,18 +139,18 @@ const teamMembers: TeamMember[] = [
       { name: 'Alter Ego', slug: 'alter-ego' },
       { name: 'Fraudulent Transfers', slug: 'fraudulent-transfers' },
       { name: 'Business Interruption', slug: 'business-interruption' },
-      { name: 'Intellectual Property Litigation', slug: 'intellectual-property' },
+      { name: 'Intellectual Property Litigation', slug: 'ip-litigation' },
       { name: 'Real Estate Litigation', slug: 'real-estate-litigation' },
       { name: 'Construction Litigation', slug: 'construction-litigation' },
       { name: 'Employment Litigation', slug: 'employment-litigation' },
       { name: 'Personal Injury', slug: 'personal-injury' },
-      { name: 'Partnership / Shareholder Disputes', slug: 'partnership-shareholder-disputes' },
+      { name: 'Partnership / Shareholder Disputes', slug: 'partnership-disputes' },
     ],
   },
   {
     slug: 'brandon-j-engel',
     name: 'Brandon J. Engel',
-    credentials: 'CPA · CFE',
+    credentials: 'CPA, CFE, ABV',
     title: 'Partner & Forensic Accountant',
     experience: '10+ Years',
     phone: '(310) 277-2220',
@@ -155,10 +159,11 @@ const teamMembers: TeamMember[] = [
     email: 'brandon@engelandengel.com',
     linkedin: 'brandon-engel',
     image: '/images/team/brandon-engel.jpg',
-    pdfQualifications: '/pdfs/brandon-engel-qualifications.pdf',
+    pdfQualifications: 'https://engelandengel.com/wp-content/uploads/2024/02/brandon-engel-cv-rev2.pdf',
     credentialChips: [
       'Certified Public Accountant',
       'Certified Fraud Examiner',
+      'Accredited in Business Valuation',
     ],
     stats: [
       { value: '200+', label: 'Forensic Accounting Cases' },
@@ -170,37 +175,127 @@ const teamMembers: TeamMember[] = [
         id: 'overview',
         title: 'Overview',
         paragraphs: [
-          'Brandon J. Engel, CPA, CFE is a forensic accountant with over 10 years of experience in over 200 forensic accounting cases and has testified as an expert witness in deposition and trial. Brandon\'s forensic experience includes conducting financial investigations in connection with civil and criminal matters.',
-          'Brandon\'s experience and expertise is highlighted in his skills and ability to investigate financial records and uncover discrepancies, hidden transactions, misstatements, fraud, and misappropriations. As a Certified Fraud Examiner (CFE), Brandon possesses specialized knowledge in investigating a variety of complex financial fraud schemes including international money laundering, embezzlement, fraudulent transfers, alter ego, and misappropriation of assets. As a highly skilled forensic investigator, Brandon also has specialized knowledge and experience in tracing funds in accordance with established legal and financial principles.',
+          'Brandon J. Engel, CPA, CFE, ABV is a forensic accountant with over 10 years of experience in over 200 forensic accounting cases and has testified as an expert witness in state court, federal court, arbitration, and deposition. Brandon’s forensic experience includes conducting financial investigations in connection with civil and criminal matters. Brandon has provided the following forensic accounting services to top law firms, private and public companies, non-profits, government agencies, and local police departments:',
+          'Brandon’s experience and expertise is highlighted in his skills and ability to investigate financial records and uncover discrepancies, hidden transactions, misstatements, fraud, and misappropriations. As a Certified Fraud Examiner (CFE) and Accredited in Business Valuation (ABV), Brandon possesses specialized knowledge in investigating a variety of complex financial fraud schemes including international money laundering, embezzlement, fraudulent transfers, alter ego, and misappropriation of assets. As a highly skilled forensic investigator, Brandon also has specialized knowledge and experience in tracing funds in accordance with established legal and financial principles.',
+        ],
+        items: [
+          'Fraud Investigations',
+          'Economic Damage Calculations',
+          'Business Valuations',
+          'Bankruptcy and Insolvency',
+          'Alter Ego',
+          'Fraudulent Transfers',
+          'Business Interruption',
+          'Intellectual Property Litigation',
+          'Real Estate Litigation',
+          'Probate/Trust Litigation',
+          'Construction Litigation',
+          'Employment Litigation',
+          'Personal Injury',
+          'Partnership/Shareholder Disputes',
         ],
       },
       {
         id: 'fraud-investigation',
         title: 'Fraud Investigation',
         paragraphs: [
-          'Brandon has conducted over 50 fraud investigations involving a wide variety of fraudulent schemes. Brandon\'s experience and expertise in conducting fraud investigations is illustrated in his tracing of approximately $20 million of fraudulent funds that were laundered through over 150 U.S., Swiss, and Korean bank accounts to real estate, luxury cars, and Swiss bank accounts. Brandon has also assisted a local Los Angeles police detective in uncovering and documenting financial fraud and embezzlement.',
+          'Brandon has conducted over 50 fraud investigations involving a wide variety of fraudulent schemes. Brandon’s experience and expertise in conducting fraud investigations is illustrated in his tracing of approximately $20 million of fraudulent funds that were laundered through over 150 U.S., Swiss, and Korean bank accounts to real estate, luxury cars, and Swiss bank accounts. Brandon has also assisted a local Los Angeles police detective in uncovering and documenting financial fraud and embezzlement.',
+          'Brandon’s experience includes conducting fraud investigations in connection with the following:',
+        ],
+        items: [
+          'Misappropriation of Funds',
+          'International Money Laundering',
+          'Fraudulent & Misleading Financial Statements',
+          'Contract Fraud',
+          'Construction Fraud',
+          'Insurance Fraud',
+          'Securities Fraud',
+          'Employee Embezzlement',
+          'Bankruptcy Fraud',
+          'Embezzlement Schemes',
+          'Ponzi Schemes',
+          'Tracing of Fraudulent Funds',
+          'Real Estate Fraud',
+          'Inventory Fraud',
         ],
       },
       {
         id: 'economic-damages',
         title: 'Economic Damages',
         paragraphs: [
-          'Brandon has prepared over 100 economic damage calculations in a wide variety of litigation matters and industries. Brandon\'s experience and expertise includes developing complex damage models that are consistent with established legal principles and able to withstand the scrutiny of the court.',
+          'Brandon has prepared over 100 economic damage calculations in a wide variety of litigation matters and industries. Brandon’s experience and expertise includes developing complex damage models that are consistent with established legal principles and able to withstand the scrutiny of the court. Brandon is also uniquely skilled in creating demonstrative graphs and charts for trial that are designed to make complex business transactions easily understandable.',
+          'Brandon’s extensive forensic experience in calculating economic damages for both plaintiffs and defendants includes the following:',
+        ],
+        items: [
+          'Lost Profits',
+          'Contract Damages',
+          'Fraud Damages',
+          'Lost Goodwill',
+          'Compensatory Damages',
+          'Reliance Damages',
+          'Benefit of the Bargain Damages',
+          'IP Infringement Damages',
+          'Construction Damages and Delay Claims',
+          'Business Interruption Damages',
+          'Unestablished Business Damages',
+          'Out of Pocket Damages',
+          'Mitigation Analysis',
+          'Rescission Damages',
+          'Reputational Damages',
+          'Employment Damages',
+          'Personal Injury Damages',
         ],
       },
       {
         id: 'business-valuation',
         title: 'Business Valuation',
         paragraphs: [
-          'Brandon has been involved in a variety of business valuation engagements among a broad array of industries. Brandon\'s business valuation expertise includes conducting various business valuation approaches including market analysis, capitalization of earnings, discounted cash flow, book value, liquidation value, public company guideline method, and other generally accepted valuation methods.',
+          'Brandon has been involved in a variety of business valuation engagements among a broad array of industries. Brandon’s business valuation expertise includes conducting various business valuation approaches including market analysis, capitalization of earnings, discounted cash flow, book value, liquidation value, public company guideline method, and other generally accepted valuation methods.',
+          'Brandon’s experience includes business valuations in connection with the following:',
+        ],
+        items: [
+          'Corporation Code 2000 Valuation',
+          'Minority Shareholder Valuation',
+          'Corporate Mergers & Acquisitions',
+          'Corporate and Partnership Dissolutions',
+          'Buyout Agreements',
+          'Fair Value Solvency Analysis',
+          'Net Worth Valuation',
+          'Shareholder & Partnership Disputes',
+          'Economic Damage Analysis',
+          'Buy and Sell Agreements',
+        ],
+      },
+      {
+        id: 'bankruptcy',
+        title: 'Bankruptcy and Insolvency',
+        paragraphs: [
+          'Brandon’s bankruptcy litigation experience covers a broad spectrum of bankruptcy matters. Specifically, in connection with bankruptcy fraudulent transfers, Brandon has extensive experience in tracing fraudulent funds applying a variety of tracing methods in accordance with established legal and financial principles.',
+          'Brandon’s bankruptcy litigation experience includes a variety of engagements involving the following:',
+        ],
+        items: [
+          'Bankruptcy Fraud Investigation',
+          'Solvency Analysis',
+          'Fraudulent Transfers',
+          'Analysis of Undercapitalization',
+          'Analysis or Reasonably Equivalent Value',
+          'Preference Analysis',
+          'Liquidation Analysis',
+          'Fair Value and Fair Market Value Valuations',
+          'Investigation of Hidden Distributions',
         ],
       },
       {
         id: 'education',
-        title: 'Education & Certifications',
-        paragraphs: [
-          'Brandon holds a Bachelor of Science in Accounting from California State University, Northridge. He is a Certified Public Accountant (CPA) and Certified Fraud Examiner (CFE).',
-          'He is a member of the American Institute of Certified Public Accountants (AICPA), the Association of Certified Fraud Examiners (ACFE), and the California Society of CPAs.',
+        title: 'Education, Certifications, and Professional Associations',
+        paragraphs: [],
+        items: [
+          'Bachelor of Science in Accounting from California State University, Northridge',
+          'Certified Public Accountant (CPA)',
+          'Certified Fraud Examiner (CFE)',
+          'Member of the American Institute of Certified Public Accountants (AICPA)',
+          'Member of the Association of Certified Fraud Examiners (AFCE)',
+          'Member of the California Society of CPAs',
         ],
       },
     ],
@@ -212,18 +307,18 @@ const teamMembers: TeamMember[] = [
       { name: 'Alter Ego', slug: 'alter-ego' },
       { name: 'Fraudulent Transfers', slug: 'fraudulent-transfers' },
       { name: 'Business Interruption', slug: 'business-interruption' },
-      { name: 'Intellectual Property Litigation', slug: 'intellectual-property' },
+      { name: 'Intellectual Property Litigation', slug: 'ip-litigation' },
       { name: 'Real Estate Litigation', slug: 'real-estate-litigation' },
       { name: 'Construction Litigation', slug: 'construction-litigation' },
       { name: 'Employment Litigation', slug: 'employment-litigation' },
       { name: 'Personal Injury', slug: 'personal-injury' },
-      { name: 'Partnership / Shareholder Disputes', slug: 'partnership-shareholder-disputes' },
+      { name: 'Partnership / Shareholder Disputes', slug: 'partnership-disputes' },
     ],
   },
   {
     slug: 'douglas-h-engel',
     name: 'Douglas H. Engel',
-    credentials: 'CPA · MBA',
+    credentials: 'CPA, MBA',
     title: 'Tax & Business Consultant',
     experience: '45+ Years',
     phone: '(310) 277-2220',
@@ -231,7 +326,7 @@ const teamMembers: TeamMember[] = [
     email: 'douglas@engelandengel.com',
     linkedin: 'douglasengelcpa',
     image: '/images/team/douglas-engel.jpg',
-    pdfQualifications: '/pdfs/douglas-engel-qualifications.pdf',
+    pdfQualifications: '',
     credentialChips: [
       'Certified Public Accountant',
       'Master of Business Administration',
@@ -239,6 +334,7 @@ const teamMembers: TeamMember[] = [
     stats: [
       { value: '45+', label: 'Years in Public Accounting' },
       { value: 'MBA', label: 'Taxation Specialty' },
+      { value: 'Expert', label: 'Tax Controversy Witness' },
     ],
     sections: [
       {
@@ -246,26 +342,8 @@ const teamMembers: TeamMember[] = [
         title: 'Overview',
         paragraphs: [
           'Mr. Douglas Engel has been engaged in public accounting since 1976, with an emphasis in tax and business consulting to high net worth individuals and related closely-held entities. In addition, he has provided forensic accounting services in connection with tax malpractice, tax issues in bankruptcy, tax issues in employee benefit plans and a variety of tax controversies.',
-        ],
-      },
-      {
-        id: 'tax-experience',
-        title: 'Tax Experience',
-        paragraphs: [
-          'Mr. Engel\'s tax experience extends to the areas of real estate, health care, partnerships, limited liability companies, trusts, sub-chapter S corporations and foreign trusts. In this regard, he has provided services that include tax planning, estate planning, wealth succession, business consulting, partnership restructuring and partnership workouts, IRS/FTB disputes and resolutions.',
-        ],
-      },
-      {
-        id: 'forensic-tax',
-        title: 'Forensic Tax Experience',
-        paragraphs: [
-          'Mr. Engel\'s forensic tax experience includes tax services in bankruptcy matters for creditors, debtors, and trustees. In addition, he has been appointed by the court to act as a guardian of financial assets. He has also served as an expert witness in tax matters and related financial issues.',
-        ],
-      },
-      {
-        id: 'education',
-        title: 'Education & Memberships',
-        paragraphs: [
+          'Mr. Engel’s tax experience extends to the areas of real estate, health care, partnerships, limited liability companies, trusts. sub-chapter S corporations and foreign trusts. In this regard, he has provided services that include tax planning, estate planning, wealth succession, business consulting, partnership restructuring and partnership workouts, IRS/FTB disputes and resolutions.',
+          'Mr. Engel’s forensic tax experience includes tax services in bankruptcy matters for creditors, debtors, and trustees. In addition, he has been appointed by the court to act as a guardian of financial assets. He has also served as an expert witness in tax matters and related financial issues.',
           'Mr. Engel graduated from the City University of New York, Herbert H. Lehman College with a Bachelor of Science in Accounting. He also holds a Master of Business Administration in Taxation from Golden Gate University.',
           'He is a member of the California Society of Certified Public Accountants and the American Institute of Certified Public Accountants.',
         ],
@@ -287,6 +365,7 @@ const teamMembers: TeamMember[] = [
 
 export default function TeamMemberPage({ params }: { params: { slug: string } }) {
   const member = teamMembers.find((m) => m.slug === params.slug);
+  const heroRef = useRef(null);
 
   if (!member) {
     return <div>Member not found</div>;
@@ -323,126 +402,133 @@ export default function TeamMemberPage({ params }: { params: { slug: string } })
       />
       <Header />
 
-      <main className="min-h-screen">
-        {/* ══════════ HERO ══════════ */}
-        <section className="relative pt-16 lg:pt-20 bg-primary-950 overflow-hidden">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-20">
-            <div className="flex flex-col sm:flex-row items-start gap-10 lg:gap-16 bg-white rounded-xl p-5 md:p-10">
-              {/* Portrait */}
-              <div className="w-auto sm:max-w-52 md:max-w-80 lg:max-w-96 flex-shrink-0 animate-fade-in-up">
-                <div className="relative mx-auto lg:mx-0">
-                  <div className="absolute inset-0 translate-x-3 translate-y-3 bg-primary-400/25 rounded-sm" />
-                  <Image
-                    src={member.image}
-                    alt={`${member.name}, ${member.credentials}`}
-                    width={300}
-                    height={430}
-                    className="relative w-full rounded-sm shadow-lg h-auto object-cover"
-                    priority
-                  />
+      <main className="bg-white min-h-screen text-slate-900">
+        {/* ══════════ PREMIUM HERO SECTION ══════════ */}
+        <section ref={heroRef} className="relative min-h-[500px] flex items-center pt-28 lg:pt-32 pb-12 overflow-hidden bg-[#0A1A3C]">
+          {/* Architectural Background Elements */}
+          <div className="absolute inset-0 z-0">
+            {/* Main Cinematic Gradient matching Cases page */}
+            <div className="absolute inset-0 bg-gradient-to-tr from-[#0A1A3C] via-[#0A1A3C] to-[#1e3a8a]/20" />
+
+            {/* Glowing Orbs similar to Cases page */}
+            <div className="absolute top-1/4 right-1/4 w-[500px] h-[500px] bg-[#D4AF37]/5 blur-[120px] rounded-full opacity-50" />
+            <div className="absolute bottom-1/4 left-1/4 w-[400px] h-[400px] bg-[#3b82f6]/5 blur-[100px] rounded-full opacity-50" />
+
+            {/* Grid Lines - subtle */}
+            <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:100px_100%] opacity-20" />
+            <div className="absolute inset-0 bg-[linear-gradient(to_bottom,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:100%_100px] opacity-20" />
+          </div>
+
+          <div className="container-custom relative z-10">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center">
+
+              {/* Portrait with Frame Effect */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95, x: -30 }}
+                animate={{ opacity: 1, scale: 1, x: 0 }}
+                transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+                className="lg:col-span-5"
+              >
+                <div className="relative group mx-auto lg:mx-0">
+                  {/* Decorative Frame */}
+                  <div className="absolute -inset-4 border border-[#D4AF37]/20 rounded-2xl group-hover:border-[#D4AF37]/40 transition-colors duration-700" />
+                  <div className="absolute -top-4 -right-4 w-12 h-12 border-t-2 border-r-2 border-[#D4AF37] rounded-tr-lg" />
+                  <div className="absolute -bottom-4 -left-4 w-12 h-12 border-b-2 border-l-2 border-[#D4AF37] rounded-bl-lg" />
+
+                  <div className="relative rounded-xl overflow-hidden shadow-2xl aspect-[3/4] bg-slate-800">
+                    <Image
+                      src={member.image}
+                      alt={member.name}
+                      fill
+                      className="object-cover object-top grayscale-[20%] group-hover:grayscale-0 transition-all duration-700 scale-100 group-hover:scale-105"
+                      priority
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-60" />
+                  </div>
                 </div>
-              </div>
+              </motion.div>
 
-              {/* Name & Credentials */}
-              <div className="flex-1 pt-3">
-                <p className="text-xs tracking-[0.2em] uppercase text-gold font-semibold mb-3">
-                  {member.title}
-                </p>
-                <h1 className=" text-4xl sm:text-5xl lg:text-[3.5rem] font-bold text-gray-900 leading-[1.1] mb-4">
-                  {member.name}
-                </h1>
-                <p className="text-base text-gray-500 font-medium tracking-wide mb-6">
-                  {member.credentials}
-                </p>
+              {/* Identity & Contact Column */}
+              <div className="lg:col-span-7">
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.2 }}
+                  className="flex flex-col"
+                >
+                  <div className="mb-4">
+                    <div className="h-1 w-12 bg-[#D4AF37] mb-6 rounded-full" />
+                    <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white tracking-tighter leading-tight">
+                      {member.name.split(' ').slice(0, -1).join(' ')}{' '}
+                      <span className="font-serif italic font-medium">
+                        {member.name.split(' ').slice(-1)}
+                      </span>
+                    </h1>
+                  </div>
 
-                {/* Credential chips */}
-                <div className="flex flex-wrap gap-2 mb-8">
-                  {member.credentialChips.map((chip) => (
-                    <span
-                      key={chip}
-                      className="text-xs font-medium bg-primary-50 text-primary-950 px-3 py-1.5 rounded"
-                    >
-                      {chip}
-                    </span>
-                  ))}
-                </div>
+                  <p className="text-base md:text-lg text-[#D4AF37] font-semibold tracking-[0.2em] uppercase mb-10">
+                    {member.credentials}
+                  </p>
 
-                {/* Key Stats */}
-                {/* <div className="flex flex-wrap gap-x-10 gap-y-4 pt-4">
-                  {member.stats.map((stat) => (
-                    <div key={stat.label}>
-                      <p className=" text-3xl font-bold text-primary-900 text-center mb-3">
-                        {stat.value}
-                      </p>
-                      <p className="text-xs text-gray-500 mt-0.5">{stat.label}</p>
-                    </div>
-                  ))}
-                </div> */}
-
-                {/* Links */}
-                <div className="flex items-center justify-start mt-8">
-                  <div className="flex space-x-4">
-                    {/* Office Phone */}
-                    <a href={`tel:${member.phone.replace(/[^\d+]/g, '')}`} className="group relative flex items-center justify-center w-10 h-10 bg-primary-50 rounded-md transition-all duration-300 hover:bg-primary-950 hover:-translate-y-2 hover:shadow-[0_0_20px_rgba(29,78,216,0.4)]">
-                      <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 text-primary-950 group-hover:text-white transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                      </svg>
-                      <span className="absolute -bottom-8 scale-0 transition-all group-hover:scale-100 text-primary-950 text-xs font-bold uppercase tracking-widest">Call</span>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4 mb-10">
+                    <a href={`tel:${member.phone}`} className="flex items-center gap-4 p-4 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 hover:border-[#D4AF37]/50 transition-all duration-300 group">
+                      <div className="w-10 h-10 rounded-lg bg-[#D4AF37]/10 flex items-center justify-center text-[#D4AF37] border border-[#D4AF37]/20 group-hover:scale-110 transition-transform">
+                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg>
+                      </div>
+                      <div>
+                        <div className="text-sm text-white font-medium">{member.phone}</div>
+                      </div>
                     </a>
 
-                    {/* Direct Phone */}
                     {member.directPhone && (
-                      <a href={`tel:${member.directPhone.replace(/[^\d+]/g, '')}`} className="group relative flex items-center justify-center w-10 h-10 bg-primary-50 rounded-md transition-all duration-300 hover:bg-primary-950 hover:-translate-y-2 hover:shadow-[0_0_20px_rgba(29,78,216,0.4)]">
-                        <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 text-primary-950 group-hover:text-white transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                        </svg>
-                        <span className="absolute -bottom-8 scale-0 transition-all group-hover:scale-100 text-primary-950 text-xs font-bold uppercase tracking-widest">Call</span>
+                      <a href={`tel:${member.directPhone}`} className="flex items-center gap-4 p-4 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 hover:border-[#D4AF37]/50 transition-all duration-300 group">
+                        <div className="w-10 h-10 rounded-lg bg-[#D4AF37]/10 flex items-center justify-center text-[#D4AF37] border border-[#D4AF37]/20 group-hover:scale-110 transition-transform">
+                          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg>
+                        </div>
+                        <div>
+                          <div className="text-sm text-white font-medium">{member.directPhone}</div>
+                        </div>
                       </a>
                     )}
 
-                    {/* Email */}
-                    <a href={`mailto:${member.email}`} className="group relative flex items-center justify-center w-10 h-10 bg-primary-50 rounded-md transition-all duration-300 hover:bg-primary-950 hover:-translate-y-2 hover:shadow-[0_0_20px_rgba(29,78,216,0.4)]">
-                      <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 text-primary-950 group-hover:text-white transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                      </svg>
-                      <span className="absolute -bottom-8 scale-0 transition-all group-hover:scale-100 text-primary-950 text-xs font-bold uppercase tracking-widest">Mail</span>
+                    <a href={`mailto:${member.email}`} className="flex items-center gap-4 p-4 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 hover:border-[#D4AF37]/50 transition-all duration-300 group">
+                      <div className="w-10 h-10 rounded-lg bg-[#D4AF37]/10 flex items-center justify-center text-[#D4AF37] border border-[#D4AF37]/20 group-hover:scale-110 transition-transform">
+                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
+                      </div>
+                      <div className="min-w-0">
+                        <div className="text-sm text-white font-medium truncate">{member.email}</div>
+                      </div>
                     </a>
 
-                    {/* LinkedIn */}
                     {member.linkedin && (
-                      <a href={`https://www.linkedin.com/in/${member.linkedin}`} target="_blank" rel="noopener noreferrer" className="group relative flex items-center justify-center w-10 h-10 bg-primary-50 rounded-md transition-all duration-300 hover:bg-primary-950 hover:-translate-y-2 hover:shadow-[0_0_20px_rgba(29,78,216,0.4)]">
-                        <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 text-primary-950 group-hover:text-white transition-colors" fill="currentColor" viewBox="0 0 24 24">
-                          <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
-                        </svg>
-                        <span className="absolute -bottom-8 scale-0 transition-all group-hover:scale-100 text-primary-950 text-xs font-bold uppercase tracking-widest">Connect</span>
+                      <a href={`https://linkedin.com/in/${member.linkedin}`} target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 p-4 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 hover:border-[#D4AF37]/50 transition-all duration-300 group">
+                        <div className="w-10 h-10 rounded-lg bg-[#D4AF37]/10 flex items-center justify-center text-[#D4AF37] border border-[#D4AF37]/20 group-hover:scale-110 transition-transform">
+                          <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" /></svg>
+                        </div>
+                        <div>
+                          <div className="text-sm text-white font-medium">{member.linkedin}</div>
+                        </div>
                       </a>
                     )}
                   </div>
-                </div>
 
-                {/* PDF */}
-                <a
-                  href={member.pdfQualifications}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex-1 mt-8 inline-block"
-                >
-                  {/* <Button size="lg" className="w-auto bg-primary-950  hover:bg-primary-800 shadow-lg hover:shadow-xl transition-all rounded">
-                    View Qualifications
-                  </Button> */}
-                  <Button className="w-full py-5 bg-primary-950 hover:bg-gold text-white font-bold tracking-[0.2em] uppercase text-xs transition-all duration-500 rounded group relative overflow-hidden">
-                    <span className="relative z-10">View Qualifications</span>
-                    <div className="absolute inset-0 bg-gold translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
-                  </Button>
-                </a>
+                  {member.pdfQualifications && (
+                    <div className="flex justify-center mt-8">
+                      <a href={member.pdfQualifications} target="_blank" rel="noopener noreferrer"
+                        className="px-12 py-5 bg-[#D4AF37] text-[#0f3574] rounded-xl font-black uppercase tracking-wider hover:bg-[#B8962D] transition-all duration-300 shadow-[0_15px_40px_rgba(212,175,55,0.3)] hover:-translate-y-1 text-center">
+                        View {member.name.split(' ')[0]}&apos;s Professional Qualifications
+                      </a>
+                    </div>
+                  )}
+                </motion.div>
               </div>
             </div>
           </div>
         </section>
 
-        {/* ══════════ MAIN CONTENT ══════════ */}
+        {/* ══════════ CONTENT BODY ══════════ */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20 lg:pb-28 pt-16">
-          <div className="flex flex-col lg:flex-row gap-12 lg:gap-16">
+          <div className="flex flex-col lg:flex-row gap-12">
             {/* Sidebar (sticky, desktop only) */}
             <TeamSidebar sections={sidebarSections} phone={member.phone} />
 
@@ -450,22 +536,52 @@ export default function TeamMemberPage({ params }: { params: { slug: string } })
             <div className="flex-1 min-w-0">
               {/* Content Sections */}
               {member.sections.map((section) => (
-                <section key={section.id} id={section.id} className="mb-14">
-                  <h2 className=" text-2xl font-semibold text-primary-950 mb-6">
+                <section key={section.id} id={section.id} className="mb-10 scroll-mt-[6rem]">
+                  <h2 className="relative text-2xl font-semibold text-primary-950 mb-6 group inline-block">
                     {section.title}
+                    <span className="absolute -bottom-2 left-0 w-12 h-0.5 bg-gradient-to-r from-[#0f3574] to-transparent transition-all duration-500 group-hover:w-full" />
                   </h2>
                   <div className="space-y-5 text-base leading-relaxed text-gray-600">
-                    {section.paragraphs.map((paragraph, i) => (
-                      <p key={i}>{paragraph}</p>
-                    ))}
+                    {(() => {
+                      const itemsInsertIndex = section.items?.length
+                        ? section.paragraphs.findIndex((p) => p.endsWith(':')) + 1 || section.paragraphs.length
+                        : -1;
+
+                      return section.paragraphs.map((paragraph, i) => (
+                        <div key={i}>
+                          <p>{paragraph}</p>
+                          {i + 1 === itemsInsertIndex && section.items && (
+                            <ul className={`mt-6 mb-5 gap-x-10 gap-y-2 ${section.items.length > 5 && section.id !== 'education' ? 'grid grid-cols-1 sm:grid-cols-2' : 'flex flex-col'}`}>
+                              {section.items.map((item, j) => (
+                                <li key={j} className="flex items-start gap-3 text-base text-gray-800">
+                                  <span className="mt-2 w-1.5 h-1.5 rounded-full bg-[#0f3574] flex-shrink-0" />
+                                  {item}
+                                </li>
+                              ))}
+                            </ul>
+                          )}
+                        </div>
+                      ));
+                    })()}
+                    {section.items && section.items.length > 0 && section.paragraphs.length === 0 && (
+                      <ul className={`gap-x-10 gap-y-2 ${section.items.length > 5 && section.id !== 'education' ? 'grid grid-cols-1 sm:grid-cols-2' : 'flex flex-col'}`}>
+                        {section.items.map((item, j) => (
+                          <li key={j} className="flex items-start gap-3 text-base text-gray-800">
+                            <span className="mt-2 w-1.5 h-1.5 rounded-full bg-[#0f3574] flex-shrink-0" />
+                            {item}
+                          </li>
+                        ))}
+                      </ul>
+                    )}
                   </div>
                 </section>
               ))}
 
               {/* Practice Areas */}
-              <section id="practice-areas">
-                <h2 className=" text-2xl font-semibold text-primary-950 mb-6">
+              <section id="practice-areas" className="scroll-mt-[6rem]">
+                <h2 className="relative text-2xl font-semibold text-primary-950 mb-6 group inline-block">
                   Practice Areas
+                  <span className="absolute -bottom-2 left-0 w-12 h-0.5 bg-gradient-to-r from-[#0f3574] to-transparent transition-all duration-500 group-hover:w-full" />
                 </h2>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-3">
                   {member.practiceAreas.map((area) => (
@@ -487,7 +603,7 @@ export default function TeamMemberPage({ params }: { params: { slug: string } })
                           d="M9 5l7 7-7 7"
                         />
                       </svg>
-                      <span className="text-sm text-gray-600 group-hover:text-primary-950 transition-all -ml-7 group-hover:ml-0">
+                      <span className="text-sm text-gray-800 group-hover:text-primary-950 transition-all -ml-7 group-hover:ml-0">
                         {area.name}
                       </span>
                     </Link>

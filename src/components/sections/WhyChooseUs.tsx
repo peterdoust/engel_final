@@ -142,6 +142,7 @@ export default function WhyChooseUs() {
                     </div>
                     <Link href="/team">
                       <Button
+                        as="span"
                         size="lg"
                         className="bg-white text-primary-700 hover:bg-primary-50 font-semibold shadow-lg hover:shadow-xl transition-all duration-300 group-hover:scale-105"
                       >
