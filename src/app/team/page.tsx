@@ -4,6 +4,8 @@ import React from 'react'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
 import { Button } from '@/components/ui/Button'
+import TrackedPhoneLink from '@/components/ui/TrackedPhoneLink'
+import { TEAM_PHONE_LOCATIONS } from '@/lib/analytics'
 import Image from 'next/image'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
@@ -167,20 +169,20 @@ export default function TeamPage() {
                     {/* Contact Rows */}
                     <div className="space-y-3.5">
                       {/* Phone 1 */}
-                      <a href={`tel:${member.phonePrimary.replace(/[^+\d]/g, '')}`} className="flex items-center gap-3.5 text-white/90 hover:text-white transition-colors group/link">
+                      <TrackedPhoneLink phone={member.phonePrimary} location={TEAM_PHONE_LOCATIONS[member.slug].primary} className="flex items-center gap-3.5 text-white/90 hover:text-white transition-colors group/link">
                         <svg className="w-4 h-4 text-[#D4AF37]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                         </svg>
                         <span className="text-[0.9rem] sm:text-[0.95rem] font-medium tracking-tight whitespace-nowrap">{member.phonePrimary}</span>
-                      </a>
+                      </TrackedPhoneLink>
 
                       {/* Phone 2 */}
-                      <a href={`tel:${member.phoneSecondary.replace(/[^+\d]/g, '')}`} className="flex items-center gap-3.5 text-white/90 hover:text-white transition-colors group/link">
+                      <TrackedPhoneLink phone={member.phoneSecondary} location={TEAM_PHONE_LOCATIONS[member.slug].secondary} className="flex items-center gap-3.5 text-white/90 hover:text-white transition-colors group/link">
                         <svg className="w-4 h-4 text-[#D4AF37]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                         </svg>
                         <span className="text-[0.85rem] sm:text-[0.95rem] font-medium tracking-tight whitespace-nowrap">{member.phoneSecondary}</span>
-                      </a>
+                      </TrackedPhoneLink>
 
                       {/* Email */}
                       <a href={`mailto:${member.email}`} className="flex items-center gap-3.5 text-white/90 hover:text-white transition-colors group/link">

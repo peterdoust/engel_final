@@ -1,5 +1,7 @@
 import type { Metadata } from 'next'
 import { Inter, Playfair_Display } from 'next/font/google'
+import Script from 'next/script'
+import { GA_MEASUREMENT_ID } from '@/lib/analytics'
 import './globals.css'
 
 const inter = Inter({
@@ -93,6 +95,7 @@ export default function RootLayout({
         {/* Preconnect to external domains */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://www.googletagmanager.com" />
 
         {/* Favicon */}
         <link rel="icon" href="/favicon.ico" />
@@ -175,20 +178,30 @@ export default function RootLayout({
         />
       </head>
       <body className="antialiased">
-        {children}
+        {/*
+          Google tag (gtag.js). Replaces an earlier inline stub that called
+          gtag('config', 'GA_MEASUREMENT_ID') with no loader and a placeholder
+          ID, so it never sent anything.
 
-        {/* Analytics Scripts */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              // Google Analytics 4
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', 'GA_MEASUREMENT_ID');
-            `,
-          }}
+          next/script with afterInteractive is the App Router equivalent of the
+          documented <head> snippet: Next injects the tag itself and loads it
+          once the page is interactive, which keeps analytics off the critical
+          render path. Placed in the root layout so it applies site-wide.
+        */}
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
+          strategy="afterInteractive"
         />
+        <Script id="ga4-init" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${GA_MEASUREMENT_ID}');
+          `}
+        </Script>
+
+        {children}
       </body>
     </html>
   )

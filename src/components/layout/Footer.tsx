@@ -2,6 +2,9 @@ import React from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { Button } from '@/components/ui/Button'
+// Footer stays a server component: TrackedPhoneLink carries its own
+// 'use client' boundary, so only the link hydrates.
+import TrackedPhoneLink from '@/components/ui/TrackedPhoneLink'
 
 const services = [
   { name: 'Forensic Accounting', href: '/services/forensic-accounting' },
@@ -55,7 +58,13 @@ export default function Footer() {
                 <svg className="w-5 h-5 text-[#D4AF37]" fill="currentColor" viewBox="0 0 20 20">
                   <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
                 </svg>
-                <span className="text-gray-300">(310) 277-2220</span>
+                <TrackedPhoneLink
+                  phone="(310) 277-2220"
+                  location="footer"
+                  className="text-gray-300 hover:text-[#D4AF37] transition-colors duration-200"
+                >
+                  (310) 277-2220
+                </TrackedPhoneLink>
               </div>
 
               <div className="flex items-center space-x-3">

@@ -4,8 +4,25 @@ import React, { useState } from 'react'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { Button } from '@/components/ui/Button'
+import TrackedPhoneLink from '@/components/ui/TrackedPhoneLink'
+import { trackFormSubmission, type PhoneClickLocation } from '@/lib/analytics'
 
-const teamMembers = [
+interface ContactCard {
+  name: string
+  creds: string
+  image: string
+  address: string
+  city: string
+  tel: string
+  direct: string
+  email: string
+  // Both numbers are tracked separately: the main line is shared between the
+  // partners, so only the direct line identifies who was actually called.
+  telLocation: PhoneClickLocation
+  directLocation: PhoneClickLocation
+}
+
+const teamMembers: ContactCard[] = [
   {
     name: 'Jason A. Engel',
     creds: 'CPA, CFE, CIRA, CVA, MAFF, ABV',
@@ -14,7 +31,9 @@ const teamMembers = [
     city: 'Los Angeles, CA 90071',
     tel: '(310) 277-2220',
     direct: '(310) 277-5986',
-    email: 'jasonengel@engelandengel.com'
+    email: 'jasonengel@engelandengel.com',
+    telLocation: 'homepage_jason_office',
+    directLocation: 'homepage_jason_direct'
   },
   {
     name: 'Brandon J. Engel',
@@ -24,7 +43,9 @@ const teamMembers = [
     city: 'Los Angeles, CA 90071',
     tel: '(310) 277-2220',
     direct: '(310) 579-0115',
-    email: 'brandon@engelandengel.com'
+    email: 'brandon@engelandengel.com',
+    telLocation: 'homepage_brandon_office',
+    directLocation: 'homepage_brandon_direct'
   }
 ]
 
@@ -48,6 +69,9 @@ export default function ContactCTA() {
         body: JSON.stringify({ ...formData, timestamp: new Date().toISOString() }),
       })
       if (!response.ok) throw new Error('Failed to send message')
+      // Server confirmed the send — safe to report the lead. Anything earlier
+      // would count failed submissions as Google Ads conversions.
+      trackFormSubmission('contact_form')
       setIsSubmitted(true)
       setFormData({ name: '', email: '', phone: '', message: '' })
     } catch (error) {
@@ -122,8 +146,26 @@ export default function ContactCTA() {
                       <div className="space-y-1 text-sm text-white font-normal">
                         <p className="text-white">{member.address}</p>
                         <p className="text-white">{member.city}</p>
-                        <p className="text-white font-semibold"><span className="">MAIN: </span>{member.tel}</p>
-                        <p className="text-white font-semibold"><span className="">DIRECT: </span>{member.direct}</p>
+                        <p className="text-white font-semibold">
+                          <span className="">MAIN: </span>
+                          <TrackedPhoneLink
+                            phone={member.tel}
+                            location={member.telLocation}
+                            className="text-white hover:text-[#D4AF37] transition-colors duration-300"
+                          >
+                            {member.tel}
+                          </TrackedPhoneLink>
+                        </p>
+                        <p className="text-white font-semibold">
+                          <span className="">DIRECT: </span>
+                          <TrackedPhoneLink
+                            phone={member.direct}
+                            location={member.directLocation}
+                            className="text-white hover:text-[#D4AF37] transition-colors duration-300"
+                          >
+                            {member.direct}
+                          </TrackedPhoneLink>
+                        </p>
                         <p className="truncate text-white font-semibold">
                           <span className="">EMAIL: </span>
                           <a href={`mailto:${member.email}`} className="text-white/80 hover:text-[#D4AF37] transition-colors duration-300">{member.email}</a>

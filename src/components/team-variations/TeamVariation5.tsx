@@ -2,6 +2,8 @@ import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Button } from '@/components/ui/Button'
+import TrackedPhoneLink from '@/components/ui/TrackedPhoneLink'
+import { TEAM_PHONE_LOCATIONS } from '@/lib/analytics'
 
 // VARIATION 5: Interactive Cards with Flip Effect - Professional Design
 export default function TeamVariation5({ teamMembers }: { teamMembers: any[] }) {
@@ -134,7 +136,11 @@ export default function TeamVariation5({ teamMembers }: { teamMembers: any[] }) 
                         </Button>
                       </Link>
                       <div className="flex gap-2">
-                        <a href={`tel:${member.phonePrimary}`} className="flex-1">
+                        <TrackedPhoneLink
+                          phone={member.phonePrimary}
+                          location={TEAM_PHONE_LOCATIONS[member.slug]?.primary ?? 'team_unknown'}
+                          className="flex-1"
+                        >
                           <Button as="span" variant="outline" size="sm" className="w-full text-sm font-semibold h-10 hover:bg-primary-950 hover:text-white hover:border-primary-950">
                             <span className="mr-1">
                               <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" className="align-middle" viewBox="0 0 16 16">
@@ -143,7 +149,7 @@ export default function TeamVariation5({ teamMembers }: { teamMembers: any[] }) 
                             </span>
                             Call
                           </Button>
-                        </a>
+                        </TrackedPhoneLink>
                         <a href={`mailto:${member.email}`} className="flex-1">
                           <Button as="span" variant="outline" size="sm" className="w-full text-sm font-semibold h-10 hover:bg-primary-950 hover:text-white hover:border-primary-950">
                             <span className="mr-1">

@@ -5,6 +5,7 @@ import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import { Button } from '@/components/ui/Button';
+import { trackFormSubmission } from '@/lib/analytics';
 
 export default function CareersPage() {
   const [formData, setFormData] = useState({
@@ -68,6 +69,10 @@ export default function CareersPage() {
         throw new Error(data.error || 'Submission failed. Please try again.');
       }
 
+      // Reported as career_application rather than contact_form: a job applicant
+      // is not a sales lead, and merging the two makes the contact-form count
+      // unusable for Ads reporting.
+      trackFormSubmission('career_application');
       setSubmitted(true);
     } catch (err: any) {
       setSubmitError(err?.message || 'Submission failed. Please try again.');

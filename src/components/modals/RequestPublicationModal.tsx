@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
+import { trackFormSubmission } from '@/lib/analytics';
 
 interface RequestPublicationModalProps {
     isOpen: boolean;
@@ -52,6 +53,12 @@ export default function RequestPublicationModal({ isOpen, onClose, publicationTi
             });
 
             if (response.ok) {
+                // Tracked here rather than on the "Request Publication" button
+                // that opens this modal: the button is only intent, and since
+                // FormSent is a live Google Ads conversion, counting abandoned
+                // modals would feed bad data into bid optimisation. This one
+                // call covers every publication page using this modal.
+                trackFormSubmission('request_publication');
                 setIsSuccess(true);
                 setTimeout(() => {
                     onClose();

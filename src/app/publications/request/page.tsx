@@ -7,6 +7,7 @@ import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/Card'
 import { Button } from '@/components/ui/Button'
+import { trackFormSubmission } from '@/lib/analytics'
 
 const publicationCategories = {
   'economic-damages': {
@@ -152,6 +153,7 @@ function PublicationRequestForm() {
         throw new Error('Failed to send publication request')
       }
 
+      trackFormSubmission('request_publication')
       setIsSubmitted(true)
     } catch (error) {
       console.error('Error submitting request:', error)

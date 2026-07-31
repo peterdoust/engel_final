@@ -6,6 +6,7 @@ import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import Image from 'next/image';
 import { Button } from '@/components/ui/Button';
+import { trackFormSubmission } from '@/lib/analytics';
 
 // ─────────────────────────────────────────────
 // Data
@@ -76,6 +77,8 @@ export default function ContactPage() {
         throw new Error('Failed to send message');
       }
 
+      // Fired only once the server confirms delivery, never on button click.
+      trackFormSubmission('contact_form');
       setIsSubmitted(true);
     } catch (error) {
       console.error('Error submitting contact form:', error);
