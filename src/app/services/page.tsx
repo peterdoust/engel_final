@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
+import TrackedPhoneLink from '@/components/ui/TrackedPhoneLink'
 
 // ─────────────────────────────────────────────
 // Data
@@ -161,9 +162,9 @@ export default function ServicesPage() {
                 <Link href="/contact" className="px-10 py-5 bg-[#D4AF37] hover:bg-[#B8962E] text-black font-bold text-lg rounded-2xl shadow-xl transition-all duration-300">
                   Secure Your Consultation
                 </Link>
-                <a href="tel:+13102772220" className="px-10 py-5 bg-white/5 border border-white/20 hover:bg-white/10 text-white font-bold text-lg rounded-2xl transition-all duration-300">
+                <TrackedPhoneLink phone="+13102772220" location="services_index_cta" className="px-10 py-5 bg-white/5 border border-white/20 hover:bg-white/10 text-white font-bold text-lg rounded-2xl transition-all duration-300">
                   (310) 277-2220
-                </a>
+                </TrackedPhoneLink>
               </div>
             </div>
           </div>

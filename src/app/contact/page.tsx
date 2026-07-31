@@ -6,13 +6,28 @@ import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import Image from 'next/image';
 import { Button } from '@/components/ui/Button';
-import { trackFormSubmission } from '@/lib/analytics';
+import TrackedPhoneLink from '@/components/ui/TrackedPhoneLink';
+import { trackFormSubmission, type PhoneClickLocation } from '@/lib/analytics';
 
 // ─────────────────────────────────────────────
 // Data
 // ─────────────────────────────────────────────
 
-const contactPersons = [
+interface ContactPerson {
+  header: string;
+  name: string;
+  image: string;
+  address: string;
+  city: string;
+  phone: string;
+  direct: string;
+  email: string;
+  // The office line is shared, so only the direct line identifies who was called.
+  phoneLocation: PhoneClickLocation;
+  directLocation: PhoneClickLocation;
+}
+
+const contactPersons: ContactPerson[] = [
   {
     header: 'Forensic Accounting Services',
     name: 'Jason A. Engel, CPA, CFE, CIRA, CVA, MAFF, ABV',
@@ -22,6 +37,8 @@ const contactPersons = [
     phone: '(310) 277-2220',
     direct: '(310) 277-5986',
     email: 'jasonengel@engelandengel.com',
+    phoneLocation: 'contact_jason_office',
+    directLocation: 'contact_jason_direct',
   },
   {
     header: 'Forensic Accounting Services',
@@ -32,6 +49,8 @@ const contactPersons = [
     phone: '(310) 277-2220',
     direct: '(310) 579-0115',
     email: 'brandon@engelandengel.com',
+    phoneLocation: 'contact_brandon_office',
+    directLocation: 'contact_brandon_direct',
   }
 ];
 
@@ -202,22 +221,22 @@ export default function ContactPage() {
                           <div className="h-px bg-white/[0.06]" />
 
                           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                            <a href={`tel:${person.phone.replace(/[^0-9+]/g, '')}`} className="flex text-white/90 items-center gap-3 hover:text-[#D4AF37] transition-colors duration-300">
+                            <TrackedPhoneLink phone={person.phone} location={person.phoneLocation} className="flex text-white/90 items-center gap-3 hover:text-[#D4AF37] transition-colors duration-300">
                               <div className="w-8 h-8 rounded-lg bg-white/[0.05] border border-white/[0.08] flex items-center justify-center group-hover:border-[#D4AF37]/20 transition-colors">
                                 <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                                 </svg>
                               </div>
                               <span>{person.phone}</span>
-                            </a>
-                            <a href={`tel:${person.direct.replace(/[^0-9+]/g, '')}`} className="flex text-white/90 items-center gap-3 hover:text-[#D4AF37] transition-colors duration-300">
+                            </TrackedPhoneLink>
+                            <TrackedPhoneLink phone={person.direct} location={person.directLocation} className="flex text-white/90 items-center gap-3 hover:text-[#D4AF37] transition-colors duration-300">
                               <div className="w-8 h-8 rounded-lg bg-white/[0.05] border border-white/[0.08] flex items-center justify-center group-hover:border-[#D4AF37]/20 transition-colors">
                                 <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                                 </svg>
                               </div>
                               <span>{person.direct}</span>
-                            </a>
+                            </TrackedPhoneLink>
                           </div>
 
                           <a href={`mailto:${person.email}`} className="flex items-center gap-3 text-white/90 hover:text-[#D4AF37] transition-colors duration-300 font-medium pt-1">

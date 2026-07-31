@@ -4,6 +4,7 @@ import React, { useRef } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import Link from 'next/link'
 import EventCalendar from '@/components/events/EventCalendar'
+import TrackedPhoneLink from '@/components/ui/TrackedPhoneLink'
 
 interface EventsContentProps {
     featuredEvents: any[]
@@ -134,9 +135,9 @@ export default function EventsContent({ featuredEvents, otherEvents, upcomingEve
                                         <Link href={`/events/${event.slug}`} className="flex-1 px-6 py-3 bg-[#0f3574] text-white rounded-xl text-xs font-bold uppercase tracking-widest text-center hover:bg-slate-800 transition-colors duration-300">
                                             View Details
                                         </Link>
-                                        <a href={`tel:${event.contactPhone}`} className="px-6 py-3 border border-slate-200 rounded-xl text-xs font-bold uppercase tracking-widest text-slate-900 hover:border-[#D4AF37] hover:text-[#D4AF37] transition-all duration-300">
+                                        <TrackedPhoneLink phone={event.contactPhone} location="events_list" className="px-6 py-3 border border-slate-200 rounded-xl text-xs font-bold uppercase tracking-widest text-slate-900 hover:border-[#D4AF37] hover:text-[#D4AF37] transition-all duration-300">
                                             Schedule Meet
-                                        </a>
+                                        </TrackedPhoneLink>
                                     </div>
                                 </div>
                             </motion.div>

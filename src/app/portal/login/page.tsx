@@ -4,6 +4,7 @@ import React, { useState, useEffect, Suspense } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { Button } from '@/components/ui/Button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card'
+import TrackedPhoneLink from '@/components/ui/TrackedPhoneLink'
 
 function PortalLoginForm() {
   const router = useRouter()
@@ -161,9 +162,9 @@ function PortalLoginForm() {
                   Need help accessing your account?
                 </p>
                 <div className="flex flex-col sm:flex-row gap-2 justify-center">
-                  <a href="tel:(310) 277-2220" className="text-primary-600 hover:text-primary-800 text-sm font-medium">
+                  <TrackedPhoneLink phone="(310) 277-2220" location="portal_login" className="text-primary-600 hover:text-primary-800 text-sm font-medium">
                     Call (310) 277-2220
-                  </a>
+                  </TrackedPhoneLink>
                   <span className="hidden sm:inline text-gray-400">|</span>
                   <button
                     type="button"

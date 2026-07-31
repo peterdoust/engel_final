@@ -5,6 +5,7 @@ import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import Image from 'next/image';
+import TrackedPhoneLink from '@/components/ui/TrackedPhoneLink'
 
 // ─────────────────────────────────────────────
 // Data
@@ -345,7 +346,7 @@ export default function JointRetentionProgramPage() {
                     </span>
                   </a>
 
-                  <a href="tel:310-277-2220" className="group flex items-center gap-4">
+                  <TrackedPhoneLink phone="310-277-2220" location="service_cta" className="group flex items-center gap-4">
                     <div className="w-12 h-12 rounded-xl bg-[#D4AF37]/10 border border-[#D4AF37]/30 flex items-center justify-center text-[#D4AF37] group-hover:bg-[#D4AF37] group-hover:text-[#0A1A3C] transition-all duration-300 shrink-0">
                       <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
@@ -354,7 +355,7 @@ export default function JointRetentionProgramPage() {
                     <span className="text-lg font-semibold text-white/90 group-hover:text-white border-b border-white/20 group-hover:border-[#D4AF37] pb-0.5 transition-all duration-200">
                       310-277-2220
                     </span>
-                  </a>
+                  </TrackedPhoneLink>
                 </div>
               </div>
             </motion.div>

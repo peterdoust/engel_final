@@ -6,6 +6,7 @@ import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import RequestPublicationModal from '@/components/modals/RequestPublicationModal';
+import TrackedPhoneLink from '@/components/ui/TrackedPhoneLink'
 
 // ─────────────────────────────────────────────
 // Data
@@ -272,9 +273,9 @@ export default function PublicationsPage() {
               >
                 Request Publication
               </button>
-              <a href="tel:+13102772220" className="px-10 py-5 bg-white shadow-lg text-[#0A1A3C] font-bold text-lg rounded-2xl hover:bg-[#0A1A3C] hover:text-white transition-all border border-slate-100">
+              <TrackedPhoneLink phone="+13102772220" location="publications_cta" className="px-10 py-5 bg-white shadow-lg text-[#0A1A3C] font-bold text-lg rounded-2xl hover:bg-[#0A1A3C] hover:text-white transition-all border border-slate-100">
                 Call (310) 277-2220
-              </a>
+              </TrackedPhoneLink>
             </div>
           </div>
         </section>

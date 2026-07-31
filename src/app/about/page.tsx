@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { motion } from 'framer-motion';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
+import TrackedPhoneLink from '@/components/ui/TrackedPhoneLink'
 
 // ─────────────────────────────────────────────
 // Data
@@ -257,9 +258,9 @@ export default function AboutPage() {
               <Link href="/contact" className="px-12 py-5 bg-[#0f3574] text-white font-bold text-lg rounded-2xl hover:bg-black transition-all shadow-xl">
                 Contact Us
               </Link>
-              <a href="tel:+13102772220" className="px-12 py-5 bg-white text-[#0f3574] font-bold text-lg rounded-2xl hover:shadow-lg transition-all border border-slate-100">
+              <TrackedPhoneLink phone="+13102772220" location="about_cta" className="px-12 py-5 bg-white text-[#0f3574] font-bold text-lg rounded-2xl hover:shadow-lg transition-all border border-slate-100">
                 (310) 277-2220
-              </a>
+              </TrackedPhoneLink>
             </div>
           </div>
         </section>

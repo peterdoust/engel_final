@@ -37,6 +37,29 @@ export type PhoneClickLocation =
   // Fallback for a team member whose slug is missing from TEAM_PHONE_LOCATIONS.
   // A mislabelled event beats throwing inside a render and taking out /team.
   | 'team_unknown'
+  // Individual partner profile pages, /team/[slug].
+  | 'team_profile_office'
+  | 'team_profile_direct'
+  // Contact page cards, mirroring the homepage ones.
+  | 'contact_jason_office'
+  | 'contact_jason_direct'
+  | 'contact_brandon_office'
+  | 'contact_brandon_direct'
+  /*
+   * The 16 practice-area and 4 service pages share one identical CTA block, so
+   * they share one label rather than getting 20 near-duplicate values. GA4
+   * already records page_location on every event, so "which practice area" is
+   * answered by breaking this event down by page — no extra vocabulary needed.
+   */
+  | 'practice_area_cta'
+  | 'service_cta'
+  | 'services_index_cta'
+  | 'about_cta'
+  | 'publications_cta'
+  | 'news_article_cta'
+  | 'portal_login'
+  | 'events_list'
+  | 'event_detail'
 
 /** Fires on click of a phone number anywhere on the site. */
 export function trackPhoneCall(location: PhoneClickLocation) {

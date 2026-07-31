@@ -3,6 +3,7 @@
 import React, { useRef } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import Link from 'next/link'
+import TrackedPhoneLink from '@/components/ui/TrackedPhoneLink'
 
 interface EventDetailContentProps {
     event: any
@@ -169,11 +170,11 @@ export default function EventDetailContent({ event }: EventDetailContentProps) {
                                         Reserve dedicated time with our experts to discuss your specific litigation requirements during the session.
                                     </p>
                                     <div className="space-y-4">
-                                        <a href={`tel:${event.contactPhone}`} className="block">
+                                        <TrackedPhoneLink phone={event.contactPhone} location="event_detail" className="block">
                                             <button className="w-full py-4 bg-[#D4AF37] text-[#0f3574] rounded-xl text-[10px] font-black uppercase tracking-[0.2em] hover:bg-[#B8962D] transition-all shadow-[0_10px_30px_rgba(212,175,55,0.1)]">
                                                 Call {event.contactPhone}
                                             </button>
-                                        </a>
+                                        </TrackedPhoneLink>
                                         <a href={`mailto:${event.contactEmail}`} className="block">
                                             <button className="w-full py-4 bg-white/5 border border-white/10 text-white rounded-xl text-[10px] font-black uppercase tracking-[0.2em] hover:bg-white/10 transition-all">
                                                 Secure Email
