@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { motion } from 'framer-motion'
+import { resetCurrentUserCache } from '../useCurrentUser'
 
 export default function AdminLoginPage() {
   const router = useRouter()
@@ -18,7 +19,8 @@ export default function AdminLoginPage() {
   useEffect(() => {
     const token = sessionStorage.getItem('raffle_token')
     if (token) {
-      router.replace('/admin/publication-requests')
+      // /admin resolves the first section this user may actually open.
+      router.replace('/admin')
     }
   }, [router])
 
@@ -35,7 +37,10 @@ export default function AdminLoginPage() {
       const data = await res.json()
       if (!res.ok) throw new Error(data.error || 'Login failed')
       sessionStorage.setItem('raffle_token', data.token)
-      router.replace('/admin/publication-requests')
+      // Drop any identity cached for a previously signed-in user.
+      resetCurrentUserCache()
+      // /admin resolves the first section this user may actually open.
+      router.replace('/admin')
     } catch (err: any) {
       setError(err.message || 'Login failed')
     } finally {

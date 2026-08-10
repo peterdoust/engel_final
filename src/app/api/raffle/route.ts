@@ -1,23 +1,16 @@
 import { NextRequest, NextResponse } from 'next/server'
 import clientPromise from '@/lib/mongodb'
 import nodemailer from 'nodemailer'
+import { requirePermission } from '@/lib/adminAuth'
 
 // GET — return all entries (admin only)
 export async function GET(request: NextRequest) {
-  const token = request.headers.get('x-admin-key')
-  if (!token) {
-    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
-  }
+  const gate = await requirePermission(request, 'raffle', 'view')
+  if (gate.error) return gate.error
 
   try {
-    const client = await clientPromise
-    const db = client.db('engelandengel')
+    const db = gate.auth.db
 
-    // Verify session token
-    const admin = await db.collection('raffle_admin').findOne({ sessionToken: token })
-    if (!admin) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
-    }
     const entries = await db.collection('raffle_entries').find({}).sort({ timestamp: -1 }).toArray()
     return NextResponse.json({ success: true, entries, total: entries.length })
   } catch (error) {

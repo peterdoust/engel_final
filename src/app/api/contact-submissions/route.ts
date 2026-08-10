@@ -1,20 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server'
-import clientPromise from '@/lib/mongodb'
+import { requirePermission } from '@/lib/adminAuth'
 
 export async function GET(request: NextRequest) {
-  const token = request.headers.get('x-admin-key')
-  if (!token) {
-    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
-  }
+  const gate = await requirePermission(request, 'contact-submissions', 'view')
+  if (gate.error) return gate.error
 
   try {
-    const client = await clientPromise
-    const db = client.db()
-
-    const admin = await db.collection('raffle_admin').findOne({ sessionToken: token })
-    if (!admin) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
-    }
+    const db = gate.auth.db
 
     const submissions = await db
       .collection('contact_submissions')

@@ -1,26 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { revalidatePath } from 'next/cache'
 import { z } from 'zod'
-import clientPromise from '@/lib/mongodb'
-import { SEO_COLLECTION, SEO_DB_NAME, getAllSeoMeta } from '@/lib/seo'
+import { SEO_COLLECTION, getAllSeoMeta } from '@/lib/seo'
 import { SEO_PAGES, getSeoPage } from '@/lib/seoPages'
+import { requirePermission } from '@/lib/adminAuth'
 
 export const dynamic = 'force-dynamic'
-
-/** Mirrors the admin auth used by the other admin endpoints (see api/publication-requests). */
-async function authorize(request: NextRequest) {
-  const token = request.headers.get('x-admin-key')
-  if (!token || !process.env.MONGODB_URI) return null
-
-  const client = await clientPromise
-  // Named explicitly to match api/raffle/login, which writes the sessionToken into
-  // this database. Relying on the URI's default db would silently 401 if they differ.
-  const db = client.db(SEO_DB_NAME)
-  const admin = await db.collection('raffle_admin').findOne({ sessionToken: token })
-  if (!admin) return null
-
-  return { db, admin }
-}
 
 const updateSchema = z.object({
   path: z.string().min(1),
@@ -30,8 +15,8 @@ const updateSchema = z.object({
 
 export async function GET(request: NextRequest) {
   try {
-    const auth = await authorize(request)
-    if (!auth) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+    const gate = await requirePermission(request, 'seo', 'view')
+    if (gate.error) return gate.error
 
     const resolved = await getAllSeoMeta(SEO_PAGES)
     const byPath = new Map(resolved.map(r => [r.path, r]))
@@ -60,8 +45,9 @@ export async function GET(request: NextRequest) {
 
 export async function PUT(request: NextRequest) {
   try {
-    const auth = await authorize(request)
-    if (!auth) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+    const gate = await requirePermission(request, 'seo', 'edit')
+    if (gate.error) return gate.error
+    const auth = gate.auth
 
     const parsed = updateSchema.safeParse(await request.json())
     if (!parsed.success) {
@@ -93,7 +79,7 @@ export async function PUT(request: NextRequest) {
             title,
             description,
             updatedAt: new Date(),
-            updatedBy: auth.admin.username || auth.admin.email || 'admin',
+            updatedBy: (auth.user as any).name || auth.user.email || 'admin',
           },
         },
         { upsert: true }
@@ -120,8 +106,12 @@ export async function PUT(request: NextRequest) {
 
 export async function DELETE(request: NextRequest) {
   try {
-    const auth = await authorize(request)
-    if (!auth) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+    // Gated on 'edit', not a separate delete: this removes a custom override so the
+    // page falls back to its built-in default. PUT with both fields blank performs
+    // the identical deleteOne, so requiring more here would only be theatre.
+    const gate = await requirePermission(request, 'seo', 'edit')
+    if (gate.error) return gate.error
+    const auth = gate.auth
 
     const path = request.nextUrl.searchParams.get('path')
     if (!path || !getSeoPage(path)) {

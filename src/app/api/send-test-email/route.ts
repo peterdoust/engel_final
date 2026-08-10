@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import nodemailer from 'nodemailer'
 import crypto from 'crypto'
+import { requireAdmin } from '@/lib/adminAuth'
 
 // Generate test credentials
 function generateTestCredentials() {
@@ -206,6 +207,11 @@ function createEmailTemplate(data: any) {
 }
 
 export async function POST(request: NextRequest) {
+  // This endpoint sends mail to an arbitrary address and returns generated portal
+  // credentials, so it must never be reachable anonymously — an open relay otherwise.
+  const gate = await requireAdmin(request)
+  if (gate.error) return gate.error
+
   try {
     const { email = 'peter@gcs.la' } = await request.json()
     

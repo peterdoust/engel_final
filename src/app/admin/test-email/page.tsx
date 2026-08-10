@@ -3,6 +3,7 @@
 import React, { useState } from 'react'
 import { Button } from '@/components/ui/Button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card'
+import { useCurrentUser } from '../useCurrentUser'
 
 interface TestCredentials {
   email: string
@@ -17,6 +18,9 @@ export default function TestEmailPage() {
   const [result, setResult] = useState<any>(null)
   const [error, setError] = useState('')
 
+  // Sending mail is an administrator tool; it is not one of the granted sections.
+  const { user, loading: userLoading } = useCurrentUser()
+
   const sendTestEmail = async () => {
     setLoading(true)
     setError('')
@@ -27,6 +31,7 @@ export default function TestEmailPage() {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'x-admin-key': sessionStorage.getItem('raffle_token') || '',
         },
         body: JSON.stringify({ email: 'peter@gcs.la' }),
       })
@@ -47,6 +52,27 @@ export default function TestEmailPage() {
 
   const copyToClipboard = (text: string) => {
     navigator.clipboard.writeText(text)
+  }
+
+  if (userLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center text-gray-400 text-sm">
+        Loading...
+      </div>
+    )
+  }
+
+  if (!user?.canManageUsers) {
+    return (
+      <div className="min-h-screen flex items-center justify-center p-8">
+        <div className="max-w-md text-center">
+          <h1 className="text-lg font-bold text-gray-900 mb-2">Administrators only</h1>
+          <p className="text-sm text-gray-600">
+            This tool sends email on behalf of the firm and is restricted to administrators.
+          </p>
+        </div>
+      </div>
+    )
   }
 
   return (

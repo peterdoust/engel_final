@@ -46,6 +46,10 @@ async function main() {
       $set: {
         email: EMAIL.trim().toLowerCase(),
         password: hash,
+        // This script seeds the top-level administrator, who is defined by the role
+        // rather than by a permissions map (see src/lib/permissions.ts).
+        role: 'admin',
+        permissions: {},
         updatedAt: new Date().toISOString(),
       },
       $setOnInsert: { createdAt: new Date().toISOString() },

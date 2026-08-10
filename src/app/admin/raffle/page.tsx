@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useSidebarSlot } from '../SidebarContext'
+import { useCurrentUser } from '../useCurrentUser'
 
 interface Entry {
   _id: string
@@ -23,6 +24,11 @@ export default function RafflePage() {
   const [isConfirmed, setIsConfirmed] = useState(false)
   const [isPickingWinner, setIsPickingWinner] = useState(false)
   const [isConfirming, setIsConfirming] = useState(false)
+
+  // Drawing and confirming a winner both write (and confirming emails the winner),
+  // so they require edit. The API enforces this too — see api/raffle/winner.
+  const { can } = useCurrentUser()
+  const canEdit = can('raffle', 'edit')
   const [showReveal, setShowReveal] = useState(false)
   const [shuffleName, setShuffleName] = useState('')
   const [showConfetti, setShowConfetti] = useState(false)
@@ -145,7 +151,7 @@ export default function RafflePage() {
             </div>
           )}
 
-          {!isConfirmed && (
+          {!isConfirmed && canEdit && (
             <button
               onClick={pickWinner}
               disabled={entries.length === 0 || isPickingWinner}
@@ -163,7 +169,7 @@ export default function RafflePage() {
             </button>
           )}
 
-          {winner && !isConfirmed && (
+          {winner && !isConfirmed && canEdit && (
             <button
               onClick={confirmWinner}
               disabled={isConfirming}
@@ -171,6 +177,12 @@ export default function RafflePage() {
             >
               {isConfirming ? 'Confirming...' : 'Confirm Winner'}
             </button>
+          )}
+
+          {!canEdit && (
+            <p className="text-[11px] text-white/50 text-center leading-relaxed">
+              View-only access — drawing and confirming a winner require edit permission.
+            </p>
           )}
         </div>
 

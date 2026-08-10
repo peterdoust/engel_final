@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useState, useEffect, useMemo, useCallback } from 'react'
+import { useCurrentUser } from '../useCurrentUser'
 
 const TITLE_LIMIT = 60
 const DESCRIPTION_LIMIT = 160
@@ -85,6 +86,12 @@ export default function SeoAdmin() {
   // Drafts are keyed by path so switching between rows never discards unsaved edits.
   const [drafts, setDrafts] = useState<Record<string, Draft>>({})
   const [saving, setSaving] = useState(false)
+
+  // The API is the real gate (it returns 403 regardless of what the UI shows), but
+  // offering controls the user cannot use produces a confusing failure on Save.
+  const { can } = useCurrentUser()
+  // "Reset to default" clears an override, which is an edit — see api/seo DELETE.
+  const canEdit = can('seo', 'edit')
 
   const fetchPages = useCallback(async (token?: string) => {
     const key = token || authToken
@@ -351,7 +358,10 @@ export default function SeoAdmin() {
                             value={draft.title}
                             onChange={e => setDraft(row.path, { title: e.target.value })}
                             placeholder={row.defaultTitle}
-                            className="w-full text-sm px-3 py-2 border border-gray-200 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-[#0d1f42]/20"
+                            readOnly={!canEdit}
+                            className={`w-full text-sm px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0d1f42]/20 ${
+                              canEdit ? 'bg-white' : 'bg-gray-50 text-gray-500 cursor-not-allowed'
+                            }`}
                           />
                           <p className="text-[11px] text-gray-400 mt-1">
                             Shown in full — include <span className="font-mono">| Engel &amp; Engel</span> if you want the
@@ -369,7 +379,10 @@ export default function SeoAdmin() {
                             onChange={e => setDraft(row.path, { description: e.target.value })}
                             placeholder={row.defaultDescription}
                             rows={3}
-                            className="w-full text-sm px-3 py-2 border border-gray-200 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-[#0d1f42]/20 resize-y"
+                            readOnly={!canEdit}
+                            className={`w-full text-sm px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0d1f42]/20 resize-y ${
+                              canEdit ? 'bg-white' : 'bg-gray-50 text-gray-500 cursor-not-allowed'
+                            }`}
                           />
                           <p className="text-[11px] text-gray-400 mt-1">Leave blank to use the default.</p>
                         </div>
@@ -380,14 +393,22 @@ export default function SeoAdmin() {
                           description={draft.description || row.defaultDescription}
                         />
 
+                        {!canEdit && (
+                          <p className="text-[11px] text-amber-700 bg-amber-50 border border-amber-200 rounded-lg px-3 py-2">
+                            You have view-only access to SEO Meta. Ask an administrator if you need to make changes.
+                          </p>
+                        )}
+
                         <div className="flex flex-wrap items-center gap-2">
-                          <button
-                            onClick={() => save(row)}
-                            disabled={saving}
-                            className="text-xs font-semibold text-white bg-[#0d1f42] hover:bg-black px-4 py-2 rounded-lg disabled:opacity-40"
-                          >
-                            {saving ? 'Saving...' : 'Save'}
-                          </button>
+                          {canEdit && (
+                            <button
+                              onClick={() => save(row)}
+                              disabled={saving}
+                              className="text-xs font-semibold text-white bg-[#0d1f42] hover:bg-black px-4 py-2 rounded-lg disabled:opacity-40"
+                            >
+                              {saving ? 'Saving...' : 'Save'}
+                            </button>
+                          )}
                           <button
                             onClick={() => {
                               clearDraft(row.path)
@@ -395,7 +416,7 @@ export default function SeoAdmin() {
                             }}
                             className="text-xs font-semibold text-gray-600 hover:text-[#0d1f42] px-4 py-2 border border-gray-200 rounded-lg bg-white"
                           >
-                            Cancel
+                            {canEdit ? 'Cancel' : 'Close'}
                           </button>
                           <a
                             href={row.path}
@@ -405,7 +426,7 @@ export default function SeoAdmin() {
                           >
                             View page
                           </a>
-                          {custom && (
+                          {custom && canEdit && (
                             <button
                               onClick={() => reset(row)}
                               disabled={saving}
