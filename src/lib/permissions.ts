@@ -22,8 +22,9 @@
  * Current state: no section has a real delete. SEO Meta's "Reset to default" removes
  * a custom override, but that is an edit — clearing both fields via PUT does exactly
  * the same thing, so a separate delete flag would gate the button and nothing else.
- * Raffle implements edit (drawing and confirming a winner). The remaining three
- * sections are read-only — their APIs expose GET and nothing else.
+ * Raffle implements edit (drawing and confirming a winner), and Unsubscribe List
+ * implements edit (marking rows exported once the CSV has downloaded). The
+ * remaining three sections are read-only — their APIs expose GET and nothing else.
  */
 export const SECTIONS = [
   { key: 'contact-submissions', label: 'Contact Inquiries', href: '/admin/contact-submissions', actions: ['view'] },
@@ -31,6 +32,7 @@ export const SECTIONS = [
   { key: 'career-applications', label: 'Career Applications', href: '/admin/career-applications', actions: ['view'] },
   { key: 'raffle', label: 'Raffle Submissions', href: '/admin/raffle', actions: ['view', 'edit'] },
   { key: 'publication-requests', label: 'Publication Requests', href: '/admin/publication-requests', actions: ['view'] },
+  { key: 'unsubscribes', label: 'Unsubscribe List', href: '/admin/unsubscribes', actions: ['view', 'edit'] },
 ] as const satisfies ReadonlyArray<{
   key: string
   label: string
