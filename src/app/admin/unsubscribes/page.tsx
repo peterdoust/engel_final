@@ -20,6 +20,24 @@ type Tab = 'new' | 'exported'
 // anything that is not explicitly exported counts as new.
 const isExported = (entry: UnsubscribeEntry) => entry.status === 'exported'
 
+/**
+ * The stored values are historical and read wrong on screen: 'manual' is what the
+ * public unsubscribe form writes, and 'admin' means a member of staff keyed the
+ * address in. Mapped for display rather than migrated, so the rows already in the
+ * collection keep working and api/unsubscribe(s) stay untouched. An unrecognised
+ * value falls through as-is rather than being labelled something it is not.
+ */
+const SOURCE_LABELS: Record<string, string> = {
+  manual: 'Form',
+  admin: 'Admin added',
+  mailer: 'Mailer',
+}
+
+const sourceLabel = (source?: string) => {
+  const key = source || 'manual'
+  return SOURCE_LABELS[key] ?? key
+}
+
 export default function UnsubscribesAdmin() {
   const { can } = useCurrentUser()
   const [authToken, setAuthToken] = useState('')
@@ -77,7 +95,7 @@ export default function UnsubscribesAdmin() {
       i + 1,
       e.email,
       new Date(e.lastRequestedAt || e.createdAt).toLocaleString(),
-      e.source || 'manual',
+      sourceLabel(e.source),
     ])
     const csv = [headers, ...body]
       .map(row => row.map(v => `"${String(v ?? '').replace(/"/g, '""')}"`).join(','))
@@ -333,7 +351,7 @@ export default function UnsubscribesAdmin() {
                     <p className="text-xs text-gray-500 mt-1">
                       {tab === 'exported' && e.exportedAt
                         ? `Exported ${new Date(e.exportedAt).toLocaleDateString()}`
-                        : `Source: ${e.source || 'manual'}`}
+                        : `Source: ${sourceLabel(e.source)}`}
                     </p>
                   </li>
                 ))}
@@ -359,7 +377,7 @@ export default function UnsubscribesAdmin() {
                         <td className="px-4 py-3 text-gray-500 whitespace-nowrap">
                           {new Date(e.lastRequestedAt || e.createdAt).toLocaleString()}
                         </td>
-                        <td className="px-4 py-3 text-gray-600">{e.source || 'manual'}</td>
+                        <td className="px-4 py-3 text-gray-600">{sourceLabel(e.source)}</td>
                         {tab === 'exported' && (
                           <td className="px-4 py-3 text-gray-500 whitespace-nowrap">
                             {e.exportedAt ? new Date(e.exportedAt).toLocaleString() : '—'}
