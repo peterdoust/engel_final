@@ -34,8 +34,6 @@ interface Draft {
   description: string
 }
 
-const EMPTY_DRAFT: Draft = { title: '', description: '' }
-
 const GROUPS: { type: SeoPageType; label: string }[] = [
   { type: 'standard', label: 'Standard' },
   { type: 'practice-area', label: 'Practice Areas' },
@@ -59,6 +57,23 @@ function CharCount({ value, limit }: { value: string; limit: number }) {
     >
       {n} / {limit}
       {over && ' — may be truncated by Google'}
+    </span>
+  )
+}
+
+/**
+ * Title and description are overridden independently, so the row-level badge cannot
+ * stand in for this: "title customised, description still default" is a normal state.
+ * Reflects what is saved, not the current draft.
+ */
+function FieldTag({ overridden }: { overridden: boolean }) {
+  return (
+    <span
+      className={`text-[10px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded ${
+        overridden ? 'bg-[#D4AF37]/20 text-[#8a6d0b]' : 'bg-gray-100 text-gray-500'
+      }`}
+    >
+      {overridden ? 'Custom' : 'Default'}
     </span>
   )
 }
@@ -135,22 +150,29 @@ export default function SeoAdmin() {
 
   const customCount = pages.filter(p => p.isTitleOverridden || p.isDescriptionOverridden).length
 
-  const draftFor = (row: SeoPageRow): Draft => drafts[row.path] ?? EMPTY_DRAFT
-
-  const savedDraftFor = (row: SeoPageRow): Draft => ({
-    title: row.isTitleOverridden ? row.title : '',
-    description: row.isDescriptionOverridden ? row.description : '',
+  /**
+   * `row.title` is the text the live page actually renders: the DB override when one
+   * exists, the registry default otherwise (see lib/seo.ts). Seeding the editor from it
+   * means the fields show real, editable text rather than a placeholder ghost.
+   */
+  const effectiveDraftFor = (row: SeoPageRow): Draft => ({
+    title: row.title,
+    description: row.description,
   })
+
+  const draftFor = (row: SeoPageRow): Draft => drafts[row.path] ?? effectiveDraftFor(row)
 
   const isDirty = (row: SeoPageRow) => {
     const d = drafts[row.path]
     if (!d) return false
-    const saved = savedDraftFor(row)
+    const saved = effectiveDraftFor(row)
     return d.title !== saved.title || d.description !== saved.description
   }
 
-  const setDraft = (path: string, patch: Partial<Draft>) =>
-    setDrafts(prev => ({ ...prev, [path]: { ...(prev[path] ?? EMPTY_DRAFT), ...patch } }))
+  // Merged onto the effective text, not onto a blank: reset() leaves an open row with no
+  // draft entry, and an empty base there would wipe whichever field is not being edited.
+  const setDraft = (row: SeoPageRow, patch: Partial<Draft>) =>
+    setDrafts(prev => ({ ...prev, [row.path]: { ...(prev[row.path] ?? effectiveDraftFor(row)), ...patch } }))
 
   const clearDraft = (path: string) =>
     setDrafts(prev => {
@@ -167,8 +189,8 @@ export default function SeoAdmin() {
       return
     }
     setExpanded(row.path)
-    // Seed from what is currently saved, but never clobber an in-progress draft.
-    setDrafts(prev => (prev[row.path] ? prev : { ...prev, [row.path]: savedDraftFor(row) }))
+    // Seed from the effective text, but never clobber an in-progress draft.
+    setDrafts(prev => (prev[row.path] ? prev : { ...prev, [row.path]: effectiveDraftFor(row) }))
   }
 
   const applyResult = (result: any) => {
@@ -189,6 +211,14 @@ export default function SeoAdmin() {
 
   const save = async (row: SeoPageRow) => {
     const draft = draftFor(row)
+    // The fields are pre-filled with the effective text, so an untouched Save would
+    // otherwise write the default straight back as an override. That matters most for
+    // blog posts and events, whose defaults are derived from the content itself
+    // (see lib/seoPages.ts) — a frozen copy would stop tracking the post. '' means
+    // "no override", which is also what keeps the Custom/Default badges honest.
+    const title = draft.title.trim() === row.defaultTitle.trim() ? '' : draft.title
+    const description =
+      draft.description.trim() === row.defaultDescription.trim() ? '' : draft.description
     setSaving(true)
     setError('')
     setNotice('')
@@ -196,7 +226,7 @@ export default function SeoAdmin() {
       const res = await fetch('/api/seo', {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json', 'x-admin-key': authToken },
-        body: JSON.stringify({ path: row.path, title: draft.title, description: draft.description }),
+        body: JSON.stringify({ path: row.path, title, description }),
       })
       const data = await res.json()
       if (!res.ok) throw new Error(data.error || 'Failed to save')
@@ -229,7 +259,9 @@ export default function SeoAdmin() {
         isTitleOverridden: false,
         isDescriptionOverridden: false,
       })
-      setDrafts(prev => ({ ...prev, [row.path]: EMPTY_DRAFT }))
+      // applyResult has already put the defaults back on the row, and the draft falls
+      // back to those, so seeding one here would only be a second source of truth.
+      clearDraft(row.path)
       setNotice(`Reset to default — ${row.label}.`)
     } catch (err: any) {
       setError(err.message || 'Failed to reset')
@@ -350,13 +382,27 @@ export default function SeoAdmin() {
                     {isOpen && (
                       <div className="border-t border-gray-100 p-4 space-y-4 bg-gray-50/60">
                         <div>
-                          <div className="flex items-center justify-between mb-1">
-                            <label className="text-xs font-semibold text-gray-600">Meta Title</label>
-                            <CharCount value={draft.title || row.defaultTitle} limit={TITLE_LIMIT} />
+                          <div className="flex items-center justify-between gap-3 mb-1">
+                            <div className="flex items-center gap-2">
+                              <label className="text-xs font-semibold text-gray-600">Meta Title</label>
+                              <FieldTag overridden={row.isTitleOverridden} />
+                            </div>
+                            <div className="flex items-center gap-3">
+                              {canEdit && draft.title !== row.defaultTitle && (
+                                <button
+                                  type="button"
+                                  onClick={() => setDraft(row, { title: row.defaultTitle })}
+                                  className="text-[11px] font-semibold text-gray-500 hover:text-[#0d1f42] underline underline-offset-2"
+                                >
+                                  Restore default
+                                </button>
+                              )}
+                              <CharCount value={draft.title} limit={TITLE_LIMIT} />
+                            </div>
                           </div>
                           <input
                             value={draft.title}
-                            onChange={e => setDraft(row.path, { title: e.target.value })}
+                            onChange={e => setDraft(row, { title: e.target.value })}
                             placeholder={row.defaultTitle}
                             readOnly={!canEdit}
                             className={`w-full text-sm px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0d1f42]/20 ${
@@ -365,18 +411,33 @@ export default function SeoAdmin() {
                           />
                           <p className="text-[11px] text-gray-400 mt-1">
                             Shown in full — include <span className="font-mono">| Engel &amp; Engel</span> if you want the
-                            firm name in the tab and search result. Leave blank to use the default above.
+                            firm name in the tab and search result. Clearing this field falls back to the built-in
+                            default.
                           </p>
                         </div>
 
                         <div>
-                          <div className="flex items-center justify-between mb-1">
-                            <label className="text-xs font-semibold text-gray-600">Meta Description</label>
-                            <CharCount value={draft.description || row.defaultDescription} limit={DESCRIPTION_LIMIT} />
+                          <div className="flex items-center justify-between gap-3 mb-1">
+                            <div className="flex items-center gap-2">
+                              <label className="text-xs font-semibold text-gray-600">Meta Description</label>
+                              <FieldTag overridden={row.isDescriptionOverridden} />
+                            </div>
+                            <div className="flex items-center gap-3">
+                              {canEdit && draft.description !== row.defaultDescription && (
+                                <button
+                                  type="button"
+                                  onClick={() => setDraft(row, { description: row.defaultDescription })}
+                                  className="text-[11px] font-semibold text-gray-500 hover:text-[#0d1f42] underline underline-offset-2"
+                                >
+                                  Restore default
+                                </button>
+                              )}
+                              <CharCount value={draft.description} limit={DESCRIPTION_LIMIT} />
+                            </div>
                           </div>
                           <textarea
                             value={draft.description}
-                            onChange={e => setDraft(row.path, { description: e.target.value })}
+                            onChange={e => setDraft(row, { description: e.target.value })}
                             placeholder={row.defaultDescription}
                             rows={3}
                             readOnly={!canEdit}
@@ -384,7 +445,9 @@ export default function SeoAdmin() {
                               canEdit ? 'bg-white' : 'bg-gray-50 text-gray-500 cursor-not-allowed'
                             }`}
                           />
-                          <p className="text-[11px] text-gray-400 mt-1">Leave blank to use the default.</p>
+                          <p className="text-[11px] text-gray-400 mt-1">
+                            Clearing this field falls back to the built-in default.
+                          </p>
                         </div>
 
                         <SerpPreview
