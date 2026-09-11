@@ -192,27 +192,33 @@ export default function BusinessValuationPage() {
 
                   <div className="absolute -left-6 top-0 bottom-0 w-1 bg-gradient-to-b from-[#D4AF37] via-[#D4AF37]/40 to-transparent rounded-full hidden lg:block" />
 
-                  <p className="text-[18px] leading-relaxed">
-                   Jason Engel was named to Forbes’ inaugural 2025 list of America’s Top CPAs in Valuations, recognizing leading professionals in business valuation. This distinction was awarded based on nominations, independent research, and interviews with industry leaders and experts.
-                  </p>
+                
 
                    {/* image begins */}
                 <Link href="/news-and-insights/jason-engel-forbes-top-cpas-valuations-2025">
                 <div className="relative">
                   {/* Soft shadow behind image */}
                   <div className="absolute inset-4 bg-black/5 rounded-2xl blur-xl" />
-                  <div className="relative w-80 h-80 md:w-96 md:h-96">
+                  <div className="relative ">
                     <Image
                       src="/images/memberships/badge-forbes.jpg"
                       alt="Forbes America's Top CPAs for Valuations 2025"
                       fill
-                      className="object-contain"
+                      className="object-full"
                       unoptimized
                     />
                   </div>
                 </div>
               </Link>
                    {/* image ends */}
+
+
+
+                    <p className="text-[18px] leading-relaxed">
+                   Jason Engel was named to Forbes’ inaugural 2025 list of America’s Top CPAs in Valuations, recognizing leading professionals in business valuation. This distinction was awarded based on nominations, independent research, and interviews with industry leaders and experts.
+                  </p>
+
+                  
 
                   {/* button begins */}
                   <Link
