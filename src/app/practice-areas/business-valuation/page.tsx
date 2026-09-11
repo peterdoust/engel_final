@@ -197,18 +197,16 @@ export default function BusinessValuationPage() {
                    {/* image begins */}
                <Link href="/news-and-insights/jason-engel-forbes-top-cpas-valuations-2025">
   <div className="relative w-full">
-    {/* Soft shadow behind image */}
     <div className="absolute inset-4 bg-black/5 rounded-2xl blur-xl" />
 
-    <div className="relative w-full aspect-square">
-      <Image
-        src="/images/memberships/badge-forbes.jpg"
-        alt="Forbes America's Top CPAs for Valuations 2025"
-        fill
-        className="object-contain"
-        unoptimized
-      />
-    </div>
+    <Image
+      src="/images/memberships/badge-forbes.jpg"
+      alt="Forbes America's Top CPAs for Valuations 2025"
+      width={1200}
+      height={600}
+      className="relative w-full h-auto object-contain"
+      unoptimized
+    />
   </div>
 </Link>
                    {/* image ends */}
