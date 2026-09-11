@@ -184,6 +184,22 @@ export default function BusinessValuationPage() {
               </section>
 
 
+               {/* BADGE */}
+              <section>
+
+                <div className="relative">
+
+                  <div className="absolute -left-6 top-0 bottom-0 w-1 bg-gradient-to-b from-[#D4AF37] via-[#D4AF37]/40 to-transparent rounded-full hidden lg:block" />
+
+                  <p className="text-[18px] leading-relaxed">
+                   Jason Engel was named to Forbes’ inaugural 2025 list of America’s Top CPAs in Valuations, recognizing leading professionals in business valuation. This distinction was awarded based on nominations, independent research, and interviews with industry leaders and experts.
+                  </p>
+
+                </div>
+
+              </section>
+
+
               {/* SERVICES */}
               <section className="py-10 my-10 border-t border-b border-slate-200">
 
