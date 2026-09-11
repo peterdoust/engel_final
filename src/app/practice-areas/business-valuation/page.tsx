@@ -183,7 +183,7 @@ export default function BusinessValuationPage() {
 
               </section>
 
-              <br></br>
+           
 
              
 
@@ -254,7 +254,7 @@ export default function BusinessValuationPage() {
                    {/* image ends */}
 
 
-                <br></br>
+               <br /><br />
                     <p className="text-[18px] leading-relaxed">
                    Jason Engel was named to Forbes’ inaugural 2025 list of America’s Top CPAs in Valuations, recognizing leading professionals in business valuation. This distinction was awarded based on nominations, independent research, and interviews with industry leaders and experts.
                   </p>
@@ -277,7 +277,7 @@ export default function BusinessValuationPage() {
 
               </section>
 
-              <br></br></br>
+              <br /><br />
 
 
               {/* PUBLICATIONS */}
