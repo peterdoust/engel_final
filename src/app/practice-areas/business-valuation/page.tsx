@@ -185,7 +185,49 @@ export default function BusinessValuationPage() {
 
               <br></br>
 
-               {/* BADGE */}
+             
+
+
+              {/* SERVICES */}
+              <section className="py-10 my-10 border-t border-b border-slate-200">
+
+                <h2 className="text-2xl md:text-3xl font-bold text-primary-950 mb-4">
+                  Business Valuation Forensic Accounting Services
+                </h2>
+
+                <div className="h-[3px] w-16 bg-primary-950 mb-4" />
+
+                <p className="mb-10">
+                  When the stakes are high, Engel & Engel can serve as your expert in connection with the following:
+                </p>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4">
+
+                  {services.map((item, i) => (
+
+                    <div
+                      key={i}
+                      className="group relative p-5 bg-white rounded-2xl border border-slate-200 hover:border-primary-950/30 hover:shadow-lg transition-all flex justify-center flex-col"
+                    >
+
+                      <div className="absolute top-1/2 -translate-y-1/2 left-5 w-2 h-2 rounded-full bg-[#D4AF37]" />
+
+                      <span className="block pl-5 text-[0.95rem] font-medium leading-snug">
+                        {item}
+                      </span>
+
+                    </div>
+
+                  ))}
+
+                </div>
+
+              </section>
+
+
+
+
+                {/* BADGE */}
               <section>
 
                 <div className="relative">
@@ -235,42 +277,7 @@ export default function BusinessValuationPage() {
 
               </section>
 
-
-              {/* SERVICES */}
-              <section className="py-10 my-10 border-t border-b border-slate-200">
-
-                <h2 className="text-2xl md:text-3xl font-bold text-primary-950 mb-4">
-                  Business Valuation Forensic Accounting Services
-                </h2>
-
-                <div className="h-[3px] w-16 bg-primary-950 mb-4" />
-
-                <p className="mb-10">
-                  When the stakes are high, Engel & Engel can serve as your expert in connection with the following:
-                </p>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4">
-
-                  {services.map((item, i) => (
-
-                    <div
-                      key={i}
-                      className="group relative p-5 bg-white rounded-2xl border border-slate-200 hover:border-primary-950/30 hover:shadow-lg transition-all flex justify-center flex-col"
-                    >
-
-                      <div className="absolute top-1/2 -translate-y-1/2 left-5 w-2 h-2 rounded-full bg-[#D4AF37]" />
-
-                      <span className="block pl-5 text-[0.95rem] font-medium leading-snug">
-                        {item}
-                      </span>
-
-                    </div>
-
-                  ))}
-
-                </div>
-
-              </section>
+              <br></br>
 
 
               {/* PUBLICATIONS */}
