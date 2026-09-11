@@ -183,6 +183,7 @@ export default function BusinessValuationPage() {
 
               </section>
 
+              <br></br>
 
                {/* BADGE */}
               <section>
@@ -194,6 +195,36 @@ export default function BusinessValuationPage() {
                   <p className="text-[18px] leading-relaxed">
                    Jason Engel was named to Forbes’ inaugural 2025 list of America’s Top CPAs in Valuations, recognizing leading professionals in business valuation. This distinction was awarded based on nominations, independent research, and interviews with industry leaders and experts.
                   </p>
+
+                   {/* image begins */}
+                <Link href="/news-and-insights/jason-engel-forbes-top-cpas-valuations-2025">
+                <div className="relative">
+                  {/* Soft shadow behind image */}
+                  <div className="absolute inset-4 bg-black/5 rounded-2xl blur-xl" />
+                  <div className="relative w-80 h-80 md:w-96 md:h-96">
+                    <Image
+                      src="/images/memberships/badge-forbes.jpg"
+                      alt="Forbes America's Top CPAs for Valuations 2025"
+                      fill
+                      className="object-contain"
+                      unoptimized
+                    />
+                  </div>
+                </div>
+              </Link>
+                   {/* image ends */}
+
+                  {/* button begins */}
+                  <Link
+                href="/news-and-insights/jason-engel-forbes-top-cpas-valuations-2025"
+                className="inline-flex items-center gap-2 px-7 py-3 bg-primary-950 text-white font-semibold text-sm tracking-wider uppercase rounded-lg hover:bg-[#D4AF37] transition-colors duration-300"
+              >
+                Read More
+                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </Link>
+                  {/* button ends */}
 
                 </div>
 
