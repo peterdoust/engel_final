@@ -60,7 +60,7 @@ const teamMembers: TeamMember[] = [
     email: 'jasonengel@engelandengel.com',
     linkedin: 'jasonengel',
     image: '/images/team/jason-engel.jpg',
-    pdfQualifications: 'https://engelandengel.com/wp-content/uploads/2024/02/jason-engel-cv.pdf',
+    pdfQualifications: '/images/jason-engel-cv.pdf',
     credentialChips: [
       'Certified Public Accountant',
       'Certified Fraud Examiner',
@@ -160,7 +160,7 @@ const teamMembers: TeamMember[] = [
     email: 'brandon@engelandengel.com',
     linkedin: 'brandon-engel',
     image: '/images/team/brandon-engel.jpg',
-    pdfQualifications: 'https://engelandengel.com/wp-content/uploads/2024/02/brandon-engel-cv-rev2.pdf',
+    pdfQualifications: '/images/brandon-engel-cv-rev2.pdf',
     credentialChips: [
       'Certified Public Accountant',
       'Certified Fraud Examiner',
