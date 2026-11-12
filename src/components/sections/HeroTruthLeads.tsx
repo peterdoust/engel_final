@@ -348,7 +348,7 @@ export default function HeroTruthLeads() {
             </span>
             <span
               ref={lineRefs[2]}
-              className="ee-hero-line ee-hero-l3 ml-[0.44vw] mt-[0.39em] max-w-[200px] font-normal normal-case leading-[1.25] tracking-normal min-[700px]:max-w-none text-[clamp(14px,calc(1.75vw-5px),30px)]"
+              className="ee-hero-line ee-hero-l3 ml-[0.44vw] mt-[0.39em] whitespace-nowrap font-normal normal-case leading-[1.25] tracking-normal text-[min(max(13.6px,calc(0.1172vw+12.7px),calc(1.75vw-5px)),30px,calc((100vw-44px)/19.2))]"
             >
               Nationally Recognized Forensic Accountants
             </span>
