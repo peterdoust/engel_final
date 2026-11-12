@@ -34,7 +34,7 @@ export default function CorporateServices() {
             <div className="container mx-auto px-6 lg:px-12">
                 <div className="flex flex-col items-center mb-16 text-center">
                     <span className="text-[#D4AF37] font-bold tracking-[0.4em] uppercase text-xs mb-4">Core Competencies</span>
-                    <h2 className="text-4xl md:text-5xl font-bold text-[#0A0F1E] mb-2 tracking-tight uppercase">
+                    <h2 className="text-4xl md:text-5xl font-bold text-[#11162D] mb-2 tracking-tight uppercase">
                         Our Services
                     </h2>
                     <div className="h-1.5 w-72 md:w-[450px] bg-[#D4AF37] mx-auto mt-2 shadow-[0_0_20px_rgba(212,175,55,0.3)]" />
@@ -51,9 +51,9 @@ export default function CorporateServices() {
                                 viewport={{ once: true }}
                                 transition={{ duration: 0.5, delay: index * 0.1 }}
                             >
-                                <Link href={service.href} className="group block h-full bg-[#0F3575] p-10 border-[#4cc9f0]/40 hover:border-[#D4AF37] transition-all duration-500 rounded-sm" style={{ borderWidth: '0.5px' }}>
+                                <Link href={service.href} className="group block h-full bg-[#293995] p-10 border-[#4cc9f0]/40 hover:border-[#D4AF37] transition-all duration-500 rounded-sm" style={{ borderWidth: '0.5px' }}>
                                     <div className="w-16 h-16 bg-white/10 rounded-sm flex items-center justify-center mb-8 group-hover:bg-[#D4AF37] transition-colors duration-500">
-                                        <Icon className="w-8 h-8 text-white" />
+                                        <Icon className="w-8 h-8 text-white group-hover:text-[#1d2653] transition-colors duration-500" />
                                     </div>
                                     <h3 className="text-xl font-bold text-white mb-6 uppercase tracking-tight group-hover:text-[#D4AF37] transition-colors">
                                         {service.title}

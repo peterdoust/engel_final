@@ -76,7 +76,7 @@ const stats = [
 
 export default function CorporateHero() {
     return (
-        <section className="relative h-[85vh] min-h-[700px] flex items-center bg-[#0A0F1E] overflow-hidden">
+        <section className="relative h-[85vh] min-h-[700px] flex items-center bg-[#11162D] overflow-hidden">
             {/* High-End Corporate Background */}
             <div className="absolute inset-0 z-0">
                 <Image
@@ -86,7 +86,7 @@ export default function CorporateHero() {
                     className="object-cover object-top brightness-[0.3]"
                     priority
                 />
-                <div className="absolute inset-0 bg-gradient-to-r from-[#0A0F1E] via-[#0A0F1E]/60 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-r from-[#11162D] via-[#11162D]/60 to-transparent" />
             </div>
 
             <div className="relative z-10 container mx-auto px-6 lg:px-12">

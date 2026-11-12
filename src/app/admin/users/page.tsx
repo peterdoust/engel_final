@@ -186,14 +186,14 @@ export default function AdminUsersPage() {
     <div className="p-6 lg:p-10 max-w-6xl">
       <div className="flex items-start justify-between gap-4 mb-6">
         <div>
-          <h1 className="text-2xl font-bold text-[#0d1f42]">Users</h1>
+          <h1 className="text-2xl font-bold text-[#1d2653]">Users</h1>
           <p className="text-sm text-gray-500 mt-1">
             Create users and choose exactly which sections they can access.
           </p>
         </div>
         <button
           onClick={openCreate}
-          className="shrink-0 px-4 py-2.5 bg-[#0d1f42] text-white text-xs font-semibold rounded-lg hover:bg-[#132a55] transition-colors"
+          className="shrink-0 px-4 py-2.5 bg-[#1d2653] text-white text-xs font-semibold rounded-lg hover:bg-[#132a55] transition-colors"
         >
           + Add user
         </button>
@@ -212,7 +212,7 @@ export default function AdminUsersPage() {
 
       {showForm && (
         <form onSubmit={submit} className="mb-8 p-5 bg-white border border-gray-200 rounded-xl shadow-sm">
-          <h2 className="text-sm font-bold text-[#0d1f42] mb-4">
+          <h2 className="text-sm font-bold text-[#1d2653] mb-4">
             {form.id ? `Edit ${form.email}` : 'New user'}
           </h2>
 
@@ -293,7 +293,7 @@ export default function AdminUsersPage() {
                                   type="checkbox"
                                   checked={grant[action] === true}
                                   onChange={() => toggle(section.key, action)}
-                                  className="w-4 h-4 accent-[#0d1f42] cursor-pointer"
+                                  className="w-4 h-4 accent-[#1d2653] cursor-pointer"
                                   aria-label={`${action} ${section.label}`}
                                 />
                               ) : (
@@ -327,7 +327,7 @@ export default function AdminUsersPage() {
             <button
               type="submit"
               disabled={saving}
-              className="px-4 py-2.5 bg-[#D4AF37] text-[#0d1f42] text-xs font-bold rounded-lg hover:bg-[#c4a02f] disabled:opacity-50"
+              className="px-4 py-2.5 bg-[#D4AF37] text-[#1d2653] text-xs font-bold rounded-lg hover:bg-[#c4a02f] disabled:opacity-50"
             >
               {saving ? 'Saving...' : form.id ? 'Save changes' : 'Create user'}
             </button>
@@ -371,7 +371,7 @@ export default function AdminUsersPage() {
                     <td className="px-4 py-3">
                       <span className={`inline-block px-2 py-1 rounded text-[11px] font-bold ${
                         user.role === 'admin'
-                          ? 'bg-[#0d1f42] text-white'
+                          ? 'bg-[#1d2653] text-white'
                           : 'bg-gray-100 text-gray-700'
                       }`}>
                         {user.role === 'admin' ? 'ADMIN' : 'USER'}
@@ -381,7 +381,7 @@ export default function AdminUsersPage() {
                     <td className="px-4 py-3 text-right whitespace-nowrap">
                       <button
                         onClick={() => openEdit(user)}
-                        className="px-3 py-1.5 text-xs font-semibold text-[#0d1f42] hover:bg-gray-100 rounded"
+                        className="px-3 py-1.5 text-xs font-semibold text-[#1d2653] hover:bg-gray-100 rounded"
                       >
                         Edit
                       </button>

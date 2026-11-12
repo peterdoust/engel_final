@@ -36,8 +36,9 @@ export default function CareersPage() {
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
       const chosen = e.target.files[0];
-      if (chosen.size > 10 * 1024 * 1024) {
-        setSubmitError('Resume exceeds the 10MB size limit.');
+      // Vercel rejects request bodies over 4.5MB, so keep resumes under 4MB
+      if (chosen.size > 4 * 1024 * 1024) {
+        setSubmitError('Resume is over the 4MB size limit. Please upload a smaller file.');
         return;
       }
       setSubmitError(null);
@@ -86,7 +87,7 @@ export default function CareersPage() {
       <Header />
 
       {/* ══════════ CINEMATIC HERO ══════════ */}
-      <section className="relative min-h-[85vh] flex items-center overflow-hidden bg-[#0A1A3C]">
+      <section className="relative flex items-center overflow-hidden bg-[#293995] pt-[calc(var(--hdr)+1rem)] pb-10">
         {/* Parallax Background Decorations */}
         <div className="absolute inset-0 z-0 pointer-events-none">
           {/* Glowing orbs */}
@@ -96,7 +97,7 @@ export default function CareersPage() {
           />
           <motion.div
             style={{ y: y1 }}
-            className="absolute bottom-1/4 left-1/4 w-[400px] h-[400px] bg-[#3b82f6]/10 blur-[120px] rounded-full"
+            className="absolute bottom-1/4 left-1/4 w-[400px] h-[400px] bg-[#293995]/10 blur-[120px] rounded-full"
           />
 
           <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-[#D4AF37]/30 to-transparent" />
@@ -112,7 +113,7 @@ export default function CareersPage() {
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 1.2, ease: "easeOut" }}
             >
-              <h1 className="text-7xl md:text-9xl font-bold tracking-tighter text-white drop-shadow-2xl">
+              <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tighter text-white drop-shadow-2xl">
                 Join Our <br />
                 <span className="font-serif italic text-[#D4AF37] font-medium">Team</span>
               </h1>
@@ -151,7 +152,7 @@ export default function CareersPage() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.8 }}
               >
-                <h2 className="text-3xl font-bold text-[#0A1A3C] mb-6 uppercase tracking-tight">Life at Engel & Engel</h2>
+                <h2 className="text-3xl font-bold text-[#1D2653] mb-6 uppercase tracking-tight">Life at Engel & Engel</h2>
                 <div className="h-1 w-20 bg-[#D4AF37] mb-8" />
                 <p className="text-lg text-slate-600 font-light leading-relaxed">
                   We provide a collaborative and collegial environment for motivated professionals
@@ -170,7 +171,7 @@ export default function CareersPage() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.8 }}
               >
-                <h2 className="text-3xl font-bold text-[#0A1A3C] mb-6 uppercase tracking-tight">Commitment to Diversity</h2>
+                <h2 className="text-3xl font-bold text-[#1D2653] mb-6 uppercase tracking-tight">Commitment to Diversity</h2>
                 <div className="h-1 w-20 bg-[#D4AF37] mb-8" />
                 <p className="text-lg text-slate-600 font-light leading-relaxed">
                   Engel & Engel recognizes the importance of promoting diversity and inclusion in the
@@ -192,7 +193,7 @@ export default function CareersPage() {
             >
               <div className="absolute top-0 right-0 w-64 h-64 bg-[#D4AF37]/5 rounded-full translate-x-32 -translate-y-32" />
               <div className="relative z-10">
-                <h2 className="text-3xl font-bold text-[#0A1A3C] mb-8 uppercase tracking-tight">Current Opportunities</h2>
+                <h2 className="text-3xl font-bold text-[#1D2653] mb-8 uppercase tracking-tight">Current Opportunities</h2>
                 <p className="text-xl text-slate-700 font-light leading-relaxed mb-8">
                   Our success record is well above average and our services are in great demand. We
                   are always on the lookout for motivated professionals with skills, talent, and vision. We
@@ -200,7 +201,7 @@ export default function CareersPage() {
                   have a genuine interest in the area of forensic accounting and litigation support services
                   and we are eager to talk to you about your background and future plans.
                 </p>
-                <p className="text-lg text-[#0A1A3C] font-bold tracking-widest uppercase">
+                <p className="text-lg text-[#1D2653] font-bold tracking-widest uppercase">
                   Those interested in learning more about our firm are strongly encouraged to contact us
                   and send a resume using the form below.
                 </p>
@@ -217,7 +218,7 @@ export default function CareersPage() {
               className="max-w-2xl mx-auto pt-16"
             >
               <div className="text-center mb-12">
-                <h3 className="text-4xl font-bold text-[#0A1A3C] tracking-tighter mb-4 uppercase">Submit Application</h3>
+                <h3 className="text-4xl font-bold text-[#1D2653] tracking-tighter mb-4 uppercase">Submit Application</h3>
                 <div className="h-1 w-20 bg-[#D4AF37] mx-auto mb-4" />
                 <p className="text-slate-500 uppercase tracking-widest text-sm font-bold">Start Your Journey With Us</p>
               </div>
@@ -245,7 +246,7 @@ export default function CareersPage() {
                   )}
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <div className="space-y-2">
-                      <label htmlFor="name" className="block text-[10px] font-bold text-[#0A1A3C] uppercase tracking-[0.3em] mb-2">Full Name</label>
+                      <label htmlFor="name" className="block text-[11px] font-bold text-[#1D2653] uppercase tracking-[0.25em] mb-2">Full Name</label>
                       <input
                         type="text"
                         id="name"
@@ -253,13 +254,13 @@ export default function CareersPage() {
                         required
                         value={formData.name}
                         onChange={handleInputChange}
-                        className="w-full px-4 py-4 bg-[#f8fbff] border-[#172554]/30 focus:border-[#0B253E] outline-none transition-all text-[#0A1A3C] font-bold placeholder:text-gray-400"
+                        className="w-full px-4 py-4 bg-[#f8fbff] border-[#1d2653]/30 focus:border-[#1D2653] outline-none transition-all text-[#1D2653] font-bold placeholder:text-gray-400"
                         style={{ borderWidth: '0.1px' }}
                         placeholder="YOUR NAME*"
                       />
                     </div>
                     <div className="space-y-2">
-                      <label htmlFor="email" className="block text-[10px] font-bold text-[#0A1A3C] uppercase tracking-[0.3em] mb-2">Email Address</label>
+                      <label htmlFor="email" className="block text-[11px] font-bold text-[#1D2653] uppercase tracking-[0.25em] mb-2">Email Address</label>
                       <input
                         type="email"
                         id="email"
@@ -267,7 +268,7 @@ export default function CareersPage() {
                         required
                         value={formData.email}
                         onChange={handleInputChange}
-                        className="w-full px-4 py-4 bg-[#f8fbff] border-[#172554]/30 focus:border-[#0B253E] outline-none transition-all text-[#0A1A3C] font-bold placeholder:text-gray-400"
+                        className="w-full px-4 py-4 bg-[#f8fbff] border-[#1d2653]/30 focus:border-[#1D2653] outline-none transition-all text-[#1D2653] font-bold placeholder:text-gray-400"
                         style={{ borderWidth: '0.1px' }}
                         placeholder="YOUR EMAIL*"
                       />
@@ -275,52 +276,54 @@ export default function CareersPage() {
                   </div>
 
                   <div className="space-y-2">
-                    <label htmlFor="phone" className="block text-[10px] font-bold text-[#0A1A3C] uppercase tracking-[0.3em] mb-2">Phone Number</label>
+                    <label htmlFor="phone" className="block text-[11px] font-bold text-[#1D2653] uppercase tracking-[0.25em] mb-2">Phone Number</label>
                     <input
                       type="tel"
                       id="phone"
                       name="phone"
                       value={formData.phone}
                       onChange={handleInputChange}
-                      className="w-full px-4 py-4 bg-[#f8fbff] border-[#172554]/30 focus:border-[#0B253E] outline-none transition-all text-[#0A1A3C] font-bold placeholder:text-gray-400"
+                      className="w-full px-4 py-4 bg-[#f8fbff] border-[#1d2653]/30 focus:border-[#1D2653] outline-none transition-all text-[#1D2653] font-bold placeholder:text-gray-400"
                       style={{ borderWidth: '0.1px' }}
                       placeholder="YOUR PHONE NUMBER"
                     />
                   </div>
 
                   <div className="space-y-2">
-                    <label htmlFor="message" className="block text-[10px] font-bold text-[#0A1A3C] uppercase tracking-[0.3em] mb-1">Brief Introduction</label>
+                    <label htmlFor="message" className="block text-[11px] font-bold text-[#1D2653] uppercase tracking-[0.25em] mb-1">Brief Introduction</label>
                     <textarea
                       id="message"
                       name="message"
                       rows={6}
                       value={formData.message}
                       onChange={handleInputChange}
-                      className="w-full px-4 py-4 bg-[#f8fbff] border-[#172554]/30 focus:border-[#0B253E] outline-none transition-all text-[#0A1A3C] font-bold placeholder:text-gray-400 resize-none min-h-[200px]"
+                      className="w-full px-4 py-4 bg-[#f8fbff] border-[#1d2653]/30 focus:border-[#1D2653] outline-none transition-all text-[#1D2653] font-bold placeholder:text-gray-400 resize-none min-h-[200px]"
                       style={{ borderWidth: '0.1px' }}
                       placeholder="ENTER A BRIEF MESSAGE"
                     />
                   </div>
 
                   <div className="space-y-4">
-                    <label className="block text-[10px] font-bold text-[#0A1A3C] uppercase tracking-[0.3em] mb-2">Attach Resume (PDF)</label>
+                    <label htmlFor="resume" className="block text-[11px] font-bold text-[#1D2653] uppercase tracking-[0.25em] mb-2">Attach Resume (PDF or Word)</label>
                     <div className="relative group">
                       <input
+                        id="resume"
+                        name="resume"
                         type="file"
                         accept=".pdf,.doc,.docx"
                         onChange={handleFileChange}
                         className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
                       />
-                      <div className="border border-[#172554]/30 bg-[#f8fbff] p-8 text-center group-hover:bg-[#D4AF37]/5 transition-all" style={{ borderWidth: '0.1px' }}>
+                      <div className="border border-[#1d2653]/30 bg-[#f8fbff] p-8 text-center group-hover:bg-[#D4AF37]/5 transition-all" style={{ borderWidth: '0.1px' }}>
                         <div className="w-12 h-12 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-[#D4AF37] transition-colors">
-                          <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 text-slate-400 group-hover:text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 text-slate-400 group-hover:text-[#1d2653]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
                           </svg>
                         </div>
                         <p className="text-slate-600 font-bold uppercase tracking-widest text-xs">
-                          {file ? file.name : 'Click to upload or drag and drop'}
+                          {file ? file.name : <><span className="[@media(hover:hover)]:hidden">Tap to upload your resume</span><span className="hidden [@media(hover:hover)]:inline">Click to upload or drag and drop</span></>}
                         </p>
-                        <p className="text-[10px] text-slate-400 mt-2 uppercase tracking-tight">PDF, DOC up to 10MB</p>
+                        <p className="text-[11px] text-slate-500 mt-2 uppercase tracking-tight">PDF or Word, up to 4MB</p>
                       </div>
                     </div>
                   </div>
@@ -329,7 +332,7 @@ export default function CareersPage() {
                     type="submit"
                     fullWidth
                     loading={isSubmitting}
-                    className="w-full py-8 bg-[#0A1A3C] hover:bg-[#D4AF37] text-white font-bold tracking-[0.5em] uppercase text-xs transition-all duration-500 rounded-none group relative overflow-hidden"
+                    className="w-full py-8 bg-[#1D2653] hover:bg-[#D4AF37] text-white font-bold tracking-[0.5em] uppercase text-xs transition-all duration-500 rounded-none group relative overflow-hidden hover:text-[#1d2653]"
                   >
                     <span className="relative z-10">Submit Application</span>
                     <div className="absolute inset-0 bg-[#D4AF37] translate-y-full group-hover:translate-y-0 transition-transform duration-500" />

@@ -20,7 +20,7 @@ export default function CertificationsV2() {
         <section ref={containerRef} className="relative py-28 md:py-48 lg:py-64 bg-white overflow-hidden">
             {/* Decorative Texture Layer (Subtle) */}
             <div className="absolute inset-0 opacity-[0.03] pointer-events-none select-none">
-                <div className="absolute inset-0 bg-[#0A0F1E] mix-blend-multiply transition-opacity duration-1000 group-hover:opacity-10" />
+                <div className="absolute inset-0 bg-[#11162D] mix-blend-multiply transition-opacity duration-1000 group-hover:opacity-10" />
             </div>
 
             <div className="container mx-auto px-6 md:px-12 lg:px-24 relative z-10 w-full max-w-[1800px]">
@@ -36,8 +36,8 @@ export default function CertificationsV2() {
                             <span className="text-[#D4AF37] font-bold tracking-[1em] uppercase text-xs">Exemplary Credentials</span>
                         </div>
 
-                        <h2 className="text-5xl md:text-7xl lg:text-9xl font-bold text-[#0A0F1E] mb-12 leading-none tracking-tighter uppercase relative">
-                            Our <span className="font-serif italic font-medium text-[#0A0F1E]/60 border-b-8 border-[#D4AF37]/10 pb-4 inline-block tracking-normal lowercase">Certifications</span>
+                        <h2 className="text-5xl md:text-7xl lg:text-9xl font-bold text-[#11162D] mb-12 leading-none tracking-tighter uppercase relative">
+                            Our <span className="font-serif italic font-medium text-[#11162D]/60 border-b-8 border-[#D4AF37]/10 pb-4 inline-block tracking-normal lowercase">Certifications</span>
                         </h2>
 
                         <p className="text-gray-500 text-lg md:text-2xl font-light leading-relaxed mb-16 max-w-2xl mx-auto">
@@ -67,7 +67,7 @@ export default function CertificationsV2() {
                                 />
                             </div>
 
-                            <span className="mt-6 text-sm md:text-base font-bold tracking-widest uppercase text-[#0A0F1E]/70 group-hover:text-[#0A0F1E] transition-colors duration-700">{cert.name}</span>
+                            <span className="mt-6 text-sm md:text-base font-bold tracking-widest uppercase text-[#11162D]/70 group-hover:text-[#11162D] transition-colors duration-700">{cert.name}</span>
                             <span className="mt-1 text-xs md:text-sm text-gray-400 text-center leading-tight">{cert.fullName}</span>
 
                             {/* Sophisticated Floor Light Effect */}

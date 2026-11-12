@@ -77,7 +77,7 @@ export default function AdminLoginPage() {
       >
         <div className="bg-white rounded-2xl shadow-xl p-8">
           <div className="text-center mb-8">
-            <div className="w-14 h-14 bg-[#0d1f42] rounded-2xl flex items-center justify-center mx-auto mb-5 shadow-lg">
+            <div className="w-14 h-14 bg-[#1d2653] rounded-2xl flex items-center justify-center mx-auto mb-5 shadow-lg">
               {showForgotPassword ? (
                 forgotSent ? (
                   <svg className="w-7 h-7 text-[#D4AF37]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -116,7 +116,7 @@ export default function AdminLoginPage() {
                 </p>
                 <button
                   onClick={() => { setShowForgotPassword(false); setForgotSent(false); setError('') }}
-                  className="w-full py-3.5 bg-[#0d1f42] text-white text-sm font-semibold rounded-lg hover:bg-black transition-colors"
+                  className="w-full py-3.5 bg-[#1d2653] text-white text-sm font-semibold rounded-lg hover:bg-black transition-colors"
                 >
                   Back to Sign In
                 </button>
@@ -137,7 +137,7 @@ export default function AdminLoginPage() {
                 <button
                   type="submit"
                   disabled={submitting}
-                  className="w-full py-3 bg-[#0d1f42] text-white text-sm font-semibold rounded-lg hover:bg-black transition-colors disabled:opacity-50"
+                  className="w-full py-3 bg-[#1d2653] text-white text-sm font-semibold rounded-lg hover:bg-black transition-colors disabled:opacity-50"
                 >
                   {submitting ? 'Sending...' : 'Send Reset Link'}
                 </button>
@@ -177,7 +177,7 @@ export default function AdminLoginPage() {
               <button
                 type="submit"
                 disabled={submitting}
-                className="w-full py-3 bg-[#0d1f42] text-white text-sm font-semibold rounded-lg hover:bg-black transition-colors disabled:opacity-50"
+                className="w-full py-3 bg-[#1d2653] text-white text-sm font-semibold rounded-lg hover:bg-black transition-colors disabled:opacity-50"
               >
                 {submitting ? 'Signing In...' : 'Sign In'}
               </button>

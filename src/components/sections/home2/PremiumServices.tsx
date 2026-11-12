@@ -30,7 +30,7 @@ const services = [
 
 export default function PremiumServices() {
     return (
-        <section className="relative py-32 md:py-64 bg-[#030712] overflow-hidden">
+        <section className="relative py-32 md:py-64 bg-[#11162d] overflow-hidden">
             <div className="container mx-auto px-6 relative z-10">
                 <div className="flex flex-col items-center mb-40 text-center">
                     <motion.div
@@ -55,7 +55,7 @@ export default function PremiumServices() {
                                 fill
                                 className="object-cover transition-transform duration-[2s] group-hover:scale-115 group-hover:rotate-1 brightness-[0.4] group-hover:brightness-[0.7]"
                             />
-                            <div className="absolute inset-0 bg-gradient-to-t from-[#0F3575] via-[#0F3575]/60 to-transparent flex flex-col justify-end p-12 text-center items-center">
+                            <div className="absolute inset-0 bg-gradient-to-t from-[#293995] via-[#293995]/60 to-transparent flex flex-col justify-end p-12 text-center items-center">
                                 <span className="text-[10rem] font-serif italic absolute top-10 opacity-5 text-white transition-opacity group-hover:opacity-20 pointer-events-none">0{index + 1}</span>
 
                                 <h3 className="text-3xl md:text-5xl font-bold text-white mb-10 tracking-tighter uppercase leading-none px-4 group-hover:-translate-y-4 transition-transform duration-700">

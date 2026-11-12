@@ -26,6 +26,11 @@ export default function EventCalendar({ events }: EventCalendarProps) {
   const [currentDate, setCurrentDate] = useState(new Date())
   const [view, setView] = useState<'month' | 'list'>('month')
 
+  // Phones: start in list view; the month grid is too cramped to read there
+  React.useEffect(() => {
+    if (window.matchMedia('(max-width: 639px)').matches) setView('list')
+  }, [])
+
   // Get the first day of the month
   const firstDayOfMonth = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1)
   const lastDayOfMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0)
@@ -198,7 +203,7 @@ export default function EventCalendar({ events }: EventCalendarProps) {
                   >
                     <div className="flex justify-between items-start mb-2">
                       <span className={`text-[11px] font-bold ${isTodayDate
-                        ? 'w-6 h-6 flex items-center justify-center bg-[#D4AF37] text-[#0f3574] rounded-full'
+                        ? 'w-6 h-6 flex items-center justify-center bg-[#D4AF37] text-[#293995] rounded-full'
                         : 'text-slate-400 group-hover/day:text-slate-900 transition-colors'
                         }`}>
                         {calendarDay.day}
@@ -213,7 +218,7 @@ export default function EventCalendar({ events }: EventCalendarProps) {
                             href={`/events/${event.slug}`}
                             className="block"
                           >
-                            <div className={`text-[9px] font-bold border-l-2 px-1.5 py-1 truncate transition-colors ${event.category === 'Legal Conference' ? 'bg-[#0f3574] text-white border-[#D4AF37] hover:bg-slate-800' :
+                            <div className={`text-[9px] font-bold border-l-2 px-1.5 py-1 truncate transition-colors ${event.category === 'Legal Conference' ? 'bg-[#293995] text-white border-[#D4AF37] hover:bg-slate-800' :
                                 event.category === 'CLE Seminar' ? 'bg-[#D4AF37]/10 text-slate-900 border-[#D4AF37] hover:bg-[#D4AF37]/20' :
                                   event.category === 'Fraud Investigation' ? 'bg-slate-100 text-slate-900 border-slate-400 hover:bg-slate-200' :
                                     'bg-slate-50 text-slate-700 border-slate-200 hover:bg-slate-100'
@@ -257,9 +262,9 @@ export default function EventCalendar({ events }: EventCalendarProps) {
                   className="group flex flex-col md:flex-row md:items-center gap-6 p-4 rounded-xl border border-slate-100 hover:bg-slate-50 transition-all duration-300"
                 >
                   <div className="w-20 text-center border-r border-slate-100 pr-6">
-                    <span className="text-xl font-serif italic text-[#D4AF37]">0{new Date(event.date).getDate()}</span>
+                    <span className="text-xl font-serif italic text-[#D4AF37]">{String(new Date(event.date + 'T00:00:00').getDate()).padStart(2, '0')}</span>
                     <span className="block text-[9px] font-black uppercase tracking-widest text-slate-400 mt-0.5">
-                      {new Date(event.date).toLocaleDateString('en-US', { month: 'short' })}
+                      {new Date(event.date + 'T00:00:00').toLocaleDateString('en-US', { month: 'short' })}
                     </span>
                   </div>
 
@@ -272,7 +277,7 @@ export default function EventCalendar({ events }: EventCalendarProps) {
                   </div>
 
                   <Link href={`/events/${event.slug}`}>
-                    <button className="px-5 py-2.5 bg-[#0f3574] text-white text-[9px] font-bold uppercase tracking-widest rounded-lg hover:bg-slate-800 transition-colors">
+                    <button className="px-5 py-2.5 bg-[#293995] text-white text-[9px] font-bold uppercase tracking-widest rounded-lg hover:bg-slate-800 transition-colors">
                       View Event
                     </button>
                   </Link>

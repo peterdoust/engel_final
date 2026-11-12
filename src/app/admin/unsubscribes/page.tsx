@@ -197,7 +197,7 @@ export default function UnsubscribesAdmin() {
       <header className="bg-white border-b border-gray-200">
         <div className="px-4 sm:px-6 py-4 sm:py-5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
           <div className="lg:pl-0 pl-12">
-            <h1 className="text-lg sm:text-xl font-bold text-[#0d1f42]">Unsubscribe List</h1>
+            <h1 className="text-lg sm:text-xl font-bold text-[#1d2653]">Unsubscribe List</h1>
             <p className="text-xs text-gray-500 mt-0.5">
               {newEntries.length} awaiting removal &middot; {exportedEntries.length} exported
             </p>
@@ -210,14 +210,14 @@ export default function UnsubscribesAdmin() {
                   setError('')
                   setNotice('')
                 }}
-                className="flex-1 sm:flex-none text-xs font-semibold text-[#0d1f42] hover:text-black px-3 py-2 border border-gray-200 rounded-lg"
+                className="flex-1 sm:flex-none text-xs font-semibold text-[#1d2653] hover:text-black px-3 py-2 border border-gray-200 rounded-lg"
               >
                 {adding ? 'Cancel' : '+ Add Email'}
               </button>
             )}
             <button
               onClick={() => fetchEntries()}
-              className="flex-1 sm:flex-none text-xs font-semibold text-gray-600 hover:text-[#0d1f42] px-3 py-2 border border-gray-200 rounded-lg"
+              className="flex-1 sm:flex-none text-xs font-semibold text-gray-600 hover:text-[#1d2653] px-3 py-2 border border-gray-200 rounded-lg"
             >
               Refresh
             </button>
@@ -226,7 +226,7 @@ export default function UnsubscribesAdmin() {
                 <button
                   onClick={exportNew}
                   disabled={filtered.length === 0 || exporting}
-                  className="flex-1 sm:flex-none text-xs font-semibold text-white bg-[#0d1f42] hover:bg-black px-3 py-2 rounded-lg disabled:opacity-30"
+                  className="flex-1 sm:flex-none text-xs font-semibold text-white bg-[#1d2653] hover:bg-black px-3 py-2 rounded-lg disabled:opacity-30"
                 >
                   {exporting ? 'Exporting...' : 'Export CSV'}
                 </button>
@@ -235,7 +235,7 @@ export default function UnsubscribesAdmin() {
               <button
                 onClick={downloadExported}
                 disabled={filtered.length === 0}
-                className="flex-1 sm:flex-none text-xs font-semibold text-white bg-[#0d1f42] hover:bg-black px-3 py-2 rounded-lg disabled:opacity-30"
+                className="flex-1 sm:flex-none text-xs font-semibold text-white bg-[#1d2653] hover:bg-black px-3 py-2 rounded-lg disabled:opacity-30"
               >
                 Download CSV
               </button>
@@ -262,7 +262,7 @@ export default function UnsubscribesAdmin() {
             <button
               type="submit"
               disabled={savingNew || newEmail.trim() === ''}
-              className="text-xs font-semibold text-white bg-[#0d1f42] hover:bg-black px-4 py-2 rounded-lg disabled:opacity-30"
+              className="text-xs font-semibold text-white bg-[#1d2653] hover:bg-black px-4 py-2 rounded-lg disabled:opacity-30"
             >
               {savingNew ? 'Adding...' : 'Add to list'}
             </button>
@@ -294,7 +294,7 @@ export default function UnsubscribesAdmin() {
                 }}
                 className={`px-4 py-2 text-xs font-semibold rounded-t-lg border-b-2 -mb-px transition-colors ${
                   tab === t.key
-                    ? 'border-[#D4AF37] text-[#0d1f42]'
+                    ? 'border-[#D4AF37] text-[#1d2653]'
                     : 'border-transparent text-gray-400 hover:text-gray-600'
                 }`}
               >

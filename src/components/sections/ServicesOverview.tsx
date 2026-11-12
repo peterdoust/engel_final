@@ -53,7 +53,7 @@ const services = [
 
 export default function ServicesOverview() {
   return (
-    <section className="relative py-20 md:py-28 bg-[#172554] overflow-hidden">
+    <section className="relative py-20 md:py-28 bg-[#1d2653] overflow-hidden">
       <div className="container-custom">
         {/* Header */}
         <motion.div

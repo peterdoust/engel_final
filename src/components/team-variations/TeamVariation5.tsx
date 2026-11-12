@@ -7,6 +7,16 @@ import { TEAM_PHONE_LOCATIONS } from '@/lib/analytics'
 
 // VARIATION 5: Interactive Cards with Flip Effect - Professional Design
 export default function TeamVariation5({ teamMembers }: { teamMembers: any[] }) {
+  // Touch screens can't hover, so a tap flips the card instead
+  const [flipped, setFlipped] = React.useState<number | null>(null)
+
+  const handleCardClick = (index: number) => (e: React.MouseEvent) => {
+    // let links and buttons on the back of the card work without flipping it back
+    if ((e.target as HTMLElement).closest('a, button')) return
+    if (window.matchMedia('(hover: hover)').matches) return
+    setFlipped(prev => (prev === index ? null : index))
+  }
+
   return (
     <section className="section-padding relative overflow-hidden">
       {/* Subtle Background Pattern */}
@@ -21,7 +31,11 @@ export default function TeamVariation5({ teamMembers }: { teamMembers: any[] }) 
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {teamMembers.map((member, index) => (
-            <div key={index} className="group perspective-1000">
+            <div
+              key={index}
+              className={`group perspective-1000 cursor-pointer ${flipped === index ? 'is-flipped' : ''}`}
+              onClick={handleCardClick(index)}
+            >
               <div className="relative w-full h-[420px] sm:h-[500px] transform-style-preserve-3d transition-transform duration-700 group-hover:rotate-y-180">
 
                 {/* Front of Card */}
@@ -48,7 +62,10 @@ export default function TeamVariation5({ teamMembers }: { teamMembers: any[] }) 
                         {/* <span className="px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full text-sm font-medium drop-shadow-lg">
                           {member.experience}
                         </span> */}
-                        <span className="text-sm text-primary-200 font-medium animate-pulse drop-shadow-lg">Hover for details →</span>
+                        <span className="text-sm text-primary-200 font-medium animate-pulse drop-shadow-lg">
+                          <span className="hidden [@media(hover:hover)]:inline">Hover for details →</span>
+                          <span className="[@media(hover:hover)]:hidden">Tap for details →</span>
+                        </span>
                       </div>
                     </div>
                   </div>
@@ -126,7 +143,7 @@ export default function TeamVariation5({ teamMembers }: { teamMembers: any[] }) 
                         href={`/team/${member.name.toLowerCase().replace(/\s+/g, '-').replace(/\./g, '')}`}
                         className="block w-full"
                       >
-                        <Button as="span" size="sm" className="w-full text-sm font-semibold bg-primary-950 hover:bg-white hover:text-primary-950 py-3">
+                        <Button as="span" size="sm" className="w-full text-sm font-semibold bg-primary-950 text-white hover:bg-white hover:text-primary-950 py-3">
                           <span className="mr-1">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="align-middle" viewBox="0 0 16 16">
                               <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>

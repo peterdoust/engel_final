@@ -155,30 +155,30 @@ export async function POST(request: NextRequest) {
         subject: `Publication Request - ${fullName} (${data.firmName || 'Unknown firm'})`,
         html: `
           <div style="font-family: Arial, sans-serif; max-width: 620px; margin: 0 auto; background: #ffffff;">
-            <div style="background: #0f3574; padding: 24px; text-align: center;">
+            <div style="background: #293995; padding: 24px; text-align: center;">
               <h1 style="color: #ffffff; margin: 0; font-size: 20px;">New Publication Request</h1>
               <p style="color: #D4AF37; margin: 6px 0 0; font-size: 11px; letter-spacing: 3px; text-transform: uppercase;">Engel &amp; Engel LLP</p>
             </div>
             <div style="padding: 28px;">
-              <h2 style="color: #0f3574; margin: 0 0 6px; font-size: 16px;">Category</h2>
-              <p style="margin: 0 0 20px; color: #334155; font-size: 14px;"><strong>${data.category || 'General Request'}</strong></p>
+              <h2 style="color: #293995; margin: 0 0 6px; font-size: 16px;">Category</h2>
+              <p style="margin: 0 0 20px; color: #11162d; font-size: 14px;"><strong>${data.category || 'General Request'}</strong></p>
 
               ${publications ? `
-                <h3 style="color: #0f3574; margin: 0 0 6px; font-size: 14px;">Requested Publications</h3>
-                <ul style="margin: 0 0 20px; padding-left: 20px; color: #334155; font-size: 14px;">${publications}</ul>
+                <h3 style="color: #293995; margin: 0 0 6px; font-size: 14px;">Requested Publications</h3>
+                <ul style="margin: 0 0 20px; padding-left: 20px; color: #11162d; font-size: 14px;">${publications}</ul>
               ` : ''}
 
-              <h3 style="color: #0f3574; margin: 0 0 6px; font-size: 14px;">Contact Information</h3>
+              <h3 style="color: #293995; margin: 0 0 6px; font-size: 14px;">Contact Information</h3>
               <table style="width: 100%; border-collapse: collapse; margin-bottom: 20px;">
-                <tr><td style="padding: 6px 0; font-weight: bold; color: #0f3574; width: 130px;">Name:</td><td style="padding: 6px 0; color: #334155;">${fullName}</td></tr>
-                <tr><td style="padding: 6px 0; font-weight: bold; color: #0f3574;">Email:</td><td style="padding: 6px 0; color: #334155;"><a href="mailto:${data.email}">${data.email}</a></td></tr>
-                <tr><td style="padding: 6px 0; font-weight: bold; color: #0f3574;">Phone:</td><td style="padding: 6px 0; color: #334155;"><a href="tel:${data.phone}">${data.phone}</a></td></tr>
-                <tr><td style="padding: 6px 0; font-weight: bold; color: #0f3574;">Firm:</td><td style="padding: 6px 0; color: #334155;">${data.firmName || ''}</td></tr>
-                ${data.position ? `<tr><td style="padding: 6px 0; font-weight: bold; color: #0f3574;">Position:</td><td style="padding: 6px 0; color: #334155;">${data.position}</td></tr>` : ''}
+                <tr><td style="padding: 6px 0; font-weight: bold; color: #293995; width: 130px;">Name:</td><td style="padding: 6px 0; color: #11162d;">${fullName}</td></tr>
+                <tr><td style="padding: 6px 0; font-weight: bold; color: #293995;">Email:</td><td style="padding: 6px 0; color: #11162d;"><a href="mailto:${data.email}">${data.email}</a></td></tr>
+                <tr><td style="padding: 6px 0; font-weight: bold; color: #293995;">Phone:</td><td style="padding: 6px 0; color: #11162d;"><a href="tel:${data.phone}">${data.phone}</a></td></tr>
+                <tr><td style="padding: 6px 0; font-weight: bold; color: #293995;">Firm:</td><td style="padding: 6px 0; color: #11162d;">${data.firmName || ''}</td></tr>
+                ${data.position ? `<tr><td style="padding: 6px 0; font-weight: bold; color: #293995;">Position:</td><td style="padding: 6px 0; color: #11162d;">${data.position}</td></tr>` : ''}
               </table>
 
             </div>
-            <div style="background: #f8fafc; padding: 14px; text-align: center; border-top: 1px solid #e2e8f0;">
+            <div style="background: #f8fafc; padding: 14px; text-align: center; border-top: 1px solid #e2e6f0;">
               <p style="color: #94a3b8; font-size: 11px; margin: 0;">Submitted via the Engel &amp; Engel website publication request form.</p>
             </div>
           </div>

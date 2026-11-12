@@ -229,7 +229,7 @@ export default function PublicationsPage() {
                     <Button
                       size="sm"
                       onClick={() => handleDownload(publication.id)}
-                      className="bg-primary-600 hover:bg-primary-700 text-white"
+                      className=""
                     >
                       <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-4-4m4 4l4-4m-4-4V3" />

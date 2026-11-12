@@ -2,21 +2,28 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Import Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap');
+/* Brand font (Jost stand-in for Futura) is loaded via next/font in app/layout.tsx */
 
 /* Base styles */
 @layer base {
+  :root {
+    /* Header height from the approved design: 64px on phones, up to 132px on desktop,
+       never more than 16% of the window height */
+    --hdr: clamp(64px, min(9.2vw, 16vh), 132px);
+  }
+
   html {
     scroll-behavior: smooth;
   }
   
   body {
-    @apply font-sans text-gray-900 bg-gray-50 antialiased;
+    /* Brand: body copy in Midnight Charcoal */
+    @apply font-sans text-brand-charcoal bg-gray-50 antialiased;
   }
   
   h1, h2, h3, h4, h5, h6 {
-    @apply font-semibold text-gray-900 leading-tight;
+    /* Brand: headings in Futura Demibold, Midnight Blue */
+    @apply font-sans font-semibold text-brand-midnight leading-tight;
   }
   
   h1 {
@@ -36,7 +43,7 @@
   }
   
   p {
-    @apply text-gray-800 leading-relaxed;
+    @apply text-brand-charcoal leading-relaxed;
   }
   
   a {
@@ -51,11 +58,12 @@
   }
   
   .btn-primary {
-    @apply btn bg-primary-600 text-white hover:bg-primary-700 focus:ring-primary-500 shadow-md hover:shadow-lg;
+    /* Brand: gold buttons with Midnight Blue text (white on gold fails contrast) */
+    @apply btn bg-brand-gold text-brand-midnight hover:bg-gold-600 focus:ring-brand-gold shadow-md hover:shadow-lg;
   }
   
   .btn-secondary {
-    @apply btn bg-white text-primary-600 border-2 border-primary-600 hover:bg-primary-50 focus:ring-primary-500;
+    @apply btn bg-white text-brand-midnight border-2 border-brand-midnight hover:bg-primary-50 focus:ring-brand-cobalt;
   }
   
   .btn-outline {
@@ -91,7 +99,8 @@
   }
   
   .hero-gradient {
-    @apply bg-gradient-to-br from-primary-900 via-primary-800 to-primary-700;
+    /* Brand: Midnight Blue -> Cobalt gradient box */
+    @apply bg-gradient-to-br from-brand-midnight to-brand-cobalt;
   }
   
   .form-input {
@@ -197,7 +206,14 @@
   transform: rotateY(180deg);
 }
 
-.group:hover .group-hover\:rotate-y-180 {
+/* Hover-flip only on devices with a real hover (mouse); touch devices flip on tap via .is-flipped */
+@media (hover: hover) {
+  .group:hover .group-hover\:rotate-y-180 {
+    transform: rotateY(180deg);
+  }
+}
+
+.is-flipped .group-hover\:rotate-y-180 {
   transform: rotateY(180deg);
 }
 
@@ -226,7 +242,7 @@
 /* Custom Scrollbar for Team Cards */
 .custom-scrollbar {
   scrollbar-width: thin;
-  scrollbar-color: #172554;
+  scrollbar-color: #1d2653;
 }
 
 .custom-scrollbar::-webkit-scrollbar {
@@ -238,12 +254,12 @@
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb {
-  background: #172554;
+  background: #1d2653;
   border-radius: 10px;
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-  background: #172554;
+  background: #1d2653;
 }
 
 /* Sidebar Scrollbar */
@@ -298,8 +314,8 @@
 
 /* Glow animation */
 @keyframes glow {
-  0% { box-shadow: 0 0 20px rgba(6, 182, 212, 0.5); }
-  100% { box-shadow: 0 0 30px rgba(6, 182, 212, 0.8), 0 0 40px rgba(6, 182, 212, 0.6); }
+  0% { box-shadow: 0 0 20px rgba(212, 175, 55, 0.5); }
+  100% { box-shadow: 0 0 30px rgba(212, 175, 55, 0.8), 0 0 40px rgba(212, 175, 55, 0.6); }
 }
 
 /* Matrix rain animation */
@@ -566,7 +582,7 @@
     filter: drop-shadow(0 0 20px rgba(255,255,255,0.3));
   }
   50% {
-    filter: drop-shadow(0 0 40px rgba(255,255,255,0.6)) drop-shadow(0 0 60px rgba(59, 130, 246, 0.4));
+    filter: drop-shadow(0 0 40px rgba(255,255,255,0.6)) drop-shadow(0 0 60px rgba(41, 57, 149, 0.4));
   }
 }
 
@@ -690,7 +706,7 @@
   }
   75% {
     transform: scale(1.05) rotate(-5deg);
-    filter: drop-shadow(0 0 30px rgba(6, 182, 212, 0.5));
+    filter: drop-shadow(0 0 30px rgba(212, 175, 55, 0.5));
   }
 }
 
@@ -746,10 +762,10 @@
 
 @keyframes logo3DGlow {
   0%, 100% {
-    filter: drop-shadow(0 0 35px rgba(6, 182, 212, 0.6));
+    filter: drop-shadow(0 0 35px rgba(212, 175, 55, 0.6));
   }
   50% {
-    filter: drop-shadow(0 0 50px rgba(6, 182, 212, 0.8)) drop-shadow(0 0 70px rgba(59, 130, 246, 0.6));
+    filter: drop-shadow(0 0 50px rgba(212, 175, 55, 0.8)) drop-shadow(0 0 70px rgba(41, 57, 149, 0.6));
   }
 }
 
@@ -1208,4 +1224,79 @@
   .btn {
     @apply border border-black text-black bg-transparent;
   }
+}
+
+/* ==========================================================================
+   Homepage hero — "Wherever the Truth Leads." (components/sections/HeroTruthLeads.tsx)
+   Intro sequence from the approved design: photo eases in, headline slides in,
+   gold trail draws, numbers band rises, stat cards arrive one by one. Pure CSS so it starts on first paint.
+   ========================================================================== */
+.ee-hero {
+  min-height: clamp(360px, calc(100vh - var(--hdr)), 960px);
+  min-height: clamp(360px, calc(100svh - var(--hdr)), 960px);
+}
+@media (min-width: 1000px) {
+  .ee-hero-stats {
+    grid-template-columns: repeat(6, minmax(max-content, 1fr));
+    /* Wider than 1920px: let the stats run into the right margin so the numbers get room */
+    margin-right: min(0px, calc((1920px - 100vw) / 2));
+    padding: 0 1.9vw 0 1.46vw;
+  }
+  .ee-hero-label {
+    font: 400 clamp(13px, 1.083vw, 20px)/1.28 Arial, Helvetica, sans-serif;
+  }
+}
+
+.ee-hero-trail { stroke-dasharray: 1 1; }
+.ee-hero-trail-glow { opacity: 0.35; }
+.ee-hero-head { stroke-dasharray: 0.06 3; opacity: 0; }
+
+@keyframes eeHeroBg { from { opacity: 0.35; transform: scale(1.07); } to { opacity: 1; transform: none; } }
+@keyframes eeHeroLine { from { opacity: 0; transform: translateX(-140px); } to { opacity: 1; transform: none; } }
+@keyframes eeHeroDraw { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
+@keyframes eeHeroHead {
+  0% { stroke-dashoffset: 0.06; opacity: 0; }
+  6% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { stroke-dashoffset: -1; opacity: 0; }
+}
+@keyframes eeHeroGlowPulse { 0%, 100% { opacity: 0.35; } 40% { opacity: 0.7; } }
+@keyframes eeHeroBand { from { transform: translateY(105%); } to { transform: none; } }
+@keyframes eeHeroStat { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+@keyframes eeHeroWord { from { transform: scale(.86); } to { transform: none; } }
+
+@media (prefers-reduced-motion: no-preference) {
+  /* Photo fade-in and trail wait until the photo is placed (.ee-hero-ready), so it never jumps */
+  .ee-hero-ready .ee-hero-bg { animation: eeHeroBg 3840ms cubic-bezier(.2,.6,.2,1) both; }
+  .ee-hero-line { animation: eeHeroLine 1320ms cubic-bezier(.16,1,.3,1) both; }
+  .ee-hero-l1 { animation-delay: 360ms; }
+  .ee-hero-l2 { animation-delay: 900ms; }
+  .ee-hero-l3 { animation-delay: 1440ms; }
+  .ee-hero-ready .ee-hero-trail { animation: eeHeroDraw 2040ms cubic-bezier(.5,0,.3,1) 2100ms both; }
+  .ee-hero-ready .ee-hero-trail-glow {
+    animation: eeHeroDraw 2040ms cubic-bezier(.5,0,.3,1) 2100ms both,
+               eeHeroGlowPulse 1680ms ease-in-out 3900ms;
+  }
+  .ee-hero-ready .ee-hero-head { animation: eeHeroHead 2040ms cubic-bezier(.5,0,.3,1) 2100ms both; }
+  /* Band rises, then the stat cards arrive one at a time (delays set in HeroTruthLeads.tsx) */
+  .ee-hero-band { animation: eeHeroBand 900ms cubic-bezier(.22,1,.36,1) 3780ms both; }
+  .ee-hero-stat { animation: eeHeroStat 432ms cubic-bezier(.22,1,.36,1) both; }
+  .ee-hero-word { animation: eeHeroWord 540ms cubic-bezier(.22,1,.36,1) both; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ee-hero-stat, .ee-hero-word { animation-delay: 0ms !important; }
+}
+
+/* Homepage intro — memberships strip scrolls slowly (IntroSection.tsx) */
+@keyframes eeLogoScroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@media (prefers-reduced-motion: no-preference) {
+  .ee-logo-marquee { animation: eeLogoScroll 30s linear infinite; }
+  .ee-logo-marquee:hover { animation-play-state: paused; }
+}
+
+/* Homepage intro — slow zoom on the building photo (IntroSection.tsx) */
+@keyframes eePhotoDrift { from { transform: scale(1); } to { transform: scale(1.07); } }
+.ee-photo-drift { transform-origin: 50% 100%; }
+@media (prefers-reduced-motion: no-preference) {
+  .ee-photo-drift { animation: eePhotoDrift 18s ease-in-out infinite alternate; }
 }

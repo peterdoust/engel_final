@@ -155,7 +155,7 @@ export default function RafflePage() {
             <button
               onClick={pickWinner}
               disabled={entries.length === 0 || isPickingWinner}
-              className="w-full py-3.5 bg-[#D4AF37] text-[#0d1f42] font-bold text-sm rounded-xl hover:bg-white transition-all duration-300 disabled:opacity-30 disabled:cursor-not-allowed"
+              className="w-full py-3.5 bg-[#D4AF37] text-[#1d2653] font-bold text-sm rounded-xl hover:bg-white transition-all duration-300 disabled:opacity-30 disabled:cursor-not-allowed"
             >
               {isPickingWinner ? (
                 <span className="flex items-center justify-center gap-2">
@@ -231,9 +231,9 @@ export default function RafflePage() {
               exit={{ opacity: 0 }}
               className="mb-6"
             >
-              <div className="bg-[#0d1f42] rounded-2xl p-4 sm:p-6 lg:p-8 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4 shadow-xl">
+              <div className="bg-[#1d2653] rounded-2xl p-4 sm:p-6 lg:p-8 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4 shadow-xl">
                 <div className="flex items-center gap-4 sm:gap-5 min-w-0 w-full">
-                  <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-[#D4AF37] flex items-center justify-center text-[#0d1f42] text-lg sm:text-xl font-bold flex-shrink-0">
+                  <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-[#D4AF37] flex items-center justify-center text-[#1d2653] text-lg sm:text-xl font-bold flex-shrink-0">
                     {winner.name.charAt(0)}
                   </div>
                   <div className="min-w-0 flex-1">
@@ -279,7 +279,7 @@ export default function RafflePage() {
                     className={`px-4 py-4 ${winner?.email === entry.email ? 'bg-[#D4AF37]/5' : ''}`}
                   >
                     <div className="flex items-start gap-3">
-                      <div className="w-9 h-9 rounded-full bg-[#0d1f42] flex items-center justify-center text-white text-xs font-bold flex-shrink-0">
+                      <div className="w-9 h-9 rounded-full bg-[#1d2653] flex items-center justify-center text-white text-xs font-bold flex-shrink-0">
                         {entry.name.charAt(0)}
                       </div>
                       <div className="min-w-0 flex-1">
@@ -319,7 +319,7 @@ export default function RafflePage() {
                         <td className="px-6 py-4 text-sm text-gray-300 font-medium">{i + 1}</td>
                         <td className="px-6 py-4">
                           <div className="flex items-center gap-3">
-                            <div className="w-8 h-8 rounded-full bg-[#0d1f42] flex items-center justify-center text-white text-xs font-bold flex-shrink-0">
+                            <div className="w-8 h-8 rounded-full bg-[#1d2653] flex items-center justify-center text-white text-xs font-bold flex-shrink-0">
                               {entry.name.charAt(0)}
                             </div>
                             <span className="text-sm font-semibold text-gray-900">{entry.name}</span>
@@ -349,7 +349,7 @@ export default function RafflePage() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[60] bg-[#0d1f42] flex items-center justify-center"
+            className="fixed inset-0 z-[60] bg-[#1d2653] flex items-center justify-center"
           >
             {showConfetti && (
               <div className="fixed inset-0 pointer-events-none z-50 overflow-hidden">
@@ -411,7 +411,7 @@ export default function RafflePage() {
                     transition={{ delay: 0.2, type: 'spring', stiffness: 150 }}
                     className="w-24 h-24 rounded-full bg-[#D4AF37] flex items-center justify-center mx-auto mb-8 shadow-[0_0_60px_rgba(212,175,55,0.4)]"
                   >
-                    <span className="text-[#0d1f42] text-4xl font-bold">{winner.name.charAt(0)}</span>
+                    <span className="text-[#1d2653] text-4xl font-bold">{winner.name.charAt(0)}</span>
                   </motion.div>
 
                   <motion.p
@@ -460,7 +460,7 @@ export default function RafflePage() {
                       <>
                         <button
                           onClick={() => { setShowReveal(false); pickWinner(); }}
-                          className="px-8 py-3 bg-[#D4AF37] text-[#0d1f42] text-sm font-bold rounded-lg hover:bg-white transition-colors"
+                          className="px-8 py-3 bg-[#D4AF37] text-[#1d2653] text-sm font-bold rounded-lg hover:bg-white transition-colors"
                         >
                           Pick Again
                         </button>

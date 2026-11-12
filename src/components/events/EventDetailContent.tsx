@@ -10,8 +10,9 @@ interface EventDetailContentProps {
 }
 
 export default function EventDetailContent({ event }: EventDetailContentProps) {
-    const eventStartDate = new Date(event.date)
-    const eventEndDate = event.endDate ? new Date(event.endDate) : eventStartDate
+    // 'YYYY-MM-DD' alone parses as UTC midnight, which shows the previous day in US time zones
+    const eventStartDate = new Date(event.date + 'T00:00:00')
+    const eventEndDate = event.endDate ? new Date(event.endDate + 'T00:00:00') : eventStartDate
 
     const heroRef = useRef(null);
     const { scrollYProgress } = useScroll({
@@ -26,11 +27,11 @@ export default function EventDetailContent({ event }: EventDetailContentProps) {
     return (
         <>
             {/* ══════════ PREMIUM HERO SECTION ══════════ */}
-            <section className="relative pt-24 pb-12 lg:pt-32 lg:pb-16 overflow-hidden bg-[#0f3574] text-white text-center">
+            <section className="relative pt-24 pb-12 lg:pt-32 lg:pb-16 overflow-hidden bg-[#293995] text-white text-center">
                 {/* Architectural Background Elements */}
                 <motion.div style={{ y: backgroundY }} className="absolute inset-0 z-0">
-                    <div className="absolute inset-0 bg-gradient-to-tr from-[#0f3574] via-[#0f3574] to-[#1e3a8a]/30" />
-                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,rgba(59,130,246,0.15)_0%,transparent_70%)]" />
+                    <div className="absolute inset-0 bg-gradient-to-tr from-[#293995] via-[#293995] to-[#1d2653]/30" />
+                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,rgba(41, 57, 149,0.15)_0%,transparent_70%)]" />
                     <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:80px_100%] opacity-20" />
                     <div className="absolute inset-0 bg-[linear-gradient(to_bottom,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:100%_80px] opacity-20" />
                 </motion.div>
@@ -162,7 +163,7 @@ export default function EventDetailContent({ event }: EventDetailContentProps) {
                         <div className="lg:col-span-1">
                             <div className="sticky top-24 space-y-12">
                                 {/* Contact Card */}
-                                <div className="bg-[#0f3574] rounded-3xl p-8 shadow-2xl relative overflow-hidden group">
+                                <div className="bg-[#293995] rounded-3xl p-8 shadow-2xl relative overflow-hidden group">
                                     <div className="absolute top-0 right-0 w-32 h-32 bg-[#D4AF37]/10 rounded-full -mr-16 -mt-16 blur-3xl transition-all group-hover:bg-[#D4AF37]/20" />
 
                                     <h3 className="text-xl font-bold text-white mb-6 pr-8">Initialize <span className="text-[#D4AF37]">Consultation</span></h3>
@@ -171,7 +172,7 @@ export default function EventDetailContent({ event }: EventDetailContentProps) {
                                     </p>
                                     <div className="space-y-4">
                                         <TrackedPhoneLink phone={event.contactPhone} location="event_detail" className="block">
-                                            <button className="w-full py-4 bg-[#D4AF37] text-[#0f3574] rounded-xl text-[10px] font-black uppercase tracking-[0.2em] hover:bg-[#B8962D] transition-all shadow-[0_10px_30px_rgba(212,175,55,0.1)]">
+                                            <button className="w-full py-4 bg-[#D4AF37] text-[#293995] rounded-xl text-[10px] font-black uppercase tracking-[0.2em] hover:bg-[#B8962D] transition-all shadow-[0_10px_30px_rgba(212,175,55,0.1)]">
                                                 Call {event.contactPhone}
                                             </button>
                                         </TrackedPhoneLink>
@@ -182,7 +183,7 @@ export default function EventDetailContent({ event }: EventDetailContentProps) {
                                         </a>
                                         {event.registrationUrl && (
                                             <a href={event.registrationUrl} target="_blank" rel="noopener noreferrer" className="block pt-4">
-                                                <button className="w-full py-4 bg-white text-[#0f3574] rounded-xl text-[10px] font-black uppercase tracking-[0.2em] hover:bg-slate-100 transition-all">
+                                                <button className="w-full py-4 bg-white text-[#293995] rounded-xl text-[10px] font-black uppercase tracking-[0.2em] hover:bg-slate-100 transition-all">
                                                     Official Register
                                                 </button>
                                             </a>
@@ -197,7 +198,7 @@ export default function EventDetailContent({ event }: EventDetailContentProps) {
                                         <div className="space-y-4">
                                             {event.speakers.map((speaker: string, idx: number) => (
                                                 <div key={idx} className="flex items-center gap-4 group">
-                                                    <div className="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-slate-400 font-bold text-sm group-hover:bg-[#D4AF37]/10 group-hover:text-[#D4AF37] transition-all">
+                                                    <div className="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-slate-400 font-bold text-sm group-hover:bg-[#D4AF37] group-hover:text-[#1d2653] transition-all">
                                                         {speaker.charAt(0)}
                                                     </div>
                                                     <span className="text-sm font-bold text-slate-900 tracking-tight">{speaker}</span>

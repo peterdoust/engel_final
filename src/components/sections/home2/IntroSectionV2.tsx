@@ -29,7 +29,7 @@ export default function IntroSectionV2() {
                             {/* Background Architectural Framing */}
                             <div className="absolute -inset-10 border border-[#D4AF37]/20 rounded-sm translate-x-8 translate-y-8 z-0 pointer-events-none group-hover:translate-x-4 group-hover:translate-y-4 transition-transform duration-1000" />
 
-                            <div className="relative z-10 bg-[#0A0F1E] text-white p-12 md:p-20 xl:p-24 rounded-sm shadow-[40px_40px_80px_-20px_rgba(10,15,30,0.3)] overflow-hidden">
+                            <div className="relative z-10 bg-[#11162D] text-white p-12 md:p-20 xl:p-24 rounded-sm shadow-[40px_40px_80px_-20px_rgba(17, 22, 45,0.3)] overflow-hidden">
                                 <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_top_right,rgba(212,175,55,0.4)_0%,transparent_60%)]" />
 
                                 <span className="block text-xs font-bold tracking-[0.8em] uppercase text-[#D4AF37] mb-12">Established</span>
@@ -63,7 +63,7 @@ export default function IntroSectionV2() {
                         className="lg:col-span-12 xl:col-span-7 flex flex-col justify-start xl:pt-16"
                     >
                         <div className="max-w-4xl">
-                            <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold text-[#0A0F1E] mb-10 tracking-tighter leading-[1.1]">
+                            <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold text-[#11162D] mb-10 tracking-tighter leading-[1.1]">
                                 Engel & Engel – <br />
                                 <span className="font-serif italic font-medium text-[#1e1b4b]/70 border-b-4 border-[#D4AF37]/20 pb-4 inline-block">Los Angeles Forensic Accounting Firm</span>
                             </h2>
@@ -75,19 +75,19 @@ export default function IntroSectionV2() {
 
                             <div className="space-y-12 text-gray-700 text-lg md:text-2xl leading-relaxed font-light">
                                 <p>
-                                    Established in Los Angeles in 1994, <strong className="font-bold text-[#0A0F1E]">Engel & Engel LLP</strong> has positioned itself as one of the premier providers of forensic accounting and advisory services, not only in California, but nationwide as well. We provide private practice law firms, as well as in-house counsel of Fortune 500 to middle-market companies, complex business litigation support, including fraud investigations, economic damages, business valuation, bankruptcy and insolvency, alter ego, IP litigation, employment litigation, real estate litigation, construction litigation and a variety of other litigation matters.
+                                    Established in Los Angeles in 1994, <strong className="font-bold text-[#11162D]">Engel & Engel LLP</strong> has positioned itself as one of the premier providers of forensic accounting and advisory services, not only in California, but nationwide as well. We provide private practice law firms, as well as in-house counsel of Fortune 500 to middle-market companies, complex business litigation support, including fraud investigations, economic damages, business valuation, bankruptcy and insolvency, alter ego, IP litigation, employment litigation, real estate litigation, construction litigation and a variety of other litigation matters.
                                 </p>
 
                                 <p>
                                     With  30+ years in the forensic accounting industry, working with attorneys and legal teams in and out of the courtroom, Engel & Engel brings credentials, expertise, and careful attention to each and every case. Our qualifications make us the right choice for developing thoughtful strategies, investigating the particulars, and finally, delivering analysis and calculations with sound and persuasive testimony.
                                 </p>
 
-                                <p className="text-[#0A0F1E]/60 italic font-serif">
+                                <p className="text-[#11162D]/60 italic font-serif">
                                     We offer free consultations regarding your matter. Please contact Brandon Engel at (310) 277-2220 or complete our short contact form below.
                                 </p>
 
                                 <div className="pt-16 border-t border-gray-100 flex items-center justify-between group cursor-default">
-                                    <span className="text-3xl font-serif italic text-[#0A0F1E] transition-transform duration-700 group-hover:translate-x-4">Thank You!</span>
+                                    <span className="text-3xl font-serif italic text-[#11162D] transition-transform duration-700 group-hover:translate-x-4">Thank You!</span>
                                     <div className="h-px flex-grow bg-gradient-to-r from-gray-100 via-gray-100 to-transparent ml-12" />
                                 </div>
                             </div>

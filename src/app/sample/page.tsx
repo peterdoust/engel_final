@@ -89,7 +89,7 @@ export default function CasesPage() {
         <section className="relative min-h-[70vh] flex items-end overflow-hidden bg-primary-950">
           <div className="absolute inset-0 z-0 pointer-events-none">
             <div className="absolute top-1/4 right-1/4 w-[500px] h-[500px] bg-[#D4AF37]/10 blur-[150px] rounded-full" />
-            <div className="absolute bottom-1/4 left-1/4 w-[400px] h-[400px] bg-[#3b82f6]/10 blur-[120px] rounded-full" />
+            <div className="absolute bottom-1/4 left-1/4 w-[400px] h-[400px] bg-[#293995]/10 blur-[120px] rounded-full" />
             <div className="absolute inset-0 opacity-[0.03]"
               style={{
                 backgroundImage: 'linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)',
@@ -134,7 +134,7 @@ export default function CasesPage() {
                 >
                   <div className="h-full rounded-2xl border border-slate-200 bg-white overflow-hidden hover:border-[#D4AF37]/30 hover:shadow-2xl transition-all duration-500">
                     {/* Result banner */}
-                    <div className="relative bg-gradient-to-r from-[#0A1A3C] to-[#0f2952] px-8 py-5">
+                    <div className="relative bg-gradient-to-r from-[#1D2653] to-[#0f2952] px-8 py-5">
                       <div className="absolute right-6 top-1/2 -translate-y-1/2 text-[80px] font-bold text-white/[0.03] leading-none select-none">
                         {String(idx + 1).padStart(2, '0')}
                       </div>
@@ -142,7 +142,7 @@ export default function CasesPage() {
                       <p className="text-white text-xl font-bold">{case_.result}</p>
                     </div>
                     <div className="p-8">
-                      <h3 className="text-2xl font-bold text-[#0A1A3C] mb-4 leading-snug group-hover:text-[#0f3574] transition-colors duration-300">
+                      <h3 className="text-2xl font-bold text-[#1D2653] mb-4 leading-snug group-hover:text-[#293995] transition-colors duration-300">
                         {case_.title}
                       </h3>
                       <p className="text-slate-500 text-[15px] leading-[1.8]">
@@ -178,7 +178,7 @@ export default function CasesPage() {
                       </div>
 
                       {/* Title */}
-                      <h3 className="text-lg font-bold text-[#0A1A3C] mb-3 leading-snug group-hover:text-[#0f3574] transition-colors duration-300">
+                      <h3 className="text-lg font-bold text-[#1D2653] mb-3 leading-snug group-hover:text-[#293995] transition-colors duration-300">
                         {case_.title}
                       </h3>
 

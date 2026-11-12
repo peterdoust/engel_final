@@ -135,7 +135,7 @@ function AdminShell({ children }: { children: React.ReactNode }) {
       {/* Mobile menu toggle */}
       <button
         onClick={() => setSidebarOpen(!sidebarOpen)}
-        className="lg:hidden fixed top-4 left-4 z-50 p-2 bg-[#0d1f42] text-white rounded-lg shadow-lg"
+        className="lg:hidden fixed top-4 left-4 z-50 p-2 bg-[#1d2653] text-white rounded-lg shadow-lg"
         aria-label="Toggle sidebar"
       >
         <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -156,14 +156,14 @@ function AdminShell({ children }: { children: React.ReactNode }) {
 
       {/* Sidebar */}
       <aside
-        className={`fixed lg:sticky top-0 left-0 z-40 h-screen w-64 bg-[#0d1f42] text-white flex flex-col transform transition-transform duration-200 ${
+        className={`fixed lg:sticky top-0 left-0 z-40 h-screen w-64 bg-[#1d2653] text-white flex flex-col transform transition-transform duration-200 ${
           sidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'
         }`}
       >
         {/* Logo */}
         <div className="p-6 border-b border-white/5">
           <Link href="/" className="block">
-            <Image src="/images/logo-name_238ba79c.svg" alt="Engel & Engel" width={180} height={40} />
+            <Image src="/images/brand/ee-logo-horizontal-white.png" alt="Engel & Engel LLP, Forensic Accountants" width={1084} height={177} className="h-8 w-auto" />
           </Link>
         </div>
 
@@ -178,7 +178,7 @@ function AdminShell({ children }: { children: React.ReactNode }) {
                 onClick={() => setSidebarOpen(false)}
                 className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-xs font-semibold transition-colors ${
                   active
-                    ? 'bg-[#D4AF37] text-[#0d1f42]'
+                    ? 'bg-[#D4AF37] text-[#1d2653]'
                     : 'text-white/70 hover:text-white hover:bg-white/5'
                 }`}
               >
@@ -194,7 +194,7 @@ function AdminShell({ children }: { children: React.ReactNode }) {
               onClick={() => setSidebarOpen(false)}
               className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-xs font-semibold transition-colors ${
                 pathname?.startsWith('/admin/users')
-                  ? 'bg-[#D4AF37] text-[#0d1f42]'
+                  ? 'bg-[#D4AF37] text-[#1d2653]'
                   : 'text-white/70 hover:text-white hover:bg-white/5'
               }`}
             >

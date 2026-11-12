@@ -32,7 +32,7 @@ export default function CorporateExpertise() {
 
                     <div className="lg:col-span-4 sticky top-32">
                         <span className="text-[#D4AF37] font-bold tracking-[0.4em] uppercase text-xs mb-4 block">Specialized Knowledge</span>
-                        <h2 className="text-3xl md:text-5xl font-bold text-[#0A0F1E] mb-2 tracking-tight uppercase">
+                        <h2 className="text-3xl md:text-5xl font-bold text-[#11162D] mb-2 tracking-tight uppercase">
                             Our Areas of <br />
                             <span className="text-gray-400">Expertise</span>
                         </h2>
@@ -64,9 +64,9 @@ export default function CorporateExpertise() {
                                 >
                                     <Link
                                         href={area.href}
-                                        className="group flex items-center justify-between p-6 bg-white border border-gray-100 hover:border-[#D4AF37] hover:bg-[#0A0F1E] transition-all duration-500 rounded-sm"
+                                        className="group flex items-center justify-between p-6 bg-white border border-gray-100 hover:border-[#D4AF37] hover:bg-[#11162D] transition-all duration-500 rounded-sm"
                                     >
-                                        <span className="text-base font-bold text-[#0A0F1E] group-hover:text-white transition-colors uppercase tracking-tight">
+                                        <span className="text-base font-bold text-[#11162D] group-hover:text-white transition-colors uppercase tracking-tight">
                                             {area.title}
                                         </span>
                                         <svg className="w-5 h-5 text-[#D4AF37] opacity-0 group-hover:opacity-100 transition-all transform translate-x-4 group-hover:translate-x-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">

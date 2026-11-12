@@ -1,18 +1,16 @@
 import type { Metadata } from 'next'
-import { Inter, Playfair_Display } from 'next/font/google'
+import { Jost } from 'next/font/google'
 import Script from 'next/script'
 import { GA_MEASUREMENT_ID } from '@/lib/analytics'
 import './globals.css'
 
-const inter = Inter({
+// Brand font is Futura 100 LXT. Jost (a Futura-style Google font) stands in
+// until the Futura webfont licence is in place — then swap to next/font/local.
+const brandFont = Jost({
   subsets: ['latin'],
-  variable: '--font-inter',
-  display: 'swap',
-})
-
-const playfair = Playfair_Display({
-  subsets: ['latin'],
-  variable: '--font-playfair',
+  weight: ['400', '500', '600', '700'],
+  style: ['normal', 'italic'],
+  variable: '--font-brand',
   display: 'swap',
 })
 
@@ -40,14 +38,14 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
-  metadataBase: new URL('https://engelengel.com'),
+  metadataBase: new URL('https://engelandengel.com'),
   alternates: {
     canonical: '/',
   },
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://engelengel.com',
+    url: 'https://engelandengel.com',
     title: 'Engel & Engel - Premier Forensic Accounting Firm in Los Angeles',
     description: 'Los Angeles\' premier forensic accounting firm with 30+ years of experience in complex business litigation and expert witness testimony.',
     siteName: 'Engel & Engel',
@@ -90,23 +88,21 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={`${inter.variable} ${playfair.variable}`}>
+    <html lang="en" className={brandFont.variable}>
       <head>
         {/* Preconnect to external domains */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link rel="preconnect" href="https://www.googletagmanager.com" />
 
         {/* Favicon */}
-        <link rel="icon" href="/favicon.ico" />
-        {/* <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" /> */}
-        {/* <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" /> */}
-        {/* <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" /> */}
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
         <link rel="manifest" href="/site.webmanifest" />
 
         {/* Theme color */}
-        <meta name="theme-color" content="#1e3a8a" />
-        <meta name="msapplication-TileColor" content="#1e3a8a" />
+        <meta name="theme-color" content="#1d2653" />
+        <meta name="msapplication-TileColor" content="#1d2653" />
 
         {/* Structured Data */}
         <script
@@ -117,7 +113,7 @@ export default function RootLayout({
               "@type": "ProfessionalService",
               "name": "Engel & Engel",
               "description": "Premier forensic accounting firm specializing in fraud investigation, expert witness testimony, and business valuation services.",
-              "url": "https://engelengel.com",
+              "url": "https://engelandengel.com",
               "telephone": "+1-310-277-2220",
               "address": {
                 "@type": "PostalAddress",

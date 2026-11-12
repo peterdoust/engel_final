@@ -222,7 +222,7 @@ export default function JointRetentionProgramPage() {
       <main className="bg-white min-h-screen text-slate-900">
 
         {/* ══════════ CINEMATIC HERO ══════════ */}
-        <section className="relative min-h-[60vh] md:min-h-[75vh] lg:min-h-[85vh] flex items-center pt-24 md:pt-0 overflow-hidden bg-[#0A1A3C]">
+        <section className="relative flex items-center overflow-hidden bg-[#293995] pt-[calc(var(--hdr)+1rem)] pb-10">
           <div className="absolute inset-0 z-0 pointer-events-none">
             <motion.div
               style={{ y: y2, scale }}
@@ -230,7 +230,7 @@ export default function JointRetentionProgramPage() {
             />
             <motion.div
               style={{ y: y1 }}
-              className="absolute bottom-1/4 left-1/4 w-[400px] h-[400px] bg-[#3b82f6]/10 blur-[120px] rounded-full"
+              className="absolute bottom-1/4 left-1/4 w-[400px] h-[400px] bg-[#293995]/10 blur-[120px] rounded-full"
             />
             <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-[#D4AF37]/30 to-transparent" />
           </div>
@@ -245,7 +245,7 @@ export default function JointRetentionProgramPage() {
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 1.2, ease: "easeOut" }}
               >
-                <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-tighter text-white drop-shadow-2xl">
+                <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tighter text-white drop-shadow-2xl">
                   Joint Retention <br />
                   <span className="font-serif italic text-[#D4AF37] font-medium">Program</span>
                 </h1>
@@ -254,6 +254,10 @@ export default function JointRetentionProgramPage() {
             </motion.div>
           </div>
         </section>
+
+        {/* sticky-scope: keeps the mobile section bar from sticking over the CTA and footer */}
+
+        <div>
 
         {/* ══════════ MOBILE/TABLET STICKY NAV ══════════ */}
         <MobileNav sidebarSections={sidebarSections} />
@@ -271,7 +275,7 @@ export default function JointRetentionProgramPage() {
                 <section key={section.id} id={section.id} className="mb-10 scroll-mt-[6rem]">
                   <h2 className="relative text-2xl font-semibold text-primary-950 mb-6 group inline-block">
                     {section.title}
-                    <span className="absolute -bottom-2 left-0 w-12 h-0.5 bg-gradient-to-r from-[#0f3574] to-transparent transition-all duration-500 group-hover:w-full" />
+                    <span className="absolute -bottom-2 left-0 w-12 h-0.5 bg-gradient-to-r from-[#293995] to-transparent transition-all duration-500 group-hover:w-full" />
                   </h2>
 
                   <div className="space-y-5 text-[18px] leading-relaxed text-gray-600">
@@ -287,7 +291,7 @@ export default function JointRetentionProgramPage() {
                       }`}>
                         {section.items.map((item: string, j: number) => (
                           <li key={j} className="flex items-start gap-3 text-base text-gray-800">
-                            <span className="mt-2 w-1.5 h-1.5 rounded-full bg-[#0f3574] flex-shrink-0" />
+                            <span className="mt-2 w-1.5 h-1.5 rounded-full bg-[#293995] flex-shrink-0" />
                             {item}
                           </li>
                         ))}
@@ -300,8 +304,10 @@ export default function JointRetentionProgramPage() {
           </div>
         </div>
 
+        </div>
+
         {/* ══════════ CONTACT CTA ══════════ */}
-        <section className="relative py-28 bg-[#0A1A3C] overflow-hidden">
+        <section className="relative py-28 bg-[#1D2653] overflow-hidden">
           <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#D4AF37]/5 blur-[150px] rounded-full pointer-events-none" />
           <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-blue-500/10 blur-[120px] rounded-full pointer-events-none" />
           <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-[#D4AF37]/50 to-transparent" />
@@ -336,7 +342,7 @@ export default function JointRetentionProgramPage() {
 
                 <div className="flex flex-col justify-center space-y-5 p-8 border border-white/10 rounded-2xl bg-white/5 backdrop-blur-sm">
                   <a href="mailto:brandon@engelandengel.com" className="group flex items-center gap-4">
-                    <div className="w-12 h-12 rounded-xl bg-[#D4AF37]/10 border border-[#D4AF37]/30 flex items-center justify-center text-[#D4AF37] group-hover:bg-[#D4AF37] group-hover:text-[#0A1A3C] transition-all duration-300 shrink-0">
+                    <div className="w-12 h-12 rounded-xl bg-[#D4AF37]/10 border border-[#D4AF37]/30 flex items-center justify-center text-[#D4AF37] group-hover:bg-[#D4AF37] group-hover:text-[#1D2653] transition-all duration-300 shrink-0">
                       <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                       </svg>
@@ -347,7 +353,7 @@ export default function JointRetentionProgramPage() {
                   </a>
 
                   <TrackedPhoneLink phone="310-277-2220" location="service_cta" className="group flex items-center gap-4">
-                    <div className="w-12 h-12 rounded-xl bg-[#D4AF37]/10 border border-[#D4AF37]/30 flex items-center justify-center text-[#D4AF37] group-hover:bg-[#D4AF37] group-hover:text-[#0A1A3C] transition-all duration-300 shrink-0">
+                    <div className="w-12 h-12 rounded-xl bg-[#D4AF37]/10 border border-[#D4AF37]/30 flex items-center justify-center text-[#D4AF37] group-hover:bg-[#D4AF37] group-hover:text-[#1D2653] transition-all duration-300 shrink-0">
                       <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                       </svg>

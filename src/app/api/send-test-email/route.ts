@@ -43,7 +43,7 @@ function createEmailTemplate(data: any) {
 <body style="margin: 0; padding: 0; background-color: #f5f5f5; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
   <div style="max-width: 650px; margin: 0 auto; background: #ffffff;">
     <!-- Header with Logo and Branding -->
-    <div style="background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%); padding: 40px 30px; text-align: center; position: relative;">
+    <div style="background: linear-gradient(135deg, #293995 0%, #293995 100%); padding: 40px 30px; text-align: center; position: relative;">
       <div style="background: rgba(255,255,255,0.1); padding: 20px; border-radius: 12px; display: inline-block;">
         <h1 style="color: white; margin: 0; font-size: 32px; font-weight: 700; letter-spacing: -0.5px;">
           ENGEL & ENGEL LLP
@@ -61,7 +61,7 @@ function createEmailTemplate(data: any) {
     <!-- Main Content -->
     <div style="padding: 50px 40px; background: #ffffff;">
       <div style="text-align: center; margin-bottom: 30px;">
-        <h2 style="color: #1f2937; margin: 0; font-size: 28px; font-weight: 600;">
+        <h2 style="color: #11162d; margin: 0; font-size: 28px; font-weight: 600;">
           Publications Portal Access
         </h2>
         <p style="color: #6b7280; margin: 10px 0 0 0; font-size: 16px;">
@@ -78,20 +78,20 @@ function createEmailTemplate(data: any) {
       </p>
       
       <!-- Credentials Box -->
-      <div style="background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%); border: 2px solid #e2e8f0; border-radius: 12px; padding: 30px; margin: 35px 0;">
-        <h3 style="color: #1e40af; margin: 0 0 20px 0; font-size: 20px; font-weight: 600; text-align: center;">
+      <div style="background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%); border: 2px solid #e2e6f0; border-radius: 12px; padding: 30px; margin: 35px 0;">
+        <h3 style="color: #293995; margin: 0 0 20px 0; font-size: 20px; font-weight: 600; text-align: center;">
           🔐 Your Access Credentials
         </h3>
         
-        <div style="background: white; border-radius: 8px; padding: 20px; margin-bottom: 20px; border-left: 4px solid #1e40af;">
+        <div style="background: white; border-radius: 8px; padding: 20px; margin-bottom: 20px; border-left: 4px solid #293995;">
           <div style="margin-bottom: 15px;">
-            <label style="display: block; color: #374151; font-weight: 600; font-size: 14px; margin-bottom: 5px;">ACCESS TOKEN:</label>
-            <code style="background: #f3f4f6; padding: 8px 12px; border-radius: 6px; font-family: 'Courier New', monospace; font-size: 14px; color: #1f2937; word-break: break-all; display: block;">${data.accessToken}</code>
+            <label style="display: block; color: #11162d; font-weight: 600; font-size: 14px; margin-bottom: 5px;">ACCESS TOKEN:</label>
+            <code style="background: #f3f4f6; padding: 8px 12px; border-radius: 6px; font-family: 'Courier New', monospace; font-size: 14px; color: #11162d; word-break: break-all; display: block;">${data.accessToken}</code>
           </div>
           
           <div>
-            <label style="display: block; color: #374151; font-weight: 600; font-size: 14px; margin-bottom: 5px;">TEMPORARY PASSWORD:</label>
-            <code style="background: #f3f4f6; padding: 8px 12px; border-radius: 6px; font-family: 'Courier New', monospace; font-size: 16px; color: #1f2937; font-weight: 600; display: block;">${data.tempPassword}</code>
+            <label style="display: block; color: #11162d; font-weight: 600; font-size: 14px; margin-bottom: 5px;">TEMPORARY PASSWORD:</label>
+            <code style="background: #f3f4f6; padding: 8px 12px; border-radius: 6px; font-family: 'Courier New', monospace; font-size: 16px; color: #11162d; font-weight: 600; display: block;">${data.tempPassword}</code>
           </div>
         </div>
         
@@ -119,14 +119,14 @@ function createEmailTemplate(data: any) {
       <!-- CTA Button -->
       <div style="text-align: center; margin: 40px 0;">
         <a href="${data.portalUrl}" 
-           style="background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%); color: white; padding: 18px 40px; text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 16px; display: inline-block; box-shadow: 0 4px 12px rgba(30, 64, 175, 0.3);">
+           style="background: linear-gradient(135deg, #293995 0%, #293995 100%); color: white; padding: 18px 40px; text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 16px; display: inline-block; box-shadow: 0 4px 12px rgba(30, 64, 175, 0.3);">
           🚀 Access Publications Portal
         </a>
       </div>
       
       <!-- Access Details -->
       <div style="background: #f9fafb; border-radius: 8px; padding: 20px; margin: 30px 0;">
-        <h4 style="color: #374151; margin: 0 0 10px 0; font-size: 16px; font-weight: 600;">Access Details:</h4>
+        <h4 style="color: #11162d; margin: 0 0 10px 0; font-size: 16px; font-weight: 600;">Access Details:</h4>
         <ul style="color: #6b7280; margin: 0; padding-left: 20px; line-height: 1.6; font-size: 14px;">
           <li><strong>Portal URL:</strong> ${data.portalUrl.split('?')[0]}</li>
           <li><strong>Access Expires:</strong> ${data.expiryDate.toLocaleDateString('en-US', { 
@@ -142,55 +142,55 @@ function createEmailTemplate(data: any) {
       </div>
       
       <!-- Support Information -->
-      <div style="border-top: 2px solid #e5e7eb; padding-top: 25px; margin-top: 35px;">
-        <h4 style="color: #374151; margin: 0 0 15px 0; font-size: 16px; font-weight: 600;">Need Assistance?</h4>
+      <div style="border-top: 2px solid #e2e6f0; padding-top: 25px; margin-top: 35px;">
+        <h4 style="color: #11162d; margin: 0 0 15px 0; font-size: 16px; font-weight: 600;">Need Assistance?</h4>
         <div style="display: flex; flex-wrap: wrap; gap: 20px;">
           <div style="flex: 1; min-width: 200px;">
             <p style="color: #6b7280; margin: 0 0 8px 0; font-size: 14px;">
               <strong>📞 Phone Support:</strong><br>
-              <a href="tel:(310) 277-2220" style="color: #1e40af; text-decoration: none; font-weight: 600;">(310) 277-2220</a>
+              <a href="tel:(310) 277-2220" style="color: #293995; text-decoration: none; font-weight: 600;">(310) 277-2220</a>
             </p>
           </div>
           <div style="flex: 1; min-width: 200px;">
             <p style="color: #6b7280; margin: 0 0 8px 0; font-size: 14px;">
               <strong>✉️ Email Support:</strong><br>
-              <a href="mailto:jason@engelandengel.com" style="color: #1e40af; text-decoration: none; font-weight: 600;">jason@engelandengel.com</a>
+              <a href="mailto:jason@engelandengel.com" style="color: #293995; text-decoration: none; font-weight: 600;">jason@engelandengel.com</a>
             </p>
           </div>
         </div>
       </div>
       
-      <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #e5e7eb;">
+      <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #e2e6f0;">
         <p style="color: #4b5563; line-height: 1.6; margin-bottom: 20px; font-size: 16px;">
           We're excited to have you explore our publications portal. Our research represents decades of expertise in forensic accounting, and we're confident you'll find valuable insights for your work.
         </p>
         
         <p style="color: #4b5563; line-height: 1.6; margin: 0; font-size: 16px;">
           Best regards,<br>
-          <strong style="color: #1f2937;">Jason A. Engel, CPA, CFE</strong><br>
+          <strong style="color: #11162d;">Jason A. Engel, CPA, CFE</strong><br>
           <span style="color: #6b7280;">Managing Partner</span><br>
-          <strong style="color: #1e40af;">Engel & Engel LLP</strong>
+          <strong style="color: #293995;">Engel & Engel LLP</strong>
         </p>
       </div>
     </div>
     
     <!-- Footer -->
-    <div style="background: #f9fafb; padding: 30px; text-align: center; border-top: 1px solid #e5e7eb;">
+    <div style="background: #f9fafb; padding: 30px; text-align: center; border-top: 1px solid #e2e6f0;">
       <div style="margin-bottom: 15px;">
-        <p style="color: #374151; margin: 0; font-size: 14px; font-weight: 600;">
+        <p style="color: #11162d; margin: 0; font-size: 14px; font-weight: 600;">
           350 S Grand Avenue, Suite 3160, Los Angeles, CA 90071
         </p>
       </div>
       
       <div style="margin-bottom: 20px;">
-        <a href="tel:(310) 277-2220" style="color: #1e40af; text-decoration: none; margin: 0 15px; font-size: 14px;">(310) 277-2220</a>
+        <a href="tel:(310) 277-2220" style="color: #293995; text-decoration: none; margin: 0 15px; font-size: 14px;">(310) 277-2220</a>
         <span style="color: #d1d5db;">|</span>
-        <a href="mailto:info@engelandengel.com" style="color: #1e40af; text-decoration: none; margin: 0 15px; font-size: 14px;">info@engelandengel.com</a>
+        <a href="mailto:info@engelandengel.com" style="color: #293995; text-decoration: none; margin: 0 15px; font-size: 14px;">info@engelandengel.com</a>
         <span style="color: #d1d5db;">|</span>
-        <a href="https://engelandengel.com" style="color: #1e40af; text-decoration: none; margin: 0 15px; font-size: 14px;">engelandengel.com</a>
+        <a href="https://engelandengel.com" style="color: #293995; text-decoration: none; margin: 0 15px; font-size: 14px;">engelandengel.com</a>
       </div>
       
-      <div style="border-top: 1px solid #e5e7eb; padding-top: 15px;">
+      <div style="border-top: 1px solid #e2e6f0; padding-top: 15px;">
         <p style="color: #6b7280; font-size: 12px; margin: 0 0 5px 0;">
           This email contains confidential information intended only for the recipient. 
           If you received this in error, please delete it immediately.

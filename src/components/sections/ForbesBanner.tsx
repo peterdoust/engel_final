@@ -27,7 +27,7 @@ export default function ForbesBanner() {
                 Named Among America&apos;s{' '}
                 Top CPAs for Valuations
               </h2>
-              <p className="text-[#D4AF37] font-bold tracking-[0.4em] uppercase text-base md:text-xl mb-5">Forbes 2025 Honoree</p>
+              <p className="text-gold-700 font-bold tracking-[0.4em] uppercase text-base md:text-xl mb-5">Forbes 2025 Honoree</p>
 
               <div className="flex flex-col gap-4 mb-8">
                 <p>
@@ -37,7 +37,7 @@ export default function ForbesBanner() {
 
               <Link
                 href="/news-and-insights/jason-engel-forbes-top-cpas-valuations-2025"
-                className="inline-flex items-center gap-2 px-7 py-3 bg-primary-950 text-white font-semibold text-sm tracking-wider uppercase rounded-lg hover:bg-[#D4AF37] transition-colors duration-300"
+                className="inline-flex items-center gap-2 px-7 py-3 bg-primary-950 text-white font-semibold text-sm tracking-wider uppercase rounded-lg hover:bg-[#D4AF37] transition-colors duration-300 hover:text-[#1d2653]"
               >
                 Read More
                 <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">

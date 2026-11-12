@@ -6,6 +6,7 @@ import Footer from '@/components/layout/Footer'
 import CalculatorNavigation from '@/components/CalculatorNavigation'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/Card'
 import { Button } from '@/components/ui/Button'
+import { PiggyBank } from 'lucide-react'
 
 interface PVResult {
   presentValue: number
@@ -93,13 +94,13 @@ export default function PresentValueCalculatorPage() {
       <Header />
       
       {/* Hero Section */}
-      <section className="pt-16 lg:pt-20 bg-gradient-to-br from-green-900 via-green-800 to-emerald-700 text-white">
-        <div className="container-custom py-16">
+      <section className="text-white bg-[#293995] pt-[calc(var(--hdr)+1rem)] pb-10">
+        <div className="container-custom">
           <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">
-              Present Value <span className="text-green-300">Calculator</span>
+            <h1 className="text-4xl md:text-5xl font-bold mb-6 text-white">
+              Present Value <span className="text-[#d4af37]">Calculator</span>
             </h1>
-            <p className="text-xl text-green-100 mb-8 max-w-3xl mx-auto">
+            <p className="text-xl text-white/80 mb-0 max-w-3xl mx-auto">
               Calculate the present value of future cash flows for investment analysis and financial planning
             </p>
           </div>
@@ -110,17 +111,17 @@ export default function PresentValueCalculatorPage() {
         <div className="container-custom py-8">
           <div className="max-w-4xl mx-auto">
             {/* Calculator Section */}
-            <Card className="mb-8 shadow-lg border-0 bg-white">
-              <CardHeader className="bg-gradient-to-r from-green-600 to-emerald-600 text-white rounded-t-lg">
-                <CardTitle className="text-2xl font-bold flex items-center">
-                  <span className="mr-3">💰</span>
+            <Card padding="none" className="mb-8 shadow-lg border-0 bg-white">
+              <CardHeader className="bg-gradient-to-r from-[#1d2653] to-[#293995] text-white rounded-t-lg p-5 sm:p-6">
+                <CardTitle className="text-2xl font-bold flex items-center text-white">
+                  <PiggyBank className="w-6 h-6 mr-3 text-[#d4af37]" strokeWidth={1.5} aria-hidden="true" />
                   Present Value Calculator
                 </CardTitle>
-                <CardDescription className="text-green-100">
+                <CardDescription className="text-white/80">
                   Calculate present value of future cash flows using discount rates
                 </CardDescription>
               </CardHeader>
-              <CardContent className="p-8">
+              <CardContent className="p-5 sm:p-8">
                 <div className="grid md:grid-cols-2 gap-8">
                   {/* Input Form */}
                   <div className="space-y-6">
@@ -134,7 +135,7 @@ export default function PresentValueCalculatorPage() {
                           type="text"
                           value={inputs.futureValue}
                           onChange={(e) => handleCurrencyChange('futureValue', e.target.value)}
-                          className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all duration-200"
+                          className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#293995] focus:border-transparent transition-all duration-200"
                           placeholder="100,000.00"
                         />
                       </div>
@@ -149,7 +150,7 @@ export default function PresentValueCalculatorPage() {
                           type="text"
                           value={inputs.discountRate}
                           onChange={(e) => setInputs({...inputs, discountRate: e.target.value})}
-                          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all duration-200"
+                          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#293995] focus:border-transparent transition-all duration-200"
                           placeholder="5.00"
                         />
                         <span className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 font-medium">%</span>
@@ -164,7 +165,7 @@ export default function PresentValueCalculatorPage() {
                         type="number"
                         value={inputs.numberOfPeriods}
                         onChange={(e) => setInputs({...inputs, numberOfPeriods: e.target.value})}
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all duration-200"
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#293995] focus:border-transparent transition-all duration-200"
                         placeholder="Enter number of years/periods"
                       />
                     </div>
@@ -179,7 +180,7 @@ export default function PresentValueCalculatorPage() {
                           type="text"
                           value={inputs.paymentAmount}
                           onChange={(e) => handleCurrencyChange('paymentAmount', e.target.value)}
-                          className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all duration-200"
+                          className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#293995] focus:border-transparent transition-all duration-200"
                           placeholder="1,000.00"
                         />
                       </div>
@@ -188,14 +189,14 @@ export default function PresentValueCalculatorPage() {
                     <div className="flex space-x-4">
                       <Button 
                         onClick={calculatePresentValue}
-                        className="flex-1 bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-200 shadow-md hover:shadow-lg"
+                        className="flex-1 font-semibold py-3 px-6 rounded-lg transition-all duration-200 shadow-md hover:shadow-lg"
                       >
                         Calculate Present Value
                       </Button>
                       <Button 
                         onClick={resetCalculator}
                         variant="outline"
-                        className="px-6 py-3 border-2 border-green-600 text-green-600 hover:bg-green-50 rounded-lg transition-all duration-200"
+                        className="px-6 py-3 border-2 border-[#1d2653] text-[#1d2653] hover:bg-primary-50 rounded-lg transition-all duration-200"
                       >
                         Reset
                       </Button>
@@ -210,7 +211,7 @@ export default function PresentValueCalculatorPage() {
                       <div className="space-y-4">
                         <div className="bg-white p-4 rounded-lg border shadow-sm">
                           <div className="text-sm text-gray-600 mb-1">Present Value</div>
-                          <div className="text-2xl font-bold text-green-600">
+                          <div className="text-2xl font-bold text-[#1d2653]">
                             {formatCurrency(results.presentValue)}
                           </div>
                         </div>
@@ -224,14 +225,14 @@ export default function PresentValueCalculatorPage() {
 
                         <div className="bg-white p-4 rounded-lg border shadow-sm">
                           <div className="text-sm text-gray-600 mb-1">Total Discount</div>
-                          <div className="text-lg font-semibold text-red-600">
+                          <div className="text-lg font-semibold text-[#293995]">
                             {formatCurrency(results.totalDiscount)}
                           </div>
                         </div>
                       </div>
                     ) : (
                       <div className="text-center py-8 text-gray-500">
-                        <div className="text-4xl mb-4">💰</div>
+                        <PiggyBank className="w-10 h-10 mb-4 mx-auto text-[#1d2653]" strokeWidth={1.5} aria-hidden="true" />
                         <p className="text-sm">Enter values and click "Calculate Present Value" to see results</p>
                       </div>
                     )}

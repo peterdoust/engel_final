@@ -1,60 +1,93 @@
+/**
+ * Engel & Engel brand palette (source: E&E Brand Guides PDF)
+ *   Midnight Blue    #1d2653  main branding, primary headers, dark backgrounds
+ *   Gold             #d4af37  main branding, buttons, accents
+ *   Cobalt Blue      #293995  subheads, gradients paired with midnight blue
+ *   Light Slate Gray #e2e6f0  dividers, borders, background boxes
+ *   Midnight Charcoal #11162d body copy and micro-copy
+ */
+const brand = {
+  midnight: '#1d2653',
+  gold: '#d4af37',
+  cobalt: '#293995',
+  slate: '#e2e6f0',
+  charcoal: '#11162d',
+}
+
+// Blue scale built around the brand blues (600 = cobalt, 900 = midnight).
+// Also used for Tailwind's `blue` and `indigo` so old classes stay on-brand.
+const brandBlue = {
+  50: '#f0f2f9',
+  100: '#e2e6f0',
+  200: '#c5cce3',
+  300: '#9aa5cf',
+  400: '#6676b8',
+  500: '#3d4fa8',
+  600: brand.cobalt,
+  700: '#243282',
+  800: '#202c6a',
+  900: brand.midnight,
+  950: brand.charcoal,
+}
+
+// Cool neutral scale tinted toward the brand navy (200 = light slate, 900 = charcoal).
+// Also used for Tailwind's `slate`.
+const brandNeutral = {
+  50: '#f6f7fb',
+  100: '#eef0f6',
+  200: brand.slate,
+  300: '#c9cfdf',
+  400: '#9aa2b8',
+  500: '#6b7390',
+  600: '#4d5570',
+  700: '#363d57',
+  800: '#232a42',
+  900: brand.charcoal,
+  950: '#0b0e1e',
+}
+
+const brandGold = {
+  50: '#fbf7e9',
+  100: '#f6edc8',
+  200: '#eedc96',
+  300: '#e5c964',
+  400: '#dcbb48',
+  500: brand.gold,
+  600: '#b8952a',
+  700: '#957722',
+  800: '#735c1c',
+  900: '#574617',
+}
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
     './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
-    './glamm-hair/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
     extend: {
       colors: {
-        // Engel & Engel Brand Colors (Blue Palette)
-        primary: {
-          50: '#eff6ff',
-          100: '#dbeafe',
-          200: '#bfdbfe',
-          300: '#93c5fd',
-          400: '#60a5fa', // Accent Blue
-          500: '#3b82f6', // Primary Light Blue
-          600: '#2563eb',
-          700: '#1d4ed8',
-          800: '#1e40af',
-          900: '#1e3a8a', // Primary Dark Blue
-          950: '#172554',
-        },
-        gray: {
-          50: '#f8fafc',
-          100: '#f1f5f9',
-          200: '#e2e8f0',
-          300: '#cbd5e1',
-          400: '#94a3b8',
-          500: '#64748b',
-          600: '#475569',
-          700: '#334155',
-          800: '#1e293b',
-          900: '#0f172a',
-        },
+        brand,
+        primary: brandBlue,
+        blue: brandBlue,
+        indigo: brandBlue,
+        gold: brandGold,
+        gray: brandNeutral,
+        slate: brandNeutral,
         // Semantic colors
         success: '#10b981',
         warning: '#f59e0b',
         error: '#ef4444',
-        info: '#3b82f6',
-        // Glamm Hair Colors
-        background: {
-          DEFAULT: '#FAF5EE', // ivory-beige
-        },
-        surface: '#FFFDFC',
-        accent: '#C9A97E', // warm caramel-gold
-        text: {
-          DEFAULT: '#2B2B2B',
-          muted: '#6B6B6B',
-        },
-        border: '#EAE3D9'
+        info: brand.cobalt,
       },
       fontFamily: {
-        sans: ['Inter', 'system-ui', 'sans-serif'],
-        serif: ['Playfair Display', 'serif'],
+        // Brand font is Futura 100 LXT (licensed). Jost is the free stand-in
+        // until the webfont licence is in place; Arial is the brand fallback.
+        sans: ['var(--font-brand)', 'Futura', 'Arial', 'sans-serif'],
+        // Brand has no serif — `font-serif` headings now use the brand font too.
+        serif: ['var(--font-brand)', 'Futura', 'Arial', 'sans-serif'],
         mono: ['JetBrains Mono', 'monospace'],
       },
       fontSize: {

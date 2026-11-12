@@ -41,7 +41,7 @@ export default function EventSchema({ event, slug }: EventSchemaProps) {
       '@type': 'Organization',
       name: 'Engel & Engel LLP',
       url: 'https://engelandengel.com',
-      logo: 'https://engelandengel.com/images/logo-accountants-white-font.png',
+      logo: 'https://engelandengel.com/images/brand/ee-logo-horizontal.png',
       contactPoint: {
         '@type': 'ContactPoint',
         telephone: '+1-310-277-2220',

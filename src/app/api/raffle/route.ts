@@ -85,23 +85,23 @@ export async function POST(request: NextRequest) {
         subject: "You're Entered! – Engel & Engel Drawing",
         html: `
           <div style="font-family: Arial, sans-serif; max-width: 500px; margin: 0 auto; background: #ffffff;">
-            <div style="background: #172554; padding: 30px; text-align: center;">
+            <div style="background: #1d2653; padding: 30px; text-align: center;">
               <h1 style="color: #ffffff; margin: 0; font-size: 22px;">Engel & Engel, LLP</h1>
               <p style="color: #D4AF37; margin: 5px 0 0; font-size: 11px; letter-spacing: 3px; text-transform: uppercase;">Forensic Accountants</p>
             </div>
             <div style="padding: 30px;">
-              <h2 style="color: #172554; margin: 0 0 15px;">You're In, ${entry.name}!</h2>
+              <h2 style="color: #1d2653; margin: 0 0 15px;">You're In, ${entry.name}!</h2>
               <p style="color: #64748b; line-height: 1.6; margin: 0 0 20px;">
                 Your entry for the <strong>Luxury Oceanfront Getaway at Terranea Resort</strong> drawing has been received. The winner will be notified directly following the event.
               </p>
               <div style="background: #f8fafc; border-left: 3px solid #D4AF37; padding: 15px; margin: 0 0 20px;">
-                <p style="margin: 0; color: #334155; font-size: 14px;"><strong>Name:</strong> ${entry.name}</p>
-                <p style="margin: 5px 0 0; color: #334155; font-size: 14px;"><strong>Title:</strong> ${entry.title}</p>
-                <p style="margin: 5px 0 0; color: #334155; font-size: 14px;"><strong>Company:</strong> ${entry.company}</p>
+                <p style="margin: 0; color: #11162d; font-size: 14px;"><strong>Name:</strong> ${entry.name}</p>
+                <p style="margin: 5px 0 0; color: #11162d; font-size: 14px;"><strong>Title:</strong> ${entry.title}</p>
+                <p style="margin: 5px 0 0; color: #11162d; font-size: 14px;"><strong>Company:</strong> ${entry.company}</p>
               </div>
               <p style="color: #94a3b8; font-size: 13px; margin: 0;">Good luck!</p>
             </div>
-            <div style="background: #f8fafc; padding: 15px; text-align: center; border-top: 1px solid #e2e8f0;">
+            <div style="background: #f8fafc; padding: 15px; text-align: center; border-top: 1px solid #e2e6f0;">
               <p style="color: #94a3b8; font-size: 11px; margin: 0;">Engel & Engel LLP &bull; 350 S Grand Avenue, Suite 3160, Los Angeles, CA 90071</p>
             </div>
           </div>
@@ -115,19 +115,19 @@ export async function POST(request: NextRequest) {
         subject: `New Raffle Entry: ${entry.name} (${entry.company})`,
         html: `
           <div style="font-family: Arial, sans-serif; max-width: 500px; margin: 0 auto;">
-            <div style="background: #172554; padding: 20px; text-align: center;">
+            <div style="background: #1d2653; padding: 20px; text-align: center;">
               <h1 style="color: #ffffff; margin: 0; font-size: 18px;">New Raffle Entry</h1>
             </div>
             <div style="padding: 25px; background: #ffffff;">
               <table style="width: 100%; border-collapse: collapse;">
-                <tr><td style="padding: 8px 0; font-weight: bold; color: #172554; width: 90px;">Name:</td><td style="padding: 8px 0; color: #334155;">${entry.name}</td></tr>
-                <tr><td style="padding: 8px 0; font-weight: bold; color: #172554;">Title:</td><td style="padding: 8px 0; color: #334155;">${entry.title}</td></tr>
-                <tr><td style="padding: 8px 0; font-weight: bold; color: #172554;">Email:</td><td style="padding: 8px 0; color: #334155;"><a href="mailto:${entry.email}">${entry.email}</a></td></tr>
-                <tr><td style="padding: 8px 0; font-weight: bold; color: #172554;">Phone:</td><td style="padding: 8px 0; color: #334155;"><a href="tel:${entry.phone}">${entry.phone}</a></td></tr>
-                <tr><td style="padding: 8px 0; font-weight: bold; color: #172554;">Company:</td><td style="padding: 8px 0; color: #334155;">${entry.company}</td></tr>
+                <tr><td style="padding: 8px 0; font-weight: bold; color: #1d2653; width: 90px;">Name:</td><td style="padding: 8px 0; color: #11162d;">${entry.name}</td></tr>
+                <tr><td style="padding: 8px 0; font-weight: bold; color: #1d2653;">Title:</td><td style="padding: 8px 0; color: #11162d;">${entry.title}</td></tr>
+                <tr><td style="padding: 8px 0; font-weight: bold; color: #1d2653;">Email:</td><td style="padding: 8px 0; color: #11162d;"><a href="mailto:${entry.email}">${entry.email}</a></td></tr>
+                <tr><td style="padding: 8px 0; font-weight: bold; color: #1d2653;">Phone:</td><td style="padding: 8px 0; color: #11162d;"><a href="tel:${entry.phone}">${entry.phone}</a></td></tr>
+                <tr><td style="padding: 8px 0; font-weight: bold; color: #1d2653;">Company:</td><td style="padding: 8px 0; color: #11162d;">${entry.company}</td></tr>
               </table>
-              <div style="margin-top: 15px; padding-top: 15px; border-top: 1px solid #e2e8f0;">
-                <p style="color: #94a3b8; font-size: 13px; margin: 0;">Total entries: <strong style="color: #172554;">${totalEntries}</strong></p>
+              <div style="margin-top: 15px; padding-top: 15px; border-top: 1px solid #e2e6f0;">
+                <p style="color: #94a3b8; font-size: 13px; margin: 0;">Total entries: <strong style="color: #1d2653;">${totalEntries}</strong></p>
               </div>
             </div>
           </div>

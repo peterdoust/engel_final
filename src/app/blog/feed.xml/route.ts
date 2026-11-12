@@ -59,7 +59,7 @@ export async function GET() {
     <category>Business Valuation</category>
     <category>Expert Witness</category>
     <image>
-      <url>${baseUrl}/images/logo-accountants-white-font.png</url>
+      <url>${baseUrl}/images/brand/ee-logo-horizontal.png</url>
       <title>Engel &amp; Engel Forensic Accounting</title>
       <link>${baseUrl}/blog</link>
       <width>200</width>

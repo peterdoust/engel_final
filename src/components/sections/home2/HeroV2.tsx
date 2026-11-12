@@ -88,7 +88,7 @@ export default function HeroV2() {
     return (
         <section
             ref={containerRef}
-            className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#0A0F1E]"
+            className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#11162D]"
         >
             {/* Cinematic Background Layer */}
             <motion.div style={{ y, scale, opacity }} className="absolute inset-0 z-0">
@@ -99,8 +99,8 @@ export default function HeroV2() {
                     className="object-cover object-top brightness-[0.25] contrast-[1.1] grayscale-[20%]"
                     priority
                 />
-                <div className="absolute inset-0 bg-gradient-to-b from-[#0A0F1E]/90 via-transparent to-[#0A0F1E]" />
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(10,15,30,0.8)_100%)]" />
+                <div className="absolute inset-0 bg-gradient-to-b from-[#11162D]/90 via-transparent to-[#11162D]" />
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(17, 22, 45,0.8)_100%)]" />
             </motion.div>
 
             <div className="relative z-10 w-full max-w-[1800px] mx-auto px-6 md:px-12 lg:px-24">

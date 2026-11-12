@@ -166,7 +166,7 @@ export default function ContactCTA() {
                             {member.direct}
                           </TrackedPhoneLink>
                         </p>
-                        <p className="truncate text-white font-semibold">
+                        <p className="text-white font-semibold [overflow-wrap:anywhere]">
                           <span className="">EMAIL: </span>
                           <a href={`mailto:${member.email}`} className="text-white/80 hover:text-[#D4AF37] transition-colors duration-300">{member.email}</a>
                         </p>
@@ -262,17 +262,10 @@ export default function ContactCTA() {
                     />
                   </div>
 
-                  <div>
-                    <label className="block text-[11px] font-semibold text-primary-950 uppercase tracking-[0.15em] mb-2">Google reCAPTCHA</label>
-                    <div className="w-full h-20 border border-primary-950/40 bg-[#f8fbff] flex items-center rounded-md justify-center text-sm text-primary-950/40">
-                      reCAPTCHA widget placeholder
-                    </div>
-                  </div>
-
                   <Button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full py-6 bg-primary-950 hover:bg-[#D4AF37] text-white font-bold tracking-[0.5em] uppercase text-xs transition-all duration-500 rounded-none group relative overflow-hidden disabled:opacity-60"
+                    className="w-full py-6 bg-primary-950 hover:bg-[#D4AF37] text-white font-bold tracking-[0.5em] uppercase text-xs transition-all duration-500 rounded-none group relative overflow-hidden disabled:opacity-60 hover:text-[#1d2653]"
                   >
                     <span className="relative z-10">{isSubmitting ? 'SENDING...' : 'SEND MESSAGE'}</span>
                     <div className="absolute inset-0 bg-[#D4AF37] translate-y-full group-hover:translate-y-0 transition-transform duration-500" />

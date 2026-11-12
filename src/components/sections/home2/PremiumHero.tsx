@@ -86,7 +86,7 @@ export default function PremiumHero() {
     return (
         <section
             ref={containerRef}
-            className="relative h-screen min-h-[800px] flex items-center justify-center overflow-hidden bg-[#030712]"
+            className="relative h-screen min-h-[800px] flex items-center justify-center overflow-hidden bg-[#11162d]"
         >
             {/* Cinematic Background */}
             <motion.div style={{ y }} className="absolute inset-0 z-0">
@@ -97,8 +97,8 @@ export default function PremiumHero() {
                     className="object-cover object-top brightness-[0.3] contrast-[1.2] scale-[1.05]"
                     priority
                 />
-                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#030712]/40 to-[#030712]" />
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(3,7,18,0.7)_100%)]" />
+                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#11162d]/40 to-[#11162d]" />
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(17, 22, 45,0.7)_100%)]" />
             </motion.div>
 
             <div className="relative z-10 container mx-auto px-4 text-center">

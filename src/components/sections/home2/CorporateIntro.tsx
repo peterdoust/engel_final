@@ -19,15 +19,15 @@ export default function CorporateIntro() {
                     >
                         <div className="mb-8">
                             <span className="text-[#D4AF37] font-bold tracking-[0.4em] uppercase text-xs mb-4 block">From Strategy to Testimony</span>
-                            <h2 className="text-3xl md:text-5xl font-bold text-[#0A0F1E] mb-8 leading-tight">
+                            <h2 className="text-3xl md:text-5xl font-bold text-[#11162D] mb-8 leading-tight">
                                 Engel & Engel <br />
-                                <span className="text-[#0A0F1E]/70">Los Angeles Forensic Accounting Experts</span>
+                                <span className="text-[#11162D]/70">Los Angeles Forensic Accounting Experts</span>
                             </h2>
                         </div>
 
                         <div className="space-y-6 text-gray-700 text-lg leading-relaxed">
                             <p>
-                                Established in Los Angeles in 1994, <strong className="font-semibold text-[#0A0F1E]">Engel & Engel LLP</strong> provides forensic accounting and advisory services in complex business litigation matters across California and nationwide.
+                                Established in Los Angeles in 1994, <strong className="font-semibold text-[#11162D]">Engel & Engel LLP</strong> provides forensic accounting and advisory services in complex business litigation matters across California and nationwide.
                             </p>
 
                             <p>
@@ -38,7 +38,7 @@ export default function CorporateIntro() {
                                 Engel & Engel delivers industry-leading forensic accounting analysis and clear, defensible expert testimony in high-stakes matters nationwide.
                             </p>
 
-                            <p className="font-medium text-[#0A0F1E]">
+                            <p className="font-medium text-[#11162D]">
                                 Engel & Engel's forensic analysis has supported billions of dollars in court awards and defenses, and its professionals have been recognized nationally, including Forbes' 2025 Top Valuation CPAs.
                             </p>
                         </div>
@@ -58,7 +58,7 @@ export default function CorporateIntro() {
                             className="object-cover"
                         />
                         {/* Overlay Grid Stats */}
-                        <div className="absolute bottom-0 left-0 right-0 bg-[#0A0F1E]/95 p-12 text-white">
+                        <div className="absolute bottom-0 left-0 right-0 bg-[#11162D]/95 p-12 text-white">
                             <span className="text-[#D4AF37] font-bold tracking-widest uppercase text-xs mb-4 block">Est.</span>
                             <div className="text-6xl md:text-8xl font-bold mb-4">1994</div>
                             <p className="text-primary-100 text-xl font-light leading-relaxed">

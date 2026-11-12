@@ -30,7 +30,7 @@ export default function ExpertiseGridV5() {
       <div className="container-custom w-full relative z-10">
         {/* Header */}
         <div className="mb-12 lg:mb-20">
-          <h2 className="text-5xl md:text-6xl lg:text-[72px] leading-[72px] tracking-[-0.02em] text-white text-center font-semibold" style={{ fontFamily: 'Inter, system-ui, sans-serif' }}>
+          <h2 className="text-5xl md:text-6xl lg:text-[72px] leading-[72px] tracking-[-0.02em] text-white text-center font-semibold">
             <span>Our Areas </span>of <em className="text-[#d4af37] font-serif italic">Expertise</em>
           </h2>
         </div>

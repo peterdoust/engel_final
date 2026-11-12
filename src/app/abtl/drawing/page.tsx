@@ -53,7 +53,7 @@ export default function RafflePage() {
               {/* Background image */}
               <div className="absolute inset-0">
                 <Image
-                  src="https://engelandengel.com/wp-content/uploads/2022/02/forensic-accounting-los-angeles-scaled.jpg"
+                  src="/images/Forensic-Accounting-Firm-Los-Angeles-1.jpg"
                   alt=""
                   fill
                   className="object-cover opacity-20"
@@ -64,7 +64,7 @@ export default function RafflePage() {
               {/* Content */}
               <div className="relative z-10">
                 <Link href="/">
-                  <Image src="/images/logo-name_238ba79c.svg" alt="Engel & Engel" width={280} height={45} />
+                  <Image src="/images/brand/ee-logo-horizontal-white.png" alt="Engel & Engel LLP, Forensic Accountants" width={1084} height={177} className="h-10 w-auto" />
                 </Link>
               </div>
 
@@ -201,7 +201,7 @@ export default function RafflePage() {
                     <button
                       type="submit"
                       disabled={isSubmitting}
-                      className="w-full mt-6 py-3 bg-[#D4AF37] text-white font-bold text-sm tracking-wider uppercase rounded-md hover:bg-primary-950 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                      className="w-full mt-6 py-3 bg-[#D4AF37] text-[#1d2653] font-bold text-sm tracking-wider uppercase rounded-md hover:bg-primary-950 hover:text-white transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                       {isSubmitting ? 'Submitting...' : 'Submit Entry'}
                     </button>
@@ -246,7 +246,7 @@ export default function RafflePage() {
                   >
                     <Link
                       href="/"
-                      className="inline-flex items-center gap-2 px-6 py-2.5 bg-primary-950 text-white text-sm font-semibold rounded-lg hover:bg-[#D4AF37] transition-colors duration-300"
+                      className="inline-flex items-center gap-2 px-6 py-2.5 bg-primary-950 text-white text-sm font-semibold rounded-lg hover:bg-[#D4AF37] transition-colors duration-300 hover:text-[#1d2653]"
                     >
                       Visit Our Website
                       <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">

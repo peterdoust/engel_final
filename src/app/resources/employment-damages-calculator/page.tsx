@@ -6,6 +6,7 @@ import Footer from '@/components/layout/Footer'
 import CalculatorNavigation from '@/components/CalculatorNavigation'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/Card'
 import { Button } from '@/components/ui/Button'
+import { Briefcase } from 'lucide-react'
 
 interface EmploymentDamagesResult {
   totalBackPay: number
@@ -113,13 +114,13 @@ export default function EmploymentDamagesCalculatorPage() {
       <Header />
       
       {/* Hero Section */}
-      <section className="pt-16 lg:pt-20 bg-gradient-to-br from-purple-900 via-purple-800 to-indigo-700 text-white">
-        <div className="container-custom py-16">
+      <section className="text-white bg-[#293995] pt-[calc(var(--hdr)+1rem)] pb-10">
+        <div className="container-custom">
           <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">
-              Employment Damages <span className="text-purple-300">Calculator</span>
+            <h1 className="text-4xl md:text-5xl font-bold mb-6 text-white">
+              Employment Damages <span className="text-[#d4af37]">Calculator</span>
             </h1>
-            <p className="text-xl text-purple-100 mb-8 max-w-3xl mx-auto">
+            <p className="text-xl text-white/80 mb-0 max-w-3xl mx-auto">
               Calculate economic damages in employment litigation cases including back pay and front pay
             </p>
           </div>
@@ -130,17 +131,17 @@ export default function EmploymentDamagesCalculatorPage() {
         <div className="container-custom py-8">
           <div className="max-w-4xl mx-auto">
             {/* Calculator Section */}
-            <Card className="mb-8 shadow-lg border-0 bg-white">
-              <CardHeader className="bg-gradient-to-r from-purple-600 to-indigo-600 text-white rounded-t-lg">
-                <CardTitle className="text-2xl font-bold flex items-center">
-                  <span className="mr-3">👔</span>
+            <Card padding="none" className="mb-8 shadow-lg border-0 bg-white">
+              <CardHeader className="bg-gradient-to-r from-[#1d2653] to-[#293995] text-white rounded-t-lg p-5 sm:p-6">
+                <CardTitle className="text-2xl font-bold flex items-center text-white">
+                  <Briefcase className="w-6 h-6 mr-3 text-[#d4af37]" strokeWidth={1.5} aria-hidden="true" />
                   Employment Damages Calculator
                 </CardTitle>
-                <CardDescription className="text-purple-100">
+                <CardDescription className="text-white/80">
                   Calculate back pay, front pay, and benefits losses in employment litigation
                 </CardDescription>
               </CardHeader>
-              <CardContent className="p-8">
+              <CardContent className="p-5 sm:p-8">
                 <div className="grid md:grid-cols-2 gap-8">
                   {/* Input Form */}
                   <div className="space-y-6">
@@ -154,7 +155,7 @@ export default function EmploymentDamagesCalculatorPage() {
                           type="text"
                           value={inputs.annualSalary}
                           onChange={(e) => handleCurrencyChange('annualSalary', e.target.value)}
-                          className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200"
+                          className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#293995] focus:border-transparent transition-all duration-200"
                           placeholder="75,000.00"
                         />
                       </div>
@@ -169,7 +170,7 @@ export default function EmploymentDamagesCalculatorPage() {
                         step="0.1"
                         value={inputs.yearsOfBackPay}
                         onChange={(e) => setInputs({...inputs, yearsOfBackPay: e.target.value})}
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200"
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#293995] focus:border-transparent transition-all duration-200"
                         placeholder="Enter years from termination to trial"
                       />
                     </div>
@@ -183,7 +184,7 @@ export default function EmploymentDamagesCalculatorPage() {
                         step="0.1"
                         value={inputs.yearsOfFrontPay}
                         onChange={(e) => setInputs({...inputs, yearsOfFrontPay: e.target.value})}
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200"
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#293995] focus:border-transparent transition-all duration-200"
                         placeholder="Enter years of future lost earnings"
                       />
                     </div>
@@ -197,7 +198,7 @@ export default function EmploymentDamagesCalculatorPage() {
                         step="0.1"
                         value={inputs.benefitsPercentage}
                         onChange={(e) => setInputs({...inputs, benefitsPercentage: e.target.value})}
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200"
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#293995] focus:border-transparent transition-all duration-200"
                         placeholder="Enter benefits as % of salary (typically 20-30%)"
                       />
                     </div>
@@ -211,7 +212,7 @@ export default function EmploymentDamagesCalculatorPage() {
                         step="0.01"
                         value={inputs.discountRate}
                         onChange={(e) => setInputs({...inputs, discountRate: e.target.value})}
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200"
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#293995] focus:border-transparent transition-all duration-200"
                         placeholder="Enter discount rate for present value"
                       />
                     </div>
@@ -225,7 +226,7 @@ export default function EmploymentDamagesCalculatorPage() {
                         step="0.01"
                         value={inputs.salaryGrowthRate}
                         onChange={(e) => setInputs({...inputs, salaryGrowthRate: e.target.value})}
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200"
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#293995] focus:border-transparent transition-all duration-200"
                         placeholder="Enter expected annual salary growth rate"
                       />
                     </div>
@@ -233,14 +234,14 @@ export default function EmploymentDamagesCalculatorPage() {
                     <div className="flex space-x-4">
                       <Button 
                         onClick={calculateEmploymentDamages}
-                        className="flex-1 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-200 shadow-md hover:shadow-lg"
+                        className="flex-1 font-semibold py-3 px-6 rounded-lg transition-all duration-200 shadow-md hover:shadow-lg"
                       >
                         Calculate Damages
                       </Button>
                       <Button 
                         onClick={resetCalculator}
                         variant="outline"
-                        className="px-6 py-3 border-2 border-purple-600 text-purple-600 hover:bg-purple-50 rounded-lg transition-all duration-200"
+                        className="px-6 py-3 border-2 border-[#1d2653] text-[#1d2653] hover:bg-primary-50 rounded-lg transition-all duration-200"
                       >
                         Reset
                       </Button>
@@ -255,7 +256,7 @@ export default function EmploymentDamagesCalculatorPage() {
                       <div className="space-y-4">
                         <div className="bg-white p-4 rounded-lg border shadow-sm">
                           <div className="text-sm text-gray-600 mb-1">Total Economic Damages</div>
-                          <div className="text-2xl font-bold text-purple-600">
+                          <div className="text-2xl font-bold text-[#1d2653]">
                             {formatCurrency(results.totalDamages)}
                           </div>
                         </div>
@@ -276,21 +277,21 @@ export default function EmploymentDamagesCalculatorPage() {
 
                         <div className="bg-white p-4 rounded-lg border shadow-sm">
                           <div className="text-sm text-gray-600 mb-1">Benefits Loss</div>
-                          <div className="text-lg font-semibold text-orange-600">
+                          <div className="text-lg font-semibold text-[#293995]">
                             {formatCurrency(results.totalBenefitsLoss)}
                           </div>
                         </div>
 
                         <div className="bg-white p-4 rounded-lg border shadow-sm">
                           <div className="text-sm text-gray-600 mb-1">Present Value</div>
-                          <div className="text-lg font-semibold text-green-600">
+                          <div className="text-lg font-semibold text-[#293995]">
                             {formatCurrency(results.presentValue)}
                           </div>
                         </div>
                       </div>
                     ) : (
                       <div className="text-center py-8 text-gray-500">
-                        <div className="text-4xl mb-4">👔</div>
+                        <Briefcase className="w-10 h-10 mb-4 mx-auto text-[#1d2653]" strokeWidth={1.5} aria-hidden="true" />
                         <p className="text-sm">Enter employment data and click "Calculate Damages" to see analysis</p>
                       </div>
                     )}

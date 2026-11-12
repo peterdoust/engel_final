@@ -73,3 +73,9 @@ Thumbs.db
 *.pptx
 
 .vercel
+
+# Client review drafts — keep out of the public repo
+CLIENT_REVIEW_*.txt
+
+.vercel
+.env*

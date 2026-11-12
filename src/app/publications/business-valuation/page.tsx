@@ -34,7 +34,7 @@ export default function BusinessValuationPublications() {
             <Header />
 
             {/* ══════════ CINEMATIC HERO ══════════ */}
-            <section className="relative min-h-[85vh] flex items-center overflow-hidden bg-[#0A1A3C]">
+            <section className="relative flex items-center overflow-hidden bg-[#293995] pt-[calc(var(--hdr)+1rem)] pb-10">
                 {/* Parallax Background Decorations */}
                 <div className="absolute inset-0 z-0 pointer-events-none">
                     {/* Glowing orbs */}
@@ -44,7 +44,7 @@ export default function BusinessValuationPublications() {
                     />
                     <motion.div
                         style={{ y: y1 }}
-                        className="absolute bottom-1/4 left-1/4 w-[400px] h-[400px] bg-[#3b82f6]/10 blur-[120px] rounded-full"
+                        className="absolute bottom-1/4 left-1/4 w-[400px] h-[400px] bg-[#293995]/10 blur-[120px] rounded-full"
                     />
 
                     <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-[#D4AF37]/30 to-transparent" />
@@ -60,7 +60,7 @@ export default function BusinessValuationPublications() {
                             animate={{ opacity: 1, scale: 1 }}
                             transition={{ duration: 1.2, ease: "easeOut" }}
                         >
-                            <h1 className="text-5xl sm:text-6xl md:text-8xl lg:text-9xl font-bold tracking-tighter text-white drop-shadow-2xl">
+                            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tighter text-white drop-shadow-2xl">
                                 Business <br />
                                 <span className="font-serif italic text-[#D4AF37] font-medium">Valuation</span>
                             </h1>
@@ -96,13 +96,13 @@ export default function BusinessValuationPublications() {
 
                                 {/* CONTENT */}
                                 <div className="p-8 flex flex-col flex-grow">
-                                    <h3 className="text-lg font-semibold text-[#0A1A3C] leading-snug mb-8 min-h-[70px]">
+                                    <h3 className="text-lg font-semibold text-[#1D2653] leading-snug mb-8 min-h-[70px]">
                                         {pub.title}
                                     </h3>
 
                                     <button
                                         onClick={() => handleRequestClick(pub.title, pub.image)}
-                                        className="mt-auto w-full bg-[#0A1A3C] hover:bg-[#D4AF37] text-white py-4 rounded-lg transition-all duration-400 text-[12px] tracking-[0.25em] uppercase font-semibold hover:text-[#0A1A3C]"
+                                        className="mt-auto w-full bg-[#1D2653] hover:bg-[#D4AF37] text-white py-4 rounded-lg transition-all duration-400 text-[12px] tracking-[0.25em] uppercase font-semibold hover:text-[#1D2653]"
                                     >
                                         Request Publication
                                     </button>

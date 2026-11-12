@@ -3,7 +3,7 @@ import clientPromise from '@/lib/mongodb'
 import nodemailer from 'nodemailer'
 
 const ADMIN_EMAIL = ['Peter@globalcreativestudios.com', 'info@engelandengel.com']
-const MAX_RESUME_BYTES = 10 * 1024 * 1024 // 10MB
+const MAX_RESUME_BYTES = 4 * 1024 * 1024 // 4MB (Vercel caps request bodies at 4.5MB)
 
 function getClientIP(request: NextRequest): string {
   const forwarded = request.headers.get('x-forwarded-for')
@@ -60,7 +60,7 @@ export async function POST(request: NextRequest) {
 
     if (resume && typeof (resume as any).arrayBuffer === 'function' && resume.size > 0) {
       if (resume.size > MAX_RESUME_BYTES) {
-        return NextResponse.json({ error: 'Resume exceeds the 10MB size limit.' }, { status: 400 })
+        return NextResponse.json({ error: 'Resume is over the 4MB size limit.' }, { status: 400 })
       }
       const ab = await resume.arrayBuffer()
       resumeBuffer = Buffer.from(ab)
@@ -133,32 +133,32 @@ export async function POST(request: NextRequest) {
         text: `New Career Application - Engel & Engel\n\nName: ${name}\nEmail: ${email}\nPhone: ${phone}\n\nMessage:\n${message}\n\nResume: ${resumeMeta ? resumeMeta.filename : 'Not attached'}\n\nSubmitted: ${submittedAt}\nIP: ${clientIP}\nLocation: ${locationData.city}, ${locationData.region}, ${locationData.country}\n`,
         html: `
           <div style="font-family: Arial, sans-serif; max-width: 620px; margin: 0 auto; background: #ffffff;">
-            <div style="background: #0A1A3C; padding: 24px; text-align: center;">
+            <div style="background: #1D2653; padding: 24px; text-align: center;">
               <h1 style="color: #ffffff; margin: 0; font-size: 20px;">New Career Application</h1>
               <p style="color: #D4AF37; margin: 6px 0 0; font-size: 11px; letter-spacing: 3px; text-transform: uppercase;">Engel &amp; Engel LLP</p>
             </div>
             <div style="padding: 28px;">
-              <h3 style="color: #0A1A3C; margin: 0 0 8px; font-size: 14px;">Applicant Information</h3>
+              <h3 style="color: #1D2653; margin: 0 0 8px; font-size: 14px;">Applicant Information</h3>
               <table style="width: 100%; border-collapse: collapse; margin-bottom: 20px;">
-                <tr><td style="padding: 6px 0; font-weight: bold; color: #0A1A3C; width: 100px;">Name:</td><td style="padding: 6px 0; color: #334155;">${name}</td></tr>
-                <tr><td style="padding: 6px 0; font-weight: bold; color: #0A1A3C;">Email:</td><td style="padding: 6px 0; color: #334155;"><a href="mailto:${email}">${email}</a></td></tr>
-                <tr><td style="padding: 6px 0; font-weight: bold; color: #0A1A3C;">Phone:</td><td style="padding: 6px 0; color: #334155;">${phone ? `<a href="tel:${phone}">${phone}</a>` : '—'}</td></tr>
-                <tr><td style="padding: 6px 0; font-weight: bold; color: #0A1A3C;">Resume:</td><td style="padding: 6px 0; color: #334155;">${resumeMeta ? resumeMeta.filename + ' (attached)' : 'Not attached'}</td></tr>
+                <tr><td style="padding: 6px 0; font-weight: bold; color: #1D2653; width: 100px;">Name:</td><td style="padding: 6px 0; color: #11162d;">${name}</td></tr>
+                <tr><td style="padding: 6px 0; font-weight: bold; color: #1D2653;">Email:</td><td style="padding: 6px 0; color: #11162d;"><a href="mailto:${email}">${email}</a></td></tr>
+                <tr><td style="padding: 6px 0; font-weight: bold; color: #1D2653;">Phone:</td><td style="padding: 6px 0; color: #11162d;">${phone ? `<a href="tel:${phone}">${phone}</a>` : '—'}</td></tr>
+                <tr><td style="padding: 6px 0; font-weight: bold; color: #1D2653;">Resume:</td><td style="padding: 6px 0; color: #11162d;">${resumeMeta ? resumeMeta.filename + ' (attached)' : 'Not attached'}</td></tr>
               </table>
 
               ${message ? `
-                <h3 style="color: #0A1A3C; margin: 0 0 8px; font-size: 14px;">Message</h3>
-                <div style="background: #fef9e7; padding: 14px; border-radius: 6px; color: #334155; white-space: pre-wrap; line-height: 1.5;">${message}</div>
+                <h3 style="color: #1D2653; margin: 0 0 8px; font-size: 14px;">Message</h3>
+                <div style="background: #fef9e7; padding: 14px; border-radius: 6px; color: #11162d; white-space: pre-wrap; line-height: 1.5;">${message}</div>
               ` : ''}
 
-              <h3 style="color: #0A1A3C; margin: 22px 0 8px; font-size: 14px;">Submission Info</h3>
+              <h3 style="color: #1D2653; margin: 22px 0 8px; font-size: 14px;">Submission Info</h3>
               <table style="width: 100%; border-collapse: collapse;">
-                <tr><td style="padding: 4px 0; font-weight: bold; color: #64748b; width: 120px;">Submitted:</td><td style="padding: 4px 0; color: #334155;">${submittedAt}</td></tr>
-                <tr><td style="padding: 4px 0; font-weight: bold; color: #64748b;">IP Address:</td><td style="padding: 4px 0; color: #334155;">${clientIP}</td></tr>
-                <tr><td style="padding: 4px 0; font-weight: bold; color: #64748b;">Location:</td><td style="padding: 4px 0; color: #334155;">${locationData.city}, ${locationData.region}, ${locationData.country}</td></tr>
+                <tr><td style="padding: 4px 0; font-weight: bold; color: #64748b; width: 120px;">Submitted:</td><td style="padding: 4px 0; color: #11162d;">${submittedAt}</td></tr>
+                <tr><td style="padding: 4px 0; font-weight: bold; color: #64748b;">IP Address:</td><td style="padding: 4px 0; color: #11162d;">${clientIP}</td></tr>
+                <tr><td style="padding: 4px 0; font-weight: bold; color: #64748b;">Location:</td><td style="padding: 4px 0; color: #11162d;">${locationData.city}, ${locationData.region}, ${locationData.country}</td></tr>
               </table>
             </div>
-            <div style="background: #f8fafc; padding: 14px; text-align: center; border-top: 1px solid #e2e8f0;">
+            <div style="background: #f8fafc; padding: 14px; text-align: center; border-top: 1px solid #e2e6f0;">
               <p style="color: #94a3b8; font-size: 11px; margin: 0;">Submitted via the Engel &amp; Engel careers form.</p>
             </div>
           </div>

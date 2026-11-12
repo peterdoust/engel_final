@@ -37,15 +37,13 @@ export default function Footer() {
           {/* Company Info */}
           <div className="lg:col-span-2">
             <div className="mb-6">
-              <div className="relative h-16 w-auto">
-                <Image
-                  src="/images/logo-white.svg"
-                  alt="Engel & Engel Forensic Accounting"
-                  width={280}
-                  height={64}
-                  className="h-16 w-auto object-contain max-w-96"
-                />
-              </div>
+              <Image
+                src="/images/brand/ee-logo-horizontal-white.png"
+                alt="Engel & Engel LLP, Forensic Accountants"
+                width={1084}
+                height={177}
+                className="h-10 lg:h-12 w-auto object-contain"
+              />
             </div>
 
             <p className="text-gray-300 mb-6 max-w-md">

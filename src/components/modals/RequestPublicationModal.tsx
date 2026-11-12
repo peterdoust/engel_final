@@ -99,7 +99,7 @@ export default function RequestPublicationModal({ isOpen, onClose, publicationTi
                         {/* CLOSE BUTTON */}
                         <button
                             onClick={onClose}
-                            className="absolute top-6 right-6 z-[110] text-slate-300 hover:text-[#0f3574] transition-all bg-white/10 hover:bg-white p-2 rounded-full border border-slate-100"
+                            className="absolute top-6 right-6 z-[110] text-slate-300 hover:text-[#293995] transition-all bg-white/10 hover:bg-white p-2 rounded-full border border-slate-100"
                         >
                             <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -125,7 +125,7 @@ export default function RequestPublicationModal({ isOpen, onClose, publicationTi
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 0.2, duration: 0.8 }}
-                                className="relative w-full max-w-[320px] aspect-[3/4] shadow-[0_40px_80px_rgba(15,53,116,0.15)] rounded-sm overflow-hidden z-10"
+                                className="relative w-full max-w-[320px] aspect-[3/4] shadow-[0_40px_80px_rgba(41, 57, 149,0.15)] rounded-sm overflow-hidden z-10"
                             >
                                 <Image
                                     src={publicationImage || "/images/future-lost-profits.png"}
@@ -151,7 +151,7 @@ export default function RequestPublicationModal({ isOpen, onClose, publicationTi
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                                         </svg>
                                     </div>
-                                    <h4 className="text-4xl font-serif italic text-[#0f3574] mb-4">Request Received</h4>
+                                    <h4 className="text-4xl font-serif italic text-[#293995] mb-4">Request Received</h4>
                                     <p className="text-slate-500 max-w-xs mx-auto leading-relaxed">
                                         Thank you for your interest. We will process your request and deliver the document to your inbox within one business day.
                                     </p>
@@ -165,7 +165,7 @@ export default function RequestPublicationModal({ isOpen, onClose, publicationTi
                             ) : (
                                 <form onSubmit={handleSubmit} className="space-y-4">
                                     <header className="mb-10">
-                                        <h4 className="text-2xl font-bold tracking-tight text-[#0f3574]">Request This Publication</h4>
+                                        <h4 className="text-2xl font-bold tracking-tight text-[#293995]">Request This Publication</h4>
                                     </header>
 
                                     {/* Name Fields */}
@@ -252,7 +252,7 @@ export default function RequestPublicationModal({ isOpen, onClose, publicationTi
                                         <button
                                             type="submit"
                                             disabled={isSubmitting}
-                                            className="w-full bg-[#0f3574] text-white font-bold py-4 rounded-sm hover:bg-black transition-all shadow-xl disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-3 group"
+                                            className="w-full bg-[#293995] text-white font-bold py-4 rounded-sm hover:bg-black transition-all shadow-xl disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-3 group"
                                         >
                                             {isSubmitting ? (
                                                 <>

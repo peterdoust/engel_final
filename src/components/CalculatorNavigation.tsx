@@ -1,5 +1,6 @@
 import React from 'react'
 import Link from 'next/link'
+import { BarChart3, Briefcase, ClipboardList, Percent, PiggyBank, Sprout, TrendingDown, TrendingUp } from 'lucide-react'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card'
 import { Button } from '@/components/ui/Button'
 
@@ -7,66 +8,50 @@ const calculators = [
   {
     title: 'Lost Profits Calculator',
     description: 'Calculate economic damages from lost business profits',
-    icon: '📈',
-    href: '/resources/lost-profits-calculator',
-    color: 'from-blue-600 to-blue-700',
-    hoverColor: 'hover:from-blue-700 hover:to-blue-800'
+    icon: TrendingUp,
+    href: '/resources/lost-profits-calculator'
   },
   {
     title: 'Present Value Calculator',
     description: 'Determine present value of future cash flows',
-    icon: '💰',
-    href: '/resources/present-value-calculator',
-    color: 'from-green-600 to-green-700',
-    hoverColor: 'hover:from-green-700 hover:to-green-800'
+    icon: PiggyBank,
+    href: '/resources/present-value-calculator'
   },
   {
     title: 'Employment Damages Calculator',
     description: 'Calculate damages in employment litigation',
-    icon: '👔',
-    href: '/resources/employment-damages-calculator',
-    color: 'from-purple-600 to-purple-700',
-    hoverColor: 'hover:from-purple-700 hover:to-purple-800'
+    icon: Briefcase,
+    href: '/resources/employment-damages-calculator'
   },
   {
     title: 'CAGR Calculator',
     description: 'Calculate Compound Annual Growth Rate',
-    icon: '📊',
-    href: '/resources/compound-annual-growth-rate-calculator',
-    color: 'from-indigo-600 to-indigo-700',
-    hoverColor: 'hover:from-indigo-700 hover:to-indigo-800'
+    icon: BarChart3,
+    href: '/resources/compound-annual-growth-rate-calculator'
   },
   {
     title: 'Financial Ratio Calculator',
     description: 'Analyze financial health with ratio calculations',
-    icon: '📋',
-    href: '/resources/financial-ratio-calculator',
-    color: 'from-teal-600 to-teal-700',
-    hoverColor: 'hover:from-teal-700 hover:to-teal-800'
+    icon: ClipboardList,
+    href: '/resources/financial-ratio-calculator'
   },
   {
     title: 'Interest Calculator',
     description: 'Calculate simple and compound interest',
-    icon: '💸',
-    href: '/resources/interest-calculator',
-    color: 'from-orange-600 to-orange-700',
-    hoverColor: 'hover:from-orange-700 hover:to-orange-800'
+    icon: Percent,
+    href: '/resources/interest-calculator'
   },
   {
     title: 'Compound Interest Calculator',
     description: 'Calculate compound interest with contributions',
-    icon: '🌱',
-    href: '/resources/compound-interest-calculator',
-    color: 'from-emerald-600 to-emerald-700',
-    hoverColor: 'hover:from-emerald-700 hover:to-emerald-800'
+    icon: Sprout,
+    href: '/resources/compound-interest-calculator'
   },
   {
     title: 'Depreciation Calculator',
     description: 'Calculate asset depreciation using multiple methods',
-    icon: '📉',
-    href: '/resources/depreciation-calculator',
-    color: 'from-red-600 to-red-700',
-    hoverColor: 'hover:from-red-700 hover:to-red-800'
+    icon: TrendingDown,
+    href: '/resources/depreciation-calculator'
   }
 ]
 
@@ -94,8 +79,8 @@ export default function CalculatorNavigation({ currentPath }: CalculatorNavigati
             {otherCalculators.map((calculator, index) => (
               <Card key={index} className="h-full hover:shadow-xl transition-all duration-300 group border-0 bg-white">
                 <CardHeader className="pb-4">
-                  <div className="w-14 h-14 bg-gray-100 rounded-xl flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform duration-300">
-                    {calculator.icon}
+                  <div className="w-14 h-14 bg-[#1d2653] rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+                    <calculator.icon className="w-7 h-7 text-[#d4af37]" strokeWidth={1.5} aria-hidden="true" />
                   </div>
                   <CardTitle className="text-lg font-bold text-gray-900 mb-2 group-hover:text-primary-600 transition-colors">
                     {calculator.title}
@@ -108,7 +93,7 @@ export default function CalculatorNavigation({ currentPath }: CalculatorNavigati
                   <Link href={calculator.href}>
                     <Button
                       as="span"
-                      className={`w-full bg-gradient-to-r ${calculator.color} ${calculator.hoverColor} text-white font-semibold py-2.5 px-4 rounded-lg transition-all duration-300 transform group-hover:scale-105 text-sm`}
+                      className={`w-full font-semibold py-2.5 px-4 rounded-lg transition-all duration-300 transform group-hover:scale-105 text-sm`}
                     >
                       Open Calculator
                       <svg className="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -124,7 +109,7 @@ export default function CalculatorNavigation({ currentPath }: CalculatorNavigati
           <div className="text-center">
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="/resources">
-                <Button as="span" className="bg-primary-600 hover:bg-primary-700 text-white font-semibold py-3 px-8 rounded-lg transition-all duration-200 shadow-md hover:shadow-lg">
+                <Button as="span" className="font-semibold py-3 px-8 rounded-lg transition-all duration-200 shadow-md hover:shadow-lg">
                   <svg className="mr-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
                   </svg>

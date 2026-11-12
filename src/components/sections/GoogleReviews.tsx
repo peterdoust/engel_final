@@ -168,12 +168,12 @@ export default function GoogleReviews() {
         <div className="text-center mb-16 max-w-3xl mx-auto">
           <div className="flex items-center justify-center gap-3 mb-8">
             <div className="h-px w-12 bg-[#D4AF37]" />
-            <span className="text-[#D4AF37] font-bold tracking-[0.4em] uppercase text-xs">Client Testimonials</span>
+            <span className="text-gold-700 font-bold tracking-[0.4em] uppercase text-xs">Client Testimonials</span>
             <div className="h-px w-12 bg-[#D4AF37]" />
           </div>
 
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-primary-950 mb-8">
-            What Our <span className="font-serif italic text-[#D4AF37]">Clients</span> Say
+            What Our <span className="font-serif italic text-gold-700">Clients</span> Say
           </h2>
         </div>
 
@@ -182,7 +182,8 @@ export default function GoogleReviews() {
           {/* Navigation Arrows */}
           <button
             onClick={() => { prev(); pauseAutoplay(); }}
-            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-2 lg:-translate-x-14 z-10 w-11 h-11 rounded-full border-2 border-primary-950/20 flex items-center justify-center hover:border-[#D4AF37] hover:text-[#D4AF37] text-primary-950/40 transition-all duration-300"
+            aria-label="Previous review"
+            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-2 lg:-translate-x-14 z-10 w-11 h-11 rounded-full border-2 border-primary-950/20 hidden lg:flex items-center justify-center hover:border-[#D4AF37] hover:text-[#D4AF37] text-primary-950/40 transition-all duration-300"
           >
             <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -191,7 +192,8 @@ export default function GoogleReviews() {
 
           <button
             onClick={() => { next(); pauseAutoplay(); }}
-            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-2 lg:translate-x-14 z-10 w-11 h-11 rounded-full border-2 border-primary-950/20 flex items-center justify-center hover:border-[#D4AF37] hover:text-[#D4AF37] text-primary-950/40 transition-all duration-300"
+            aria-label="Next review"
+            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-2 lg:translate-x-14 z-10 w-11 h-11 rounded-full border-2 border-primary-950/20 hidden lg:flex items-center justify-center hover:border-[#D4AF37] hover:text-[#D4AF37] text-primary-950/40 transition-all duration-300"
           >
             <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -246,7 +248,7 @@ export default function GoogleReviews() {
                       {review.text.length > 200 && (
                         <button
                           onClick={() => toggleExpand(index)}
-                          className="text-[#D4AF37] text-xs font-semibold hover:underline transition-all"
+                          className="text-gold-700 text-xs font-semibold hover:underline transition-all"
                         >
                           {expandedCards.has(index) ? 'Show less' : 'Read more'}
                         </button>

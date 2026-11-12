@@ -53,28 +53,28 @@ export default function NewsroomPage() {
       <Header />
 
       {/* Hero */}
-      <section className="relative min-h-[60vh] flex items-end overflow-hidden bg-primary-950">
+      <section className="relative flex items-end overflow-hidden bg-[#293995] pt-[calc(var(--hdr)+1rem)] pb-10">
         <div className="absolute inset-0 z-0 pointer-events-none">
           <div className="absolute top-1/4 right-1/4 w-[500px] h-[500px] bg-[#D4AF37]/10 blur-[150px] rounded-full" />
-          <div className="absolute bottom-1/4 left-1/4 w-[400px] h-[400px] bg-[#3b82f6]/10 blur-[120px] rounded-full" />
+          <div className="absolute bottom-1/4 left-1/4 w-[400px] h-[400px] bg-[#293995]/10 blur-[120px] rounded-full" />
           <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)', backgroundSize: '60px 60px' }} />
           <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-[#D4AF37]/30 to-transparent" />
         </div>
-        <div className="container-custom relative z-10 w-full pb-20 pt-40">
+        <div className="container-custom relative z-10 w-full">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: 'easeOut' }}
             className="max-w-5xl"
           >
-            <p className="text-[#D4AF37] text-sm font-semibold tracking-[0.3em] uppercase mb-6">Latest Updates</p>
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter text-white leading-[0.9]">
+            <p className="text-[#D4AF37] text-sm font-semibold tracking-[0.3em] uppercase mb-3">Latest Updates</p>
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tighter text-white leading-[0.9]">
               News &amp; <span className="font-serif italic text-[#D4AF37] font-medium">Insights</span>
             </h1>
             <p className="text-white/50 text-lg md:text-xl font-light mt-6 max-w-2xl">
               Press releases, awards, events, and the latest updates from Engel & Engel LLP.
             </p>
-            <div className="h-[3px] w-24 bg-[#D4AF37] mt-8" />
+            <div className="h-[3px] w-24 bg-[#D4AF37] mt-5" />
           </motion.div>
         </div>
       </section>
@@ -86,7 +86,7 @@ export default function NewsroomPage() {
             <div className="max-w-6xl mx-auto">
               <div className="flex items-center gap-3 mb-10">
                 <div className="h-px w-12 bg-[#D4AF37]" />
-                <span className="text-[#D4AF37] font-bold tracking-[0.4em] uppercase text-xs">Featured Story</span>
+                <span className="text-gold-700 font-bold tracking-[0.4em] uppercase text-xs">Featured Story</span>
               </div>
               <Link
                 href="/news-and-insights/jason-engel-forbes-top-cpas-valuations-2025"
@@ -105,13 +105,13 @@ export default function NewsroomPage() {
                     <span className="text-[10px] font-bold tracking-[0.2em] uppercase bg-[#D4AF37] text-primary-950 px-3 py-1 rounded-sm">
                       {featuredItem.category}
                     </span>
-                    <span className="text-xs text-gray-400">{featuredItem.date}</span>
+                    <span className="text-xs text-gray-600">{featuredItem.date}</span>
                   </div>
-                  <h2 className="text-2xl md:text-3xl font-bold text-primary-950 tracking-tight mb-4 leading-tight group-hover:text-[#D4AF37] transition-colors">
+                  <h2 className="text-2xl md:text-3xl font-bold text-primary-950 tracking-tight mb-4 leading-tight group-hover:text-gold-700 transition-colors">
                     {featuredItem.title}
                   </h2>
                   <p className="text-gray-500 leading-relaxed font-light mb-6">{featuredItem.excerpt}</p>
-                  <span className="inline-flex items-center gap-2 text-[#D4AF37] font-bold text-sm">
+                  <span className="inline-flex items-center gap-2 text-gold-700 font-bold text-sm">
                     Read More
                     <svg className="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
@@ -124,16 +124,19 @@ export default function NewsroomPage() {
         </section>
       )}
 
+      {/* Filter + list share a wrapper so the sticky filter stops at the end of the list */}
+      <div>
       {/* Category Filter */}
-      <section className="py-8 bg-white border-b border-gray-100 sticky top-16 lg:top-20 z-30">
+      <section className="py-3 sm:py-8 bg-white border-b border-gray-100 sticky top-16 lg:top-20 z-30">
         <div className="container-custom">
           <div className="max-w-6xl mx-auto">
-            <div className="flex flex-wrap gap-2">
+            <div className="flex gap-2 overflow-x-auto sm:flex-wrap sm:overflow-visible [scrollbar-width:none] [&::-webkit-scrollbar]:hidden -mx-1 px-1">
               {categories.map((cat) => (
                 <button
                   key={cat}
                   onClick={() => setActiveCategory(cat)}
-                  className={`px-5 py-2 text-sm font-medium rounded-full transition-all duration-300 ${
+                  aria-pressed={activeCategory === cat}
+                  className={`shrink-0 px-4 sm:px-5 py-2 text-sm font-medium rounded-full transition-all duration-300 ${
                     activeCategory === cat
                       ? 'bg-primary-950 text-white'
                       : 'bg-gray-100 text-gray-500 hover:bg-gray-200'
@@ -197,7 +200,7 @@ export default function NewsroomPage() {
                             <span className="text-[10px] font-bold tracking-[0.2em] uppercase bg-[#D4AF37] text-primary-950 px-2.5 py-1 rounded-sm">
                               {item.category}
                             </span>
-                            <span className="text-xs text-gray-400">{item.date}</span>
+                            <span className="text-xs text-gray-600">{item.date}</span>
                           </div>
                           <h3 className={`text-lg font-bold text-primary-950 leading-snug mb-3 ${detailUrl ? 'group-hover:text-[#D4AF37] transition-colors' : ''}`}>
                             {item.title}
@@ -206,7 +209,7 @@ export default function NewsroomPage() {
                             {item.excerpt}
                           </p>
                           {detailUrl && (
-                            <span className="mt-4 inline-flex items-center gap-2 text-[#D4AF37] font-bold text-sm">
+                            <span className="mt-4 inline-flex items-center gap-2 text-gold-700 font-bold text-sm">
                               Read More
                               <svg className="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
@@ -242,6 +245,7 @@ export default function NewsroomPage() {
           </div>
         </div>
       </section>
+      </div>
 
       {/* CTA */}
       <section className="relative py-20 bg-primary-950 overflow-hidden">

@@ -3,7 +3,7 @@
 import React from 'react'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
-import HeroV8 from '@/components/sections/HeroV8'
+import HeroTruthLeads from '@/components/sections/HeroTruthLeads'
 import IntroSection from '@/components/sections/IntroSection'
 import ForbesBanner from '@/components/sections/ForbesBanner'
 import ServicesOverview from '@/components/sections/ServicesOverview'
@@ -15,8 +15,8 @@ import ContactCTA from '@/components/sections/ContactCTA'
 export default function HomeClient() {
   return (
     <main>
-      <Header />
-      <HeroV8 overlayOpacity={0.5} />
+      <Header solid />
+      <HeroTruthLeads />
       <IntroSection />
       <ServicesOverview />
       <ExpertiseGridV4 />

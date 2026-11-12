@@ -62,9 +62,10 @@ const nextConfig = {
         permanent: true,
       },
       {
+        // Temporary (307) so browsers don't cache it if the About page comes back
         source: '/about',
         destination: '/team',
-        permanent: true,
+        permanent: false,
       },
       {
         source: '/services',

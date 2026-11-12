@@ -28,7 +28,7 @@ export default function ExpertiseGridV2() {
     const containerRef = useRef<HTMLDivElement>(null)
 
     return (
-        <section ref={containerRef} className="relative py-28 md:py-48 lg:py-64 bg-[#0A0F1E] overflow-hidden">
+        <section ref={containerRef} className="relative py-28 md:py-48 lg:py-64 bg-[#11162D] overflow-hidden">
             {/* Cinematic Perspective Monoterra Background */}
             <div className="absolute inset-x-0 inset-y-0 opacity-[0.02] pointer-events-none select-none overflow-hidden">
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,white_1px,transparent_1px)] bg-[size:100px_100px] -rotate-12 scale-150" />
@@ -62,7 +62,7 @@ export default function ExpertiseGridV2() {
                         viewport={{ once: true }}
                         className="max-w-4xl"
                     >
-                        <p className="text-[#E2E8F0]/80 text-lg md:text-3xl font-light leading-relaxed border-l-8 border-[#D4AF37] pl-16 py-12 bg-white/5 hover:bg-white/[0.08] transition-colors rounded-sm">
+                        <p className="text-[#E2E6F0]/80 text-lg md:text-3xl font-light leading-relaxed border-l-8 border-[#D4AF37] pl-16 py-12 bg-white/5 hover:bg-white/[0.08] transition-colors rounded-sm">
                             Jason A. Engel, CPA, CFE, CIRA, CVA, MAFF, ABV,<br />
                             has served as a financial and economic expert witness<br />
                             for over 30+ years and in over 500 cases.
@@ -76,7 +76,7 @@ export default function ExpertiseGridV2() {
                         <Link
                             key={index}
                             href={area.href}
-                            className="group relative bg-[#172554] p-12 md:p-16 aspect-square flex flex-col justify-between hover:bg-[#1e3a8a] transition-all duration-1000 border-[#4cc9f0]/20"
+                            className="group relative bg-[#1d2653] p-12 md:p-16 aspect-square flex flex-col justify-between hover:bg-[#1d2653] transition-all duration-1000 border-[#4cc9f0]/20"
                             style={{ borderRightWidth: '0.5px', borderBottomWidth: '0.5px' }}
                         >
                             <div className="relative z-10">

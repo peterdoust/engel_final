@@ -100,25 +100,27 @@ export default function TeamPage() {
       <Header />
 
       {/* Hero Section with Cinematic Background */}
-      <section className="relative min-h-[60vh] sm:min-h-[70vh] lg:min-h-[100vh] flex items-center pt-40 pb-0 overflow-hidden">
+      <section className="relative min-h-[60vh] sm:min-h-[70vh] lg:min-h-[100vh] flex items-end lg:items-center pt-40 pb-8 md:pb-14 lg:pb-0 overflow-hidden">
         {/* ... existing hero code ... */}
         <div className="absolute inset-0 z-0">
           <Image
-            src="/images/team-2.jpg"
+            src="/images/team-hero-2026.jpg"
             alt="Expert Team"
             fill
-            className="object-cover object-[center_top] md:object-[center_-40px] lg:object-[0_-170px]"
+            sizes="100vw"
+            quality={90}
+            className="object-cover object-[center_top] lg:object-[center_30%] [@media(min-width:1024px)_and_(min-aspect-ratio:2/1)]:object-[center_20%]"
             priority
           />
           {/* Deep Blue Overlay matching screenshot */}
-          <div className="absolute inset-0 bg-[#0A1A3C]/20" />
+          <div className="absolute inset-0 bg-[#1D2653]/20" />
 
 
           <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
         </div>
 
         <div className="container-custom relative z-10">
-          <div className="max-w-4xl mx-auto text-center pt-24 lg:pt-48">
+          <div className="max-w-4xl mx-auto text-center lg:pt-48">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
@@ -145,7 +147,7 @@ export default function TeamPage() {
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1, duration: 0.8 }}
               >
-                <div className="relative group bg-[#1e3a8a] rounded-[2.5rem] overflow-hidden shadow-2xl transition-all duration-500 hover:translate-y-[-10px] border border-[#3b82f6]/20 h-full">
+                <div className="relative group bg-[#1d2653] rounded-[2.5rem] overflow-hidden shadow-2xl transition-all duration-500 hover:translate-y-[-10px] border border-[#293995]/20 h-full">
                   {/* Photo container */}
                   <Link href={`/team/${member.slug}`} className="block relative">
                     <div className="relative aspect-[1.1/1] overflow-hidden m-4 mb-0 rounded-[1.5rem]">
@@ -195,7 +197,7 @@ export default function TeamPage() {
                       {/* LinkedIn */}
                       <a href={`https://linkedin.com/in/${member.username}`} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3.5 text-white/90 hover:text-white transition-colors group/link">
                         <div className="w-4 h-4 bg-[#D4AF37] rounded-[1px] flex items-center justify-center">
-                          <svg className="w-3 h-3 text-[#1e3a8a]" fill="currentColor" viewBox="0 0 24 24">
+                          <svg className="w-3 h-3 text-[#1d2653]" fill="currentColor" viewBox="0 0 24 24">
                             <path d="M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38 1.11-2.5 2.48-2.5s2.48 1.12 2.48 2.5zm.02 4.5h-5v16h5v-16zm7.982 0h-4.968v16h4.969v-8.399c0-4.67 6.029-5.052 6.029 0v8.399h4.989v-10.131c0-7.88-8.922-7.593-11.018-3.714v-2.155z" />
                           </svg>
                         </div>
@@ -206,7 +208,7 @@ export default function TeamPage() {
                     {/* Qualifications Button */}
                     <div className="pt-2">
                       <Link href={`/team/${member.slug}`} className="block">
-                        <Button className="w-full bg-white text-[#1e3a8a] hover:bg-white/95 text-[0.78rem] font-bold h-11 px-1 rounded-[0.5rem] shadow-lg transition-all active:scale-[0.97] whitespace-nowrap">
+                        <Button className="w-full bg-white text-[#1d2653] hover:bg-white/95 text-[0.78rem] font-bold h-11 px-1 rounded-[0.5rem] shadow-lg transition-all active:scale-[0.97] whitespace-nowrap">
                           View {member.name.split(' ')[0]}&apos;s Professional Qualifications
                         </Button>
                       </Link>

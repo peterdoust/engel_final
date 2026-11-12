@@ -5,6 +5,7 @@ import { motion, AnimatePresence, useScroll, useTransform, useSpring } from 'fra
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import Link from 'next/link';
+import BackToTop from '@/components/ui/BackToTop';
 
 // ─────────────────────────────────────────────
 // Data
@@ -37,7 +38,7 @@ const cases = [
     description: 'Testified in an arbitration on behalf of plaintiff as to economic damages in excess of $100 million. Plaintiff, a buyer of an $80 million shopping center, alleged that seller provided buyer with misleading financial information. Arbitrator awarded plaintiff rescission damages in excess of $100 million.',
   },
   {
-    title: 'Breach Of Contract',
+    title: 'Breach of Contract',
     result: 'Jury Award of $1.3 Million',
     description: 'Testified as to damages in a jury trial on behalf of plaintiff, a U.S. window manufacturer and distributor. Plaintiff alleged breach of contract in connection with the construction of a mansion in Moscow, Russia. Jury awarded plaintiff $1.3 million in damages.',
   },
@@ -106,7 +107,7 @@ export default function CasesPage() {
       <main className="bg-slate-50 min-h-screen overflow-hidden">
 
         {/* ══════════ CINEMATIC HERO ══════════ */}
-        <section className="relative min-h-[85vh] flex items-center overflow-hidden bg-[#0A1A3C]">
+        <section className="relative flex items-center overflow-hidden bg-[#293995] pt-[calc(var(--hdr)+1rem)] pb-10">
           {/* Parallax Background Decorations */}
           <div className="absolute inset-0 z-0 pointer-events-none">
             {/* Glowing orbs */}
@@ -116,7 +117,7 @@ export default function CasesPage() {
             />
             <motion.div
               style={{ y: y1 }}
-              className="absolute bottom-1/4 left-1/4 w-[400px] h-[400px] bg-[#3b82f6]/10 blur-[120px] rounded-full"
+              className="absolute bottom-1/4 left-1/4 w-[400px] h-[400px] bg-[#293995]/10 blur-[120px] rounded-full"
             />
 
             <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-[#D4AF37]/30 to-transparent" />
@@ -132,7 +133,7 @@ export default function CasesPage() {
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 1.2, ease: "easeOut" }}
               >
-                <h1 className="text-5xl sm:text-6xl md:text-8xl lg:text-9xl font-bold tracking-tighter text-white drop-shadow-2xl">
+                <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tighter text-white drop-shadow-2xl">
                   Representative <br />
                   <span className="font-serif italic text-[#D4AF37] font-medium">Cases</span>
                 </h1>
@@ -149,22 +150,22 @@ export default function CasesPage() {
               <AnimatePresence mode="popLayout">
                 {cases.map((case_, idx) => (
                   <motion.div
-                    key={case_.title}
+                    key={`${case_.title}-${idx}`}
                     layout
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6, delay: (idx % 2) * 0.1 }}
-                    className="group relative bg-white p-8 md:p-10 md:pb-8 pb-8 rounded-xl shadow-[0_10px_40px_-15px_rgba(0,0,0,0.08)] border border-[#0f3574] border-t-4 hover:shadow-[0_20px_60px_-20px_rgba(15,53,116,0.15)] transition-all duration-500 flex flex-col"
+                    className="group relative bg-white p-8 md:p-10 md:pb-8 pb-8 rounded-xl shadow-[0_10px_40px_-15px_rgba(0,0,0,0.08)] border border-[#293995] border-t-4 hover:shadow-[0_20px_60px_-20px_rgba(41, 57, 149,0.15)] transition-all duration-500 flex flex-col"
                   >
                     <div className="mb-8">
-                      <h3 className="text-[1.75rem] font-bold text-[#0A1A3C] tracking-tight leading-tight mb-5 group-hover:text-[#0f3574] transition-colors duration-300 relative inline-flex items-center gap-3">
-                        <span className="w-2.5 h-2.5 rounded-full bg-[#D4AF37] shrink-0" />
+                      <h3 className="text-[1.5rem] sm:text-[1.75rem] font-bold text-[#1D2653] tracking-tight leading-tight mb-5 group-hover:text-[#293995] transition-colors duration-300 relative inline-flex items-start gap-3">
+                        <span className="w-2.5 h-2.5 mt-[0.45em] rounded-full bg-[#D4AF37] shrink-0" />
                         {case_.title}
                         <span className="absolute -bottom-2 left-0 w-16 h-0.5 bg-gradient-to-r from-[#D4AF37] to-transparent transition-all duration-500 group-hover:w-full" />
                       </h3>
                       <div>
-                        <span className="text-2xl md:text-3xl font-serif italic text-[#0f3574] leading-tight font-medium">
+                        <span className="text-2xl md:text-3xl font-serif italic text-[#293995] leading-tight font-medium">
                           {case_.result}
                         </span>
                       </div>
@@ -182,6 +183,7 @@ export default function CasesPage() {
           </div>
         </section>
 
+        <BackToTop />
         <Footer />
       </main>
 

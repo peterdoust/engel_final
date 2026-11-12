@@ -8,6 +8,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Button } from '@/components/ui/Button'
 import Link from 'next/link'
 import Image from 'next/image'
+import NewsletterForm from '@/components/blog/NewsletterForm'
 import { motion, useScroll, useTransform, useSpring } from 'framer-motion'
 
 // Real blog posts from engelandengel.com integrated with SEO optimization
@@ -99,7 +100,7 @@ export default function BlogPage() {
       "url": "https://engelandengel.com",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://engelandengel.com/wp-content/uploads/2022/02/forensic-accounting-los-angeles-scaled.jpg"
+        "url": "https://engelandengel.com/images/brand/ee-logo-horizontal.png"
       }
     },
     "blogPost": [featuredPost, ...blogPosts].map(post => ({
@@ -133,7 +134,7 @@ export default function BlogPage() {
         <meta property="og:url" content="https://engelandengel.com/blog" />
         <meta property="og:title" content="The Forensic Accounting Perspective | Expert Insights & Analysis" />
         <meta property="og:description" content="Expert forensic accounting insights, fraud investigation techniques, and litigation support strategies from certified professionals." />
-        <meta property="og:image" content="https://engelandengel.com/wp-content/uploads/2022/02/forensic-accounting-los-angeles-scaled.jpg" />
+        <meta property="og:image" content="https://engelandengel.com/images/og-image.jpg" />
         <meta property="og:site_name" content="Engel & Engel LLP" />
 
         {/* Twitter */}
@@ -141,11 +142,11 @@ export default function BlogPage() {
         <meta property="twitter:url" content="https://engelandengel.com/blog" />
         <meta property="twitter:title" content="The Forensic Accounting Perspective | Expert Insights & Analysis" />
         <meta property="twitter:description" content="Expert forensic accounting insights, fraud investigation techniques, and litigation support strategies from certified professionals." />
-        <meta property="twitter:image" content="https://engelandengel.com/wp-content/uploads/2022/02/forensic-accounting-los-angeles-scaled.jpg" />
+        <meta property="twitter:image" content="https://engelandengel.com/images/og-image.jpg" />
 
         {/* Additional SEO */}
-        <meta name="theme-color" content="#1e40af" />
-        <meta name="msapplication-TileColor" content="#1e40af" />
+        <meta name="theme-color" content="#293995" />
+        <meta name="msapplication-TileColor" content="#293995" />
 
         {/* Structured Data */}
         <script
@@ -159,22 +160,22 @@ export default function BlogPage() {
       <Header />
 
       {/* Hero Section */}
-      <section className="relative min-h-[70vh] flex items-end overflow-hidden bg-primary-950">
+      <section className="relative flex items-end overflow-hidden bg-[#293995] pt-[calc(var(--hdr)+1rem)] pb-10">
         <div className="absolute inset-0 z-0 pointer-events-none">
           <motion.div style={{ y: y2, scale }} className="absolute top-1/4 right-1/4 w-[500px] h-[500px] bg-[#D4AF37]/10 blur-[150px] rounded-full" />
-          <motion.div style={{ y: y1 }} className="absolute bottom-1/4 left-1/4 w-[400px] h-[400px] bg-[#3b82f6]/10 blur-[120px] rounded-full" />
+          <motion.div style={{ y: y1 }} className="absolute bottom-1/4 left-1/4 w-[400px] h-[400px] bg-[#293995]/10 blur-[120px] rounded-full" />
           <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)', backgroundSize: '60px 60px' }} />
           <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-[#D4AF37]/30 to-transparent" />
         </div>
-        <div className="container-custom relative z-10 w-full pb-20 pt-40">
+        <div className="container-custom relative z-10 w-full">
           <motion.div style={{ y: springY1, opacity }} className="max-w-5xl">
             <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, ease: 'easeOut' }}>
-              <p className="text-[#D4AF37] text-sm font-semibold tracking-[0.3em] uppercase mb-6">Blog</p>
-              <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter text-white leading-[0.9]">
+              <p className="text-[#D4AF37] text-sm font-semibold tracking-[0.3em] uppercase mb-3">Blog</p>
+              <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tighter text-white leading-[0.9]">
                 The Forensic Accounting<br />
                 <span className="font-serif italic text-[#D4AF37] font-medium">Perspective</span>
               </h1>
-              <div className="h-[3px] w-24 bg-[#D4AF37] mt-8" />
+              <div className="h-[3px] w-24 bg-[#D4AF37] mt-5" />
             </motion.div>
           </motion.div>
         </div>
@@ -185,7 +186,7 @@ export default function BlogPage() {
         <div className="container-custom">
           <div className="max-w-6xl mx-auto">
             <h2 className="text-3xl md:text-4xl font-bold text-primary-950 mb-10 tracking-tight">Featured Article</h2>
-            <Card className="overflow-hidden shadow-lg border border-slate-100">
+            <Card padding="none" className="overflow-hidden shadow-lg border border-slate-100">
               <div className="md:flex">
                 <div className="md:w-1/2 relative h-48 md:h-auto">
                   <Image
@@ -200,7 +201,7 @@ export default function BlogPage() {
                     <div className="text-xs opacity-90 mt-2">{featuredPost.readTime}</div>
                   </div>
                 </div>
-                <div className="md:w-1/2 p-8">
+                <div className="md:w-1/2 p-6 md:p-8">
                   <h3 className="text-2xl font-bold mb-4 text-primary-950 tracking-tight">
                     {featuredPost.title}
                   </h3>
@@ -209,15 +210,15 @@ export default function BlogPage() {
                   </p>
                   <div className="flex flex-wrap gap-2 mb-4">
                     {featuredPost.tags.map((tag, index) => (
-                      <span key={index} className="text-[10px] font-bold tracking-wider uppercase bg-primary-950/5 text-primary-950/60 px-2.5 py-1">
+                      <span key={index} className={`${index >= 3 ? 'hidden sm:inline-block' : ''} text-[11px] font-bold tracking-wider uppercase bg-primary-950/5 text-primary-950/70 px-2.5 py-1`}>
                         {tag}
                       </span>
                     ))}
                   </div>
                   <div className="flex items-center justify-between mb-6">
-                    <div className="text-sm text-slate-400">
+                    <div className="text-sm text-slate-600">
                       <div className="font-semibold text-primary-950">{featuredPost.author}</div>
-                      <div>{featuredPost.publishDate} • {featuredPost.readTime}</div>
+                      <div>{new Date(featuredPost.publishDate + 'T00:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })} • {featuredPost.readTime}</div>
                     </div>
                   </div>
                   <Link href={`/blog/${featuredPost.slug}`}>
@@ -241,7 +242,6 @@ export default function BlogPage() {
                 <Button
                   key={category}
                   variant={category === 'All Posts' ? 'primary' : 'outline'}
-                  className={category === 'All Posts' ? 'bg-blue-600 hover:bg-blue-700' : ''}
                 >
                   {category}
                 </Button>
@@ -260,7 +260,7 @@ export default function BlogPage() {
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {blogPosts.map((post) => (
                 <Link key={post.id} href={`/blog/${post.slug}`} className="block group">
-                  <Card className="overflow-hidden hover:shadow-[0_20px_60px_-20px_rgba(15,53,116,0.15)] transition-all duration-500 group-hover:translate-y-[-6px] cursor-pointer h-full border border-slate-100">
+                  <Card className="overflow-hidden hover:shadow-[0_20px_60px_-20px_rgba(41, 57, 149,0.15)] transition-all duration-500 group-hover:translate-y-[-6px] cursor-pointer h-full border border-slate-100">
                     <div className="relative h-48 overflow-hidden">
                       <Image
                         src={post.image}
@@ -279,7 +279,7 @@ export default function BlogPage() {
                       </div>
                     </div>
                     <CardHeader>
-                      <CardTitle className="text-xl leading-tight text-primary-950 group-hover:text-[#0f3574] transition-colors tracking-tight">
+                      <CardTitle className="text-xl leading-tight text-primary-950 group-hover:text-[#293995] transition-colors tracking-tight">
                         {post.title}
                       </CardTitle>
                     </CardHeader>
@@ -289,17 +289,17 @@ export default function BlogPage() {
                       </CardDescription>
                       <div className="flex flex-wrap gap-1 mb-4">
                         {post.tags.slice(0, 3).map((tag, index) => (
-                          <span key={index} className="text-[9px] font-bold tracking-wider uppercase bg-slate-50 text-slate-400 px-2 py-0.5 border border-slate-100">
+                          <span key={index} className="text-[10px] font-bold tracking-wider uppercase bg-slate-50 text-slate-500 px-2 py-0.5 border border-slate-100">
                             {tag}
                           </span>
                         ))}
                       </div>
                       <div className="flex items-center justify-between mt-auto pt-4 border-t border-slate-100">
-                        <div className="text-sm text-slate-400">
+                        <div className="text-sm text-slate-600">
                           <div className="font-semibold text-primary-950 text-xs">{post.author}</div>
-                          <div className="text-xs">{post.publishDate} • {post.readTime}</div>
+                          <div className="text-xs">{new Date(post.publishDate + 'T00:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })} • {post.readTime}</div>
                         </div>
-                        <span className="flex items-center gap-2 text-[#D4AF37] font-bold text-xs group-hover:gap-4 transition-all duration-300">
+                        <span className="flex items-center gap-2 text-gold-700 font-bold text-xs group-hover:gap-4 transition-all duration-300">
                           Read
                           <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
@@ -316,7 +316,7 @@ export default function BlogPage() {
       </section>
 
       {/* Newsletter Signup */}
-      <section className="relative py-20 bg-[#0A1A3C] text-white overflow-hidden">
+      <section className="relative py-20 bg-[#1D2653] text-white overflow-hidden">
         <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-[#D4AF37]/10 blur-[150px] rounded-full pointer-events-none" />
         <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#D4AF37]/30 to-transparent" />
         <div className="container-custom relative z-10">
@@ -328,16 +328,7 @@ export default function BlogPage() {
             <p className="text-lg mb-10 text-white/60 font-light leading-relaxed">
               Get the latest insights on forensic accounting, fraud investigation, and expert witness testimony
             </p>
-            <div className="flex flex-col sm:flex-row gap-3 justify-center max-w-md mx-auto">
-              <input
-                type="email"
-                placeholder="Enter your email"
-                className="flex-1 px-5 py-4 bg-white/5 border border-white/10 text-white placeholder:text-white/30 focus:outline-none focus:border-[#D4AF37]/50 transition-colors"
-              />
-              <button className="px-8 py-4 bg-[#D4AF37] text-[#0A1A3C] font-bold text-sm tracking-wider uppercase hover:bg-white transition-colors duration-300">
-                Subscribe
-              </button>
-            </div>
+            <NewsletterForm />
           </div>
         </div>
       </section>

@@ -120,10 +120,10 @@ export default function PracticeAreasV2Page() {
       <main className="min-h-screen bg-white">
 
         {/* ══════════ CINEMATIC HERO ══════════ */}
-        <section className="relative min-h-[85vh] flex items-center overflow-hidden bg-[#0A1A3C]">
+        <section className="relative min-h-[85vh] flex items-center overflow-hidden bg-[#1D2653]">
           <div className="absolute inset-0 z-0 pointer-events-none">
             <div className="absolute top-1/4 right-1/4 w-[500px] h-[500px] bg-[#D4AF37]/10 blur-[150px] rounded-full" />
-            <div className="absolute bottom-1/4 left-1/4 w-[400px] h-[400px] bg-[#3b82f6]/10 blur-[120px] rounded-full" />
+            <div className="absolute bottom-1/4 left-1/4 w-[400px] h-[400px] bg-[#293995]/10 blur-[120px] rounded-full" />
             <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-[#D4AF37]/30 to-transparent" />
           </div>
 
@@ -178,7 +178,7 @@ export default function PracticeAreasV2Page() {
                         </svg>
                       </div>
 
-                      <h3 className="text-[17px] font-bold text-primary-950 mb-3 leading-snug group-hover:text-[#0f3574] transition-colors duration-300">
+                      <h3 className="text-[17px] font-bold text-primary-950 mb-3 leading-snug group-hover:text-[#293995] transition-colors duration-300">
                         {area.title}
                       </h3>
 
@@ -207,7 +207,7 @@ export default function PracticeAreasV2Page() {
                 >
                   <Link
                     href={area.href}
-                    className="group relative flex flex-col items-center text-center h-full p-6 rounded-2xl bg-primary-950 hover:bg-[#0f2a5c] hover:-translate-y-1 hover:shadow-xl transition-all duration-500 overflow-hidden"
+                    className="group relative flex flex-col items-center text-center h-full p-6 rounded-2xl bg-primary-950 hover:bg-[#1d2653] hover:-translate-y-1 hover:shadow-xl transition-all duration-500 overflow-hidden"
                   >
                     <div className="absolute inset-x-0 bottom-0 h-1 bg-[#D4AF37] scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
                     <div className="w-14 h-14 rounded-full bg-[#D4AF37]/10 flex items-center justify-center mb-4 group-hover:bg-[#D4AF37]/20 transition-all duration-500">
@@ -239,7 +239,7 @@ export default function PracticeAreasV2Page() {
                 >
                   <Link
                     href={area.href}
-                    className="group relative block h-[180px] rounded-2xl overflow-hidden bg-gradient-to-br from-slate-50 to-slate-100 border border-[#172554] hover:from-primary-950 hover:to-[#0f2a5c] hover:border-primary-950 hover:-translate-y-1 hover:shadow-xl transition-all duration-500"
+                    className="group relative block h-[180px] rounded-2xl overflow-hidden bg-gradient-to-br from-slate-50 to-slate-100 border border-[#1d2653] hover:from-primary-950 hover:to-[#1d2653] hover:border-primary-950 hover:-translate-y-1 hover:shadow-xl transition-all duration-500"
                   >
                     {/* Watermark icon */}
                     <div className="absolute -bottom-4 -right-4 opacity-[0.05] group-hover:opacity-[0.25] transition-opacity duration-500">
@@ -253,7 +253,7 @@ export default function PracticeAreasV2Page() {
 
                     <div className="relative z-10 p-6 h-full flex flex-col">
                       <div className="w-11 h-11 rounded-xl bg-primary-950 group-hover:bg-[#D4AF37] flex items-center justify-center mb-auto transition-all duration-500">
-                        <svg className="w-5 h-5 text-[#D4AF37] group-hover:text-white transition-colors duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg className="w-5 h-5 text-[#D4AF37] group-hover:text-[#1d2653] transition-colors duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d={area.icon} />
                         </svg>
                       </div>

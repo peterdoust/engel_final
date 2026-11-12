@@ -24,8 +24,8 @@ export default function PremiumCertifications() {
                         viewport={{ once: true }}
                         transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
                     >
-                        <h2 className="text-6xl md:text-[10rem] font-bold text-[#0A0F1E] mb-12 leading-none tracking-tighter uppercase font-sans">
-                            Our <span className="font-serif italic font-medium text-[#0A0F1E]/40 lowercase tracking-normal">Certifications</span>
+                        <h2 className="text-6xl md:text-[10rem] font-bold text-[#11162D] mb-12 leading-none tracking-tighter uppercase font-sans">
+                            Our <span className="font-serif italic font-medium text-[#11162D]/40 lowercase tracking-normal">Certifications</span>
                         </h2>
                         <p className="text-gray-500 text-xl md:text-3xl font-light leading-relaxed max-w-3xl mx-auto mb-16">
                             Our analysis and testimony are supported by relevant professional credentials.

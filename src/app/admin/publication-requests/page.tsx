@@ -101,20 +101,20 @@ export default function PublicationRequestsAdmin() {
       <header className="bg-white border-b border-gray-200">
         <div className="px-4 sm:px-6 py-4 sm:py-5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
           <div className="lg:pl-0 pl-12">
-            <h1 className="text-lg sm:text-xl font-bold text-[#0d1f42]">Publication Requests</h1>
+            <h1 className="text-lg sm:text-xl font-bold text-[#1d2653]">Publication Requests</h1>
             <p className="text-xs text-gray-500 mt-0.5">{requests.length} total submissions</p>
           </div>
           <div className="flex items-center gap-2">
             <button
               onClick={() => fetchRequests()}
-              className="flex-1 sm:flex-none text-xs font-semibold text-gray-600 hover:text-[#0d1f42] px-3 py-2 border border-gray-200 rounded-lg"
+              className="flex-1 sm:flex-none text-xs font-semibold text-gray-600 hover:text-[#1d2653] px-3 py-2 border border-gray-200 rounded-lg"
             >
               Refresh
             </button>
             <button
               onClick={exportCsv}
               disabled={requests.length === 0}
-              className="flex-1 sm:flex-none text-xs font-semibold text-white bg-[#0d1f42] hover:bg-black px-3 py-2 rounded-lg disabled:opacity-30"
+              className="flex-1 sm:flex-none text-xs font-semibold text-white bg-[#1d2653] hover:bg-black px-3 py-2 rounded-lg disabled:opacity-30"
             >
               Export CSV
             </button>

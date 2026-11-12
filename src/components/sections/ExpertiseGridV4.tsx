@@ -30,7 +30,7 @@ export default function ExpertiseGridV4() {
       <div className="container-custom w-full relative z-10">
         {/* Header */}
         <div className="mb-12 lg:mb-20">
-          <h2 className="text-5xl md:text-6xl lg:text-[72px] leading-[72px] tracking-[-0.02em] text-white text-center font-semibold" style={{ fontFamily: 'Inter, system-ui, sans-serif' }}>
+          <h2 className="text-5xl md:text-6xl lg:text-[72px] leading-[72px] tracking-[-0.02em] text-white text-center font-semibold">
             <span>Our Areas </span>of <em className="text-[#d4af37] font-serif italic">Expertise</em>
           </h2>
         </div>
@@ -54,7 +54,7 @@ export default function ExpertiseGridV4() {
                     <div className="absolute -inset-full top-0 h-full w-1/3 bg-gradient-to-r from-transparent via-[#D4AF37]/10 to-transparent animate-shine" style={{ animationDelay: `${index * 0.2}s` }} />
                   </div>
                   {/* Inner border */}
-                  <div className="absolute inset-3 z-[2] border border-[#172554] rounded group-hover:border-[#D4AF37] transition-all duration-500 pointer-events-none" />
+                  <div className="absolute inset-3 z-[2] border border-[#1d2653] rounded group-hover:border-[#D4AF37] transition-all duration-500 pointer-events-none" />
 
                   {/* Content */}
                   <div className="relative z-10 h-full flex flex-col items-center justify-center px-5">
@@ -66,7 +66,7 @@ export default function ExpertiseGridV4() {
                     </div>
 
                     {/* Title */}
-                    <h3 className="text-[15px] font-bold uppercase tracking-[0.12em] leading-tight text-center text-primary-950 group-hover:text-white transition-colors duration-500">
+                    <h3 className="text-[13px] sm:text-[15px] font-bold uppercase tracking-[0.06em] sm:tracking-[0.12em] leading-tight text-center text-primary-950 group-hover:text-white transition-colors duration-500">
                       {area.title}
                     </h3>
 

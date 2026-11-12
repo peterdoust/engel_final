@@ -864,7 +864,7 @@ export default function DesignShowcasePage() {
                     }, 3000);
                   }}
                   style={{
-                    background: 'radial-gradient(circle, #e5e7eb 0%, #9ca3af 100%)',
+                    background: 'radial-gradient(circle, #e2e6f0 0%, #9ca3af 100%)',
                     boxShadow: 'inset 0 0 20px rgba(255,255,255,0.5)'
                   }}
                 >
@@ -1713,8 +1713,8 @@ export default function DesignShowcasePage() {
                   className="absolute inset-0"
                   style={{
                     backgroundImage: `
-                      linear-gradient(rgba(59, 130, 246, 0.3) 1px, transparent 1px),
-                      linear-gradient(90deg, rgba(59, 130, 246, 0.3) 1px, transparent 1px)
+                      linear-gradient(rgba(41, 57, 149, 0.3) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(41, 57, 149, 0.3) 1px, transparent 1px)
                     `,
                     backgroundSize: '20px 20px',
                     animation: 'spatialGrid 8s ease-in-out infinite'
@@ -1774,7 +1774,7 @@ export default function DesignShowcasePage() {
             >
               <div className="relative">
                 <img
-                  src="/images/logo-accountants-white-font.png"
+                  src="/images/brand/ee-logo-horizontal-white.png"
                   alt="Engel & Engel Logo"
                   className="h-32 w-auto object-contain opacity-90 hover:opacity-100 transition-opacity duration-500"
                   style={{
@@ -1793,7 +1793,7 @@ export default function DesignShowcasePage() {
                   }}
                 >
                   <img
-                    src="/images/logo-accountants-white-font.png"
+                    src="/images/brand/ee-logo-horizontal-white.png"
                     alt="Logo Reflection"
                     className="h-32 w-auto object-contain"
                   />
@@ -1821,7 +1821,7 @@ export default function DesignShowcasePage() {
               className="absolute inset-0"
               style={{
                 backgroundImage: `
-                  radial-gradient(circle at 20% 20%, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
+                  radial-gradient(circle at 20% 20%, rgba(41, 57, 149, 0.1) 0%, transparent 50%),
                   radial-gradient(circle at 80% 80%, rgba(139, 92, 246, 0.1) 0%, transparent 50%),
                   linear-gradient(45deg, transparent 40%, rgba(255,255,255,0.02) 50%, transparent 60%)
                 `,
@@ -1838,11 +1838,11 @@ export default function DesignShowcasePage() {
             >
               <div className="relative">
                 <img
-                  src="/images/logo-accountants-white-font.png"
+                  src="/images/brand/ee-logo-horizontal-white.png"
                   alt="Engel & Engel Logo"
                   className="h-40 w-auto object-contain"
                   style={{
-                    filter: 'drop-shadow(0 0 30px rgba(59, 130, 246, 0.5))',
+                    filter: 'drop-shadow(0 0 30px rgba(41, 57, 149, 0.5))',
                     animation: 'logoScale 8s ease-in-out infinite'
                   }}
                 />
@@ -1918,7 +1918,7 @@ export default function DesignShowcasePage() {
               }}
             >
               <img
-                src="/images/logo-accountants-white-font.png"
+                src="/images/brand/ee-logo-horizontal-white.png"
                 alt="Engel & Engel Logo"
                 className="h-36 w-auto object-contain"
                 style={{
@@ -1971,11 +1971,11 @@ export default function DesignShowcasePage() {
                 }}
               >
                 <img
-                  src="/images/logo-accountants-white-font.png"
+                  src="/images/brand/ee-logo-horizontal-white.png"
                   alt="Engel & Engel Logo"
                   className="h-44 w-auto object-contain"
                   style={{
-                    filter: 'drop-shadow(0 0 35px rgba(6, 182, 212, 0.6))',
+                    filter: 'drop-shadow(0 0 35px rgba(212, 175, 55, 0.6))',
                     animation: 'logo3DGlow 6s ease-in-out infinite'
                   }}
                 />
@@ -2134,7 +2134,7 @@ export default function DesignShowcasePage() {
               <p className="text-gray-600 mb-4">
                 Tell me which elements you'd like to use and on which pages!
               </p>
-              <Button className="bg-primary-600 hover:bg-primary-700">
+              <Button>
                 Apply Selected Elements
               </Button>
             </div>

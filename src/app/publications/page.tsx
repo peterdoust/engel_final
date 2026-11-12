@@ -125,7 +125,7 @@ export default function PublicationsPage() {
       <main className="bg-slate-50 min-h-screen overflow-hidden">
 
         {/* ══════════ CINEMATIC HERO ══════════ */}
-        <section className="relative min-h-[85vh] flex items-center overflow-hidden bg-[#0A1A3C]">
+        <section className="relative flex items-center overflow-hidden bg-[#293995] pt-[calc(var(--hdr)+1rem)] pb-10">
           {/* Parallax Background Decorations */}
           <div className="absolute inset-0 z-0 pointer-events-none">
             {/* Glowing orbs */}
@@ -135,7 +135,7 @@ export default function PublicationsPage() {
             />
             <motion.div
               style={{ y: y1 }}
-              className="absolute bottom-1/4 left-1/4 w-[400px] h-[400px] bg-[#3b82f6]/10 blur-[120px] rounded-full"
+              className="absolute bottom-1/4 left-1/4 w-[400px] h-[400px] bg-[#293995]/10 blur-[120px] rounded-full"
             />
 
             <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-[#D4AF37]/30 to-transparent" />
@@ -151,9 +151,10 @@ export default function PublicationsPage() {
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 1.2, ease: "easeOut" }}
               >
-                <h1 className="text-7xl md:text-9xl font-bold tracking-tighter text-white drop-shadow-2xl">
+                <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tighter text-white drop-shadow-2xl">
                   Research & <br />
-                  <span className="font-serif italic text-[#D4AF37] font-medium text-[2.5rem]">Publications</span>
+                  {/* Own letter-spacing: otherwise it inherits the big line's (in px) and the letters overlap */}
+                  <span className="font-serif italic text-[#D4AF37] font-medium text-[0.75em] tracking-[-0.02em]">Publications</span>
                 </h1>
                 <div className="h-0.5 w-32 bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent mx-auto mt-6" />
               </motion.div>
@@ -162,9 +163,9 @@ export default function PublicationsPage() {
         </section>
 
         {/* ══════════ PUBLICATION CATEGORIES ══════════ */}
-        <section className="py-32 relative bg-white">
+        <section className="py-16 lg:py-32 relative bg-white">
           <div className="container-custom">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10">
               {publicationCategories.map((category, idx) => (
                 <motion.div
                   key={category.title}
@@ -182,10 +183,10 @@ export default function PublicationsPage() {
                   <div className="relative z-10 flex flex-col h-full">
                     <div className="flex items-center gap-4 mb-8">
                       <div className="w-10 h-[1px] bg-[#D4AF37]" />
-                      <span className="text-xs font-bold tracking-[0.3em] uppercase text-[#D4AF37]">{category.publications.length} Papers</span>
+                      <span className="text-xs font-bold tracking-[0.3em] uppercase text-[#D4AF37]">{category.publications.length} {category.publications.length === 1 ? 'Paper' : 'Papers'}</span>
                     </div>
 
-                    <h3 className="text-3xl font-bold text-[#0A1A3C] mb-4 tracking-tight group-hover:text-[#D4AF37] transition-colors">
+                    <h3 className="text-3xl font-bold text-[#1D2653] mb-4 tracking-tight group-hover:text-[#D4AF37] transition-colors">
                       {category.title}
                     </h3>
                     <p className="text-lg text-slate-500 font-light leading-relaxed mb-10 max-w-lg">
@@ -204,7 +205,7 @@ export default function PublicationsPage() {
                     <div className="mt-auto flex flex-col sm:flex-row gap-4 pt-8 border-t border-slate-50">
                       <Link
                         href={`/publications/${category.slug}`}
-                        className="px-8 py-3 bg-[#0A1A3C] text-white rounded-xl text-xs font-bold tracking-widest uppercase hover:bg-[#D4AF37] hover:text-[#0A1A3C] transition-all text-center"
+                        className="px-8 py-3 bg-[#1D2653] text-white rounded-xl text-xs font-bold tracking-widest uppercase hover:bg-[#D4AF37] hover:text-[#1D2653] transition-all text-center"
                       >
                         View Series
                       </Link>
@@ -223,17 +224,17 @@ export default function PublicationsPage() {
         </section>
 
         {/* ══════════ FEATURED HIGHLIGHT ══════════ */}
-        <section className="py-32 relative overflow-hidden bg-white">
+        <section className="pt-0 pb-16 lg:py-32 relative overflow-hidden bg-white">
           <div className="container-custom">
-            <div className="relative bg-slate-900 rounded-[3rem] p-12 lg:p-24 overflow-hidden text-white flex flex-col lg:flex-row items-center gap-16">
+            <div className="relative bg-slate-900 rounded-[2rem] sm:rounded-[3rem] p-7 sm:p-12 lg:p-24 overflow-hidden text-white flex flex-col lg:flex-row items-center gap-16">
               {/* Visual element */}
               <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#D4AF37]/5 blur-[120px] rounded-full translate-x-1/2 -translate-y-1/2" />
 
               <div className="lg:w-2/3 relative z-10">
                 <span className="text-xs font-bold tracking-[0.4em] uppercase text-[#D4AF37] mb-8 block">Foundational Work</span>
-                <h2 className="text-4xl md:text-6xl font-bold mb-8 tracking-tight">
+                <h2 className="text-[1.75rem] leading-tight sm:text-4xl md:text-6xl font-bold mb-6 sm:mb-8 tracking-tight text-white">
                   The Framework for <br />
-                  <span className="font-serif italic text-[#D4AF37] font-medium text-[2.5rem]">Lost Profits</span>
+                  <span className="font-serif italic text-[#D4AF37] font-medium text-[2rem] sm:text-[2.5rem] tracking-normal">Lost Profits</span>
                 </h2>
                 <p className="text-slate-400 text-xl font-light leading-relaxed mb-12 max-w-2xl">
                   Our five-part research series on the calculation of lost profits has been widely utilized by legal professionals to understand the elements of certainty, prospective profits, and mitigation.
@@ -263,17 +264,17 @@ export default function PublicationsPage() {
         <section className="py-32 bg-slate-50">
           <div className="container-custom text-center">
             <h4 className="text-xs font-bold tracking-[0.4em] uppercase text-slate-400 mb-8">Need Assistance?</h4>
-            <p className="text-3xl md:text-5xl font-bold text-[#0A1A3C] mb-12 tracking-tight">
+            <p className="text-3xl md:text-5xl font-bold text-[#1D2653] mb-12 tracking-tight">
               Access our authoritative <br /> research for your next case.
             </p>
             <div className="flex flex-col sm:flex-row gap-6 justify-center">
               <button
                 onClick={() => handleRequestClick('General Research Inquiry')}
-                className="px-10 py-5 bg-[#0A1A3C] text-white font-bold text-lg rounded-2xl hover:bg-[#D4AF37] hover:text-[#0A1A3C] transition-all shadow-lg"
+                className="px-10 py-5 bg-[#1D2653] text-white font-bold text-lg rounded-2xl hover:bg-[#D4AF37] hover:text-[#1D2653] transition-all shadow-lg"
               >
                 Request Publication
               </button>
-              <TrackedPhoneLink phone="+13102772220" location="publications_cta" className="px-10 py-5 bg-white shadow-lg text-[#0A1A3C] font-bold text-lg rounded-2xl hover:bg-[#0A1A3C] hover:text-white transition-all border border-slate-100">
+              <TrackedPhoneLink phone="+13102772220" location="publications_cta" className="px-10 py-5 bg-white shadow-lg text-[#1D2653] font-bold text-lg rounded-2xl hover:bg-[#1D2653] hover:text-white transition-all border border-slate-100">
                 Call (310) 277-2220
               </TrackedPhoneLink>
             </div>

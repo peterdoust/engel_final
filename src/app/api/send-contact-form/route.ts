@@ -174,12 +174,12 @@ This message was submitted through the Engel & Engel website contact form.
       text: emailContent,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-          <h2 style="color: #1e40af; border-bottom: 2px solid #1e40af; padding-bottom: 10px;">
+          <h2 style="color: #293995; border-bottom: 2px solid #293995; padding-bottom: 10px;">
             New Contact Form Submission - Engel & Engel
           </h2>
           
           <div style="background-color: #f8fafc; padding: 20px; border-radius: 8px; margin: 20px 0;">
-            <h3 style="color: #374151; margin-top: 0;">Contact Information</h3>
+            <h3 style="color: #11162d; margin-top: 0;">Contact Information</h3>
             <table style="width: 100%; border-collapse: collapse;">
               <tr>
                 <td style="padding: 5px 0; font-weight: bold; width: 100px;">Name:</td>
@@ -197,12 +197,12 @@ This message was submitted through the Engel & Engel website contact form.
           </div>
 
           <div style="background-color: #fef3c7; padding: 20px; border-radius: 8px; margin: 20px 0;">
-            <h3 style="color: #374151; margin-top: 0;">Message</h3>
+            <h3 style="color: #11162d; margin-top: 0;">Message</h3>
             <p style="margin: 0; line-height: 1.6; white-space: pre-wrap;">${data.message}</p>
           </div>
 
           <div style="background-color: #e0f2fe; padding: 20px; border-radius: 8px; margin: 20px 0;">
-            <h3 style="color: #374151; margin-top: 0;">Location & Security Info</h3>
+            <h3 style="color: #11162d; margin-top: 0;">Location & Security Info</h3>
             <table style="width: 100%; border-collapse: collapse;">
               <tr>
                 <td style="padding: 3px 0; font-weight: bold; width: 120px;">IP Address:</td>
@@ -237,7 +237,7 @@ This message was submitted through the Engel & Engel website contact form.
             </p>
           </div>
 
-          <div style="border-top: 1px solid #e5e7eb; padding-top: 15px; margin-top: 30px;">
+          <div style="border-top: 1px solid #e2e6f0; padding-top: 15px; margin-top: 30px;">
             <p style="color: #6b7280; font-size: 12px; margin: 0;">
               This message was submitted through the Engel & Engel website contact form.
             </p>

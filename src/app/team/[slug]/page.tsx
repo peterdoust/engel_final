@@ -405,15 +405,15 @@ export default function TeamMemberPage({ params }: { params: { slug: string } })
 
       <main className="bg-white min-h-screen text-slate-900">
         {/* ══════════ PREMIUM HERO SECTION ══════════ */}
-        <section ref={heroRef} className="relative min-h-[500px] flex items-center pt-28 lg:pt-32 pb-12 overflow-hidden bg-[#0A1A3C]">
+        <section ref={heroRef} className="relative flex items-center pt-28 lg:pt-32 pb-12 overflow-hidden bg-[#293995]">
           {/* Architectural Background Elements */}
           <div className="absolute inset-0 z-0">
             {/* Main Cinematic Gradient matching Cases page */}
-            <div className="absolute inset-0 bg-gradient-to-tr from-[#0A1A3C] via-[#0A1A3C] to-[#1e3a8a]/20" />
+            <div className="absolute inset-0 bg-gradient-to-tr from-[#293995] via-[#293995] to-[#293995]/20" />
 
             {/* Glowing Orbs similar to Cases page */}
             <div className="absolute top-1/4 right-1/4 w-[500px] h-[500px] bg-[#D4AF37]/5 blur-[120px] rounded-full opacity-50" />
-            <div className="absolute bottom-1/4 left-1/4 w-[400px] h-[400px] bg-[#3b82f6]/5 blur-[100px] rounded-full opacity-50" />
+            <div className="absolute bottom-1/4 left-1/4 w-[400px] h-[400px] bg-[#293995]/5 blur-[100px] rounded-full opacity-50" />
 
             {/* Grid Lines - subtle */}
             <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:100px_100%] opacity-20" />
@@ -430,7 +430,7 @@ export default function TeamMemberPage({ params }: { params: { slug: string } })
                 transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
                 className="lg:col-span-5"
               >
-                <div className="relative group mx-auto lg:mx-0">
+                <div className="relative group mx-auto lg:mx-0 max-w-[420px] lg:max-w-none">
                   {/* Decorative Frame */}
                   <div className="absolute -inset-4 border border-[#D4AF37]/20 rounded-2xl group-hover:border-[#D4AF37]/40 transition-colors duration-700" />
                   <div className="absolute -top-4 -right-4 w-12 h-12 border-t-2 border-r-2 border-[#D4AF37] rounded-tr-lg" />
@@ -516,7 +516,7 @@ export default function TeamMemberPage({ params }: { params: { slug: string } })
                   {member.pdfQualifications && (
                     <div className="flex justify-center mt-8">
                       <a href={member.pdfQualifications} target="_blank" rel="noopener noreferrer"
-                        className="px-12 py-5 bg-[#D4AF37] text-[#0f3574] rounded-xl font-black uppercase tracking-wider hover:bg-[#B8962D] transition-all duration-300 shadow-[0_15px_40px_rgba(212,175,55,0.3)] hover:-translate-y-1 text-center">
+                        className="px-12 py-5 bg-[#D4AF37] text-[#293995] rounded-xl font-black uppercase tracking-wider hover:bg-[#B8962D] transition-all duration-300 shadow-[0_15px_40px_rgba(212,175,55,0.3)] hover:-translate-y-1 text-center">
                         View {member.name.split(' ')[0]}&apos;s Professional Qualifications
                       </a>
                     </div>
@@ -540,7 +540,7 @@ export default function TeamMemberPage({ params }: { params: { slug: string } })
                 <section key={section.id} id={section.id} className="mb-10 scroll-mt-[6rem]">
                   <h2 className="relative text-2xl font-semibold text-primary-950 mb-6 group inline-block">
                     {section.title}
-                    <span className="absolute -bottom-2 left-0 w-12 h-0.5 bg-gradient-to-r from-[#0f3574] to-transparent transition-all duration-500 group-hover:w-full" />
+                    <span className="absolute -bottom-2 left-0 w-12 h-0.5 bg-gradient-to-r from-[#293995] to-transparent transition-all duration-500 group-hover:w-full" />
                   </h2>
                   <div className="space-y-5 text-base leading-relaxed text-gray-600">
                     {(() => {
@@ -555,7 +555,7 @@ export default function TeamMemberPage({ params }: { params: { slug: string } })
                             <ul className={`mt-6 mb-5 gap-x-10 gap-y-2 ${section.items.length > 5 && section.id !== 'education' ? 'grid grid-cols-1 sm:grid-cols-2' : 'flex flex-col'}`}>
                               {section.items.map((item, j) => (
                                 <li key={j} className="flex items-start gap-3 text-base text-gray-800">
-                                  <span className="mt-2 w-1.5 h-1.5 rounded-full bg-[#0f3574] flex-shrink-0" />
+                                  <span className="mt-2 w-1.5 h-1.5 rounded-full bg-[#293995] flex-shrink-0" />
                                   {item}
                                 </li>
                               ))}
@@ -568,7 +568,7 @@ export default function TeamMemberPage({ params }: { params: { slug: string } })
                       <ul className={`gap-x-10 gap-y-2 ${section.items.length > 5 && section.id !== 'education' ? 'grid grid-cols-1 sm:grid-cols-2' : 'flex flex-col'}`}>
                         {section.items.map((item, j) => (
                           <li key={j} className="flex items-start gap-3 text-base text-gray-800">
-                            <span className="mt-2 w-1.5 h-1.5 rounded-full bg-[#0f3574] flex-shrink-0" />
+                            <span className="mt-2 w-1.5 h-1.5 rounded-full bg-[#293995] flex-shrink-0" />
                             {item}
                           </li>
                         ))}
@@ -582,7 +582,7 @@ export default function TeamMemberPage({ params }: { params: { slug: string } })
               <section id="practice-areas" className="scroll-mt-[6rem]">
                 <h2 className="relative text-2xl font-semibold text-primary-950 mb-6 group inline-block">
                   Practice Areas
-                  <span className="absolute -bottom-2 left-0 w-12 h-0.5 bg-gradient-to-r from-[#0f3574] to-transparent transition-all duration-500 group-hover:w-full" />
+                  <span className="absolute -bottom-2 left-0 w-12 h-0.5 bg-gradient-to-r from-[#293995] to-transparent transition-all duration-500 group-hover:w-full" />
                 </h2>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-3">
                   {member.practiceAreas.map((area) => (

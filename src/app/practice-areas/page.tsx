@@ -120,10 +120,10 @@ export default function PracticeAreasPage() {
       <main className="min-h-screen bg-white">
 
         {/* ══════════ CINEMATIC HERO ══════════ */}
-        <section className="relative min-h-[85vh] flex items-center overflow-hidden bg-[#0A1A3C]">
+        <section className="relative flex items-center overflow-hidden bg-[#293995] pt-[calc(var(--hdr)+1rem)] pb-10">
           <div className="absolute inset-0 z-0 pointer-events-none">
             <div className="absolute top-1/4 right-1/4 w-[500px] h-[500px] bg-[#D4AF37]/10 blur-[150px] rounded-full" />
-            <div className="absolute bottom-1/4 left-1/4 w-[400px] h-[400px] bg-[#3b82f6]/10 blur-[120px] rounded-full" />
+            <div className="absolute bottom-1/4 left-1/4 w-[400px] h-[400px] bg-[#293995]/10 blur-[120px] rounded-full" />
             <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-[#D4AF37]/30 to-transparent" />
           </div>
 
@@ -134,7 +134,7 @@ export default function PracticeAreasPage() {
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 1.2, ease: "easeOut" }}
               >
-                <h1 className="text-7xl md:text-9xl font-bold tracking-tighter text-white drop-shadow-2xl">
+                <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tighter text-white drop-shadow-2xl">
                   Practice <br />
                   <span className="font-serif italic text-[#D4AF37] font-medium">Areas</span>
                 </h1>
@@ -158,10 +158,10 @@ export default function PracticeAreasPage() {
                 >
                   <Link
                     href={area.href}
-                    className="group relative block h-[180px] rounded-2xl overflow-hidden bg-gradient-to-br from-slate-50 to-slate-100 border border-[#172554] hover:from-primary-950 hover:to-[#0f2a5c] hover:border-primary-950 hover:-translate-y-1 hover:shadow-xl transition-all duration-500"
+                    className="group relative block sm:h-[180px] rounded-2xl overflow-hidden bg-gradient-to-br from-slate-50 to-slate-100 border border-[#1d2653] hover:from-primary-950 hover:to-[#1d2653] hover:border-primary-950 hover:-translate-y-1 hover:shadow-xl transition-all duration-500"
                   >
                     {/* Watermark icon */}
-                    <div className="absolute -bottom-4 -right-4 opacity-[0.05] group-hover:opacity-[0.25] transition-opacity duration-500">
+                    <div className="hidden sm:block absolute -bottom-4 -right-4 opacity-[0.05] group-hover:opacity-[0.25] transition-opacity duration-500">
                       <svg className="w-32 h-32 text-primary-950 group-hover:text-[#D4AF37] transition-colors duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={0.5} d={area.icon} />
                       </svg>
@@ -170,23 +170,26 @@ export default function PracticeAreasPage() {
                     {/* Gold top accent */}
                     <div className="absolute top-0 left-0 right-0 h-[3px] bg-[#D4AF37] scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
 
-                    <div className="relative z-10 p-6 h-full flex flex-col">
-                      <div className="w-11 h-11 rounded-xl bg-primary-950 group-hover:bg-[#D4AF37] flex items-center justify-center mb-auto transition-all duration-500">
-                        <svg className="w-5 h-5 text-[#D4AF37] group-hover:text-white transition-colors duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <div className="relative z-10 p-4 sm:p-6 h-full flex flex-row items-center gap-4 sm:flex-col sm:items-stretch sm:gap-0">
+                      <div className="w-11 h-11 rounded-xl bg-primary-950 group-hover:bg-[#D4AF37] flex shrink-0 items-center justify-center sm:mb-auto transition-all duration-500">
+                        <svg className="w-5 h-5 text-[#D4AF37] group-hover:text-[#1d2653] transition-colors duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d={area.icon} />
                         </svg>
                       </div>
-                      <div>
-                        <h3 className="text-[15px] font-bold text-primary-950 group-hover:text-[#D4AF37] leading-snug transition-colors duration-300 mb-2">
+                      <div className="flex-1 min-w-0">
+                        <h3 className="text-[15px] font-bold text-primary-950 group-hover:text-[#D4AF37] leading-snug transition-colors duration-300 sm:mb-2">
                           {area.title}
                         </h3>
-                        <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-2 group-hover:translate-y-0">
+                        <div className="hidden sm:flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-2 group-hover:translate-y-0">
                           <span className="text-[11px] text-[#D4AF37] font-semibold tracking-wide uppercase">Explore</span>
                           <svg className="w-3 h-3 text-[#D4AF37]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
                           </svg>
                         </div>
                       </div>
+                      <svg className="sm:hidden w-5 h-5 shrink-0 text-[#D4AF37]" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
+                      </svg>
                     </div>
                   </Link>
                 </motion.div>

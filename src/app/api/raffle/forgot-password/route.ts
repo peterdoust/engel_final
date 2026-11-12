@@ -47,16 +47,16 @@ export async function POST(request: NextRequest) {
       subject: 'Password Reset – Raffle Admin',
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 500px; margin: 0 auto;">
-          <div style="background: #172554; padding: 25px; text-align: center;">
+          <div style="background: #1d2653; padding: 25px; text-align: center;">
             <h1 style="color: #ffffff; margin: 0; font-size: 20px;">Engel & Engel, LLP</h1>
             <p style="color: #D4AF37; margin: 5px 0 0; font-size: 10px; letter-spacing: 3px; text-transform: uppercase;">Raffle Admin</p>
           </div>
           <div style="padding: 30px;">
-            <h2 style="color: #172554; margin: 0 0 15px; font-size: 20px;">Password Reset</h2>
+            <h2 style="color: #1d2653; margin: 0 0 15px; font-size: 20px;">Password Reset</h2>
             <p style="color: #64748b; line-height: 1.6; margin: 0 0 25px;">
               Click the button below to reset your password. This link expires in 1 hour.
             </p>
-            <a href="${resetUrl}" style="display: inline-block; background: #D4AF37; color: #172554; font-weight: bold; font-size: 14px; padding: 12px 30px; text-decoration: none;">
+            <a href="${resetUrl}" style="display: inline-block; background: #D4AF37; color: #1d2653; font-weight: bold; font-size: 14px; padding: 12px 30px; text-decoration: none;">
               Reset Password
             </a>
             <p style="color: #94a3b8; font-size: 12px; margin-top: 25px;">

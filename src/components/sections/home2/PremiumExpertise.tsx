@@ -26,7 +26,7 @@ const expertiseAreas = [
 
 export default function PremiumExpertise() {
     return (
-        <section className="relative py-28 md:py-64 bg-[#030712] overflow-hidden">
+        <section className="relative py-28 md:py-64 bg-[#11162d] overflow-hidden">
             {/* Cinematic Background */}
             <div className="absolute inset-0 z-0 opacity-20">
                 <Image
@@ -35,7 +35,7 @@ export default function PremiumExpertise() {
                     fill
                     className="object-cover transition-transform duration-[10s] animate-pulse"
                 />
-                <div className="absolute inset-0 bg-gradient-to-b from-[#030712] via-transparent to-[#030712]" />
+                <div className="absolute inset-0 bg-gradient-to-b from-[#11162d] via-transparent to-[#11162d]" />
             </div>
 
             <div className="container mx-auto px-6 relative z-10 lg:px-24">
@@ -72,7 +72,7 @@ export default function PremiumExpertise() {
                         <Link
                             key={index}
                             href={area.href}
-                            className="group relative bg-[#030712] p-12 md:p-20 aspect-square flex flex-col justify-between hover:bg-[#0f172a] transition-all duration-1000 border-r border-b border-white/5 overflow-hidden"
+                            className="group relative bg-[#11162d] p-12 md:p-20 aspect-square flex flex-col justify-between hover:bg-[#0f172a] transition-all duration-1000 border-r border-b border-white/5 overflow-hidden"
                         >
                             <div className="relative z-10 transition-transform duration-700 group-hover:-translate-y-4">
                                 <div className="text-[10px] md:text-xs font-bold tracking-[0.6em] uppercase text-white/10 group-hover:text-[#D4AF37] transition-all mb-10">

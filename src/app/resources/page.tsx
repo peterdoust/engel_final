@@ -4,71 +4,56 @@ import Footer from '@/components/layout/Footer'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/Card'
 import { Button } from '@/components/ui/Button'
 import Link from 'next/link'
+import { BarChart3, Briefcase, ClipboardList, Percent, PiggyBank, Sprout, TrendingDown, TrendingUp, Scale } from 'lucide-react'
 
 const calculators = [
   {
     title: 'Lost Profits Calculator',
     description: 'Calculate economic damages from lost business profits due to interruption or interference',
-    icon: '📈',
-    href: '/resources/lost-profits-calculator',
-    color: 'from-blue-600 to-blue-700',
-    hoverColor: 'hover:from-blue-700 hover:to-blue-800'
+    icon: TrendingUp,
+    href: '/resources/lost-profits-calculator'
   },
   {
     title: 'Present Value Calculator',
     description: 'Determine the present value of future cash flows for investment analysis',
-    icon: '💰',
-    href: '/resources/present-value-calculator',
-    color: 'from-green-600 to-green-700',
-    hoverColor: 'hover:from-green-700 hover:to-green-800'
+    icon: PiggyBank,
+    href: '/resources/present-value-calculator'
   },
   {
     title: 'Employment Damages Calculator',
     description: 'Calculate economic damages in employment litigation cases',
-    icon: '👔',
-    href: '/resources/employment-damages-calculator',
-    color: 'from-purple-600 to-purple-700',
-    hoverColor: 'hover:from-purple-700 hover:to-purple-800'
+    icon: Briefcase,
+    href: '/resources/employment-damages-calculator'
   },
   {
     title: 'CAGR Calculator',
     description: 'Calculate Compound Annual Growth Rate for investment performance analysis',
-    icon: '📊',
-    href: '/resources/compound-annual-growth-rate-calculator',
-    color: 'from-indigo-600 to-indigo-700',
-    hoverColor: 'hover:from-indigo-700 hover:to-indigo-800'
+    icon: BarChart3,
+    href: '/resources/compound-annual-growth-rate-calculator'
   },
   {
     title: 'Financial Ratio Calculator',
     description: 'Analyze financial health with comprehensive ratio calculations',
-    icon: '📋',
-    href: '/resources/financial-ratio-calculator',
-    color: 'from-teal-600 to-teal-700',
-    hoverColor: 'hover:from-teal-700 hover:to-teal-800'
+    icon: ClipboardList,
+    href: '/resources/financial-ratio-calculator'
   },
   {
     title: 'Interest Calculator',
     description: 'Calculate simple and compound interest for various scenarios',
-    icon: '💸',
-    href: '/resources/interest-calculator',
-    color: 'from-orange-600 to-orange-700',
-    hoverColor: 'hover:from-orange-700 hover:to-orange-800'
+    icon: Percent,
+    href: '/resources/interest-calculator'
   },
   {
     title: 'Compound Interest Calculator',
     description: 'Calculate compound interest with regular contributions over time',
-    icon: '🌱',
-    href: '/resources/compound-interest-calculator',
-    color: 'from-emerald-600 to-emerald-700',
-    hoverColor: 'hover:from-emerald-700 hover:to-emerald-800'
+    icon: Sprout,
+    href: '/resources/compound-interest-calculator'
   },
   {
     title: 'Depreciation Calculator',
     description: 'Calculate asset depreciation using multiple accounting methods',
-    icon: '📉',
-    href: '/resources/depreciation-calculator',
-    color: 'from-red-600 to-red-700',
-    hoverColor: 'hover:from-red-700 hover:to-red-800'
+    icon: TrendingDown,
+    href: '/resources/depreciation-calculator'
   }
 ]
 
@@ -78,13 +63,13 @@ export default function ResourcesPage() {
       <Header />
       
       {/* Hero Section */}
-      <section className="pt-16 lg:pt-20 bg-gradient-to-br from-primary-900 via-primary-800 to-primary-700 text-white">
-        <div className="container-custom py-24">
+      <section className="text-white bg-[#293995] pt-[calc(var(--hdr)+1rem)] pb-10">
+        <div className="container-custom">
           <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-4xl lg:text-6xl font-bold mb-6 leading-tight">
-              Financial <span className="text-primary-300">Calculators</span>
+            <h1 className="text-4xl lg:text-5xl font-bold mb-6 leading-tight text-white">
+              Financial <span className="text-[#d4af37]">Calculators</span>
             </h1>
-            <p className="text-xl lg:text-2xl text-primary-100 mb-8 leading-relaxed max-w-3xl mx-auto">
+            <p className="text-xl lg:text-2xl text-primary-100 mb-0 leading-relaxed max-w-3xl mx-auto">
               Professional-grade financial calculators for forensic accounting, litigation support, and business analysis
             </p>
           </div>
@@ -108,8 +93,8 @@ export default function ResourcesPage() {
               {calculators.map((calculator, index) => (
                 <Card key={index} className="h-full hover:shadow-xl transition-all duration-300 group border-0 bg-white">
                   <CardHeader className="pb-4">
-                    <div className="w-16 h-16 bg-gray-100 rounded-xl flex items-center justify-center text-3xl mb-4 group-hover:scale-110 transition-transform duration-300">
-                      {calculator.icon}
+                    <div className="w-16 h-16 bg-[#1d2653] rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+                      <calculator.icon className="w-8 h-8 text-[#d4af37]" strokeWidth={1.5} aria-hidden="true" />
                     </div>
                     <CardTitle className="text-xl font-bold text-gray-900 mb-2 group-hover:text-primary-600 transition-colors">
                       {calculator.title}
@@ -122,7 +107,7 @@ export default function ResourcesPage() {
                     <Link href={calculator.href}>
                       <Button
                         as="span"
-                        className={`w-full bg-gradient-to-r ${calculator.color} ${calculator.hoverColor} text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform group-hover:scale-105`}
+                        className={`w-full font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform group-hover:scale-105`}
                       >
                         Open Calculator
                         <svg className="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -143,8 +128,8 @@ export default function ResourcesPage() {
         <div className="container-custom">
           <div className="max-w-4xl mx-auto text-center">
             <div className="bg-primary-50 rounded-2xl p-8 border border-primary-200">
-              <div className="w-16 h-16 bg-primary-600 rounded-full flex items-center justify-center text-white text-2xl mx-auto mb-6">
-                ⚖️
+              <div className="w-16 h-16 bg-[#1d2653] rounded-full flex items-center justify-center mx-auto mb-6">
+                <Scale className="w-8 h-8 text-[#d4af37]" strokeWidth={1.5} aria-hidden="true" />
               </div>
               <h3 className="text-2xl font-bold text-gray-900 mb-4">
                 Professional Forensic Accounting Services
@@ -154,7 +139,7 @@ export default function ResourcesPage() {
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link href="/contact">
-                  <Button as="span" size="lg" className="bg-primary-600 hover:bg-primary-700 text-white px-8 py-3">
+                  <Button as="span" size="lg" className="px-8 py-3">
                     Get Expert Consultation
                   </Button>
                 </Link>

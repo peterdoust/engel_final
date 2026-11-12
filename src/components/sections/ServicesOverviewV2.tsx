@@ -33,11 +33,11 @@ const services = [
 
 export default function ServicesOverviewV2() {
   return (
-    <section className="relative py-20 md:py-28 bg-[#172554] overflow-hidden">
+    <section className="relative py-20 md:py-28 bg-[#1d2653] overflow-hidden">
       {/* Background effects */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         <div className="absolute top-1/4 right-1/4 w-[400px] h-[400px] bg-[#D4AF37]/5 blur-[150px] rounded-full" />
-        <div className="absolute bottom-1/4 left-1/3 w-[300px] h-[300px] bg-[#3b82f6]/5 blur-[120px] rounded-full" />
+        <div className="absolute bottom-1/4 left-1/3 w-[300px] h-[300px] bg-[#293995]/5 blur-[120px] rounded-full" />
       </div>
 
       <div className="container-custom relative z-10">

@@ -78,7 +78,7 @@ export default function EconomicDamagesPage() {
       <main className=" min-h-screen">
 
         {/* ══════════ HERO ══════════ */}
-        <section className="relative min-h-[70vh] flex items-end overflow-hidden bg-primary-950">
+        <section className="relative flex items-end overflow-hidden bg-[#293995] pt-[calc(var(--hdr)+1rem)] pb-10">
           <div className="absolute inset-0 z-0 pointer-events-none">
             <motion.div
               style={{ y: y2, scale }}
@@ -86,13 +86,13 @@ export default function EconomicDamagesPage() {
             />
             <motion.div
               style={{ y: y1 }}
-              className="absolute bottom-1/4 left-1/4 w-[400px] h-[400px] bg-[#3b82f6]/10 blur-[120px] rounded-full"
+              className="absolute bottom-1/4 left-1/4 w-[400px] h-[400px] bg-[#293995]/10 blur-[120px] rounded-full"
             />
             <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)', backgroundSize: '60px 60px' }} />
             <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-[#D4AF37]/30 to-transparent" />
           </div>
 
-          <div className="container-custom relative z-10 w-full pb-20 pt-52 md:pt-40">
+          <div className="container-custom relative z-10 w-full">
             <motion.div
               style={{ y: springY1, opacity }}
               className="max-w-5xl"
@@ -102,12 +102,12 @@ export default function EconomicDamagesPage() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, ease: 'easeOut' }}
               >
-                <p className="text-[#D4AF37] text-sm font-semibold tracking-[0.3em] uppercase mb-6">Practice Area</p>
-                <h1 className="text-6xl md:text-8xl lg:text-9xl font-bold tracking-tighter text-white leading-[0.9]">
+                <p className="text-[#D4AF37] text-sm font-semibold tracking-[0.3em] uppercase mb-3">Practice Area</p>
+                <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tighter text-white leading-[0.9]">
                   Economic<br />
                   <span className="font-serif italic text-[#D4AF37] font-medium">Damages</span>
                 </h1>
-                <div className="h-[3px] w-24 bg-[#D4AF37] mt-8" />
+                <div className="h-[3px] w-24 bg-[#D4AF37] mt-5" />
               </motion.div>
             </motion.div>
           </div>
@@ -261,7 +261,7 @@ export default function EconomicDamagesPage() {
         </section>
 
         {/* ══════════ CONTACT CTA ══════════ */}
-        <section className="relative py-28 bg-[#0A1A3C] overflow-hidden">
+        <section className="relative py-28 bg-[#1D2653] overflow-hidden">
           <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#D4AF37]/5 blur-[150px] rounded-full pointer-events-none" />
           <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-blue-500/10 blur-[120px] rounded-full pointer-events-none" />
           <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-[#D4AF37]/50 to-transparent" />
@@ -296,7 +296,7 @@ export default function EconomicDamagesPage() {
 
                 <div className="flex flex-col justify-center space-y-5 p-8 border border-white/10 rounded-2xl bg-white/5 backdrop-blur-sm">
                   <a href="mailto:brandon@engelandengel.com" className="group flex items-center gap-4">
-                    <div className="w-12 h-12 rounded-xl bg-[#D4AF37]/10 border border-[#D4AF37]/30 flex items-center justify-center text-[#D4AF37] group-hover:bg-[#D4AF37] group-hover:text-[#0A1A3C] transition-all duration-300 shrink-0">
+                    <div className="w-12 h-12 rounded-xl bg-[#D4AF37]/10 border border-[#D4AF37]/30 flex items-center justify-center text-[#D4AF37] group-hover:bg-[#D4AF37] group-hover:text-[#1D2653] transition-all duration-300 shrink-0">
                       <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                       </svg>
@@ -307,7 +307,7 @@ export default function EconomicDamagesPage() {
                   </a>
 
                   <TrackedPhoneLink phone="310-277-2220" location="practice_area_cta" className="group flex items-center gap-4">
-                    <div className="w-12 h-12 rounded-xl bg-[#D4AF37]/10 border border-[#D4AF37]/30 flex items-center justify-center text-[#D4AF37] group-hover:bg-[#D4AF37] group-hover:text-[#0A1A3C] transition-all duration-300 shrink-0">
+                    <div className="w-12 h-12 rounded-xl bg-[#D4AF37]/10 border border-[#D4AF37]/30 flex items-center justify-center text-[#D4AF37] group-hover:bg-[#D4AF37] group-hover:text-[#1D2653] transition-all duration-300 shrink-0">
                       <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                       </svg>

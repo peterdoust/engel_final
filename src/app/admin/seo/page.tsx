@@ -5,7 +5,7 @@ import { useCurrentUser } from '../useCurrentUser'
 
 const TITLE_LIMIT = 60
 const DESCRIPTION_LIMIT = 160
-const SITE_ORIGIN = 'https://engelengel.com'
+const SITE_ORIGIN = 'https://engelandengel.com'
 
 type SeoPageType =
   | 'standard'
@@ -275,14 +275,14 @@ export default function SeoAdmin() {
       <header className="bg-white border-b border-gray-200">
         <div className="px-4 sm:px-6 py-4 sm:py-5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
           <div className="lg:pl-0 pl-12">
-            <h1 className="text-lg sm:text-xl font-bold text-[#0d1f42]">SEO Meta</h1>
+            <h1 className="text-lg sm:text-xl font-bold text-[#1d2653]">SEO Meta</h1>
             <p className="text-xs text-gray-500 mt-0.5">
               {pages.length} pages · {customCount} customised
             </p>
           </div>
           <button
             onClick={() => fetchPages()}
-            className="text-xs font-semibold text-gray-600 hover:text-[#0d1f42] px-3 py-2 border border-gray-200 rounded-lg"
+            className="text-xs font-semibold text-gray-600 hover:text-[#1d2653] px-3 py-2 border border-gray-200 rounded-lg"
           >
             Refresh
           </button>
@@ -293,7 +293,7 @@ export default function SeoAdmin() {
             value={search}
             onChange={e => setSearch(e.target.value)}
             placeholder="Search pages, titles or URLs..."
-            className="flex-1 text-sm px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0d1f42]/20"
+            className="flex-1 text-sm px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1d2653]/20"
           />
           <div className="flex gap-1">
             {([{ type: 'all' as const, label: 'All' }, ...GROUPS]).map(g => (
@@ -302,8 +302,8 @@ export default function SeoAdmin() {
                 onClick={() => setTypeFilter(g.type as any)}
                 className={`text-xs font-semibold px-3 py-2 rounded-lg border transition-colors ${
                   typeFilter === g.type
-                    ? 'bg-[#0d1f42] text-white border-[#0d1f42]'
-                    : 'bg-white text-gray-600 border-gray-200 hover:text-[#0d1f42]'
+                    ? 'bg-[#1d2653] text-white border-[#1d2653]'
+                    : 'bg-white text-gray-600 border-gray-200 hover:text-[#1d2653]'
                 }`}
               >
                 {g.label}
@@ -350,7 +350,7 @@ export default function SeoAdmin() {
                       <div className="flex items-start justify-between gap-3">
                         <div className="min-w-0">
                           <div className="flex items-center gap-2 flex-wrap">
-                            <span className="text-sm font-semibold text-[#0d1f42]">{row.label}</span>
+                            <span className="text-sm font-semibold text-[#1d2653]">{row.label}</span>
                             <span
                               className={`text-[10px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded ${
                                 custom ? 'bg-[#D4AF37]/20 text-[#8a6d0b]' : 'bg-gray-100 text-gray-500'
@@ -392,7 +392,7 @@ export default function SeoAdmin() {
                                 <button
                                   type="button"
                                   onClick={() => setDraft(row, { title: row.defaultTitle })}
-                                  className="text-[11px] font-semibold text-gray-500 hover:text-[#0d1f42] underline underline-offset-2"
+                                  className="text-[11px] font-semibold text-gray-500 hover:text-[#1d2653] underline underline-offset-2"
                                 >
                                   Restore default
                                 </button>
@@ -405,7 +405,7 @@ export default function SeoAdmin() {
                             onChange={e => setDraft(row, { title: e.target.value })}
                             placeholder={row.defaultTitle}
                             readOnly={!canEdit}
-                            className={`w-full text-sm px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0d1f42]/20 ${
+                            className={`w-full text-sm px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1d2653]/20 ${
                               canEdit ? 'bg-white' : 'bg-gray-50 text-gray-500 cursor-not-allowed'
                             }`}
                           />
@@ -427,7 +427,7 @@ export default function SeoAdmin() {
                                 <button
                                   type="button"
                                   onClick={() => setDraft(row, { description: row.defaultDescription })}
-                                  className="text-[11px] font-semibold text-gray-500 hover:text-[#0d1f42] underline underline-offset-2"
+                                  className="text-[11px] font-semibold text-gray-500 hover:text-[#1d2653] underline underline-offset-2"
                                 >
                                   Restore default
                                 </button>
@@ -441,7 +441,7 @@ export default function SeoAdmin() {
                             placeholder={row.defaultDescription}
                             rows={3}
                             readOnly={!canEdit}
-                            className={`w-full text-sm px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0d1f42]/20 resize-y ${
+                            className={`w-full text-sm px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1d2653]/20 resize-y ${
                               canEdit ? 'bg-white' : 'bg-gray-50 text-gray-500 cursor-not-allowed'
                             }`}
                           />
@@ -467,7 +467,7 @@ export default function SeoAdmin() {
                             <button
                               onClick={() => save(row)}
                               disabled={saving}
-                              className="text-xs font-semibold text-white bg-[#0d1f42] hover:bg-black px-4 py-2 rounded-lg disabled:opacity-40"
+                              className="text-xs font-semibold text-white bg-[#1d2653] hover:bg-black px-4 py-2 rounded-lg disabled:opacity-40"
                             >
                               {saving ? 'Saving...' : 'Save'}
                             </button>
@@ -477,7 +477,7 @@ export default function SeoAdmin() {
                               clearDraft(row.path)
                               setExpanded(null)
                             }}
-                            className="text-xs font-semibold text-gray-600 hover:text-[#0d1f42] px-4 py-2 border border-gray-200 rounded-lg bg-white"
+                            className="text-xs font-semibold text-gray-600 hover:text-[#1d2653] px-4 py-2 border border-gray-200 rounded-lg bg-white"
                           >
                             {canEdit ? 'Cancel' : 'Close'}
                           </button>
@@ -485,7 +485,7 @@ export default function SeoAdmin() {
                             href={row.path}
                             target="_blank"
                             rel="noreferrer"
-                            className="text-xs font-semibold text-gray-600 hover:text-[#0d1f42] px-4 py-2 border border-gray-200 rounded-lg bg-white"
+                            className="text-xs font-semibold text-gray-600 hover:text-[#1d2653] px-4 py-2 border border-gray-200 rounded-lg bg-white"
                           >
                             View page
                           </a>

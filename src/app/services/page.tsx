@@ -56,13 +56,13 @@ export default function ServicesPage() {
       <main className="bg-slate-50 min-h-screen">
 
         {/* ══════════ CINEMATIC HERO ══════════ */}
-        <section className="relative pt-24 pb-12 lg:pt-32 lg:pb-16 overflow-hidden bg-[#0f3574] text-white text-center">
+        <section className="relative pt-24 pb-12 lg:pt-32 lg:pb-16 overflow-hidden bg-[#293995] text-white text-center">
           <div className="absolute inset-0 z-0 overflow-hidden">
             <div
               className="absolute inset-0 bg-cover bg-center opacity-30 scale-105 animate-ken-burns"
               style={{ backgroundImage: 'url("https://images.pexels.com/photos/159213/hall-congress-architecture-building-159213.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080")' }}
             />
-            <div className="absolute inset-0 bg-gradient-to-b from-[#0f3574] via-[#0f3574]/95 to-[#0f3574]" />
+            <div className="absolute inset-0 bg-gradient-to-b from-[#293995] via-[#293995]/95 to-[#293995]" />
             <div className="absolute top-0 right-0 w-[1200px] h-[800px] bg-[#D4AF37]/10 blur-[200px] rounded-full -translate-y-1/2 translate-x-1/4" />
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(212,175,55,0.05)_0%,transparent_70%)]" />
             <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-[#D4AF37]/30 to-transparent" />
@@ -109,7 +109,7 @@ export default function ServicesPage() {
                         <div className="w-12 h-[1px] bg-[#D4AF37]" />
                         <span className="text-xs font-bold tracking-[0.3em] uppercase text-[#D4AF37]">Service {service.number}</span>
                       </div>
-                      <h3 className="text-3xl md:text-5xl font-bold text-[#0f3574] tracking-tight group-hover:translate-x-2 transition-transform duration-500">
+                      <h3 className="text-3xl md:text-5xl font-bold text-[#293995] tracking-tight group-hover:translate-x-2 transition-transform duration-500">
                         {service.title}
                       </h3>
                       <p className="text-lg md:text-xl text-slate-500 font-light leading-relaxed max-w-2xl">
@@ -118,7 +118,7 @@ export default function ServicesPage() {
 
                       <div className="pt-4 flex items-center gap-4 text-sm font-bold tracking-widest text-[#D4AF37] uppercase group/more">
                         Learn More
-                        <div className="w-10 h-10 rounded-full border border-[#D4AF37]/30 flex items-center justify-center group-hover/more:bg-[#D4AF37] group-hover/more:text-white transition-all">
+                        <div className="w-10 h-10 rounded-full border border-[#D4AF37]/30 flex items-center justify-center group-hover/more:bg-[#D4AF37] group-hover/more:text-[#1d2653] transition-all">
                           <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                           </svg>
@@ -129,7 +129,7 @@ export default function ServicesPage() {
                     {/* Image Placeholder / Icon Visual */}
                     <div className="relative w-full md:w-1/3 aspect-square max-w-[280px] rounded-3xl overflow-hidden bg-slate-50 flex items-center justify-center border border-slate-100 group-hover:scale-105 transition-transform duration-1000 shadow-inner">
                       <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(212,175,55,0.05)_0%,transparent_70%)]" />
-                      <div className="w-20 h-20 rounded-2xl border-2 border-[#0f3574]/10 flex items-center justify-center text-[#0f3574]">
+                      <div className="w-20 h-20 rounded-2xl border-2 border-[#293995]/10 flex items-center justify-center text-[#293995]">
                         <svg className="w-10 h-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
                         </svg>
@@ -144,7 +144,7 @@ export default function ServicesPage() {
 
         {/* ══════════ CTA SECTION ══════════ */}
         <section className="py-32 relative overflow-hidden">
-          <div className="absolute inset-0 bg-[#0f3574]" />
+          <div className="absolute inset-0 bg-[#293995]" />
           <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-[#D4AF37]/5 blur-[160px] rounded-full translate-x-1/2 -translate-y-1/2" />
           <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-blue-500/5 blur-[140px] rounded-full -translate-x-1/2 translate-y-1/2" />
 
@@ -152,7 +152,7 @@ export default function ServicesPage() {
             <div className="max-w-4xl mx-auto py-20 px-10 border border-white/5 bg-white/[0.02] backdrop-blur-md rounded-[3rem] shadow-2xl">
               <h2 className="text-4xl md:text-6xl font-bold mb-8 text-white tracking-tight leading-tight">
                 Experience the <br />
-                <span className="font-serif italic text-[#D4AF37] font-medium text-[2.5rem]">Engel Difference</span>
+                <span className="font-serif italic text-[#D4AF37] font-medium text-[2.5rem] tracking-normal">Engel Difference</span>
               </h2>
               <p className="text-slate-400 text-lg md:text-xl font-light leading-relaxed max-w-2xl mx-auto mb-12">
                 Join the law firms and public corporations that rely on our authoritative forensic investigative reporting and court-validated expert testimony.

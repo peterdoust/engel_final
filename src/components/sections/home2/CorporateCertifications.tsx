@@ -18,7 +18,7 @@ export default function CorporateCertifications() {
         <section className="py-24 bg-white border-y border-gray-100">
             <div className="container mx-auto px-6 lg:px-12">
                 <div className="flex flex-col items-center mb-16 text-center">
-                    <h2 className="text-3xl md:text-5xl font-bold text-[#0A0F1E] mb-6 tracking-tight uppercase">
+                    <h2 className="text-3xl md:text-5xl font-bold text-[#11162D] mb-6 tracking-tight uppercase">
                         Our Certifications
                     </h2>
                     <p className="text-gray-500 text-lg md:text-xl font-light max-w-2xl mx-auto">

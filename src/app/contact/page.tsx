@@ -111,7 +111,7 @@ export default function ContactPage() {
     return (
       <>
         <Header />
-        <main className="bg-[#0f3574] min-h-screen text-white flex items-center justify-center pt-20">
+        <main className="bg-[#293995] min-h-screen text-white flex items-center justify-center pt-20">
           <div className="container-custom py-20 text-center">
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
@@ -130,7 +130,7 @@ export default function ContactPage() {
               </p>
               <Button
                 onClick={() => setIsSubmitted(false)}
-                className="bg-[#D4AF37] hover:bg-[#B8962E] text-black font-bold px-10 py-4 h-auto text-lg rounded-xl"
+                className="bg-[#D4AF37] hover:bg-[#B8962E] text-[#1d2653] font-bold px-10 py-4 h-auto text-lg rounded-xl"
               >
                 Send Another Message
               </Button>
@@ -148,7 +148,7 @@ export default function ContactPage() {
       <main className="min-h-screen">
 
         {/* ══════════ CINEMATIC HERO ══════════ */}
-        <section className="relative pt-24 pb-8 lg:pt-32 lg:pb-12 overflow-hidden bg-primary-950 text-white text-center">
+        <section className="relative pt-[calc(var(--hdr)+1.5rem)] pb-8 lg:pb-12 overflow-hidden bg-[#293995] text-white text-center">
           {/* Subtle radial glow */}
           <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse at center top, rgba(212,175,55,0.06) 0%, transparent 60%)' }} />
 
@@ -169,9 +169,9 @@ export default function ContactPage() {
         </section>
 
         {/* ══════════ MAIN CONTENT ═════════ */}
-        <section className="relative bg-primary-950 z-20 -mt-8">
+        <section className="relative bg-[#293995] z-20 -mt-8">
           {/* Dark background that spans the full section */}
-          <div className="bg-primary-950 pt-16 pb-32">
+          <div className="bg-[#293995] pt-16 pb-32">
             <div className="container-custom">
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 xl:gap-16">
 
@@ -379,18 +379,19 @@ export default function ContactPage() {
           <div className="">
             <div className="relative h-[600px] w-full overflow-hidden shadow-2xl group grayscale hover:grayscale-0 transition-all duration-700">
               {/* Note: In a real app we'd use Google Maps. Using a placeholders/styled div for now */}
-              <div className="absolute inset-0 bg-[#0f3574]">
+              <div className="absolute inset-0 bg-[#293995]">
                 <iframe
                   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3305.672901974726!2d-118.25206982348505!3d34.05223417315664!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c2c64bd9807669%3A0xc68e592634e5a953!2s350%20S%20Grand%20Ave%20%233160%2C%20Los%20Angeles%2C%20CA%2090071!5e0!3m2!1sen!2sus!4v1700000000000!5m2!1sen!2sus"
                   width="100%"
                   height="100%"
                   style={{ border: 0, opacity: 0.6 }}
+                  title="Map of the Engel & Engel office at 350 S Grand Ave, Los Angeles"
                   allowFullScreen
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
                 />
               </div>
-              <div className="absolute top-10 left-10 z-10 bg-white/90 backdrop-blur-md p-6 rounded-2xl shadow-xl max-w-xs border border-white">
+              <div className="absolute left-4 right-4 bottom-4 sm:bottom-auto sm:right-auto sm:top-10 sm:left-10 z-10 bg-white/90 backdrop-blur-md p-4 sm:p-6 rounded-2xl shadow-xl sm:max-w-xs border border-white">
                 <h4 className="text-lg font-bold text-slate-900 mb-2">Visit Our Office</h4>
                 <p className="text-sm text-slate-500 font-light leading-relaxed">
                   Centrally located in Downtown Los Angeles at <span className="text-slate-900 font-medium">350 S Grand Ave.</span> Validated parking available for all clients.

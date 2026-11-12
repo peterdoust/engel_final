@@ -30,7 +30,7 @@ export default function ExpertiseGridV2() {
       <div className="container-custom w-full relative z-10">
         {/* Header */}
         <div className="mb-12 lg:mb-20">
-          <h2 className="text-5xl md:text-6xl lg:text-[72px] leading-[72px] tracking-[-0.02em] text-white text-center font-semibold" style={{ fontFamily: 'Inter, system-ui, sans-serif' }}>
+          <h2 className="text-5xl md:text-6xl lg:text-[72px] leading-[72px] tracking-[-0.02em] text-white text-center font-semibold">
             <span>Our Areas </span>of <em className="text-[#d4af37] font-serif italic">Expertise</em>
           </h2>
         </div>
@@ -66,7 +66,7 @@ export default function ExpertiseGridV2() {
                   {/* Arrow indicator */}
                   <div className="mt-4 flex justify-center">
                     <div className="w-8 h-8 rounded-full border border-gray-200 flex items-center justify-center group-hover:border-[#D4AF37] group-hover:bg-[#D4AF37] transition-all duration-500">
-                      <svg className="w-3.5 h-3.5 text-gray-300 group-hover:text-white transition-colors duration-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                      <svg className="w-3.5 h-3.5 text-gray-300 group-hover:text-[#1d2653] transition-colors duration-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                         <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
                       </svg>
                     </div>

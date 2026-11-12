@@ -26,13 +26,13 @@ export default function EventsContent({ featuredEvents, otherEvents, upcomingEve
     return (
         <>
             {/* ══════════ PREMIUM HERO SECTION ══════════ */}
-            <section className="relative pt-24 pb-12 lg:pt-32 lg:pb-16 overflow-hidden bg-[#0f3574] text-white text-center">
+            <section className="relative pt-24 pb-12 lg:pt-32 lg:pb-16 overflow-hidden bg-[#293995] text-white text-center">
                 <div className="absolute inset-0 z-0 overflow-hidden">
                     <div
                         className="absolute inset-0 bg-cover bg-center opacity-30 scale-105 animate-ken-burns"
                         style={{ backgroundImage: 'url("https://images.pexels.com/photos/159213/hall-congress-architecture-building-159213.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080")' }}
                     />
-                    <div className="absolute inset-0 bg-gradient-to-b from-[#0f3574] via-[#0f3574]/95 to-[#0f3574]" />
+                    <div className="absolute inset-0 bg-gradient-to-b from-[#293995] via-[#293995]/95 to-[#293995]" />
                     <div className="absolute top-0 right-0 w-[1200px] h-[800px] bg-[#D4AF37]/10 blur-[200px] rounded-full -translate-y-1/2 translate-x-1/4" />
                     <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(212,175,55,0.05)_0%,transparent_70%)]" />
                     <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-[#D4AF37]/30 to-transparent" />
@@ -85,22 +85,23 @@ export default function EventsContent({ featuredEvents, otherEvents, upcomingEve
 
                                     {/* Date Badge */}
                                     <div className="absolute top-6 left-6 z-30 flex flex-col items-center justify-center w-16 h-20 bg-white/10 backdrop-blur-xl border border-white/20 rounded-xl">
-                                        <span className="text-2xl font-bold text-white leading-none">{new Date(event.date).getDate()}</span>
+                                        <span className="text-2xl font-bold text-white leading-none">{new Date(event.date + 'T00:00:00').getDate()}</span>
                                         <span className="text-[10px] font-black uppercase tracking-widest text-[#D4AF37] mt-1">
-                                            {new Date(event.date).toLocaleDateString('en-US', { month: 'short' })}
+                                            {new Date(event.date + 'T00:00:00').toLocaleDateString('en-US', { month: 'short' })}
                                         </span>
                                     </div>
 
                                     {/* Icon Overlay */}
                                     <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-700 z-20">
-                                        <div className="w-16 h-16 rounded-full bg-[#D4AF37] flex items-center justify-center text-[#0f3574] transform scale-0 group-hover:scale-100 transition-transform duration-500">
+                                        <div className="w-16 h-16 rounded-full bg-[#D4AF37] flex items-center justify-center text-[#293995] transform scale-0 group-hover:scale-100 transition-transform duration-500">
                                             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
                                         </div>
                                     </div>
 
                                     {/* Placeholder Background */}
-                                    <div className="absolute inset-0 bg-gradient-to-br from-slate-800 to-slate-950 flex items-center justify-center">
-                                        <span className="text-[120px] opacity-10 select-none">🎯</span>
+                                    <div className="absolute inset-0 bg-gradient-to-br from-[#1d2653] to-[#11162d] flex items-end justify-end p-5 sm:p-6">
+                                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                                        <img src="/images/brand/ee-logo-horizontal-white.png" alt="" aria-hidden="true" className="w-1/2 max-w-[200px] opacity-[0.15] select-none" />
                                     </div>
                                 </div>
 
@@ -119,7 +120,7 @@ export default function EventsContent({ featuredEvents, otherEvents, upcomingEve
                                     <div className="grid grid-cols-2 gap-6 mb-6 pb-6 border-b border-slate-100">
                                         <div className="space-y-1">
                                             <p className="text-[10px] font-black uppercase tracking-widest text-slate-400">Location</p>
-                                            <p className="text-sm font-semibold text-slate-700 line-clamp-1">{event.location}</p>
+                                            <p className="text-sm font-semibold text-slate-700 line-clamp-2 sm:line-clamp-1">{event.location}</p>
                                         </div>
                                         <div className="space-y-1">
                                             <p className="text-[10px] font-black uppercase tracking-widest text-slate-400">Schedule</p>
@@ -132,7 +133,7 @@ export default function EventsContent({ featuredEvents, otherEvents, upcomingEve
                                     </p>
 
                                     <div className="mt-auto flex items-center justify-between gap-4">
-                                        <Link href={`/events/${event.slug}`} className="flex-1 px-6 py-3 bg-[#0f3574] text-white rounded-xl text-xs font-bold uppercase tracking-widest text-center hover:bg-slate-800 transition-colors duration-300">
+                                        <Link href={`/events/${event.slug}`} className="flex-1 px-6 py-3 bg-[#293995] text-white rounded-xl text-xs font-bold uppercase tracking-widest text-center hover:bg-slate-800 transition-colors duration-300">
                                             View Details
                                         </Link>
                                         <TrackedPhoneLink phone={event.contactPhone} location="events_list" className="px-6 py-3 border border-slate-200 rounded-xl text-xs font-bold uppercase tracking-widest text-slate-900 hover:border-[#D4AF37] hover:text-[#D4AF37] transition-all duration-300">
@@ -164,9 +165,9 @@ export default function EventsContent({ featuredEvents, otherEvents, upcomingEve
                                         className="group flex flex-col md:flex-row md:items-center gap-8 p-6 rounded-2xl hover:bg-slate-50 transition-colors duration-300 border border-transparent hover:border-slate-100"
                                     >
                                         <div className="md:w-32 flex flex-col items-center justify-center text-center pb-6 md:pb-0 md:border-r border-slate-200">
-                                            <span className="text-3xl font-serif italic text-[#D4AF37]">0{new Date(event.date).getDate()}</span>
+                                            <span className="text-3xl font-serif italic text-[#D4AF37]">{String(new Date(event.date + 'T00:00:00').getDate()).padStart(2, '0')}</span>
                                             <span className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">
-                                                {new Date(event.date).toLocaleDateString('en-US', { month: 'short' })}
+                                                {new Date(event.date + 'T00:00:00').toLocaleDateString('en-US', { month: 'short' })}
                                             </span>
                                         </div>
 
