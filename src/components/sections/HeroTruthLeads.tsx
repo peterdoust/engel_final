@@ -343,7 +343,7 @@ export default function HeroTruthLeads() {
             <span ref={lineRefs[0]} className="ee-hero-line ee-hero-l1 font-medium leading-none tracking-[-0.03em] text-[clamp(25px,calc(3.37vw-3px),61px)]">
               Wherever the
             </span>
-            <span ref={lineRefs[1]} className="ee-hero-line ee-hero-l2 -mt-[0.045em] font-medium leading-none tracking-[-0.03em] text-[clamp(39px,calc(5.05vw-3px),93px)]">
+            <span ref={lineRefs[1]} className="ee-hero-line ee-hero-l2 -mt-[0.045em] font-medium leading-none tracking-[-0.03em] text-[min(clamp(39px,calc(5.05vw-3px),93px),calc((100vw-44px)/6.4))]">
               Truth <em className="italic">Leads.</em>
             </span>
             <span
