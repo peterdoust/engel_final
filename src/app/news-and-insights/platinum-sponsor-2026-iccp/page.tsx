@@ -8,7 +8,7 @@ import Image from 'next/image'
 import { motion } from 'framer-motion'
 import TrackedPhoneLink from '@/components/ui/TrackedPhoneLink'
 
-export default function ForbesTopCPAsArticle() {
+export default function CorporateCounselArticle() {
   return (
     <>
       <main>
