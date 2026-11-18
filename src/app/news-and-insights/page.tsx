@@ -42,7 +42,7 @@ const newsItems = [
   },
   {
     id: 8,
-    title: 'Engel & Engel Platinum Sponsor of the Institute for 2026 Corporate Counsel Program',
+    title: 'Engel & Engel Returns as Platinum Sponsor of the 2026 Institute for Corporate Counsel Program',
     excerpt: 'Engel & Engel is proud to return as a platinum sponsor of this year\'s Institute for Corporate Counsel Program held at The California Club on December 2, 2026. The day-long conference focuses on topics impacting law, business, and politics. We will have a sponsor\'s table in the lobby and we look forward to connecting with you at the event.',
     date: 'December 2, 2026',
     category: 'Events',
