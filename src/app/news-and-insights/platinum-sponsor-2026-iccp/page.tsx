@@ -52,9 +52,9 @@ export default function CorporateCounselArticle() {
                     </p>
                     <div className="flex flex-wrap items-center gap-6 text-white/90">
                       <div className="flex items-center gap-3">
-                        /*<div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center text-white font-bold">
-                          EE
-                        </div>*/
+                        /*<div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center text-white font-bold">*/
+                          /*EE*/
+                       /* </div>*/
                         <div>
                           <div className="font-medium text-white">Engel & Engel LLP</div>
                           <div className="text-sm text-white/70">Event Announcement</div>
