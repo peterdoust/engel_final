@@ -97,7 +97,7 @@ export default function CorporateCounselArticle() {
               {/* Content */}
               <div className="prose prose-lg max-w-none prose-headings:text-gray-900 prose-p:text-gray-700 prose-li:text-gray-700 prose-strong:text-gray-900 prose-h2:text-2xl prose-h2:font-bold prose-h2:mt-8 prose-h2:mb-4 prose-h3:text-xl prose-h3:font-semibold prose-h3:mt-6 prose-h3:mb-3 prose-ul:my-4 prose-ol:my-4 prose-li:my-1">
                 <p>
-                  <strong>LOS ANGELES &mdash; December 2, 2026</strong>
+                  <strong>LOS ANGELES</strong>
                 </p>
                 <p>
   Engel &amp; Engel is proud to return as a platinum sponsor of this year&apos;s Institute for Corporate Counsel Program, held at The California Club on December 2, 2026. The day-long conference focuses on topics impacting law, business, and politics. We will have a sponsor&apos;s table in the lobby, and we look forward to connecting with you at the event.
