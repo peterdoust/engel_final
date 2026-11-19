@@ -42,7 +42,7 @@ export default function CorporateCounselArticle() {
                       <span className="inline-block bg-blue-600 text-white px-4 py-2 rounded-full text-sm font-medium">
                         Announcements
                       </span>
-                      <span className="ml-3 text-white/60 text-sm">March 6, 2026</span>
+                      <span className="ml-3 text-white/60 text-sm">&nbsp;</span>
                     </div>
                     <h1 className="text-3xl lg:text-4xl font-bold text-white mb-5 leading-tight">
                       Engel & Engel Returns as Platinum Sponsor of the 2026 Institute for Corporate Counsel Program
@@ -57,7 +57,7 @@ export default function CorporateCounselArticle() {
                         </div>
                         <div>
                           <div className="font-medium text-white">Engel & Engel LLP</div>
-                          <div className="text-sm text-white/70">Press Release</div>
+                          <div className="text-sm text-white/70">Event Announcement</div>
                         </div>
                       </div>
                     </div>
